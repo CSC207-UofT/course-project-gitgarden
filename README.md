@@ -1,6 +1,7 @@
-## Replace this README.md!
-
-This is a standard README.md file for you to replace. You'll want to include your own content here!
-
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+CURRENT - Project Phase 0 
+Task 1 - Pick domain - Complete
+Task 2 - Write specification - Complete and awaiting review
+Task 3 - CRC model - To be completed on Thursday 5-6pm
+Task 4 - Scenario Walk-Through - Incomplete
+Task 5 - Skeleton Program - Incomplete
+Task 6 - Progress Report - Incomplete

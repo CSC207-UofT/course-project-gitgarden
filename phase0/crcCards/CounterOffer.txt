@@ -1,0 +1,12 @@
+Class name: CounterOffer
+Parent class: Offer
+
+Responsibilities
+* Store the previous offer identification
+* Store the request identification 
+* Store counter offer info
+
+Collaborators: 
+* Offer
+* Farmer 
+* Distributor

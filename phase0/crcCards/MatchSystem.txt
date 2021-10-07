@@ -1,0 +1,16 @@
+Class name: MatchSystem
+Parent Class: None
+
+Responsibility: 
+*Takes input of a single farmer’s information
+*Return a list of recommending distributors, based on the given farmer info
+*(receive distributor info and output a list of recommending farmer )
+*Accept/Decline request
+
+Collaborator: 
+Farmer
+Distributors
+Ranking System
+(Profile Manager)
+Request
+

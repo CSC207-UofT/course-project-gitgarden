@@ -1,0 +1,13 @@
+Class name: Farmer
+
+Responsibilities:
+*Stores farmer’s information
+*Stores information about products
+
+Collaborations:
+Offers
+* Requests
+* Distributors 
+* Match System
+* Profile Manager
+

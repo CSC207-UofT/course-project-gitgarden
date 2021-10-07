@@ -1,0 +1,15 @@
+Class name: Request
+Parent class: None
+
+Responsibilities:
+* Store farmer identification
+* Store product transferral specifics
+* Store instances of offers
+
+Collaborators:
+* Farmer
+* Distributor
+* MatchSystem
+* CounterOffer
+* Offer
+

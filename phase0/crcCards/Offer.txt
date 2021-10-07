@@ -1,0 +1,11 @@
+Class name: Offer
+Parent class: None
+Responsibilities:
+*Store the distributor’s identification
+*Store identification of the original request
+
+Collaborators: 
+Farmer
+Distributor
+CounterOffer
+

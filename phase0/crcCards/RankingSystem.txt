@@ -1,0 +1,13 @@
+Class name: RankingSystem
+Parent Class: None
+
+Responsibility:
+*Rank a set of distributors based on specific need of a particular farmer(i.e. Price provided for the product)
+*(Rank a set of farmers based on specific need of a particular distributor)
+
+Collaborator: 
+Farmer
+Distributors
+Match System
+(Profile Manager)
+

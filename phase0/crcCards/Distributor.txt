@@ -1,0 +1,12 @@
+Class name: Distributor
+Parent class: None
+
+Responsibilities:
+* Store distributor’s info
+
+Collaborations: 
+* Offer
+* Request
+* MatchSystem
+* ProfileManagae
+

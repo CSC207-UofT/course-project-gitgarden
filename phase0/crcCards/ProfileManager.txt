@@ -1,0 +1,13 @@
+Class name: ProfileManager
+Parent class: None
+
+Responsibilities:
+* Take the variables from ServiceController
+* Create Farmer/Distributor based on the given variables.
+* Modifies Farmer/Distributor based on the given variables
+
+Collaborators:
+*ServiceController
+*Farmer
+*Distributor
+

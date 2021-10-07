@@ -1,0 +1,10 @@
+Class name: UserInterface
+Parent class: N/A
+
+Responsibilities:
+* Display the user with an interface to interact with the program
+* Raise exception if incorrect format is used for input or invalid information is entered (such as passord or existing account name)
+
+Collaborators:
+* ServiceController
+

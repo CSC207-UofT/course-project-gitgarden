@@ -1,16 +1,18 @@
 Class name: MatchSystem
 Parent Class: None
 
-Responsibility: 
-*Takes input of a single farmer’s information
-*Return a list of recommending distributors, based on the given farmer info
-*(receive distributor info and output a list of recommending farmer )
-*Accept/Decline request
+Responsibilities: 
+* Takes input of a single request
+* Return a list of recommended distributors, based on the given farmer's preferences
+* Receive distributor info and output a list of recommended farmers
+* Create offer using distributor's information [expansion]
 
-Collaborator: 
-Farmer
-Distributors
-Ranking System
-(Profile Manager)
-Request
+Collaborators: 
+* Farmer
+* Distributor
+* RankingSystem
+* ProfileManager
+* Request
+* Offer
+* ServiceController
 

@@ -1,12 +1,12 @@
 Class name: Distributor
-Parent class: None
+Parent class: User
 
 Responsibilities:
-* Store distributor’s info
+* Store distributor’s list of offers
+* Store distributor’s preferences
+ [expansion]
 
-Collaborations: 
-* Offer
-* Request
+Collaborators:
 * MatchSystem
-* ProfileManagae
+* ProfileManager
 

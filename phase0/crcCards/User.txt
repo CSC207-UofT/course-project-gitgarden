@@ -1,0 +1,11 @@
+Class name: User
+Parent Class: None
+
+Responsibilities:
+* Stores name, address, identification, summary
+
+Collaborators:
+* ProfileManager
+* Farmer
+* Distributor
+

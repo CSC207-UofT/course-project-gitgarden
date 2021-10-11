@@ -1,13 +1,11 @@
 Class name: Farmer
+Parent Class: User
 
 Responsibilities:
-*Stores farmer’s information
-*Stores information about products
+* Stores farmer’s list of requests
+* Store farmer's preferences [expansion]
 
-Collaborations:
-Offers
-* Requests
-* Distributors 
-* Match System
-* Profile Manager
+Collaborators:
+* MatchSystem
+* ProfileManager
 

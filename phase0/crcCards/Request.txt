@@ -7,9 +7,7 @@ Responsibilities:
 * Store instances of offers
 
 Collaborators:
-* Farmer
-* Distributor
 * MatchSystem
-* CounterOffer
 * Offer
+* CounterOffer
 

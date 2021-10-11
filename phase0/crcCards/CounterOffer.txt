@@ -1,12 +1,13 @@
-Class name: CounterOffer
+Class name: CounterOffer [expansion class in future]
 Parent class: Offer
 
-Responsibilities
+Responsibilities:
 * Store the previous offer identification
-* Store the request identification 
-* Store counter offer info
+* Store the request identification
+* Store counteroffer information
 
-Collaborators: 
+Collaborators:
+* MatchSystem
+* Request
 * Offer
-* Farmer 
-* Distributor
+

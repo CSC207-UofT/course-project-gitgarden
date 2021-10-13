@@ -1,5 +1,6 @@
-/* CRC Class Information Class name: User
+/* CRC Class Information -------
 
+Class name: User
 Parent Class: None
 
 Responsibilities:
@@ -10,7 +11,7 @@ Collaborators:
 * Farmer
 * Distributor
 
-*/
+------------------------------*/
 
 
 public class User {
@@ -21,10 +22,11 @@ public class User {
     private int user_id; //(1)
 
     //Address
-    private String user_address;//(2)We might also need user's postal code clearify their address
+    private String user_address;//(2)We might also need user's postal code clarify their address
 
     //Summary
-    public String summary; //(3)We need a method to edit summary outside of the class
+    // TODO: add a method to edit summary outside of class
+    public String summary;
 
      /**
      * Construct a User, giving them the name and address
@@ -32,10 +34,9 @@ public class User {
      * @param user_name String for name
      * @param user_address  String for address
      */
-
     public User(String user_name, String user_address){
         this.user_name = user_name;
-        this.user_id = 1000; //(4)
+        this.user_id = 1000; //(4) [How is this determined? Are we set on 4 digits? (Mel)]
         this.user_address = user_address;
         this.summary = "Default Summary";
     }
@@ -61,6 +62,10 @@ public class User {
         return this.user_address;
     }
 
+     /**
+     * TODO: may be an independent method later 
+     * @return the current value of user's summary (String)
+     */
     public String getSummary(){
         return this.summary;
     }

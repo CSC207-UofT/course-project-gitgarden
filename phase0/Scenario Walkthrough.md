@@ -1,3 +1,5 @@
+# Scenario Walk through 
+
 The user runs the program and is prompted with the following messages:
 1. Create a New Profile. Enter "Yes" or "No"
 2. Enter Name (Alphanumeric)

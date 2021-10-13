@@ -56,7 +56,7 @@ public class ServiceController {
     public static void createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
-            //TODO: Call the method in ProfileManager
+            //TODO: Call the method in MatchSystem
         } else {
             throw new Exception("Your input is not valid!");
         }

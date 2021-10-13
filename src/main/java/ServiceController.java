@@ -51,7 +51,7 @@ public class ServiceController {
      * @param product   Name of the product
      * @param quantity  Quantity of the product
      * @param price     Price of the product
-     * TODO: return type based on the method in Profile Manager
+     * TODO: return type based on the method in MatchSystem
      */
     public static void createRequest(String product, String quantity, String price)
             throws Exception{

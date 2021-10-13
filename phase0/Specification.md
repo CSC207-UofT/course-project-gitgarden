@@ -1,6 +1,12 @@
+# Specification
+
+## Introduction
+
 Project is an interface to connect produce farmers to distribution of their products. The target audience are farmers and distributors looking to expand their network. The farmers and distributors indicate the produce they are willing to sell and buy, respectively, and their prices.
 
 While running, the user is prompted to either login to an existing profile, or create a new profile. Then, the user can make a request or view others' requests. They can accept/decline others' offers and make offers to others.
+
+## Details
 
 The users starts the program and is prompted with a screen asking them what they would like to do:
 - Create a New Profile 
@@ -30,12 +36,14 @@ The controller (ServiceController) takes in the inputs of the CLI and does one o
 - Decline the input
     * Prompt the user to input again with an error message stating why the input was not accepted
 
-The use case classes are:
+## Classes Specification
+
+The **use case** classes are:
 - ProfileManager
 - MatchSystem
 - RatingSystem (Expansion 2)
 
-The entity classes:
+The **entity** classes:
 - Farmer
 - Distirbutor
 - Request

@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *      ProfileManager
  *      MatchSystem
  *
- * TODO: maybe an exception class for all the exceptions in the program
+ * TODO: Finalize the throw exception. Now UserInterface is fulfilling
+ *       this task for ServiceController.
  */
 
 public class ServiceController {
-
 
     /**
      * Method for UserInterface, check if the input is a binary answer

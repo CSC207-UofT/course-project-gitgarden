@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /** ServiceController
  * Responsibilities:
@@ -53,12 +53,12 @@ public class ServiceController {
      * @param product   Name of the product
      * @param quantity  Quantity of the product
      * @param price     Price of the product
-     * TODO: return type based on the method in MatchSystem
      */
-    public static void createRequest(String product, String quantity, String price)
+    public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
             //TODO: Call the method in MatchSystem
+            MatchSystem.match(ProfileManager.getDistributor(), product, price);
         } else {
             throw new Exception("Your input is not valid!");
         }

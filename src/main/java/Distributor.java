@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Distributor extends User {
+    private HashMap<String, Double> prodMap = new HashMap<>();
 
     //Initialize list of requests
     private Request[] requests;
@@ -34,4 +35,7 @@ public class Distributor extends User {
         return requests;
     }
 
+    public HashMap<String, Double> getprodMap(){
+        return this.prodMap;
+    }
 }

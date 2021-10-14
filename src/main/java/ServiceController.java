@@ -35,7 +35,9 @@ public class ServiceController {
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param name  Name of the user
      * @param address   Address of the user
-     * TODO: return type based on the method in Profile Manager
+     * TODO: return type based on the method in ProfileManager
+     * TODO: add another parameter to determine if the user is a farmer or distributor
+     *                  (pass it to ProfileManager)
      */
     public static void createProfile(String name, String address) throws Exception{
         if (isAlphanumeric(name)){

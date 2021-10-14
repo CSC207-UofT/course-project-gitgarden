@@ -24,8 +24,6 @@ import java.util.List;
  */
 
 public class MatchSystem{
-    public static ArrayList<Distributor> distributors;
-
     /**
      *
      * @param distributors ArrayList of all potential distributors
@@ -33,11 +31,11 @@ public class MatchSystem{
      * @param req_price Price per kg of product in request
      * @return All distributors fulfilling requested criteria
      */
-    public static ArrayList<Distributor> match(ArrayList<Distributor> distributors, String req_name, double req_price){
+    public static ArrayList<Distributor> match(ArrayList<Distributor> distributors, String req_name, String req_price){
         ArrayList<Distributor> match_list = new ArrayList<>();
         for(Distributor dist: distributors){
             if (dist.getprodMap().containsKey(req_name)){
-                if (dist.getprodMap().get(req_name) >= req_price){
+                if (dist.getprodMap().get(req_name) >= Double.parseDouble(req_price)){
                     match_list.add(dist);
                 }
 

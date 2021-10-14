@@ -18,15 +18,15 @@ import java.util.HashMap;
 
 public class ProfileManager {
     public static ArrayList<User> farmerList = new ArrayList<User>();
-    public static ArrayList<User> distributorList = new ArrayList<User>();
+    public static ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
     public HashMap<String, Double> patrick = new HashMap<>();
-    patrick.put("apple", 12);
-    patrick.put("rice", 10);
-    distributorList.add(new Distributor("Divit", "123 toronto", patrick));
-    distributorList.add(new Distributor("Patrick", "234 toronto",patrick));
-    public static ArrayList<User> getDistributor(){
-        this.createDistributor();
-        return distributorList;
+
+    public static void main(String[] args) {
+        HashMap<String, Double> patrick = new HashMap<String, Double>();
+        patrick.put("apple", 12.00);
+        patrick.put("rice", 10.00);
+        distributorList.add(new Distributor("Divit", "123 toronto", patrick));
+        distributorList.add(new Distributor("Patrick", "234 toronto",patrick));
     }
 }
     // public static Hashmap<String, User> userIdMap= new Hashmap<>();

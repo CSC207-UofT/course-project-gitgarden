@@ -57,8 +57,8 @@ public class ServiceController {
     public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
-            //TODO: Call the method in MatchSystem
-            MatchSystem.match(ProfileManager.getDistributor(), product, price);
+            ArrayList<Distributor> distributors = ProfileManager.getDistributor();
+            MatchSystem.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");
         }

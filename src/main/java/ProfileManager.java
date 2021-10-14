@@ -48,3 +48,4 @@ public class ProfileManager {
         userIdMap.get(id).setAddress(newAddress);
     }
 }
+

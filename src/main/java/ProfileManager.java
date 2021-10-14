@@ -39,6 +39,7 @@ public class ProfileManager {
     public static modifyUsername (String id,String newName){
         userIdMap.get(id).setName(newname);
     }
+
     /**
      *
      * @param id the id of the user we are modifying

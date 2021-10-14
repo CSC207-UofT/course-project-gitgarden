@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/course-project-gitgarden.iml" filepath="$PROJECT_DIR$/course-project-gitgarden.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GitGarden.iml" filepath="$PROJECT_DIR$/GitGarden.iml" />
     </modules>
   </component>
 </project>

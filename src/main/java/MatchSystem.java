@@ -36,8 +36,8 @@ public class MatchSystem{
     public static ArrayList<Distributor> match(ArrayList<Distributor> distributors, String req_name, double req_price){
         ArrayList<Distributor> match_list = new ArrayList<>();
         for(Distributor dist: distributors){
-            if (dist.getProdMap().containsKey(req_name)){
-                if (dist.getProdMap().get(req_name) >= req_price){
+            if (dist.getprodMap().containsKey(req_name)){
+                if (dist.getprodMap().get(req_name) >= req_price){
                     match_list.add(dist);
                 }
 

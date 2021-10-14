@@ -10,9 +10,10 @@ public class Distributor extends User {
     private Request[] requests;
     //I am using array to show list of request for now, but depending on request's structure, it could be changed later
 
-    public Distributor(String distributor_name, String distributor_address){
+    public Distributor(String distributor_name, String distributor_address, HashMap<String, Double> hashmap){
         super(distributor_name, distributor_address);
         this.requests = null;
+        this.prodMap = hashmap;
     }
 
     public Request[] getRequests() {

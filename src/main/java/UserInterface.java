@@ -36,10 +36,21 @@ public class UserInterface
             {
                 System.out.println("Enter product name.");
                 productName = reader.nextLine();
-                System.out.println("Enter product quantity in kilograms.");
-                productQuantity = reader.nextLine();
-                System.out.println("Enter product price per kilograms.");
-                productPrice = reader.nextLine();
+
+                while(!productQuantity.matches("[0123456789.]+") &
+                        productQuantity.length() - productQuantity.replace(".", "").length() == 1)
+                {
+                    System.out.println("Enter product quantity in kilograms.");
+                    productQuantity = reader.nextLine();
+                }
+
+                while(!productPrice.matches("[0123456789.]+") &
+                        productPrice.length() - productPrice.replace(".", "").length() == 1)
+                {
+                    System.out.println("Enter product price per kilograms.");
+                    productPrice = reader.nextLine();
+                }
+
                 ServiceController.createRequest(productName, productQuantity, productPrice);
                 System.out.println("Request created and processed. The list of available distributors is as follows: ");
 

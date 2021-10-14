@@ -35,7 +35,8 @@ public class ServiceController {
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param name  Name of the user
      * @param address   Address of the user
-     * TODO: return type based on the method in ProfileManager
+     * TODO: suppose that createProfile won't return anything to the user for now.
+     *                  It could be a string containing feedback.
      * TODO: add another parameter to determine if the user is a farmer or distributor
      *                  (pass it to ProfileManager)
      */

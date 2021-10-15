@@ -41,7 +41,7 @@ The controller (ServiceController) takes in the inputs of the CLI and does one o
 The **use case** classes are:
 - ProfileManager
 - MatchManager
-- RatingSystem (Expansion 2)
+- RatingManager (Expansion 2)
 
 The **entity** classes:
 - Farmer

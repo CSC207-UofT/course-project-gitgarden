@@ -8,6 +8,6 @@ CURRENT - Project Phase 0
 
 - [X] Task 4 - Scenario Walk-Through - Completed on Monday (Oct. 11th) 4-6pm
 
-- [ ] Task 5 - Skeleton Program - Finish before Thursday (Oct. 14th)
+- [ ] Task 5 - Skeleton Program - To be finalized on Friday (Oct. 15th) 4:30pm-5:30pm
 
-- [ ] Task 6 - Progress Report - To be completed on Thursday (Oct. 14th) 5-6pm
+- [ ] Task 6 - Progress Report - To be completed on Friday (Oct. 15th) 4:30pm-5:30pm

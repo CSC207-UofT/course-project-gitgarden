@@ -1,4 +1,4 @@
-/** UserInterface
+/* UserInterface
  * Responsibilities:
  *      Display an interface to interact with the program
  *      Display results if valid information is entered
@@ -8,6 +8,7 @@
  * Collaborators:
  *      ServiceController
  */
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface
@@ -51,20 +52,20 @@ public class UserInterface
                     productPrice = reader.nextLine();
                 }
 
-                ServiceController.createRequest(productName, productQuantity, productPrice);
+                ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
                 System.out.println("Request created and processed. The list of available distributors is as follows: ");
 
-                for (int i = 0; i < distributorList.length; i++) {
+                for (int i = 0; i < matchList.size(); i++) {
                     int num = i + 1;
-                    System.out.println(num + ") " + distributorList[i]);
+                    System.out.println(num + ") " + matchList.get(i));
                 }
 
                 System.out.println("Pick a distributor. (Type the number corresponding to the position in the list)");
-                int distributorNumber = reader.nextInt();;
+                int distributorNumber = reader.nextInt();
 
-                if (1 <= distributorNumber <= distributorList.length)
+                if (1 <= distributorNumber &  distributorNumber < matchList.size())
                 {
-                    System.out.println("You picked: " + distributorList[distributorNumber - 1] + ". Request complete.");
+                    System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Request complete.");
                 }
 
             }

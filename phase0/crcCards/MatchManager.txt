@@ -1,5 +1,5 @@
 MatchManager
-Class name: MatchSystem
+Class name: MatchManager
 Parent Class: None
 Use Case
 
@@ -12,7 +12,8 @@ Responsibilities:
 Collaborators: 
 * Farmer
 * Distributor
-* RankingSystem
+* RankingManager
 * ProfileManager
 * Request
 * Offer
+* ServiceController

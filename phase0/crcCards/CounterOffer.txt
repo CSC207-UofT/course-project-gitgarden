@@ -9,6 +9,6 @@ Responsibilities:
 * Store counteroffer information
 
 Collaborators:
-* MatchSystem
+* MatchManager
 * Request
 * Offer

@@ -37,7 +37,7 @@ Creating different scenarios in order to simulate different situations.
 ## Worked Well
 The CRC cards really helped us to know what to do with our programs. Thus, the distribution of work between the group members was straightforward. All of our members first went to work on their assigned classes (some bigger or very interrelated classes were worked on together with 2 people). This ensured that everyone contributed to the code. After that, we sat down in group meetings to go over each other’s code to resolve errors and clarify naming conventions. This strategy was both effective and inclusive for all of our group members.
 
-## Group member contributions
+## Group Member Contributions
 The Specification, CWalk Throughs, and Progress Reports were done in group meetings with all members present.
 The 8 classes in the skeleton program splitted between 7 group members. The first name is the person who designed the class, and those who contributed to the class design are also listed.
 

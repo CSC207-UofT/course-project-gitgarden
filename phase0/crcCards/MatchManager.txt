@@ -1,10 +1,12 @@
+MatchManager
 Class name: MatchSystem
 Parent Class: None
+Use Case
 
 Responsibilities: 
 * Takes input of a single request
 * Return a list of recommended distributors, based on the given farmer's preferences
-* Receive distributor info and output a list of recommended farmers
+* Receive distributor info and output a list of recommended farmers [expansion]
 * Create offer using distributor's information [expansion]
 
 Collaborators: 
@@ -14,5 +16,3 @@ Collaborators:
 * ProfileManager
 * Request
 * Offer
-* ServiceController
-

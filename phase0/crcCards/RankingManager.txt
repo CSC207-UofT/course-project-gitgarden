@@ -1,5 +1,5 @@
-RankingSystem
-Class name: RankingSystem [expansion]
+RankingManager
+Class name: RankingManager [expansion]
 Parent Class: None
 Use Case
 
@@ -10,4 +10,4 @@ Responsibilities:
 Collaborators: 
 * Farmer
 * Distributor
-* MatchSystem
+* MatchManager

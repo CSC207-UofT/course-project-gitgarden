@@ -40,23 +40,26 @@ The CRC cards really helped us to know what to do with our programs. Thus, the d
 ## Group member contributions
 The Specification, CWalk Throughs, and Progress Reports were done in group meetings with all members present.
 The 8 classes in the skeleton program splitted between 7 group members. The first name is the person who designed the class, and those who contributed to the class design are also listed.
-1. UserInterface: Divit + Onyx
-2. ServiceController: Mark + Onyx + Divit + Andy
-3. ProfileManager: Patrick + Onyx + Divit
-4. MatchManager: Onyx 
-5. Request - Jagat + Andy
-6. User - Andy & Melaney + Onyx + Divit
-7. Farmer - Andy & Melaney
-8. Distributor - Andy & Melaney + Onyx + Patrick
+
+1. UserInterface: **Divit** + Onyx
+2. ServiceController**:** **Mark** + Onyx + Divit + Andy
+3. ProfileManager: **Patrick** + Onyx + Divit
+4. MatchManager: **Onyx** 
+5. Request - **Jagat** + Andy
+6. User - **Andy & Melaney** + Onyx + Divit
+7. Farmer - **Andy & Melaney**
+8. Distributor - **Andy & Melaney** + Onyx + Patrick
+
 The test cases were done majorly by:
-1. UserInterfaceTest: Onyx
-2. ServiceControllerTest: Andy + Onyx
-3. ProfileManagerTest: Onyx
-4. MatchManagerTest: Onyx
-5. RequestTest: Andy
-6. UserTest: Andy
-7. FarmerTest: Andy
-8. DistributorTest: Andy
+
+10. UserInterfaceTest: **Onyx**
+11. ServiceControllerTest: **Andy** + Onyx
+12. ProfileManagerTest: **Onyx**
+13. MatchManagerTest: **Onyx**
+14. RequestTest: **Andy**
+15. UserTest: **Andy**
+16. FarmerTest: **Andy**
+17. DistributorTest: **Andy**
 
 ## Future Plan
 We have only implemented 8 out of the 11 planned classes. The rest of the 3 classes were planned for program extensions. With the additional classes, we wish to make our program more user friendly and less prone to errors.

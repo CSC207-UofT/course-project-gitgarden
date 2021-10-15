@@ -1,5 +1,7 @@
+ProfileManager
 Class name: ProfileManager
 Parent class: None
+Use Case
 
 Responsibilities:
 * Take variables from ServiceController
@@ -10,4 +12,3 @@ Collaborators:
 * ServiceController
 * Farmer
 * Distributor
-

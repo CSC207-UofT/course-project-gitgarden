@@ -44,7 +44,7 @@ public class ServiceController {
     public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
-            ArrayList<Distributor> distributors = ProfileManager.getDistributor();
+            ArrayList<Distributor> distributors = ProfileManager.distributorList;
             return MatchSystem.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");
@@ -60,22 +60,6 @@ public class ServiceController {
     public static boolean isAlphanumeric(String input){
         return input.matches("^[a-zA-Z0-9]*$");
     }
-
-
-//    /**
-//     * Checks if the input is binary(yes or no)
-//     * @param input     Input from the user
-//     * @return boolean that indicates if the input is indicating yes/no. Exception
-//     *         if the string is empty or blank.
-//     */
-//    public static boolean isBinary(String input){
-//        String convertedInput = input.toLowerCase();
-//        if (input.isEmpty() || input.isBlank()){
-//            return false;
-//        } else {
-//            return convertedInput.contains("yes") || convertedInput.contains("no");
-//        }
-//    }
 
 
     /**
@@ -96,20 +80,5 @@ public class ServiceController {
         }
         return true;
     }
-
-
-//    /**
-//     * Method for UserInterface, check if the input is a binary answer
-//     * @param ans   Input from the user
-//     * @return      Boolean indicating if the user has the correct binary input
-//     */
-//    public static boolean isYesNoAnswer(String ans) throws Exception{
-//        if (isBinary(ans)){
-//            return true;
-//        } else {
-//            throw new Exception("Your input is not valid!");
-//        }
-//    }
-
 
 }

@@ -1,5 +1,7 @@
-Class name: RankingSystem [expansion class in future]
+RankingSystem
+Class name: RankingSystem [expansion]
 Parent Class: None
+Use Case
 
 Responsibilities:
 * Rank a set of distributors based on preferences of a particular farmer
@@ -9,4 +11,3 @@ Collaborators:
 * Farmer
 * Distributor
 * MatchSystem
-

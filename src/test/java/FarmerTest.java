@@ -1,27 +1,24 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class FarmerTest {
 
     @Test(timeout = 50)
-    public void TestgetUser_name() {
+    public void TestGetUserName() {
         Farmer temp = new Farmer("temp_name", "temp_address");
         assertEquals("temp_name", temp.getUser_name());
     }
 
     @Test(timeout = 50)
-    public void TestgetUser_address() {
+    public void TestGetUser_address() {
         Farmer temp = new Farmer("temp_name", "temp_address");
         assertEquals("temp_address", temp.getUser_address());
     }
 
     @Test(timeout = 50)
-    public void TestgetRequests() {
+    public void TestGetRequests() {
         Farmer temp = new Farmer("temp_name", "temp_address");
         assertNull(temp.getRequests());
 

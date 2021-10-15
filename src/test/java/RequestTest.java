@@ -5,37 +5,37 @@ import static org.junit.Assert.*;
 public class RequestTest {
 
     @Test(timeout = 50)
-    public void TestgetFarmerName(){
+    public void TestGetFarmerName(){
         Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
         assertEquals("test_name", r.getFarmerName());
     }
 
     @Test(timeout = 50)
-    public void TestgetFarmerAddress(){
+    public void TestGetFarmerAddress(){
         Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
         assertEquals("test_address", r.getFarmerAddress());
     }
 
     @Test(timeout = 50)
-    public void TestgetProductName(){
+    public void TestGetProductName(){
         Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
         assertEquals("test_product", r.getProductName());
     }
 
     @Test(timeout = 50)
-    public void TestgetProductQuantity(){
+    public void TestGetProductQuantity(){
         Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
         assertEquals(210, r.getProductQuantity());
     }
 
     @Test(timeout = 50)
-    public void TestgetProductPrice(){
+    public void TestGetProductPrice(){
         Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
         assertEquals(102.25F, r.getProductPrice(), 0.0001);
     }
 
     @Test(timeout = 50)
-    public void TesttoString(){
+    public void TestToString(){
         Request r = new Request("", "", "", 0, 0F);
         r.setFarmerName("test_name");
         r.setFarmerAddress("test_address");

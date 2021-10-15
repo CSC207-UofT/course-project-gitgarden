@@ -8,6 +8,6 @@ Responsibilities:
 * Store identification of the original request
 
 Collaborators:
-* MatchSystem
+* MatchManager
 * Request
 * CounterOffer

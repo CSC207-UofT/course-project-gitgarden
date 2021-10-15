@@ -1,3 +1,19 @@
+/* CRC Class Information -------
+
+Class name: Distributor
+Parent class: User
+
+Responsibilities:
+* Store distributor’s list of offers
+* Store distributor’s preferences
+ [expansion]
+
+Collaborators:
+* MatchSystem
+* ProfileManager
+
+------------------------------*/
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;

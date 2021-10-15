@@ -1,3 +1,18 @@
+/* CRC Class Information -------
+
+Class name: Farmer
+Parent Class: User
+
+Responsibilities:
+* Stores farmer’s list of requests
+* Store farmer's preferences [expansion]
+
+Collaborators:
+* MatchSystem
+* ProfileManager
+
+------------------------------*/
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;

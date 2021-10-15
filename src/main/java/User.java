@@ -18,11 +18,11 @@ public class User {
 
     //User's Name & Identification
     //There may be more information added(i.e. contact)
-    private String user_name;
-    private int user_id; //(1)
+    private final String user_name;
+    private final int user_id; //(1)
 
     //Address
-    private String user_address;//(2)We might also need user's postal code clarify their address
+    private final String user_address;//(2)We might also need user's postal code clarify their address
 
     //Summary
     // TODO: add a method to edit summary outside of class

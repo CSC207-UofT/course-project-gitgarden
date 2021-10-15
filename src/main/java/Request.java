@@ -90,4 +90,12 @@ class Request {
         return this.ProductPrice;
     }
 
+    public String toString(){
+        return "Name: " + this.FarmerName + "\n" +
+                "Address: " + this.FarmerAddress + "\n" +
+                "Product: " + this.ProductName + "\n" +
+                "Quantity: " + this.ProductQuantity + "\n" +
+                "Price: " + this.ProductPrice;
+    }
+
 }

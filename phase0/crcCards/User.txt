@@ -1,5 +1,7 @@
+User
 Class name: User
 Parent Class: None
+Entity
 
 Responsibilities:
 * Stores name, address, identification, summary
@@ -8,4 +10,3 @@ Collaborators:
 * ProfileManager
 * Farmer
 * Distributor
-

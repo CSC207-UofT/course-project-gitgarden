@@ -14,11 +14,11 @@ import java.util.Scanner;
 
 public class UserInterface
 {
-    String name;
-    String address;
-    String productName;
-    String productQuantity;
-    String productPrice;
+    String name = "";
+    String address = "";
+    String productName = "";
+    String productQuantity = "";
+    String productPrice = "";
 
     public static void main(String[] args) throws Exception {
         UserInterface ui = new UserInterface();
@@ -58,7 +58,7 @@ public class UserInterface
             name = reader.nextLine();
             System.out.println("Enter address.");
             address = reader.nextLine();
-            // ServiceController.createProfile(name, address);
+            //ServiceController.createProfile(name, address, new HashMap<String, Double>());
             System.out.println("Account Created. Create a new request? (Type 'Yes' to continue)");
             input = reader.nextLine();
 
@@ -67,36 +67,43 @@ public class UserInterface
                 System.out.println("Enter product name.");
                 productName = reader.nextLine();
 
-                do {
+                while(!(productQuantity.matches("[0123456789.]+") && !productQuantity.equals("") &&
+                        !productQuantity.contains(".")))
+                {
                     System.out.println("Enter product quantity in kilograms.");
                     productQuantity = reader.nextLine();
                 }
-                while(!productQuantity.matches("[0123456789.]+") &
-                        productQuantity.length() - productQuantity.replace(".", "").length() == 1);
 
-                do {
+                while(!(productPrice.matches("[0123456789.]+") && !productPrice.equals("") &
+                        (productPrice.length() - productPrice.replace(".", "").length() == 1 ||
+                                !productPrice.contains("."))))
+                {
                     System.out.println("Enter product price per kilograms.");
                     productPrice = reader.nextLine();
                 }
-                while(!productPrice.matches("[0123456789.]+") &
-                        productPrice.length() - productPrice.replace(".", "").length() == 1);
 
                 ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
-                System.out.println("Request created and processed. The list of available distributors is as follows: ");
 
-                for (int i = 0; i < matchList.size(); i++) {
-                    int num = i + 1;
-                    System.out.println(num + ") " + matchList.get(i));
+                if (matchList.size() != 0) {
+                    System.out.println("Request created and processed. The list of available distributors is as follows: ");
+
+                    for (int i = 0; i < matchList.size(); i++) {
+                        int num = i + 1;
+                        System.out.println(num + ") " + matchList.get(i));
+                    }
+
+                    System.out.println("Pick a distributor. (Type the number corresponding to the position in the list)");
+                    int distributorNumber = reader.nextInt();
+
+                    if (1 <= distributorNumber &  distributorNumber < matchList.size())
+                    {
+                        System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Request complete.");
+                    }
                 }
-
-                System.out.println("Pick a distributor. (Type the number corresponding to the position in the list)");
-                int distributorNumber = reader.nextInt();
-
-                if (1 <= distributorNumber & distributorNumber <= matchList.size())
+                else
                 {
-                    System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Request complete.");
+                    System.out.println("Sorry, there are no distributors available to take your request.");
                 }
-
             }
         }
     }

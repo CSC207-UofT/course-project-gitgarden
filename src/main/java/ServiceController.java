@@ -59,7 +59,7 @@ public class ServiceController {
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
             ArrayList<Distributor> distributors = ProfileManager.getDistributor();
-            MatchSystem.match(distributors, product, price);
+            return MatchSystem.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");
         }

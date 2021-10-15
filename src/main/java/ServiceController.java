@@ -18,20 +18,6 @@ import java.util.ArrayList;
 public class ServiceController {
 
     /**
-     * Method for UserInterface, check if the input is a binary answer
-     * @param ans   Input from the user
-     * @return      Boolean indicating if the user has the correct binary input
-     */
-    public static boolean isYesNoAnswer(String ans) throws Exception{
-        if (isBinary(ans)){
-            return true;
-        } else {
-            throw new Exception("Your input is not valid!");
-        }
-    }
-
-
-    /**
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param name  Name of the user
      * @param address   Address of the user
@@ -110,5 +96,20 @@ public class ServiceController {
         }
         return true;
     }
+
+
+//    /**
+//     * Method for UserInterface, check if the input is a binary answer
+//     * @param ans   Input from the user
+//     * @return      Boolean indicating if the user has the correct binary input
+//     */
+//    public static boolean isYesNoAnswer(String ans) throws Exception{
+//        if (isBinary(ans)){
+//            return true;
+//        } else {
+//            throw new Exception("Your input is not valid!");
+//        }
+//    }
+
 
 }

@@ -1,5 +1,7 @@
-Class name: CounterOffer [expansion class in future]
+CounterOffer 
+Class name: CounterOffer [expansion]
 Parent class: Offer
+Entity
 
 Responsibilities:
 * Store the previous offer identification
@@ -10,4 +12,3 @@ Collaborators:
 * MatchSystem
 * Request
 * Offer
-

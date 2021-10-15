@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/** ServiceController
+/* ServiceController
  * Responsibilities:
  *      Accept or decline inputs from UserInterface
  *      Make variables for ProfileManager and MatchSystem if the input is acceptable

@@ -1,5 +1,7 @@
+Offer
 Class name: Offer
 Parent class: None
+Entity
 
 Responsibilities:
 * Store the distributor’s identification
@@ -9,4 +11,3 @@ Collaborators:
 * MatchSystem
 * Request
 * CounterOffer
-

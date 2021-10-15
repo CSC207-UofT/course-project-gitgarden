@@ -1,5 +1,7 @@
+Request
 Class name: Request
 Parent class: None
+Entity
 
 Responsibilities:
 * Store farmer identification
@@ -10,4 +12,3 @@ Collaborators:
 * MatchSystem
 * Offer
 * CounterOffer
-

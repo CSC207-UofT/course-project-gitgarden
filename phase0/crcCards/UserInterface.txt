@@ -1,5 +1,7 @@
+UserInterface
 Class name: UserInterface
 Parent class: None
+UI
 
 Responsibilities:
 * Display an interface to interact with the program
@@ -9,4 +11,3 @@ Responsibilities:
 
 Collaborators:
 * ServiceController
-

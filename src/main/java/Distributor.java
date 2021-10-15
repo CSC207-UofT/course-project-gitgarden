@@ -1,10 +1,7 @@
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Distributor extends User {
-    private HashMap<String, Double> prodMap = new HashMap<>();
+    private HashMap<String, Double> prodMap;
 
     //Initialize list of requests
     private Request[] requests;

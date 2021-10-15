@@ -74,9 +74,8 @@ public class User {
      * @return the String representation of the user
      */
     public String toString(){
-        return "Name: " + user_name + "\"" +
-                "ID: " + user_id + "\"" +
-                "Address: " + user_address + "\"" +
+        return "Name: " + user_name + ", " +
+                "Address: " + user_address + ", " +
                 "Summary: " + summary;
     }
 

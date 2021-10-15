@@ -9,5 +9,5 @@ Responsibilities:
  [expansion]
 
 Collaborators:
-* MatchSystem
+* MatchManager
 * ProfileManager

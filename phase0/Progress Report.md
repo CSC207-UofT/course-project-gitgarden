@@ -42,7 +42,7 @@ The Specification, CWalk Throughs, and Progress Reports were done in group meeti
 The 8 classes in the skeleton program splitted between 7 group members. The first name is the person who designed the class, and those who contributed to the class design are also listed.
 
 1. UserInterface: **Divit** + Onyx
-2. ServiceController**:** **Mark** + Onyx + Divit + Andy
+2. ServiceController: **Mark** + Onyx + Divit + Andy
 3. ProfileManager: **Patrick** + Onyx + Divit
 4. MatchManager: **Onyx** 
 5. Request - **Jagat** + Andy

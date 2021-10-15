@@ -18,11 +18,11 @@ public class User {
 
     //User's Name & Identification
     //There may be more information added(i.e. contact)
-    private final String user_name;
+    private String user_name;
     private final int user_id; //(1)
 
     //Address
-    private final String user_address;//(2)We might also need user's postal code clarify their address
+    private String user_address;//(2)We might also need user's postal code clarify their address
 
     //Summary
     // TODO: add a method to edit summary outside of class
@@ -41,6 +41,13 @@ public class User {
         this.summary = "Default Summary";
     }
 
+    /**
+     * TODO: Add Annotation
+     */
+    public void setUser_name(String name){
+        this.user_name = name;
+    }
+
      /**
      * @return the current value of user_name (String)
      */
@@ -53,6 +60,13 @@ public class User {
      */
     public int getUser_id(){
         return this.user_id;
+    }
+
+    /**
+     * TODO: Add Annotation
+     */
+    public void setUser_address(String address){
+        this.user_address = address;
     }
 
      /**
@@ -74,8 +88,9 @@ public class User {
      * @return the String representation of the user
      */
     public String toString(){
-        return "Name: " + user_name + ", " +
-                "Address: " + user_address + ", " +
+        return "Name: " + user_name + "\n" +
+                "ID: " + user_id + "\n" +
+                "Address: " + user_address + "\n" +
                 "Summary: " + summary;
     }
 

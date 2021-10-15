@@ -28,4 +28,14 @@ public class UserTest {
         assertEquals("Default Summary", temp.getSummary());
     }
 
+    @Test(timeout = 50)
+    public void TesttoString() {
+        User u = new User("", "");
+        u.setUser_name("test_name");
+        u.setUser_address("test_address");
+        assertEquals("Name: test_name\n" +
+                "ID: 1000\n" +
+                "Address: test_address\n" +
+                "Summary: Default Summary", u.toString());
+    }
 }

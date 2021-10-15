@@ -1,5 +1,7 @@
+Farmer
 Class name: Farmer
 Parent Class: User
+Entity
 
 Responsibilities:
 * Stores farmer’s list of requests
@@ -8,4 +10,3 @@ Responsibilities:
 Collaborators:
 * MatchSystem
 * ProfileManager
-

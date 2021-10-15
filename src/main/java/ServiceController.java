@@ -39,7 +39,7 @@ public class ServiceController {
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param product   Name of the product
      * @param quantity  Quantity of the product
-     * @param price     Price of the product
+     * @param price     Price of the product per kilogram
      */
     public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
             throws Exception{

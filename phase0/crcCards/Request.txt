@@ -9,6 +9,6 @@ Responsibilities:
 * Store instances of offers
 
 Collaborators:
-* MatchSystem
+* MatchManager
 * Offer
 * CounterOffer

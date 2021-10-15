@@ -13,15 +13,14 @@ Collaborators:
 
 ------------------------------*/
 
-import java.util.HashMap;
-import java.util.Map;
+// import java.util.HashMap;
+// Will be imported later
 import java.util.ArrayList;
-import java.util.List;
 
 public class Farmer extends User {
 
     //Initialize list of requests
-    private Request[] requests;
+    private ArrayList<Request> requests;
     //I am using array to show list of request for now, but depending on request's structure, it could be changed later
 
     public Farmer(String farmer_name, String farmer_address){
@@ -29,7 +28,7 @@ public class Farmer extends User {
         this.requests = null;
     }
 
-    public Request[] getRequests() {
+    public ArrayList<Request> getRequests() {
         return requests;
     }
 

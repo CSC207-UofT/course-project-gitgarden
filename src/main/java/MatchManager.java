@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *  ServiceController
  */
 
-public class MatchSystem{
+public class MatchManager {
     /**
      *
      * @param distributors ArrayList of all potential distributors
@@ -33,8 +33,8 @@ public class MatchSystem{
     public static ArrayList<Distributor> match(ArrayList<Distributor> distributors, String req_name, String req_price){
         ArrayList<Distributor> match_list = new ArrayList<>();
         for(Distributor dist: distributors){
-            if (dist.getprodMap().containsKey(req_name)){
-                if (dist.getprodMap().get(req_name) >= Double.parseDouble(req_price)){
+            if (dist.getProdMap().containsKey(req_name)){
+                if (dist.getProdMap().get(req_name) >= Double.parseDouble(req_price)){
                     match_list.add(dist);
                 }
 

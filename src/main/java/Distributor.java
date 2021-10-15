@@ -39,7 +39,7 @@ public class Distributor extends User {
         return this.requests;
     }
 
-    public HashMap<String, Double> getprodMap(){
+    public HashMap<String, Double> getProdMap(){
         return this.prodMap;
     }
 }

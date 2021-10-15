@@ -89,9 +89,8 @@ public class User {
      */
     public String toString(){
         return "Name: " + user_name + "\n" +
-                "ID: " + user_id + "\n" +
                 "Address: " + user_address + "\n" +
-                "Summary: " + summary;
+                "Summary: " + summary + "\n";
     }
 
 }

@@ -12,8 +12,6 @@ import java.util.HashMap;
  *      ProfileManager
  *      MatchSystem
  *
- * TODO: Finalize the throw exception. Now UserInterface is fulfilling
- *       this task for ServiceController.
  */
 
 public class ServiceController {
@@ -22,10 +20,6 @@ public class ServiceController {
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param name  Name of the user
      * @param address   Address of the user
-     * TODO: suppose that createProfile won't return anything to the user for now.
-     *                  It could be a string containing feedback.
-     * TODO: add another parameter to determine if the user is a farmer or distributor
-     *                  (pass it to ProfileManager)
      */
     public static void createProfile(String name, String address, HashMap<String, Double> prodMap) throws Exception{
         if (isAlphanumeric(name)){
@@ -46,7 +40,7 @@ public class ServiceController {
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
             ArrayList<Distributor> distributors = ProfileManager.distributorList;
-            return MatchSystem.match(distributors, product, price);
+            return MatchManager.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");
         }
@@ -70,16 +64,7 @@ public class ServiceController {
      *         string is empty or blank.
      */
     public static boolean isNumeric(String input){
-        if (input.isEmpty() || input.isBlank()){
-            return false;
-        } else {
-            try {
-                double d = Double.parseDouble(input);
-            } catch (NumberFormatException nfe) {
-                return false;
-            }
-        }
-        return true;
+        return !input.isEmpty() && !input.isBlank();
     }
 
 }

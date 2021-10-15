@@ -3,7 +3,7 @@ Parent class: None
 
 Responsibilities:
 * Store farmer identification
-* Store product transferral specifics
+* Store product transferal specifics
 * Store instances of offers
 
 Collaborators:

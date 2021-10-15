@@ -1,5 +1,7 @@
+Distributor
 Class name: Distributor
 Parent class: User
+Entity
 
 Responsibilities:
 * Store distributor’s list of offers
@@ -9,4 +11,3 @@ Responsibilities:
 Collaborators:
 * MatchSystem
 * ProfileManager
-

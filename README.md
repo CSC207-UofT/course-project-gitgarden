@@ -10,6 +10,6 @@ CURRENT - Project Phase 0
 
 - [X] Task 5 - Skeleton Program - Finished on Friday (Oct. 15th) 4:30pm-5:30pm
 
-- [ ] Task 5.1 - Test Case - To be finished on Friday
+- [X] Task 5.1 - Test Case - Finished on Friday
 
-- [X] Task 6 - Progress Report - To be completed on Friday (Oct. 15th) 4:30pm-5:30pm
+- [X] Task 6 - Progress Report - Completed on Friday (Oct. 15th) 4:30pm-5:30pm

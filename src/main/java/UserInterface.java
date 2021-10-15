@@ -95,7 +95,7 @@ public class UserInterface
                     System.out.println("Pick a distributor. (Type the number corresponding to the position in the list)");
                     int distributorNumber = reader.nextInt();
 
-                    if (1 <= distributorNumber &  distributorNumber < matchList.size())
+                    if (1 <= distributorNumber &  distributorNumber <= matchList.size())
                     {
                         System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Request complete.");
                     }

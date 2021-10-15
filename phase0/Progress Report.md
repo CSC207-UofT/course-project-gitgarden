@@ -52,14 +52,14 @@ The 8 classes in the skeleton program splitted between 7 group members. The firs
 
 The test cases were done majorly by:
 
-10. UserInterfaceTest: **Onyx**
-11. ServiceControllerTest: **Andy** + Onyx
-12. ProfileManagerTest: **Onyx**
-13. MatchManagerTest: **Onyx**
-14. RequestTest: **Andy**
-15. UserTest: **Andy**
-16. FarmerTest: **Andy**
-17. DistributorTest: **Andy**
+1. UserInterfaceTest: **Onyx**
+2. ServiceControllerTest: **Andy** + Onyx
+3. ProfileManagerTest: **Onyx**
+4. MatchManagerTest: **Onyx**
+5. RequestTest: **Andy**
+6. UserTest: **Andy**
+7. FarmerTest: **Andy**
+8. DistributorTest: **Andy**
 
 ## Future Plan
 We have only implemented 8 out of the 11 planned classes. The rest of the 3 classes were planned for program extensions. With the additional classes, we wish to make our program more user friendly and less prone to errors.

@@ -8,5 +8,5 @@ Responsibilities:
 * Store farmer's preferences [expansion]
 
 Collaborators:
-* MatchSystem
+* MatchManager
 * ProfileManager

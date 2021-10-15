@@ -1,5 +1,7 @@
+ServiceController
 Class name: ServiceController
 Parent class: None
+Interface Adapter
 
 Responsibilities:
 * Accept or decline inputs from UserInterface
@@ -10,4 +12,3 @@ Collaborators:
 * UserInterface
 * ProfileManager
 * MatchSystem
-

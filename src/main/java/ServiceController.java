@@ -62,20 +62,20 @@ public class ServiceController {
     }
 
 
-    /**
-     * Checks if the input is binary(yes or no)
-     * @param input     Input from the user
-     * @return boolean that indicates if the input is indicating yes/no. Exception
-     *         if the string is empty or blank.
-     */
-    public static boolean isBinary(String input){
-        String convertedInput = input.toLowerCase();
-        if (input.isEmpty() || input.isBlank()){
-            return false;
-        } else {
-            return convertedInput.contains("yes") || convertedInput.contains("no");
-        }
-    }
+//    /**
+//     * Checks if the input is binary(yes or no)
+//     * @param input     Input from the user
+//     * @return boolean that indicates if the input is indicating yes/no. Exception
+//     *         if the string is empty or blank.
+//     */
+//    public static boolean isBinary(String input){
+//        String convertedInput = input.toLowerCase();
+//        if (input.isEmpty() || input.isBlank()){
+//            return false;
+//        } else {
+//            return convertedInput.contains("yes") || convertedInput.contains("no");
+//        }
+//    }
 
 
     /**

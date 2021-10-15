@@ -1,30 +1,11 @@
-/* CRC Class Information -------
-
-Class name: Distributor
-Parent class: User
-
-Responsibilities:
-* Store distributor’s list of offers
-* Store distributor’s preferences
- [expansion]
-
-Collaborators:
-* MatchSystem
-* ProfileManager
-
-------------------------------*/
-
 import java.util.HashMap;
-import java.util.ArrayList;
 
 public class Distributor extends User {
-
-    //Initialize list of requests
-    private ArrayList<Request> requests;
-
-    //Initialize prodMap
     private HashMap<String, Double> prodMap;
 
+    //Initialize list of requests
+    private Request[] requests;
+    //I am using array to show list of request for now, but depending on request's structure, it could be changed later
 
     public Distributor(String distributor_name, String distributor_address, HashMap<String, Double> hashmap){
         super(distributor_name, distributor_address);
@@ -32,8 +13,8 @@ public class Distributor extends User {
         this.prodMap = hashmap;
     }
 
-    public ArrayList<Request> getRequests(){
-        return this.requests;
+    public Request[] getRequests() {
+        return requests;
     }
 
     public HashMap<String, Double> getprodMap(){

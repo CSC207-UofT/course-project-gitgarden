@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /* ServiceController
  * Responsibilities:
@@ -26,9 +27,9 @@ public class ServiceController {
      * TODO: add another parameter to determine if the user is a farmer or distributor
      *                  (pass it to ProfileManager)
      */
-    public static void createProfile(String name, String address) throws Exception{
+    public static void createProfile(String name, String address, HashMap<String, Double> prodMap) throws Exception{
         if (isAlphanumeric(name)){
-            //TODO: Call the method in ProfileManager
+            ProfileManager.createDistributor(name, address, prodMap);
         } else {
             throw new Exception("Your input is not valid!");
         }

@@ -18,7 +18,6 @@ import java.util.HashMap;
 public class ProfileManager {
     public static ArrayList<User> farmerList = new ArrayList<User>();
     public static ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
-    public HashMap<String, Double> patrick = new HashMap<>();
 
     public static void main(String[] args) {
         HashMap<String, Double> patrick = new HashMap<String, Double>();
@@ -27,6 +26,13 @@ public class ProfileManager {
         distributorList.add(new Distributor("Divit", "123 toronto", patrick));
         distributorList.add(new Distributor("Patrick", "234 toronto",patrick));
     }
+
+    public static void createDistributor(String name, String address, HashMap<String, Double> prodMap){
+        Distributor dist = new Distributor(name, address, prodMap);
+        distributorList.add(dist);
+
+    }
+
 }
     // public static Hashmap<String, User> userIdMap= new Hashmap<>();
 //

@@ -1,14 +1,12 @@
 # CounterOffer
 
-- `CounterOffer`
+- Name: `CounterOffer`
 - <u>Entity</u>
 - Parent Class: `Offer`
 
-| Responsibility                          | Collaborators |
-|-----------------------------------------|---------------|
-| Store the previous offer identification | MatchManager  |
-| Store the request identification        | Request       |
-| Store counteroffer information          | Offer         |
+| Responsibility                                                                                                   | Collaborators               |
+|------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| 1. Store the previous offer identification <br /> 2. Store the request identification <br /> 3. Store counteroffer information | MatchManager <br /> Request <br /> Offer |
 
 
 # Request

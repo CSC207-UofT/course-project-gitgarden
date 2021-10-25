@@ -1,6 +1,6 @@
-Farmer
-Class name: Farmer
-Parent Class: User
+Entities.Farmer
+Class name: Entities.Farmer
+Parent Class: Entities.User
 Entity
 
 Responsibilities:
@@ -8,5 +8,5 @@ Responsibilities:
 * Store farmer's preferences [expansion]
 
 Collaborators:
-* MatchManager
-* ProfileManager
+* UseCases.MatchManager
+* UseCases.ProfileManager

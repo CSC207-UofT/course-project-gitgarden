@@ -9,6 +9,6 @@ Responsibilities:
 * Store counteroffer information
 
 Collaborators:
-* MatchManager
-* Request
+* UseCases.MatchManager
+* Entities.Request
 * Offer

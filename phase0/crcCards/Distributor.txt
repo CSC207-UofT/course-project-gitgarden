@@ -1,6 +1,6 @@
-Distributor
-Class name: Distributor
-Parent class: User
+Entities.Distributor
+Class name: Entities.Distributor
+Parent class: Entities.User
 Entity
 
 Responsibilities:
@@ -9,5 +9,5 @@ Responsibilities:
  [expansion]
 
 Collaborators:
-* MatchManager
-* ProfileManager
+* UseCases.MatchManager
+* UseCases.ProfileManager

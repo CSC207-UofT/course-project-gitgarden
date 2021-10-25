@@ -1,5 +1,5 @@
-Request
-Class name: Request
+Entities.Request
+Class name: Entities.Request
 Parent class: None
 Entity
 
@@ -9,6 +9,6 @@ Responsibilities:
 * Store instances of offers
 
 Collaborators:
-* MatchManager
+* UseCases.MatchManager
 * Offer
 * CounterOffer

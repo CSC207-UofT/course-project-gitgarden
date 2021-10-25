@@ -1,7 +1,7 @@
-/* CRC Class Information -------
+package Entities;/* CRC Class Information -------
 
-Class name: Distributor
-Parent class: User
+Class name: Entities.Distributor
+Parent class: Entities.User
 
 Responsibilities:
 * Store distributor’s list of offers
@@ -10,7 +10,7 @@ Responsibilities:
 
 Collaborators:
 * MatchSystem
-* ProfileManager
+* UseCases.ProfileManager
 
 ------------------------------*/
 

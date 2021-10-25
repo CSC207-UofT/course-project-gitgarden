@@ -1,14 +1,14 @@
-ProfileManager
-Class name: ProfileManager
+UseCases.ProfileManager
+Class name: UseCases.ProfileManager
 Parent class: None
 Use Case
 
 Responsibilities:
-* Take variables from ServiceController
-* Create Farmer/Distributor based on the given variables
-* Modify Farmer/Distributor based on the given variables
+* Take variables from Controller.ServiceController
+* Create Entities.Farmer/Entities.Distributor based on the given variables
+* Modify Entities.Farmer/Entities.Distributor based on the given variables
 
 Collaborators:
-* ServiceController
-* Farmer
-* Distributor
+* Controller.ServiceController
+* Entities.Farmer
+* Entities.Distributor

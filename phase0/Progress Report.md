@@ -41,14 +41,14 @@ The CRC cards really helped us to know what to do with our programs. Thus, the d
 The Specification, CWalk Throughs, and Progress Reports were done in group meetings with all members present.
 The 8 classes in the skeleton program splitted between 7 group members. The first name is the person who designed the class, and those who contributed to the class design are also listed.
 
-1. UserInterface: **Divit** + Onyx
-2. ServiceController: **Mark** + Onyx + Divit + Andy
-3. ProfileManager: **Patrick** + Onyx + Divit
-4. MatchManager: **Onyx** 
-5. Request - **Jagat** + Andy
-6. User - **Andy & Melaney** + Onyx + Divit
-7. Farmer - **Andy & Melaney**
-8. Distributor - **Andy & Melaney** + Onyx + Patrick
+1. UI.UserInterface: **Divit** + Onyx
+2. Controller.ServiceController: **Mark** + Onyx + Divit + Andy
+3. UseCases.ProfileManager: **Patrick** + Onyx + Divit
+4. UseCases.MatchManager: **Onyx** 
+5. Entities.Request - **Jagat** + Andy
+6. Entities.User - **Andy & Melaney** + Onyx + Divit
+7. Entities.Farmer - **Andy & Melaney**
+8. Entities.Distributor - **Andy & Melaney** + Onyx + Patrick
 
 The test cases were done majorly by:
 

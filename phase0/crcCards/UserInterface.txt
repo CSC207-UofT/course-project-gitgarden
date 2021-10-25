@@ -1,5 +1,5 @@
-UserInterface
-Class name: UserInterface
+UI.UserInterface
+Class name: UI.UserInterface
 Parent class: None
 UI
 
@@ -7,7 +7,7 @@ Responsibilities:
 * Display an interface to interact with the program
 * Display results if valid information is entered
 * Display exception if invalid information is entered
-* Pass inputs to ServiceController
+* Pass inputs to Controller.ServiceController
 
 Collaborators:
-* ServiceController
+* Controller.ServiceController

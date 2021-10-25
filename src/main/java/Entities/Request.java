@@ -1,4 +1,4 @@
-/*Class name: Request
+package Entities;/*Class name: Entities.Request
 Parent class: None
 
 Responsibilities:
@@ -15,7 +15,7 @@ Collaborators:
 
 // import java.util.ArrayList;
 
-class Request {
+public class Request {
 
     private String FarmerName;
     private String FarmerAddress;

@@ -1,13 +1,16 @@
-/* UserInterface
+package UI;/* UI.UserInterface
  * Responsibilities:
  *      Display an interface to interact with the program
  *      Display results if valid information is entered
  *      Display exception if invalid information is entered
- *      Pass inputs to ServiceController
+ *      Pass inputs to Controller.ServiceController
  *
  * Collaborators:
- *      ServiceController
+ *      Controller.ServiceController
  */
+import Controller.ServiceController;
+import Entities.Distributor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -58,7 +61,7 @@ public class UserInterface
             name = reader.nextLine();
             System.out.println("Enter address.");
             address = reader.nextLine();
-            //ServiceController.createProfile(name, address, new HashMap<String, Double>());
+            //Controller.ServiceController.createProfile(name, address, new HashMap<String, Double>());
             System.out.println("Account Created. Create a new request? (Type 'Yes' to continue)");
             input = reader.nextLine();
 

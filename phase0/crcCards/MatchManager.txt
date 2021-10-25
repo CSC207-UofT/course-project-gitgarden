@@ -1,5 +1,5 @@
-MatchManager
-Class name: MatchManager
+UseCases.MatchManager
+Class name: UseCases.MatchManager
 Parent Class: None
 Use Case
 
@@ -10,10 +10,10 @@ Responsibilities:
 * Create offer using distributor's information [expansion]
 
 Collaborators: 
-* Farmer
-* Distributor
+* Entities.Farmer
+* Entities.Distributor
 * RankingManager
-* ProfileManager
-* Request
+* UseCases.ProfileManager
+* Entities.Request
 * Offer
-* ServiceController
+* Controller.ServiceController

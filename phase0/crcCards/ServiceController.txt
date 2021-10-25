@@ -1,14 +1,14 @@
-ServiceController
-Class name: ServiceController
+Controller.ServiceController
+Class name: Controller.ServiceController
 Parent class: None
 Interface Adapter
 
 Responsibilities:
-* Accept or decline inputs from UserInterface
-* Make variables for ProfileManager and MatchManager if the input is acceptable
+* Accept or decline inputs from UI.UserInterface
+* Make variables for UseCases.ProfileManager and UseCases.MatchManager if the input is acceptable
 * Report exception if the input is unacceptable
 
 Collaborators:
-* UserInterface
-* ProfileManager
-* MatchManager
+* UI.UserInterface
+* UseCases.ProfileManager
+* UseCases.MatchManager

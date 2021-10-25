@@ -8,6 +8,6 @@ Responsibilities:
 * Rank a set of farmers based on preferences of a particular distributor
 
 Collaborators: 
-* Farmer
-* Distributor
-* MatchManager
+* Entities.Farmer
+* Entities.Distributor
+* UseCases.MatchManager

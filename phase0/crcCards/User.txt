@@ -1,5 +1,5 @@
-User
-Class name: User
+Entities.User
+Class name: Entities.User
 Parent Class: None
 Entity
 
@@ -7,6 +7,6 @@ Responsibilities:
 * Stores name, address, identification, summary
 
 Collaborators:
-* ProfileManager
-* Farmer
-* Distributor
+* UseCases.ProfileManager
+* Entities.Farmer
+* Entities.Distributor

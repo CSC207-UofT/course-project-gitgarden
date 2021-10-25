@@ -10,18 +10,18 @@ While running, the user is prompted to either login to an existing profile, or c
 
 The users starts the program and is prompted with a screen asking them what they would like to do:
 - Create a New Profile 
-    * Farmer
+    * Entities.Farmer
         + Name
         + Address
         + Preferences (Expansion 1)
-    * Distributor
+    * Entities.Distributor
         + Name
         + Address
         + Preferences (Expansion 2)
 - Login to Profile
     * Modify Profile
-    * Create New Request
-    * View Existing Request
+    * Create New Entities.Request
+    * View Existing Entities.Request
         + Accept/Decline Offer
             + Make Counter Offer (Expansion 2)
         + View Rating (Expansion 2)
@@ -30,7 +30,7 @@ The users starts the program and is prompted with a screen asking them what they
         + Make Counter Offer (Expansion 2)
     * Transaction History (Expansion 3)
 
-The controller (ServiceController) takes in the inputs of the CLI and does one of two things:
+The controller (Controller.ServiceController) takes in the inputs of the CLI and does one of two things:
 - Accept the input
     * Makes the correct variable for the use case classes to use
 - Decline the input
@@ -39,14 +39,14 @@ The controller (ServiceController) takes in the inputs of the CLI and does one o
 ## Classes Specification
 
 The **use case** classes are:
-- ProfileManager
-- MatchManager
+- UseCases.ProfileManager
+- UseCases.MatchManager
 - RatingManager (Expansion 2)
 
 The **entity** classes:
-- Farmer
+- Entities.Farmer
 - Distirbutor
-- Request
+- Entities.Request
 - Offer
     * Counter Offer (Expansion 2)
 

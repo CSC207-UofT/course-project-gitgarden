@@ -1,19 +1,4 @@
-package Entities;/*Class name: Entities.Request
-Parent class: None
-
-Responsibilities:
-* Store farmer identification
-* Store product transferal specifics
-* Store instances of offers
-
-Collaborators:
-* MatchSystem
-* Offer
-* CounterOffer
-
- */
-
-// import java.util.ArrayList;
+package Entities;
 
 public class Request {
 
@@ -22,7 +7,7 @@ public class Request {
     private String ProductName;
     private int ProductQuantity;
     private float ProductPrice;
-    // private ArrayList<Offer> Offer;
+    //private ArrayList<Offer> Offer;
 
     public Request(String FName, String FAddress, String PName, int PQuantity,
                    float PPrice) {
@@ -32,7 +17,7 @@ public class Request {
         ProductName = PName;
         ProductQuantity = PQuantity;
         ProductPrice = PPrice;
-        // Offer = Offers;
+        //Offer = Offers;
     }
 
     /**

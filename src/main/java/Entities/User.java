@@ -1,22 +1,8 @@
-package Entities;/* CRC Class Information -------
-
-Class name: Entities.User
-Parent Class: None
-
-Responsibilities:
-* Stores name, address, identification, summary
-
-Collaborators:
-* UseCases.ProfileManager
-* Entities.Farmer
-* Entities.Distributor
-
-------------------------------*/
-
+package Entities;
 
 public class User {
 
-    //Entities.User's Name & Identification
+    //User's Name & Identification
     //There may be more information added(i.e. contact)
     private String user_name;
     private final int user_id; //(1)
@@ -29,7 +15,7 @@ public class User {
     public String summary;
 
      /**
-     * Construct a Entities.User, giving them the name and address
+     * Construct a User, giving them the name and address
      *
      * @param user_name String for name
      * @param user_address  String for address

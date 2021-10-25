@@ -4,28 +4,6 @@ import Entities.Distributor;
 
 import java.util.ArrayList;
 
-/*
- * MatchSystem - Onyx
- * Class name: MatchSystem
- * Parent Class: None
- * Use Case
- *
- * Responsibilities:
- * * Takes input of a single request
- * * Return a list of recommended distributors, based on the given farmer's preferences
- * * Receive distributor info and output a list of recommended farmers [expansion]
- * * Create offer using distributor's information [expansion]
- *
- * Collaborators:
- *  Entities.Farmer
- *  Entities.Distributor
- *  RankingSystem
- *  UseCases.ProfileManager
- *  Entities.Request
- *  Offer
- *  Controller.ServiceController
- */
-
 public class MatchManager {
     /**
      *

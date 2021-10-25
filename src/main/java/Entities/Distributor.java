@@ -1,18 +1,4 @@
-package Entities;/* CRC Class Information -------
-
-Class name: Entities.Distributor
-Parent class: Entities.User
-
-Responsibilities:
-* Store distributor’s list of offers
-* Store distributor’s preferences
- [expansion]
-
-Collaborators:
-* MatchSystem
-* UseCases.ProfileManager
-
-------------------------------*/
+package Entities;
 
 import Entities.Request;
 

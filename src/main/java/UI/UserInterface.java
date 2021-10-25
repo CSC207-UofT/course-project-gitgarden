@@ -1,13 +1,5 @@
-package UI;/* UI.UserInterface
- * Responsibilities:
- *      Display an interface to interact with the program
- *      Display results if valid information is entered
- *      Display exception if invalid information is entered
- *      Pass inputs to Controller.ServiceController
- *
- * Collaborators:
- *      Controller.ServiceController
- */
+package UI;
+
 import Controller.ServiceController;
 import Entities.Distributor;
 

@@ -88,7 +88,7 @@ public class UserInterface
                 ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
 
                 if (matchList.size() != 0) {
-                    System.out.println("Entities.Request created and processed. The list of available distributors is as follows: ");
+                    System.out.println("Request created and processed. The list of available distributors is as follows: ");
 
                     for (int i = 0; i < matchList.size(); i++) {
                         int num = i + 1;
@@ -100,7 +100,7 @@ public class UserInterface
 
                     if (1 <= distributorNumber &  distributorNumber <= matchList.size())
                     {
-                        System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Entities.Request complete.");
+                        System.out.println("You picked: " + matchList.get(distributorNumber - 1) + "Request complete.");
                     }
                 }
                 else

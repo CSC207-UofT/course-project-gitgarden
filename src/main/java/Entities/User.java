@@ -1,18 +1,4 @@
-/* CRC Class Information -------
-
-Class name: User
-Parent Class: None
-
-Responsibilities:
-* Stores name, address, identification, summary
-
-Collaborators:
-* ProfileManager
-* Farmer
-* Distributor
-
-------------------------------*/
-
+package Entities;
 
 public class User {
 
@@ -92,5 +78,6 @@ public class User {
                 "Address: " + user_address + "\n" +
                 "Summary: " + summary + "\n";
     }
+
 
 }

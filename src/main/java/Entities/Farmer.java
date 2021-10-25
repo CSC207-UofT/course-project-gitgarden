@@ -1,20 +1,7 @@
-/* CRC Class Information -------
+package Entities;
 
-Class name: Farmer
-Parent Class: User
+import Entities.Request;
 
-Responsibilities:
-* Stores farmer’s list of requests
-* Store farmer's preferences [expansion]
-
-Collaborators:
-* MatchSystem
-* ProfileManager
-
-------------------------------*/
-
-// import java.util.HashMap;
-// Will be imported later
 import java.util.ArrayList;
 
 public class Farmer extends User {

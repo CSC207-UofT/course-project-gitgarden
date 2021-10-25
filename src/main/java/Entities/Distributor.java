@@ -1,18 +1,6 @@
-/* CRC Class Information -------
+package Entities;
 
-Class name: Distributor
-Parent class: User
-
-Responsibilities:
-* Store distributor’s list of offers
-* Store distributor’s preferences
- [expansion]
-
-Collaborators:
-* MatchSystem
-* ProfileManager
-
-------------------------------*/
+import Entities.Request;
 
 import java.util.HashMap;
 import java.util.ArrayList;

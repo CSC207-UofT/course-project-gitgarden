@@ -1,19 +1,9 @@
+package UseCases;
+
+import Entities.Distributor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-/**
- * ProfileManager
- * Responsibilities
- *
- * * Take variables from ServiceController
- * * Create Farmer/Distributor based on the given variables
- * * Modify Farmer/Distributor based on the given variables
- *
- * Collaborators:
- * * ServiceController
- * * Farmer
- * * Distributor
- *
- */
 
 public class ProfileManager {
     //public static ArrayList<User> farmerList = new ArrayList<>();

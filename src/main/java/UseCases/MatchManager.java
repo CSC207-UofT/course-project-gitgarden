@@ -1,3 +1,7 @@
+package UseCases;
+
+import Entities.Distributor;
+
 import java.util.ArrayList;
 
 /*
@@ -13,13 +17,13 @@ import java.util.ArrayList;
  * * Create offer using distributor's information [expansion]
  *
  * Collaborators:
- *  Farmer
- *  Distributor
+ *  Entities.Farmer
+ *  Entities.Distributor
  *  RankingSystem
- *  ProfileManager
- *  Request
+ *  UseCases.ProfileManager
+ *  Entities.Request
  *  Offer
- *  ServiceController
+ *  Controller.ServiceController
  */
 
 public class MatchManager {

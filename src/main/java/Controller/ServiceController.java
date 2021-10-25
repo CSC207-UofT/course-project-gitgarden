@@ -1,15 +1,21 @@
+package Controller;
+
+import Entities.Distributor;
+import UseCases.MatchManager;
+import UseCases.ProfileManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/* ServiceController
+/* Controller.ServiceController
  * Responsibilities:
- *      Accept or decline inputs from UserInterface
- *      Make variables for ProfileManager and MatchSystem if the input is acceptable
+ *      Accept or decline inputs from UI.UserInterface
+ *      Make variables for UseCases.ProfileManager and MatchSystem if the input is acceptable
  *      Report exception if the input is unacceptable
  *
  * Collaborators:
- *      UserInterface
- *      ProfileManager
+ *      UI.UserInterface
+ *      UseCases.ProfileManager
  *      MatchSystem
  *
  */
@@ -17,7 +23,7 @@ import java.util.HashMap;
 public class ServiceController {
 
     /**
-     * Method for UserInterface, pass parameters to ProfileManager if the input is valid
+     * Method for UI.UserInterface, pass parameters to UseCases.ProfileManager if the input is valid
      * @param name  Name of the user
      * @param address   Address of the user
      */
@@ -31,7 +37,7 @@ public class ServiceController {
 
 
     /**
-     * Method for UserInterface, pass parameters to ProfileManager if the input is valid
+     * Method for UI.UserInterface, pass parameters to UseCases.ProfileManager if the input is valid
      * @param product   Name of the product
      * @param quantity  Quantity of the product
      * @param price     Price of the product per kilogram

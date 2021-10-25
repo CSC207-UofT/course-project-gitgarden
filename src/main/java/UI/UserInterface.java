@@ -1,13 +1,16 @@
-/* UserInterface
+package UI;/* UI.UserInterface
  * Responsibilities:
  *      Display an interface to interact with the program
  *      Display results if valid information is entered
  *      Display exception if invalid information is entered
- *      Pass inputs to ServiceController
+ *      Pass inputs to Controller.ServiceController
  *
  * Collaborators:
- *      ServiceController
+ *      Controller.ServiceController
  */
+import Controller.ServiceController;
+import Entities.Distributor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -58,7 +61,7 @@ public class UserInterface
             name = reader.nextLine();
             System.out.println("Enter address.");
             address = reader.nextLine();
-            //ServiceController.createProfile(name, address, new HashMap<String, Double>());
+            //Controller.ServiceController.createProfile(name, address, new HashMap<String, Double>());
             System.out.println("Account Created. Create a new request? (Type 'Yes' to continue)");
             input = reader.nextLine();
 
@@ -85,7 +88,7 @@ public class UserInterface
                 ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
 
                 if (matchList.size() != 0) {
-                    System.out.println("Request created and processed. The list of available distributors is as follows: ");
+                    System.out.println("Entities.Request created and processed. The list of available distributors is as follows: ");
 
                     for (int i = 0; i < matchList.size(); i++) {
                         int num = i + 1;
@@ -97,7 +100,7 @@ public class UserInterface
 
                     if (1 <= distributorNumber &  distributorNumber <= matchList.size())
                     {
-                        System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Request complete.");
+                        System.out.println("You picked: " + matchList.get(distributorNumber - 1) + ". Entities.Request complete.");
                     }
                 }
                 else

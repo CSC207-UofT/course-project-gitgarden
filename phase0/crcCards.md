@@ -1,6 +1,7 @@
 # CounterOffer
 
-<u>Entity</u>
+- `CounterOffer`
+- <u>Entity</u>
 - Parent Class: `Offer`
 
 | Responsibility                          | Collaborators |
@@ -12,7 +13,8 @@
 
 # Request
 
-<u>Entity</u>
+- `Request`
+- <u>Entity</u>
 - Parent Class: None
 
 | Responsibility                      | Collaborators |
@@ -24,7 +26,8 @@
 
 # Distributor
 
-<u>Entity</u>
+- `Distributor`
+- <u>Entity</u>
 - Parent Class: `User`
 
 | Responsibility                     | Collaborators  |
@@ -35,7 +38,8 @@
 
 # Farmer
 
-<u>User</u>
+- `Farmer`
+- <u>User</u>
 - Parent Class: `User`
 
 | Responsibility                         | Collaborators  |
@@ -46,7 +50,8 @@
 
 # ServiceController
 
-<u>Interface Adapter</u>
+- `ServiceController`
+- <u>Interface Adapter</u>
 - Parent Class: None
  
 | Responsibility                                                                | Collaborators  |

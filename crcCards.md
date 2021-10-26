@@ -16,7 +16,7 @@
 
 | Responsibility                                                                                                                                                                               | Collaborators                                                                                                    |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| 1. Accept or decline inputs from UserInterface <br/> 2. Make variables for ProfileManager and MatchManager if the input is acceptable <br/> 3. Report exception if the input is unacceptable | [`MatchManager`](#MatchManager) <br/> [`ProfileManager`](ProfileManager) <br/> [`UserInterface`](#UserInterface) |
+| 1. Accept or decline inputs from UserInterface <br/> 2. Make variables for ProfileManager and MatchManager if the input is acceptable <br/> 3. Report exception if the input is unacceptable | [`MatchManager`](#MatchManager) <br/> [`ProfileManager`](#ProfileManager) <br/> [`UserInterface`](#UserInterface) |
 
 
 # Offer

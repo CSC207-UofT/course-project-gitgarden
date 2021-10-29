@@ -6,6 +6,8 @@ CURRENT - Project Phase 1
 
 - [ ] Preferences and RankingManager - Incomplete
 
+- [ ] Request - Incomplete
+
 - [ ] Feedback Refactoring - Incomplete
 
 - [ ] Design Document - Incomplete

@@ -1,4 +1,18 @@
-CURRENT - Project Phase 0  
+CURRENT - Project Phase 1
+
+- [ ] Web Interface - Incomplete
+
+- [ ] Data Persistency - Incomplete
+
+- [ ] Preferences and RankingManager - Incomplete
+
+- [ ] Feedback Refactoring - Incomplete
+
+- [ ] Design Document - Incomplete
+
+
+
+DONE - Project Phase 0
 
 - [x] Task 1 - Pick domain - Complete  
 

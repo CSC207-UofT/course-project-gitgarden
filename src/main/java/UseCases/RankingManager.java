@@ -10,8 +10,9 @@ import static java.lang.Math.round;
 
 public class RankingManager {
 
-    public static final double price_coefficient = 0.05;
-    public static final double single_ranking = 2.5;
+    public static final double priceCoefficient = 0.05;
+    public static final double priceIntercept = 0.5;
+    public static final double singleRanking = 2.5;
     private final Distributor[] allDistributors;
     private final Farmer farmer;
     private final String product;
@@ -40,11 +41,11 @@ public class RankingManager {
 
     public double calcPriceRanking(Distributor input_dist) {
         double distPrice = input_dist.getProdMap().get(product);
-        if (distPrice < ((0.5 + (farmer.getPrefPrice() * price_coefficient)) * farmerPrice)){
+        if (distPrice < ((priceIntercept + (farmer.getPrefPrice() * priceCoefficient)) * farmerPrice)){
             return 0.0;
         }
         else {
-            return single_ranking;
+            return singleRanking;
         }
     }
 
@@ -60,9 +61,9 @@ public class RankingManager {
         int ref_exp = exposureList.get((int) round(exposureList.size() * (farmer.getPrefExposure() / 10.0)));
         double ratio = (double) ref_exp / input_dist.getExposure();
         if (ratio >= 1) {
-            return single_ranking;
+            return singleRanking;
         } else {
-            return single_ranking * ratio;
+            return singleRanking * ratio;
         }
     }
 
@@ -75,9 +76,9 @@ public class RankingManager {
         int ref_exp = speedList.get((int) round(speedList.size() * (farmer.getPrefSpeed() / 10.0)));
         double ratio = (double) ref_exp / input_dist.getSpeed();
         if (ratio >= 1) {
-            return single_ranking;
+            return singleRanking;
         } else {
-            return single_ranking * ratio;
+            return singleRanking * ratio;
         }
     }
 
@@ -90,9 +91,9 @@ public class RankingManager {
         int ref_exp = carbonList.get((int) round(carbonList.size() * (farmer.getPrefCarbon() / 10.0)));
         double ratio = (double) ref_exp / input_dist.getCarbon();
         if (ratio >= 1) {
-            return single_ranking;
+            return singleRanking;
         } else {
-            return single_ranking * ratio;
+            return singleRanking * ratio;
         }
     }
 }

@@ -40,7 +40,7 @@ public class RankingManager {
 
     public double calcPriceRanking(Distributor input_dist) {
         double distPrice = input_dist.getProdMap().get(product);
-        if (distPrice < ((farmer.getPrefPrice() * price_coefficient) * farmerPrice)){
+        if (distPrice < ((1 - (farmer.getPrefPrice() * price_coefficient)) * farmerPrice)){
             return 0.0;
         }
         else {

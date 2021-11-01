@@ -10,9 +10,11 @@ import static java.lang.Math.round;
 
 public class RankingManager {
 
+    // Constants involved in the calculation, subject to tweaking
     private static final double priceCoefficient = 0.05;
     private static final double priceIntercept = 0.5;
     private static final double singleRanking = 2.5;
+
     private final Distributor[] allDistributors;
     private final Farmer farmer;
     private final String product;
@@ -28,14 +30,14 @@ public class RankingManager {
     public Distributor[] rank(){
         Distributor[] rankList = allDistributors.clone(); // Create list which will be returned after sorting
 
-        for (Distributor dist: rankList){
+        for (Distributor dist: rankList){ // Assign each distributor a ranking from four ranking components
             double priceRanking = calcPriceRanking(dist);
             double exposureRanking = calcExposureRanking(dist, rankList);
             double speedRanking = calcSpeedRanking(dist, rankList);
             double carbonRanking = calcCarbonRanking(dist, rankList);
             dist.setRanking(priceRanking + exposureRanking + speedRanking + carbonRanking);
         }
-        Arrays.sort(rankList);
+        Arrays.sort(rankList); // Sort based on ranking
         return rankList;
     }
 
@@ -50,7 +52,7 @@ public class RankingManager {
     }
 
     // get one of the three criteria from all distributors and form it into a list, sort the list, then pick a place
-    // in the list and rank everything in relation to it
+    // in the list (based on the farmer's preferences) and rank everything in relation to it
 
     public double calcExposureRanking(Distributor input_dist, Distributor[] rankList) {
         ArrayList<Integer> exposureList = new ArrayList<>();

@@ -10,9 +10,9 @@ import static java.lang.Math.round;
 
 public class RankingManager {
 
-    public static final double priceCoefficient = 0.05;
-    public static final double priceIntercept = 0.5;
-    public static final double singleRanking = 2.5;
+    private static final double priceCoefficient = 0.05;
+    private static final double priceIntercept = 0.5;
+    private static final double singleRanking = 2.5;
     private final Distributor[] allDistributors;
     private final Farmer farmer;
     private final String product;

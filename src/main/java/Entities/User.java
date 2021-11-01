@@ -28,7 +28,9 @@ public class User {
     }
 
     /**
-     * TODO: Add Annotation
+     * Set user name
+     *
+     * @param name String for name
      */
     public void setUser_name(String name){
         this.user_name = name;

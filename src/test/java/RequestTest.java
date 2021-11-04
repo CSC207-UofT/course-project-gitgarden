@@ -1,3 +1,4 @@
+import Entities.Offer;
 import Entities.Request;
 import org.junit.Test;
 
@@ -5,49 +6,23 @@ import static org.junit.Assert.*;
 
 public class RequestTest {
 
-    @Test(timeout = 50)
-    public void TestGetFarmerName(){
-        Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
-        assertEquals("test_name", r.getFarmerName());
+
+    @Test
+    public void TestShow(){
+        Request lst1 = new Request(1, "name1",
+                "address1", "p1", 10, 10),
+                lst2 = new Request(2, "name2",
+                        "address2", "p2", 20, 20);
+        Offer offer3 = new Offer(3, "name3",
+                "address3", "p3", 30, 30),
+                offer4 = new Offer(4, "name4",
+                        "address4", "p4", 40, 40);
+
+        lst2.add(offer3);
+        lst2.add(offer4);
+        lst1.add(lst2);
+        lst1.show();
     }
 
-    @Test(timeout = 50)
-    public void TestGetFarmerAddress(){
-        Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
-        assertEquals("test_address", r.getFarmerAddress());
-    }
-
-    @Test(timeout = 50)
-    public void TestGetProductName(){
-        Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
-        assertEquals("test_product", r.getProductName());
-    }
-
-    @Test(timeout = 50)
-    public void TestGetProductQuantity(){
-        Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
-        assertEquals(210, r.getProductQuantity());
-    }
-
-    @Test(timeout = 50)
-    public void TestGetProductPrice(){
-        Request r = new Request("test_name", "test_address", "test_product", 210, 102.25F);
-        assertEquals(102.25F, r.getProductPrice(), 0.0001);
-    }
-
-    @Test(timeout = 50)
-    public void TestToString(){
-        Request r = new Request("", "", "", 0, 0F);
-        r.setFarmerName("test_name");
-        r.setFarmerAddress("test_address");
-        r.setProductName("test_product");
-        r.setProductQuantity(210);
-        r.setProductPrice(102.25F);
-        assertEquals("Name: test_name\n" +
-                "Address: test_address\n" +
-                "Product: test_product\n" +
-                "Quantity: 210\n" +
-                "Price: 102.25", r.toString());
-    }
 
 }

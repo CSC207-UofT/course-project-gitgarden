@@ -9,9 +9,9 @@ import static java.lang.Math.round;
 
 public class RankingManager {
 
-    private static final double priceCoefficient = 0.05;
-    private static final double priceIntercept = 0.5;
-    private static final double singleRanking = 2.5;
+    private static final double PRICE_COEFFICIENT = 0.05;
+    private static final double PRICE_INTERCEPT = 0.5;
+    private static final double SINGLE_RANKING = 2.5;
 
     private final ArrayList<Distributor> allDistributors;
     private final Farmer farmer;
@@ -26,59 +26,68 @@ public class RankingManager {
     }
 
     public ArrayList<Distributor> rankDistributors(){
-        ArrayList<Distributor> rankList = allDistributors;
+        ArrayList<Distributor> rankList = new ArrayList<>(allDistributors);
 
         for (Distributor dist: rankList){
-            double priceRanking = calcPriceRanking(dist);
+            double priceRanking = calcRanking(dist, rankList, "price");
             double exposureRanking = calcRanking(dist, rankList, "exposure");
             double speedRanking = calcRanking(dist, rankList, "speed");
             double carbonRanking = calcRanking(dist, rankList, "carbon");
-            dist.setRanking(priceRanking + exposureRanking + speedRanking + carbonRanking);
+            double distRanking = priceRanking + exposureRanking + speedRanking + carbonRanking;
+            dist.setRanking(distRanking);
         }
-        Collections.sort(rankList);
+        rankList.sort(Collections.reverseOrder());
         return rankList;
     }
 
     public double calcPriceRanking(Distributor input_dist) {
         double distPrice = input_dist.getProdMap().get(product);
-        if (distPrice < ((priceIntercept + (farmer.getPrefPrice() * priceCoefficient)) * farmerPrice)){
+        double toCompare = (PRICE_INTERCEPT + (farmer.getPrefPrice() * PRICE_COEFFICIENT)) * farmerPrice;
+        double ratio = distPrice / toCompare; // the price of the dist div by the price of the farmer?
+        if (ratio <= 1) {
             return 0.0;
         }
         else {
-            return singleRanking;
+            return SINGLE_RANKING;
         }
     }
 
     public double calcRanking(Distributor input_dist, ArrayList<Distributor> rankList, String crit) {
-        ArrayList<Integer> critList = new ArrayList<>();
+        ArrayList<Double> critList = new ArrayList<>();
         for (Distributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
         Collections.sort(critList);
-        int ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
-        double ratio = (double) ref / getCriterion(input_dist, crit);
+        Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
+        double ratio = ref / getCriterion(input_dist, crit);
         if (ratio >= 1) {
-            return singleRanking;
+            return SINGLE_RANKING;
         } else {
-            return singleRanking * ratio;
+            return SINGLE_RANKING * ratio;
         }
     }
 
-    public int getCriterion(Distributor dist, String criterion){
-        if (criterion.equals("exposure")){
-            return dist.getExposure();
-        } else if (criterion.equals("speed")){
-            return dist.getSpeed();
-        } else {
-            return dist.getCarbon();
+    public double getCriterion(Distributor dist, String criterion){
+        switch (criterion) {
+            case "exposure":
+                return dist.getExposure();
+            case "speed":
+                return dist.getSpeed();
+            case "carbon":
+                return dist.getCarbon();
+            default:
+                return dist.getProdMap().get(product);
         }
     }
 
-    public int getPrefCriterion(Farmer farmer, String criterion){
-        if (criterion.equals("exposure")){
-            return farmer.getPrefExposure();
-        } else if (criterion.equals("speed")){
-            return farmer.getPrefSpeed();
-        } else {
-            return farmer.getPrefCarbon();
+    public int getPrefCriterion(Farmer farmer, String criterion) {
+        switch (criterion) {
+            case "exposure":
+                return farmer.getPrefExposure();
+            case "speed":
+                return farmer.getPrefSpeed();
+            case "carbon":
+                return farmer.getPrefCarbon();
+            default:
+                return farmer.getPrefPrice();
         }
     }
 

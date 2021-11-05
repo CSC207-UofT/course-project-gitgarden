@@ -75,23 +75,6 @@ public class RankingManagerTest {
     }
 
     @Test
-    public void TestCalcPriceRankingSingle() {
-        RankingManager rm = this.rankingManager;
-        rm.getFarmer().setPrefPrice(10);
-        Distributor dist = rm.getAllDistributors().get(0);
-        assertEquals(2.50, rm.calcPriceRanking(dist), 0.01);
-    }
-
-    @Test
-    public void TestCalcPriceRankingZero() {
-        RankingManager rm = this.rankingManager;
-        rm.getFarmer().setPrefPrice(10);
-        Distributor dist = rm.getAllDistributors().get(1);
-        double priceRanking = rm.calcPriceRanking(dist);
-        assertEquals(0.00, priceRanking, 0.01);
-    }
-
-    @Test
     public void TestCalcRanking() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefExposure(10);

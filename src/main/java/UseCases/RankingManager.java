@@ -40,18 +40,6 @@ public class RankingManager {
         return rankList;
     }
 
-    public double calcPriceRanking(Distributor input_dist) {
-        double distPrice = input_dist.getProdMap().get(product);
-        double toCompare = (PRICE_INTERCEPT + (farmer.getPrefPrice() * PRICE_COEFFICIENT)) * farmerPrice;
-        double ratio = distPrice / toCompare; // the price of the dist div by the price of the farmer?
-        if (ratio <= 1) {
-            return 0.0;
-        }
-        else {
-            return SINGLE_RANKING;
-        }
-    }
-
     public double calcRanking(Distributor input_dist, ArrayList<Distributor> rankList, String crit) {
         ArrayList<Double> critList = new ArrayList<>();
         for (Distributor dist : rankList) { critList.add(getCriterion(dist, crit)); }

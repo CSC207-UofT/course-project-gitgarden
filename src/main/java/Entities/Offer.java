@@ -2,23 +2,22 @@ package Entities;
 
 import java.util.ArrayList;
 
-public class Request implements RequestStructure{
-
+public class Offer implements RequestStructure{
     private int request_id;
     private Farmer farmer;
+    private Distributor distributor;
     private String product_name;
     private int product_quantity;
     private float product_price_per_unit;
-    private ArrayList<RequestStructure> counteroffer;
 
-    public Request(int id, Farmer Farmer, String p_name, int p_quantity,
-                   float p_price_per_unit) {
+    public Offer(int id, Farmer Farmer, Distributor Distributor, String p_name, int p_quantity,
+                 float p_price_per_unit) {
         request_id = id;
         farmer = Farmer;
+        distributor = Distributor;
         product_name = p_name;
         product_quantity = p_quantity;
         product_price_per_unit = p_price_per_unit;
-        counteroffer = new ArrayList<>();
     }
 
     /**
@@ -60,6 +59,14 @@ public class Request implements RequestStructure{
         return this.farmer.getUser_address();
     }
 
+    public void setDistributor(Distributor new_distributor){
+        this.distributor = new_distributor;
+    }
+
+    public String getDistributorName(){
+        return this.distributor.getUser_name();
+    }
+
     public void setProduct_name(String ProductName){
         this.product_name = ProductName;
     }
@@ -85,7 +92,8 @@ public class Request implements RequestStructure{
     }
 
     public String toString(){
-        return "Name: " + this.farmer.getUser_name() + "\n" +
+        return "Farmer: " + this.farmer.getUser_name() + "\n" +
+                "Distributor: " + this.distributor.getUser_name() + "\n" +
                 "Product: " + this.product_name + "\n" +
                 "Quantity: " + this.product_quantity + "\n" +
                 "Price: " + this.product_price_per_unit;
@@ -93,67 +101,39 @@ public class Request implements RequestStructure{
 
     @Override
     public void add(RequestStructure request) {
-        this.counteroffer.add(request);
     }
 
     @Override
     public void remove(RequestStructure request) {
-        this.counteroffer.remove(request);
     }
 
     @Override
     public ArrayList<RequestStructure> counteroffers() {
-        return this.counteroffer;
+        return new ArrayList<>();
     }
 
     @Override
-    public ArrayList<Offer> offers(){
-        ArrayList<Offer> temp = new ArrayList<Offer>();
-        for(RequestStructure item: this.counteroffer){
-            if (item instanceof Request){
-                item.offers();
-            }
-            else{
-                temp.addAll(item.offers());
-            }
-        }
+    public ArrayList<Offer> offers() {
+        ArrayList<Offer> temp = new ArrayList<>();
+        temp.add(this);
         return temp;
     }
 
     @Override
     public ArrayList<RequestStructure> search(Offer offer){
-        ArrayList<ArrayList<RequestStructure>> paths = new ArrayList<>();
-
-        for(RequestStructure item: this.counteroffer){
-
+        if (this == offer){
             ArrayList<RequestStructure> temp = new ArrayList<>();
             temp.add(this);
-
-            if (item instanceof Offer){
-                temp.add(this);
-                paths.add(temp);
-            }
-            else {
-                item.search(offer);
-            }
-
+            return temp;
         }
-
-        for (ArrayList<RequestStructure> path: paths) {
-            if (path.get(-1) == offer) {
-                return path;
-            }
+        else{
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
     }
 
     @Override
     public void show(){
         System.out.println(this);
-        for(RequestStructure item: this.counteroffer){
-            System.out.println("======");
-            item.show();
-            System.out.println("======");
-            }
-        }
     }
+
+}

@@ -14,9 +14,9 @@ public class Distributor extends User implements Comparable<Distributor>{
     //Initialize prodMap
     private HashMap<String, Double> prodMap;
 
-    private int exposure; // TODO: what is the hard metric
-    private int speed; // Average number of hours in which transactions are completed after being finalized
-    private int carbon; // Number of grams CO2eq emitted per transaction
+    private double exposure;
+    private double speed; // Average number of hours in which transactions are completed after being finalized
+    private double carbon; // Number of grams CO2eq emitted per transaction
 
     private double ranking; // Comparable object
 
@@ -39,7 +39,7 @@ public class Distributor extends User implements Comparable<Distributor>{
         this.exposure = exposure;
     }
 
-    public int getExposure() {
+    public double getExposure() {
         return exposure;
     }
 
@@ -47,7 +47,7 @@ public class Distributor extends User implements Comparable<Distributor>{
         this.speed = speed;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -55,7 +55,7 @@ public class Distributor extends User implements Comparable<Distributor>{
         this.carbon = carbon;
     }
 
-    public int getCarbon() {
+    public double getCarbon() {
         return carbon;
     }
 

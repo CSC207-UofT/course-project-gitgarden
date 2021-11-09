@@ -22,12 +22,13 @@ public class ProfileManager {
         createDistributor("Mark","Toronto", null);
         createDistributor("Divit","Toronto", null);
 
-        //This will convert distributorList to a json file.
+        //This will convert distributorList to a json format.
         Gson gson = new Gson();
-        System.out.println(distributorList);
-
-        String json = gson.toJson(distributorList);
-        System.out.println(json);
-
+        try(FileWriter writer = new FileWriter("dists.json")){
+            writer.write(gson.toJson(distributorList));
+            writer.flush();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

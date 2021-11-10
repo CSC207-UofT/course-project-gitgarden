@@ -1,8 +1,11 @@
 package UseCases;
 
 import Entities.Distributor;
-import com.google.gson.Gson;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +20,7 @@ public class ProfileManager {
         distributorList.add(dist);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws FileNotFoundException {
         //Created these two distributors for testing purposes.
         createDistributor("Mark","Toronto", null);
         createDistributor("Divit","Toronto", null);
@@ -30,5 +33,18 @@ public class ProfileManager {
         } catch(IOException e) {
             e.printStackTrace();
         }
+
+        //Read json file and create distributors based on the json file.
+        //Assuming that distributorList will be cleared when the program ends, thus
+        //  simply calling createDistributors to add them to distributorList
+
+        //Note that when run this code now, it will print distributorList twice since the
+        // distributors from the saving as json part is still in distributorList.
+        JsonReader reader = new JsonReader(new FileReader("dists.json"));
+        Distributor[] distributors = gson.fromJson(reader, Distributor[].class);
+        for (Distributor d : distributors) {
+            createDistributor(d.getUser_name(), d.getUser_address(), null);
+        }
+        System.out.println(distributorList);
     }
 }

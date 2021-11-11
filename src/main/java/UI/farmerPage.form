@@ -35,9 +35,10 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-10583636"/>
                   <font name="Arial" size="26" style="1"/>
                   <foreground color="-1249292"/>
-                  <text value="Your farmer profile "/>
+                  <text value="Your farmer's profile "/>
                 </properties>
               </component>
             </children>
@@ -153,6 +154,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-10583636"/>
                   <font name="Arial" size="20" style="1"/>
                   <foreground color="-1249292"/>
                   <text value="View my existing requests "/>
@@ -243,6 +245,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-10583636"/>
                   <font name="Arial" size="20" style="1"/>
                   <foreground color="-1249292"/>
                   <text value="View my transaction history "/>

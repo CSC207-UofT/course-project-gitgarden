@@ -1,32 +1,45 @@
 package Entities;
 
-import Entities.Request;
-
 import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Distributor extends User implements Comparable<Distributor>{
 
-    //Initialize list of requests
-
-    private ArrayList<Request> requests;
-
-    //Initialize prodMap
-    private HashMap<String, Double> prodMap;
-
+    private final ArrayList<RequestStructure> current_requests;
+    private final ArrayList<Offer> offer_history;
     private double exposure;
     private double speed; // Average number of hours in which transactions are completed after being finalized
     private double carbon; // Number of grams CO2eq emitted per transaction
-
     private double ranking; // Comparable object
 
-
-    public Distributor(String distributor_name, String distributor_address, HashMap<String, Double> hashmap){
+    public Distributor(String distributor_name, String distributor_address){
         super(distributor_name, distributor_address);
-        this.requests = null;
-        this.prodMap = hashmap;
+        this.current_requests = new ArrayList<>();
+        this.offer_history = new ArrayList<>();
+
+    public void add_request(Request request){
+        this.current_requests.add(request);
     }
 
+    public void remove_request(Request request) {
+        this.current_requests.remove(request);
+    }
+
+    public ArrayList<RequestStructure> getCurrent_requests(){
+        return this.current_requests;
+    }
+
+    public void add_offer(Offer offer){
+        this.offer_history.add(offer);
+    }
+
+    public void remove_offer(Offer offer) {
+        this.offer_history.remove(offer);
+    }
+      
+    public ArrayList<Offer> getOffer_history(){
+        return this.offer_history;
+      
     public int compareTo(Distributor other){
         return Double.compare(this.ranking, other.ranking);
     }
@@ -69,9 +82,14 @@ public class Distributor extends User implements Comparable<Distributor>{
 
     public ArrayList<Request> getRequests(){
         return this.requests;
+      
     }
 
-    public HashMap<String, Double> getProdMap(){
-        return this.prodMap;
+    public HashMap<String, Float> prodmap(){
+        HashMap<String, Float> temp = new HashMap<>();
+        for (Offer item: this.offer_history){
+            temp.put(item.getProduct_name(), item.getProduct_price_per_unit());
+        }
+        return temp;
     }
 }

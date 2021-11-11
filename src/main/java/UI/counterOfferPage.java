@@ -1,8 +1,10 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class counterOfferPage {
+public class counterOfferPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
@@ -20,14 +22,41 @@ public class counterOfferPage {
     private JTextField priceInput;
     private JTextField quantityInput;
     private JButton createButton;
+    public counterOfferPage() {
+        setTitle("counterOffer");
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800,700);
 
-    public counterOfferPage() { }
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(welcomePage.flag){
+                    setVisible(false);
+                    farmerPage farmerPage = new farmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    setVisible(false);
+                    distributorPage distributorPage = new distributorPage();
+                    distributorPage.setVisible(true);
+                }
+            }
+        });
 
-    public static void main(String[] args){
-        JFrame frame = new JFrame("counterOfferPage");
-        frame.setContentPane(new counterOfferPage().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        priceInput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double price = Double.parseDouble(priceInput.getText());
+            }
+        });
+        quantityInput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double quantity = Double.parseDouble(quantityInput.getText());
+            }
+        });
+
+
     }
 }

@@ -5,8 +5,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class welcomePage extends JFrame{
     private JPanel mainPanel;
@@ -35,16 +33,22 @@ public class welcomePage extends JFrame{
     private JPanel textsPanel;
     private JPanel inputsPanel;
     private JPanel separatePanel;
+    private JPanel farmerPanel;
     private JLabel orText;
+    private JPanel choicePanel;
     private JPanel buttonPanel;
+    private JPanel userTextPanel;
+    private JPanel distributorPanel;
     private JButton signupButton;
     private JButton farmerButton;
     private JButton distributorButton;
     private JTextField newUserName;
-    private JTextField getAddress;
+    private JTextField addressInput;
     private JSlider slider2;
     private JSlider slider3;
     private JSlider slider4;
+    private JLabel userTest;
+    public static boolean flag;
 
     // TODO: 2021/11/10 set size
     public welcomePage() {
@@ -52,8 +56,7 @@ public class welcomePage extends JFrame{
         setTitle("Welcome");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setSize(1000, 1000);
-        final boolean[] flag = new boolean[1];
+        setSize(800, 700);
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,11 +66,29 @@ public class welcomePage extends JFrame{
                 setContentPane(new farmerPage().mainPanel);
             }
         });
+        signupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(flag) {
+                    farmerPage farmerPage = new farmerPage();
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+                    setContentPane(new farmerPage().mainPanel);
+                }
+                else{
+                    distributorPage distributorPage = new distributorPage();
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                    setContentPane(new farmerPage().mainPanel);
+                }
+            }
+        });
         nameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String oldUserName = nameInput.getText();
-                // TODO: 2021/11/10 Sign this person in
+                // TODO: 2021/11/10 Sign this person in.
+                // TODO: 2021/11/11 change flag to true if farmer, false if distributor 
             }
         });
 
@@ -78,30 +99,38 @@ public class welcomePage extends JFrame{
             }
         });
 
-        getAddress.addActionListener(new ActionListener() {
+        addressInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String address = getAddress.getText();
+                String address = addressInput.getText();
             }
         });
         farmerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                flag[0] = true;
+                flag = true;
             }
         });
         distributorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                flag[0] = false;
+                flag = false;
             }
         });
-        if (flag[0]){
+        if (flag){
             // TODO: 2021/11/11 create farmer
         }
         else{
             // TODO: 2021/11/11 create distributor
         }
+        slider1.setPaintTicks(true);
+        slider1.setMinorTickSpacing(10);
+        slider2.setPaintTicks(true);
+        slider2.setMinorTickSpacing(10);
+        slider3.setPaintTicks(true);
+        slider3.setMinorTickSpacing(10);
+        slider4.setPaintTicks(true);
+        slider4.setMinorTickSpacing(10);
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -118,6 +147,7 @@ public class welcomePage extends JFrame{
             @Override
             public void stateChanged(ChangeEvent e) {
                 double score = slider1.getValue();
+                System.out.print(score);
             }
         });
         slider4.addChangeListener(new ChangeListener() {

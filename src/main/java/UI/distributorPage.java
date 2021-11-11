@@ -1,8 +1,10 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class distributorPage {
+public class distributorPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel titleTextPanel;
@@ -23,11 +25,48 @@ public class distributorPage {
     private JPanel historyListPanel;
     private JList historyList;
     private JButton viewButton;
-    public static void main(String[] args){
-        JFrame frame = new JFrame("distributorPage");
-        frame.setContentPane(new distributorPage().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public distributorPage(){
+        setTitle("distributorPage");
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800,700);
+
+        modifyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JFrame modifyPage = new modifyPage();
+                modifyPage.setVisible(true);
+            }
+        });
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JFrame requestListPage = new existingRequests();
+                requestListPage.setVisible(true);
+            }
+        });
+
+        counterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                counterOfferPage counterOfferPage = new counterOfferPage();
+                counterOfferPage.setVisible(true);
+            }
+        });
+        acceptButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: 2021/11/11
+            }
+        });
+        declineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: 2021/11/11
+            }
+        });
     }
 }

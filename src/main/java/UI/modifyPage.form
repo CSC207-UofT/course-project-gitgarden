@@ -253,7 +253,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="cbc7d" class="javax.swing.JSlider" default-binding="true">
+                      <component id="cbc7d" class="javax.swing.JSlider" binding="slider2">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -261,7 +261,7 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="95eb4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="95eb4" binding="JPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="20" right="20"/>
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -271,7 +271,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="7745c" class="javax.swing.JSlider" default-binding="true">
+                      <component id="7745c" class="javax.swing.JSlider" binding="slider3">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -289,7 +289,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="b7f6" class="javax.swing.JSlider" default-binding="true">
+                      <component id="b7f6" class="javax.swing.JSlider" binding="slider4">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -319,6 +319,7 @@
                       <background color="-1249292"/>
                       <font name="Arial" size="16" style="0"/>
                       <foreground color="-1249292"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>
@@ -333,7 +334,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="9801c" class="javax.swing.JTextField" binding="priceInput">
+                  <component id="9801c" class="javax.swing.JTextField" binding="addressInput">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -343,6 +344,7 @@
                       <background color="-1249292"/>
                       <font name="Arial" size="16" style="0"/>
                       <foreground color="-1249292"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>

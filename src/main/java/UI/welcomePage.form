@@ -339,7 +339,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="2691c" class="javax.swing.JSlider" default-binding="true">
+                      <component id="2691c" class="javax.swing.JSlider" binding="slider2">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -357,7 +357,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="d1875" class="javax.swing.JSlider" default-binding="true">
+                      <component id="d1875" class="javax.swing.JSlider" binding="slider3">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -375,7 +375,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="1b739" class="javax.swing.JSlider" default-binding="true">
+                      <component id="1b739" class="javax.swing.JSlider" binding="slider4">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -420,7 +420,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="15c2d" class="javax.swing.JTextField" binding="getAddress">
+                  <component id="15c2d" class="javax.swing.JTextField" binding="addressInput">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>

@@ -3,10 +3,15 @@ package Entities;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Distributor extends User{
+public class Distributor extends User implements Comparable<Distributor>{
 
     private final ArrayList<RequestStructure> current_requests;
     private final ArrayList<Offer> offer_history;
+
+    private double exposure;
+    private double speed; // Average number of hours in which transactions are completed after being finalized
+    private double carbon; // Number of grams CO2eq emitted per transaction
+    private double ranking; // Comparable object
 
     public Distributor(String distributor_name, String distributor_address){
         super(distributor_name, distributor_address);
@@ -33,8 +38,8 @@ public class Distributor extends User{
     public void remove_offer(Offer offer) {
         this.offer_history.remove(offer);
     }
-
-    public ArrayList<Offer> getOffer_history(){
+      
+    public ArrayList<Offer> getOffer_history() {
         return this.offer_history;
     }
 
@@ -45,4 +50,39 @@ public class Distributor extends User{
         }
         return temp;
     }
+
+    //=========================================================================
+
+    public int compareTo(Distributor other){
+        return Double.compare(this.ranking, other.ranking);
+    }
+
+    public void setExposure(int exposure) {
+        this.exposure = exposure;
+    }
+
+    public double getExposure() {
+        return this.exposure;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setCarbon(int carbon) {
+        this.carbon = carbon;
+    }
+
+    public double getCarbon() {
+        return carbon;
+    }
+
+    public void setRanking(double ranking) {
+        this.ranking = ranking;
+    }
+
 }

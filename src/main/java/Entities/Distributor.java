@@ -5,7 +5,7 @@ import Entities.Request;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Distributor extends User implements Comparable<Distributor>{
+public class Distributor extends User implements Comparable<Distributor> {
 
     //Initialize list of requests
 

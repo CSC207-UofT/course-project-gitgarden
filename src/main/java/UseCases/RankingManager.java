@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import static java.lang.Math.round;
 
-public class RankingManager implements RankInterface{
+public class RankingManager implements RankInterface {
 
     private static final double SINGLE_RANKING = 2.5;
 
@@ -21,6 +21,7 @@ public class RankingManager implements RankInterface{
         this.product = product;
     }
 
+    @Override
     public ArrayList<Distributor> rankDistributors(){
         ArrayList<Distributor> rankList = new ArrayList<>(allDistributors);
 

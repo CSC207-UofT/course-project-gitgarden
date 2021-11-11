@@ -1,6 +1,6 @@
 package Entities;
 
-public class User {
+public class User{
 
     //User's Name & Identification
     //There may be more information added(i.e. contact)
@@ -11,11 +11,10 @@ public class User {
     private String user_address;//(2) We might also need user's postal code clarify their address
 
     //Summary
-    // TODO: add a method to edit summary outside of class
     public String summary;
 
      /**
-     * Construct a User, giving them the name and address
+     * Construct a User, giving them a name and address
      *
      * @param user_name String for name
      * @param user_address  String for address
@@ -28,8 +27,6 @@ public class User {
     }
 
     /**
-     * Set username
-     *
      * @param name String for name
      */
     public void setUser_name(String name){
@@ -64,7 +61,14 @@ public class User {
         return this.user_address;
     }
 
-     /**
+    /**
+     * @param summary String for summary
+     */
+    public void setSummary(String summary){
+        this.summary = summary;
+    }
+
+    /**
      * @return the current value of user's summary (String)
      */
     public String getSummary(){

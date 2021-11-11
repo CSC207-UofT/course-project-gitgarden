@@ -2,6 +2,7 @@ package Controller;
 
 import Entities.Distributor;
 import UseCases.MatchManager;
+import UseCases.ProfileInterface;
 import UseCases.ProfileManager;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class ServiceController {
      * @param quantity  Quantity of the product
      * @param price     Price of the product per kilogram
      */
-    public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
+    public ArrayList<Distributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
             ArrayList<Distributor> distributors = ProfileManager.distributorList;

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNull;
 
 public class DistributorTest {
     Farmer farmer1 = new Farmer("temp_name1", "temp_address1");
-    Distributor distributor1 = new Distributor("distributor_name_1", "distributor address1");
+    Distributor distributor1 = new Distributor("distributor_1", "distributor address1");
     Request request1 = new Request(farmer1, "request_name_1", 100, 10);
     Request request2 = new Request(farmer1, "request_name_2", 200, 20);
     Offer offer1 = new Offer(farmer1, distributor1, "offer_name3", 300, 30);
@@ -32,6 +32,7 @@ public class DistributorTest {
     public void TestProdmap(){
         distributor1.add_offer(offer1);
         distributor1.add_offer(offer2);
+        System.out.println(distributor1.prodmap());
     }
 
 }

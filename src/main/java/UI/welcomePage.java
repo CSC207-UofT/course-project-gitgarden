@@ -38,6 +38,11 @@ public class welcomePage extends JFrame{
     private JButton distributorButton;
     private JTextField newUserName;
     private JTextField getAddress;
+    private JPanel choicePanel;
+    private JPanel userTextPanel;
+    private JLabel userTest;
+    private JPanel farmerPanel;
+    private JPanel distributorPanel;
 
     // TODO: 2021/11/10 set size
     public welcomePage() {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Farmer extends User {
 
-    private ArrayList<RequestStructure> current_requests;
-    private ArrayList<Offer> offer_history;
+    private final ArrayList<RequestStructure> current_requests;
+    private final ArrayList<Offer> offer_history;
 
     public Farmer(String farmer_name, String farmer_address){
         super(farmer_name, farmer_address);

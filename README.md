@@ -4,7 +4,7 @@
 
 - [ ] Task 2 - Data Persistency [0% complete]
 
-- [ ] Task 3 - Preferences and RankingManager [0% complete]
+- [ ] Task 3 - Preferences and RankingManager [90% complete], requires only integration with rest of code and final testing
 
 - [ ] Task 4 - Request [0% complete]
 

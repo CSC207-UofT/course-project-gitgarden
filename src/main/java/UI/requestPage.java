@@ -23,4 +23,11 @@ public class requestPage {
     private JTextField quantityInput;
     private JTextField priceInput;
     private JButton createButton;
+    public static void main(String[] args){
+        JFrame frame = new JFrame("requestPage");
+        frame.setContentPane(new requestPage().mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

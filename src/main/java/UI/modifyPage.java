@@ -26,4 +26,11 @@ public class modifyPage {
     private JLabel exposureText;
     private JLabel speedText;
     private JLabel carbonText;
+    public static void main(String[] args){
+        JFrame frame = new JFrame("modifyPage");
+        frame.setContentPane(new modifyPage().mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

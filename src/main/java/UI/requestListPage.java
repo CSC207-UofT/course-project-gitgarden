@@ -10,4 +10,11 @@ public class requestListPage {
     private JTable table1;
     private JButton offerButton;
     private JButton counterButton;
+    public static void main(String[] args){
+        JFrame frame = new JFrame("requestListPage");
+        frame.setContentPane(new requestListPage().mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

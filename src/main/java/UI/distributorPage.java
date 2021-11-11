@@ -23,4 +23,11 @@ public class distributorPage {
     private JPanel historyListPanel;
     private JList historyList;
     private JButton viewButton;
+    public static void main(String[] args){
+        JFrame frame = new JFrame("distributorPage");
+        frame.setContentPane(new distributorPage().mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

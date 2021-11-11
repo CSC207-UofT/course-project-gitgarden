@@ -2,8 +2,8 @@ package UI;
 
 import javax.swing.*;
 
-public class farmerPage {
-    private JPanel mainPanel;
+public class farmerPage extends JFrame{
+    public JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
     private JPanel titleTextPanel;
@@ -27,4 +27,10 @@ public class farmerPage {
     private JLabel historyText;
     private JPanel historyListPanel;
     private JList historyList;
+    public farmerPage(){
+        setTitle("farmerPage");
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000,1000);
+    }
 }

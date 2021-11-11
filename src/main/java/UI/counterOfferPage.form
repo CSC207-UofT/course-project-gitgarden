@@ -155,6 +155,7 @@
                       <background color="-1249292"/>
                       <font name="Arial" size="16" style="0"/>
                       <foreground color="-1249292"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>

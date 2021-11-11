@@ -6,10 +6,11 @@ import org.junit.Test;
 import java.util.Objects;
 import static org.junit.Assert.*;
 
-public class RequestTest {
+public class OfferTest {
     Farmer farmer1 = new Farmer("temp_name1", "temp_address1");
     Farmer farmer2 = new Farmer("temp_name2", "temp_address2");
     Distributor distributor1 = new Distributor("distributor1", "distributor address1");
+    Distributor distributor2 = new Distributor("distributor1", "distributor address1");
     Request request1 = new Request(farmer1, "request_name_1", 100, 10);
     Request request2 = new Request(farmer1, "request_name_2", 200, 20);
     Offer offer1 = new Offer(farmer1, distributor1, "offer_name3", 300, 30);
@@ -17,26 +18,15 @@ public class RequestTest {
 
     @Test(timeout = 50)
     public void TestGetRequest_id(){
-        assertTrue( 100000 <= request1.getRequest_id() && request1.getRequest_id() <= 999999);
+        assertTrue( 100000 <= offer1.getRequest_id() && offer1.getRequest_id() <= 999999);
     }
 
     @Test(timeout = 50)
     public void TestGetFarmer(){
-        request1.setFarmer(farmer2);
-        assertTrue(request1.getFarmer() == farmer2
-                && Objects.equals(request1.getFarmerName(), "temp_name2")
-                && Objects.equals(request1.getFarmerAddress(), "temp_address2"));
+        offer1.setFarmer(farmer2);
+        assertTrue(offer1.getFarmer() == farmer2
+                && Objects.equals(offer1.getFarmerName(), "temp_name2")
+                && Objects.equals(offer1.getFarmerAddress(), "temp_address2"));
     }
-
-    @Test(timeout = 50)
-    public void TestCounterOffer() {
-        request1.add(request2);
-        request1.add(offer1);
-        request1.add(offer2);
-        request1.remove(request2);
-        assertTrue(request1.counteroffers().contains(offer1)
-                && request1.counteroffers().contains(offer2));
-    }
-
 
 }

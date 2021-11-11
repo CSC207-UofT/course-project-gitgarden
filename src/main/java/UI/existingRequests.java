@@ -12,6 +12,15 @@ public class existingRequests extends JFrame{
     private JTable table1;
     private JButton offerButton;
     private JButton counterButton;
+    private JPanel descriptionPanel;
+    private JLabel descriptionText;
+    private JPanel acceptButtonPanel;
+    private JButton acceptRequest;
+    private JPanel declineButtonPanel;
+    private JButton declineButton;
+    private JPanel closeButtonPanel;
+    private JButton closeButton;
+
     public existingRequests(){
         setTitle("requestPage");
         setContentPane(mainPanel);

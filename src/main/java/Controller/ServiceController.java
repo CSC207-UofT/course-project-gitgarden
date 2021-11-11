@@ -16,7 +16,7 @@ public class ServiceController {
      */
     public static void createProfile(String name, String address, HashMap<String, Double> prodMap) throws Exception{
         if (isAlphanumeric(name)){
-            ProfileManager.createDistributor(name, address);
+            ProfileManager.createDistributor(name, address, prodMap);
         } else {
             throw new Exception("Your input is not valid!");
         }

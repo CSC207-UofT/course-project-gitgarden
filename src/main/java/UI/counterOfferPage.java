@@ -3,12 +3,11 @@ package UI;
 import javax.swing.*;
 
 public class counterOfferPage {
-    private JPanel MainPanel;
+    private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
     private JPanel middlePanel;
     private JPanel textPanel;
-    private JLabel title;
     private JPanel priceTextPanel;
     private JPanel quantityTextPanel;
     private JPanel inputPanel;
@@ -17,10 +16,7 @@ public class counterOfferPage {
     private JTextField priceInput;
     private JTextField quantityInput;
     private JButton createButton;
-
-    public counterOfferPage() { }
-
-    public static void main(String[] args){
-        counterOfferPage my_page = new counterOfferPage();
-    }
+    private JLabel titleText;
+    private JLabel priceText;
+    private JLabel quantityText;
 }

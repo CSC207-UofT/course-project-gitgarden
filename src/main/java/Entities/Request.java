@@ -9,7 +9,7 @@ public class Request implements RequestStructure{
     private String product_name;
     private int product_quantity;
     private float product_price_per_unit;
-    private ArrayList<RequestStructure> counteroffer;
+    private final ArrayList<RequestStructure> counteroffer;
 
     public Request(Farmer Farmer, String p_name, int p_quantity,
                    float p_price_per_unit) {

@@ -2,7 +2,6 @@ package Controller;
 
 import Entities.Distributor;
 import UseCases.MatchManager;
-import UseCases.ProfileInterface;
 import UseCases.ProfileManager;
 
 import java.util.ArrayList;

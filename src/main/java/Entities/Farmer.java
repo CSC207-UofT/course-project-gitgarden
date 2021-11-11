@@ -4,14 +4,8 @@ import java.util.ArrayList;
 
 public class Farmer extends User {
 
-    //Initialize list of requests
-
-    /**
-     Modification methods of request will be added later, set to be final for now.
-     */
-
-    private final ArrayList<Request> requests;
-    //I am using array to show list of request for now, but depending on request's structure, it could be changed later
+    private final ArrayList<RequestStructure> current_requests;
+    private final ArrayList<Offer> offer_history;
 
     private int prefPrice; // Int from 0-10 detailing preference for exact or better price (10 is rigid price)
     private int prefExposure; // Int from 0-10 detailing preference for high exposure (10 is maximum exposure)
@@ -20,8 +14,35 @@ public class Farmer extends User {
 
     public Farmer(String farmer_name, String farmer_address){
         super(farmer_name, farmer_address);
-        this.requests = null;
+        this.current_requests = new ArrayList<>();
+        this.offer_history = new ArrayList<>();
     }
+
+    public void add_request(Request request){
+        this.current_requests.add(request);
+    }
+
+    public void remove_request(Request request) {
+        this.current_requests.remove(request);
+    }
+
+    public ArrayList<RequestStructure> getCurrent_requests(){
+        return this.current_requests;
+    }
+
+    public void add_offer(Offer offer){
+        this.offer_history.add(offer);
+    }
+
+    public void remove_offer(Offer offer) {
+        this.offer_history.remove(offer);
+    }
+
+    public ArrayList<Offer> getOffer_history(){
+        return this.offer_history;
+    }
+
+    //=========================================================================
 
     public void setPrefPrice(int prefPrice) {
         this.prefPrice = prefPrice;
@@ -39,10 +60,6 @@ public class Farmer extends User {
         this.prefCarbon = prefCarbon;
     }
 
-    public ArrayList<Request> getRequests(){
-        return requests;
-    }
-
     public int getPrefPrice(){
         return prefPrice;
     }
@@ -58,5 +75,5 @@ public class Farmer extends User {
     public int getPrefCarbon(){
         return prefCarbon;
     }
-
+  
 }

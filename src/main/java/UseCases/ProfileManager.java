@@ -16,8 +16,8 @@ public class ProfileManager implements ProfileInterface{
         farmerList.add(farmer);
     }
 
-    public static void createDistributor(String name, String address, HashMap<String, Double> prodMap){
-        Distributor dist = new Distributor(name, address, prodMap);
+    public static void createDistributor(String name, String address){
+        Distributor dist = new Distributor(name, address);
         distributorList.add(dist);
     }
 

@@ -18,17 +18,14 @@ public class RankingManagerTest {
     public void setUp(){
         HashMap<String, Double> prodMap = new HashMap<>();
         ArrayList<Distributor> allDist= new ArrayList<>();
-        allDist.add(new Distributor("Onyx", "A", prodMap));
-        allDist.add(new Distributor("Andy", "B", prodMap));
-        allDist.add(new Distributor("Patrick", "C", prodMap));
-        allDist.add(new Distributor("Mark", "D", prodMap));
-        allDist.add(new Distributor("Divit", "E", prodMap));
-        allDist.add(new Distributor("Melaney", "F", prodMap));
-        allDist.add(new Distributor("Jagat", "G", prodMap));
+        allDist.add(new Distributor("Onyx", "A"));
+        allDist.add(new Distributor("Andy", "B"));
+        allDist.add(new Distributor("Patrick", "C"));
+        allDist.add(new Distributor("Mark", "D"));
+        allDist.add(new Distributor("Divit", "E"));
+        allDist.add(new Distributor("Melaney", "F"));
+        allDist.add(new Distributor("Jagat", "G"));
         for (int i = 0; i < allDist.size(); i++){
-            HashMap<String, Double> orangeMap = new HashMap<>();
-            orangeMap.put("Orange", 2.55 + 0.20 * abs(i - 3));
-            allDist.get(i).setProdMap(orangeMap);
             allDist.get(i).setExposure(1 + abs(i - 5));
             allDist.get(i).setSpeed(30 - 2 * i);
             allDist.get(i).setCarbon(5 + 10 * i);

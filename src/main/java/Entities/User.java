@@ -8,7 +8,7 @@ public class User {
     private final int user_id; //(1)
 
     //Address
-    private String user_address;//(2)We might also need user's postal code clarify their address
+    private String user_address;//(2) We might also need user's postal code clarify their address
 
     //Summary
     // TODO: add a method to edit summary outside of class
@@ -28,7 +28,7 @@ public class User {
     }
 
     /**
-     * Set user name
+     * Set username
      *
      * @param name String for name
      */
@@ -51,7 +51,7 @@ public class User {
     }
 
     /**
-     * TODO: Add Annotation
+     * @param address String for address
      */
     public void setUser_address(String address){
         this.user_address = address;
@@ -65,7 +65,6 @@ public class User {
     }
 
      /**
-     * TODO: may be an independent method later 
      * @return the current value of user's summary (String)
      */
     public String getSummary(){

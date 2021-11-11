@@ -7,22 +7,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import static java.lang.Math.round;
 
-public class RankingManager {
+public class RankingManager implements RankInterface{
 
-    private static final double PRICE_COEFFICIENT = 0.05;
-    private static final double PRICE_INTERCEPT = 0.5;
     private static final double SINGLE_RANKING = 2.5;
 
     private final ArrayList<Distributor> allDistributors;
     private final Farmer farmer;
     private final String product;
-    private final double farmerPrice;
 
-    public RankingManager(ArrayList<Distributor> allDistributors, Farmer farmer, String product, double farmerPrice) {
+    public RankingManager(ArrayList<Distributor> allDistributors, Farmer farmer, String product) {
         this.allDistributors = allDistributors;
         this.farmer = farmer;
         this.product = product;
-        this.farmerPrice = farmerPrice;
     }
 
     public ArrayList<Distributor> rankDistributors(){

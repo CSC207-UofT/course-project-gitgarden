@@ -41,7 +41,9 @@ public class Farmer extends User {
     public ArrayList<Offer> getOffer_history(){
         return this.offer_history;
     }
-  
+
+    //=========================================================================
+
     public void setPrefPrice(int prefPrice) {
         this.prefPrice = prefPrice;
     }
@@ -56,10 +58,6 @@ public class Farmer extends User {
 
     public void setPrefCarbon(int prefCarbon) {
         this.prefCarbon = prefCarbon;
-    }
-
-    public ArrayList<Request> getRequests(){
-        return requests;
     }
 
     public int getPrefPrice(){

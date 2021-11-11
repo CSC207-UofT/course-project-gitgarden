@@ -1,8 +1,12 @@
 package UI;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class welcomePage extends JFrame{
     private JPanel mainPanel;
@@ -38,6 +42,9 @@ public class welcomePage extends JFrame{
     private JButton distributorButton;
     private JTextField newUserName;
     private JTextField getAddress;
+    private JSlider slider2;
+    private JSlider slider3;
+    private JSlider slider4;
 
     // TODO: 2021/11/10 set size
     public welcomePage() {
@@ -90,8 +97,35 @@ public class welcomePage extends JFrame{
             }
         });
         if (flag[0]){
-            this
+            // TODO: 2021/11/11 create farmer
         }
+        else{
+            // TODO: 2021/11/11 create distributor
+        }
+        slider1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double score = slider1.getValue();
+            }
+        });
+        slider2.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double score = slider1.getValue();
+            }
+        });
+        slider3.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double score = slider1.getValue();
+            }
+        });
+        slider4.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double score = slider1.getValue();
+            }
+        });
     }
 
     public static void main(String[] args){

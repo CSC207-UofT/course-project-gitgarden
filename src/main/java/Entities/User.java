@@ -1,18 +1,10 @@
 package Entities;
 
 public class User {
-
-    //User's Name & Identification
-    //There may be more information added(i.e. contact)
     private String user_name;
-    private final int user_id; //(1)
-
-    //Address
-    private String user_address;//(2)We might also need user's postal code clarify their address
-
-    //Summary
-    // TODO: add a method to edit summary outside of class
-    public String summary;
+    private final int user_id;//Temporarily set to be a random 6 digit integer.
+    private String user_address;
+    private String summary;//Default to string "Default Summary".
 
      /**
      * Construct a User, giving them the name and address
@@ -22,13 +14,14 @@ public class User {
      */
     public User(String user_name, String user_address){
         this.user_name = user_name;
-        this.user_id = 1000; //(4) [How is this determined? Are we set on 4 digits? (Mel)]
+        this.user_id = (int) (Math.random()*(900000)+100000);
         this.user_address = user_address;
         this.summary = "Default Summary";
     }
 
     /**
-     * TODO: Add Annotation
+     * Set the username to the given name.
+     * @param name String for new name to be set.
      */
     public void setUser_name(String name){
         this.user_name = name;
@@ -62,8 +55,16 @@ public class User {
         return this.user_address;
     }
 
+    /**
+     * Set the user's summary to the given summary.
+     *
+     * @param summary new summary that will be changed.
+     */
+    public void setSummary(String summary){
+        this.summary = summary;
+    }
+
      /**
-     * TODO: may be an independent method later 
      * @return the current value of user's summary (String)
      */
     public String getSummary(){
@@ -78,6 +79,5 @@ public class User {
                 "Address: " + user_address + "\n" +
                 "Summary: " + summary + "\n";
     }
-
 
 }

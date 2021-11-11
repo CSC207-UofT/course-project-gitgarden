@@ -1,33 +1,48 @@
 package Entities;
 
-import Entities.Request;
-
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Distributor extends User {
+public class Distributor extends User{
 
-    //Initialize list of requests
-    /**
-    Modification methods of request and proMap will be added later, set to be final for now.
-     */
-    private final ArrayList<Request> requests;
+    private final ArrayList<RequestStructure> current_requests;
+    private final ArrayList<Offer> offer_history;
 
-    //Initialize prodMap
-    private final HashMap<String, Double> prodMap;
-
-
-    public Distributor(String distributor_name, String distributor_address, HashMap<String, Double> hashmap){
+    public Distributor(String distributor_name, String distributor_address){
         super(distributor_name, distributor_address);
-        this.requests = null;
-        this.prodMap = hashmap;
+        this.current_requests = new ArrayList<>();
+        this.offer_history = new ArrayList<>();
     }
 
-    public ArrayList<Request> getRequests(){
-        return this.requests;
+    public void add_request(Request request){
+        this.current_requests.add(request);
     }
 
-    public HashMap<String, Double> getProdMap(){
-        return this.prodMap;
+    public void remove_request(Request request) {
+        this.current_requests.remove(request);
+    }
+
+    public ArrayList<RequestStructure> getCurrent_requests(){
+        return this.current_requests;
+    }
+
+    public void add_offer(Offer offer){
+        this.offer_history.add(offer);
+    }
+
+    public void remove_offer(Offer offer) {
+        this.offer_history.remove(offer);
+    }
+
+    public ArrayList<Offer> getOffer_history(){
+        return this.offer_history;
+    }
+
+    public HashMap<String, Float> prodmap(){
+        HashMap<String, Float> temp = new HashMap<>();
+        for (Offer item: this.offer_history){
+            temp.put(item.getProduct_name(), item.getProduct_price_per_unit());
+        }
+        return temp;
     }
 }

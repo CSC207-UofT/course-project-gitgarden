@@ -1,8 +1,10 @@
 package UI;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class detailsPage {
+public class detailsPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -27,4 +29,47 @@ public class detailsPage {
     private JButton closeButton;
     private JPanel descriptionPanel;
     private JLabel descriptionText;
+    public detailsPage(){
+        setTitle("farmerPage");
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800,700);
+        acceptRequest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: 2021/11/11 accept from backend
+            }
+        });
+
+        declineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: 2021/11/11 decline from backend
+
+            }
+        });
+        counterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JFrame counterOfferPage = new counterOfferPage();
+                counterOfferPage.setVisible(true);
+            }
+        });
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                if(welcomePage.flag){
+                    JFrame farmerPage = new farmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    JFrame distributorPage = new distributorPage();
+                    distributorPage.setVisible(true);
+                }
+            }
+        });
+        // TODO: 2021/11/11 display the request details 
+    }
 }

@@ -20,7 +20,7 @@ public class farmerPage extends JFrame{
     private JLabel existingText;
     private JPanel existingTextPanel;
     private JPanel existingRequestPanel;
-    private JList requestList;
+    private JList<String> existingList;
     private JButton acceptButton;
     private JButton declineButton;
     private JButton counterButton;
@@ -28,7 +28,7 @@ public class farmerPage extends JFrame{
     private JPanel historyTextPanel;
     private JLabel historyText;
     private JPanel historyListPanel;
-    private JList historyList;
+    private JList<String> historyList;
     public farmerPage(){
         setTitle("farmerPage");
         setContentPane(mainPanel);
@@ -59,25 +59,22 @@ public class farmerPage extends JFrame{
                 requestPage.setVisible(true);
             }
         });
-        counterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                counterOfferPage counterOfferPage = new counterOfferPage();
-                counterOfferPage.setVisible(true);
-            }
-        });
-        acceptButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/11
-            }
-        });
-        declineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/11
-            }
-        });
+        String [] data = {"one", "two", "three", "four"};
+        DefaultListModel<String> listModel= new DefaultListModel<String>();
+        for(String item: data){
+            listModel.addElement(item);
+        }
+        historyList.setModel(listModel);
+        existingList.setModel(listModel);
+        existingList.addListSelectionListener(e -> {
+            //example for how to get the value
+                    // TODO: 2021/11/11 pass the corresponding request to details page to make details.
+            String number = historyList.getSelectedValue();
+            System.out.print(number);
+            setVisible(false);
+            JFrame detailsPage = new detailsPage();
+            detailsPage.setVisible(true);
+                }
+                );
     }
 }

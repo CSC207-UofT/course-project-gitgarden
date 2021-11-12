@@ -213,7 +213,7 @@
                           <background color="-11774358"/>
                           <font name="Arial" size="16"/>
                           <foreground color="-1249292"/>
-                          <text value="Price Preference: "/>
+                          <text value="Price Preference(farmer only): "/>
                         </properties>
                       </component>
                     </children>

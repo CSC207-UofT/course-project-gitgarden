@@ -59,7 +59,7 @@ public class RankingManager implements RankInterface {
             case "carbon":
                 return dist.getCarbon();
             default:
-                return dist.getProdMap().get(product);
+                return dist.prodMap().get(product);
         }
     }
 

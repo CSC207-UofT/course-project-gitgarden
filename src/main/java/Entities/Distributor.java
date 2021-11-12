@@ -43,7 +43,7 @@ public class Distributor extends User implements Comparable<Distributor> {
         return this.offer_history;
     }
 
-    public HashMap<String, Float> prodmap(){
+    public HashMap<String, Float> prodMap(){
         HashMap<String, Float> temp = new HashMap<>();
         for (Offer item: this.offer_history){
             temp.put(item.getProduct_name(), item.getProduct_price_per_unit());

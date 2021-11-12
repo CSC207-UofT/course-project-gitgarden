@@ -35,7 +35,7 @@ public class RankingManagerTest {
         farmer.setPrefExposure(0);
         farmer.setPrefSpeed(0);
         farmer.setPrefCarbon(0);
-        this.rankingManager = new RankingManager(allDist, farmer, "Orange", 3.00);
+        this.rankingManager = new RankingManager(allDist, farmer, "Orange");
 
     }
 

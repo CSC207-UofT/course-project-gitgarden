@@ -27,23 +27,46 @@ public class existingRequests extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
-        counterButton.addActionListener(new ActionListener() {
+        acceptRequest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!welcomePage.flag) {
-                    setVisible(false);
-                    counterOfferPage counterOfferPage = new counterOfferPage();
-                    counterOfferPage.setVisible(true);
+                // TODO: 2021/11/12 show message
+                setVisible(false);
+                if (welcomePage.flag){
+                    JFrame farmerPage = new farmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    JFrame distributorPage = new distributorPage();
+                    distributorPage.setVisible(true);
                 }
             }
         });
-        offerButton.addActionListener(new ActionListener() {
+        declineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: 2021/11/12 show message
+                setVisible(false);
+                if (welcomePage.flag){
+                    JFrame farmerPage = new farmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    JFrame distributorPage = new distributorPage();
+                    distributorPage.setVisible(true);
+                }
+            }
+        });
+        closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                if (!welcomePage.flag){
-                    setVisible(false);
-                    distributorPage distributorPage = new distributorPage();
+                if (welcomePage.flag){
+                    JFrame farmerPage = new farmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    JFrame distributorPage = new distributorPage();
                     distributorPage.setVisible(true);
                 }
             }

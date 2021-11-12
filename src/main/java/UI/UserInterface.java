@@ -22,22 +22,22 @@ public class UserInterface
         HashMap<String, Double> h1 = new HashMap<>();
         h1.put("Orange", 3.19);
         h1.put("Lemon", 0.89);
-        ServiceController.createProfile("Onyx", "A", h1);
+        // ServiceController.createProfile("Onyx", "A", h1, true);
 
         HashMap<String, Double> h2 = new HashMap<>();
         h2.put("Orange", 2.15);
         h2.put("Lemon", 1.00);
-        ServiceController.createProfile("Mark", "B", h2);
+        // ServiceController.createProfile("Mark", "B", h2, false);
 
         HashMap<String, Double> h3 = new HashMap<>();
         h3.put("Orange", 3.00);
         h3.put("Lemon", 0.99);
-        ServiceController.createProfile("Patrick", "C", h3);
+        // ServiceController.createProfile("Patrick", "C", h3, true);
 
         HashMap<String, Double> h4 = new HashMap<>();
         h4.put("Orange", 3.09);
         h4.put("Lemon", 1.19);
-        ServiceController.createProfile("Andy", "D", h4);
+        // ServiceController.createProfile("Andy", "D", h4, false);
 
         ui.GetUserInfo();
     }

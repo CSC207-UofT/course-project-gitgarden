@@ -1,5 +1,7 @@
 package UI;
 
+import Controller.ServiceController;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -16,7 +18,7 @@ public class welcomePage extends JFrame{
     private JPanel signinButtonPanel;
     private JTextField nameInput;
     private JLabel nameText;
-    private JButton signInButton;
+    private JButton signinButton;
     private JPanel sinupPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
@@ -57,9 +59,10 @@ public class welcomePage extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(800, 700);
-        signInButton.addActionListener(new ActionListener() {
+        signinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String username = newUserName.getText();
                 farmerPage farmerPage = new farmerPage();
                 setVisible(false);
                 farmerPage.setVisible(true);
@@ -69,17 +72,37 @@ public class welcomePage extends JFrame{
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(flag) {
-                    farmerPage farmerPage = new farmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
-                    setContentPane(new farmerPage().mainPanel);
+                String address = addressInput.getText();
+                double slider1_value = slider1.getValue();
+                double slider2_value = slider2.getValue();
+                double slider3_value = slider3.getValue();
+                double slider4_value = slider4.getValue();
+                String name = newUserName.getText();
+                if (name.equals("") || name == null) {
+                    JOptionPane.showMessageDialog(null,"Please enter your User Name.");
+                    newUserName.requestFocusInWindow();
                 }
-                else{
-                    distributorPage distributorPage = new distributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-                    setContentPane(new farmerPage().mainPanel);
+
+                else {
+
+                    if (flag) {
+                        farmerPage farmerPage = new farmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                        setContentPane(new farmerPage().mainPanel);
+                    }
+                    else {
+                        distributorPage distributorPage = new distributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                        setContentPane(new farmerPage().mainPanel);
+                    }
+                }
+                try {
+                    ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
+                            slider4_value, flag);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -88,7 +111,7 @@ public class welcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String oldUserName = nameInput.getText();
                 // TODO: 2021/11/10 Sign this person in.
-                // TODO: 2021/11/11 change flag to true if farmer, false if distributor 
+                // TODO: 2021/11/11 change flag to true if farmer, false if distributor
             }
         });
 

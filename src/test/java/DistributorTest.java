@@ -32,7 +32,7 @@ public class DistributorTest {
     public void TestProdmap(){
         distributor1.add_offer(offer1);
         distributor1.add_offer(offer2);
-        System.out.println(distributor1.prodmap());
+        System.out.println(distributor1.prodMap());
     }
 
 }

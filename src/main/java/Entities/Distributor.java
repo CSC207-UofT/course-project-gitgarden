@@ -3,7 +3,7 @@ package Entities;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Distributor extends User implements Comparable<Distributor>{
+public class Distributor extends User implements Comparable<Distributor> {
 
     private final ArrayList<RequestStructure> current_requests;
     private final ArrayList<Offer> offer_history;
@@ -43,7 +43,7 @@ public class Distributor extends User implements Comparable<Distributor>{
         return this.offer_history;
     }
 
-    public HashMap<String, Float> prodmap(){
+    public HashMap<String, Float> prodMap(){
         HashMap<String, Float> temp = new HashMap<>();
         for (Offer item: this.offer_history){
             temp.put(item.getProduct_name(), item.getProduct_price_per_unit());

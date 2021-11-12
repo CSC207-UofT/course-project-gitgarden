@@ -16,7 +16,7 @@ public class welcomePage extends JFrame{
     private JPanel signinButtonPanel;
     private JTextField nameInput;
     private JLabel nameText;
-    private JButton createButton;
+    private JButton signInButton;
     private JPanel sinupPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
@@ -57,7 +57,7 @@ public class welcomePage extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(800, 700);
-        createButton.addActionListener(new ActionListener() {
+        signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 farmerPage farmerPage = new farmerPage();

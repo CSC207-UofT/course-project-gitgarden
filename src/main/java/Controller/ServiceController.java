@@ -29,12 +29,7 @@ public class ServiceController {
     public static void createProfile(String name, String address, double slider1, double slider2, double slider3,
                                      double slider4, boolean flag) throws Exception{
         if (isAlphanumeric(name)){
-            if (flag) {
-                ProfileManager.createFarmer(name, address, slider1, slider2, slider3, slider4);
-            }
-            else {
-                ProfileManager.createDistributor(name, address, slider2, slider3, slider4);
-            }
+            ProfileManager.createUser(name, address, slider1, slider2, slider3, slider4, flag);
         }
         else {
             throw new Exception("Your input is not valid!");

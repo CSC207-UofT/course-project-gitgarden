@@ -63,7 +63,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public int getPrefCriterion(Farmer farmer, String criterion) {
+    public double getPrefCriterion(Farmer farmer, String criterion) {
         switch (criterion) {
             case "exposure":
                 return farmer.getPrefExposure();
@@ -82,6 +82,10 @@ public class RankingManager implements RankInterface {
 
     public Farmer getFarmer(){
         return this.farmer;
+    }
+
+    public String getProduct(){
+        return this.product;
     }
 
 }

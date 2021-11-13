@@ -1,6 +1,6 @@
 package Controller;
 
-import Entities.Distributor;
+import Entities.IDistributor;
 import UseCases.MatchManager;
 import UseCases.ProfileManager;
 
@@ -29,10 +29,10 @@ public class ServiceController {
      * @param quantity  Quantity of the product
      * @param price     Price of the product per kilogram
      */
-    public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
+    public static ArrayList<IDistributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
-            ArrayList<Distributor> distributors = ProfileManager.distributorList;
+            ArrayList<IDistributor> distributors = ProfileManager.distributorList;
             return MatchManager.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");

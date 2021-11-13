@@ -3,7 +3,7 @@ package Entities;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Distributor extends User implements Comparable<Distributor> {
+public class Distributor extends User implements Comparable<Distributor>, IDistributor {
 
     private final ArrayList<RequestStructure> current_requests;
     private final ArrayList<Offer> offer_history;
@@ -57,7 +57,7 @@ public class Distributor extends User implements Comparable<Distributor> {
         return Double.compare(this.ranking, other.ranking);
     }
 
-    public void setExposure(int exposure) {
+    public void setExposure(double exposure) {
         this.exposure = exposure;
     }
 
@@ -65,7 +65,7 @@ public class Distributor extends User implements Comparable<Distributor> {
         return this.exposure;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
@@ -73,7 +73,7 @@ public class Distributor extends User implements Comparable<Distributor> {
         return speed;
     }
 
-    public void setCarbon(int carbon) {
+    public void setCarbon(double carbon) {
         this.carbon = carbon;
     }
 

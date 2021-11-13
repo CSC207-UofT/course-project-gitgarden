@@ -18,7 +18,7 @@ public class welcomePage extends JFrame{
     private JPanel signinButtonPanel;
     private JTextField nameInput;
     private JLabel nameText;
-    private JButton signinButton;
+    private JButton signInButton;
     private JPanel sinupPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
@@ -59,7 +59,7 @@ public class welcomePage extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(800, 700);
-        signinButton.addActionListener(new ActionListener() {
+        signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = newUserName.getText();

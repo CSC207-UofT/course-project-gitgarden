@@ -1,12 +1,12 @@
 import Entities.Distributor;
 import Entities.Farmer;
+import Entities.IDistributor;
 import UseCases.RankingManager;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashMap;
 import java.util.ArrayList;
 import static java.lang.Math.*;
 
@@ -16,15 +16,21 @@ public class RankingManagerTest {
 
     @Before
     public void setUp(){
-        HashMap<String, Double> prodMap = new HashMap<>();
-        ArrayList<Distributor> allDist= new ArrayList<>();
-        allDist.add(new Distributor("Onyx", "A"));
-        allDist.add(new Distributor("Andy", "B"));
-        allDist.add(new Distributor("Patrick", "C"));
-        allDist.add(new Distributor("Mark", "D"));
-        allDist.add(new Distributor("Divit", "E"));
-        allDist.add(new Distributor("Melaney", "F"));
-        allDist.add(new Distributor("Jagat", "G"));
+        ArrayList<IDistributor> allDist= new ArrayList<>();
+        IDistributor a = new Distributor("Onyx", "A");
+        IDistributor b = new Distributor("Andy", "B");
+        IDistributor c = new Distributor("Patrick", "C");
+        IDistributor d = new Distributor("Mark", "D");
+        IDistributor e = new Distributor("Divit", "E");
+        IDistributor f = new Distributor("Melaney", "F");
+        IDistributor g = new Distributor("Jagat", "G");
+        allDist.add(a);
+        allDist.add(b);
+        allDist.add(c);
+        allDist.add(d);
+        allDist.add(e);
+        allDist.add(f);
+        allDist.add(g);
         for (int i = 0; i < allDist.size(); i++){
             allDist.get(i).setExposure(1 + abs(i - 5));
             allDist.get(i).setSpeed(30 - 2 * i);
@@ -43,7 +49,7 @@ public class RankingManagerTest {
     public void TestRankDistributorsPrice() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefPrice(10);
-        ArrayList<Distributor> rankedList = rm.rankDistributors();
+        ArrayList<IDistributor> rankedList = rm.rankDistributors();
         assertEquals(rm.getAllDistributors().get(3), rankedList.get(0));
     }
 
@@ -51,7 +57,7 @@ public class RankingManagerTest {
     public void TestRankDistributorsExposure() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefExposure(10);
-        ArrayList<Distributor> rankedList = rm.rankDistributors();
+        ArrayList<IDistributor> rankedList = rm.rankDistributors();
         assertEquals(rm.getAllDistributors().get(5), rankedList.get(0));
     }
 
@@ -59,7 +65,7 @@ public class RankingManagerTest {
     public void TestRankDistributorsSpeed() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefSpeed(10);
-        ArrayList<Distributor> rankedList = rm.rankDistributors();
+        ArrayList<IDistributor> rankedList = rm.rankDistributors();
         assertEquals(rankedList.get(6), rm.getAllDistributors().get(0));
     }
 
@@ -67,7 +73,7 @@ public class RankingManagerTest {
     public void TestRankDistributorsCarbon() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefCarbon(10);
-        ArrayList<Distributor> rankedList = rm.rankDistributors();
+        ArrayList<IDistributor> rankedList = rm.rankDistributors();
         assertEquals(rankedList.get(0), rm.getAllDistributors().get(0));
     }
 
@@ -75,7 +81,7 @@ public class RankingManagerTest {
     public void TestCalcRanking() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefExposure(10);
-        Distributor dist = rm.getAllDistributors().get(3);
+        IDistributor dist = rm.getAllDistributors().get(3);
         double exposureRanking = rm.calcRanking(dist, rm.getAllDistributors(), "exposure");
         assertEquals(2.50 / 3, exposureRanking, 0.01);
     }
@@ -90,6 +96,6 @@ public class RankingManagerTest {
     public void TestGetPrefCriterion() {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefExposure(7);
-        assertEquals(rm.getPrefCriterion(rm.getFarmer(), "exposure"), 7);
+        assertEquals(rm.getPrefCriterion(rm.getFarmer(), "exposure"), 7, 0.01);
     }
 }

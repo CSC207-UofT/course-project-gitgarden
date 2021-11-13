@@ -28,7 +28,7 @@ public class FarmerTest {
     }
 
     @Test(timeout = 50)
-    public void TestgetCurrent_requests(){
+    public void TestGetCurrent_requests(){
         farmer1.add_request(request1);
         ArrayList<Request> temp = new ArrayList<>();
         temp.add(request1);
@@ -50,7 +50,7 @@ public class FarmerTest {
     }
 
     @Test(timeout = 50)
-    public void TestgetOffer_history(){
+    public void TestGetOffer_history(){
         farmer1.add_offer(offer1);
         ArrayList<Offer> temp = new ArrayList<>();
         temp.add(offer1);

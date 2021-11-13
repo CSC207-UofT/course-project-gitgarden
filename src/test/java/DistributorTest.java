@@ -5,10 +5,8 @@ import Entities.Request;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class DistributorTest {
     Farmer farmer1 = new Farmer("temp_name1", "temp_address1");
@@ -19,7 +17,7 @@ public class DistributorTest {
     Offer offer2 = new Offer(farmer1, distributor1, "offer_name4", 400, 40);
 
     @Test(timeout = 50)
-    public void TestgetCurrent_requests(){
+    public void TestGetCurrent_requests(){
         distributor1.add_request(request1);
         distributor1.add_request(request2);
         ArrayList<Request> temp = new ArrayList<>();
@@ -29,7 +27,7 @@ public class DistributorTest {
     }
 
     @Test
-    public void TestProdmap(){
+    public void TestProdMap(){
         distributor1.add_offer(offer1);
         distributor1.add_offer(offer2);
         System.out.println(distributor1.prodMap());

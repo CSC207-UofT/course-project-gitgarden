@@ -1,7 +1,7 @@
 package UseCases;
 
 import Entities.Farmer;
-import Entities.Distributor;
+import Entities.IDistributor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,21 +11,21 @@ public class RankingManager implements RankInterface {
 
     private static final double SINGLE_RANKING = 2.5;
 
-    private final ArrayList<Distributor> allDistributors;
+    private final ArrayList<IDistributor> allDistributors;
     private final Farmer farmer;
     private final String product;
 
-    public RankingManager(ArrayList<Distributor> allDistributors, Farmer farmer, String product) {
+    public RankingManager(ArrayList<IDistributor> allDistributors, Farmer farmer, String product) {
         this.allDistributors = allDistributors;
         this.farmer = farmer;
         this.product = product;
     }
 
     @Override
-    public ArrayList<Distributor> rankDistributors(){
-        ArrayList<Distributor> rankList = new ArrayList<>(allDistributors);
+    public ArrayList<IDistributor> rankDistributors(){
+        ArrayList<IDistributor> rankList = new ArrayList<>(allDistributors);
 
-        for (Distributor dist: rankList){
+        for (IDistributor dist: rankList){
             double priceRanking = calcRanking(dist, rankList, "price");
             double exposureRanking = calcRanking(dist, rankList, "exposure");
             double speedRanking = calcRanking(dist, rankList, "speed");
@@ -37,9 +37,9 @@ public class RankingManager implements RankInterface {
         return rankList;
     }
 
-    public double calcRanking(Distributor input_dist, ArrayList<Distributor> rankList, String crit) {
+    public double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
         ArrayList<Double> critList = new ArrayList<>();
-        for (Distributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
+        for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
         Collections.sort(critList);
         Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
         double ratio = ref / getCriterion(input_dist, crit);
@@ -50,7 +50,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public double getCriterion(Distributor dist, String criterion){
+    public double getCriterion(IDistributor dist, String criterion){
         switch (criterion) {
             case "exposure":
                 return dist.getExposure();
@@ -76,7 +76,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public ArrayList<Distributor> getAllDistributors(){
+    public ArrayList<IDistributor> getAllDistributors(){
         return this.allDistributors;
     }
 

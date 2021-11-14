@@ -1,6 +1,4 @@
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.IDistributor;
+import Entities.*;
 import UseCases.RankingManager;
 
 import org.junit.Before;
@@ -31,7 +29,9 @@ public class RankingManagerTest {
         allDist.add(e);
         allDist.add(f);
         allDist.add(g);
+        Request offer = new Request((User) a, "Orange", 50, 3.00);
         for (int i = 0; i < allDist.size(); i++){
+            allDist.get(i).addOffer(offer);
             allDist.get(i).setExposure(1 + abs(i - 5));
             allDist.get(i).setSpeed(30 - 2 * i);
             allDist.get(i).setCarbon(5 + 10 * i);
@@ -50,7 +50,7 @@ public class RankingManagerTest {
         RankingManager rm = this.rankingManager;
         rm.getFarmer().setPrefPrice(10);
         ArrayList<IDistributor> rankedList = rm.rankDistributors();
-        assertEquals(rm.getAllDistributors().get(3), rankedList.get(0));
+        assertEquals(rm.getAllDistributors().get(0), rankedList.get(0));
     }
 
     @Test

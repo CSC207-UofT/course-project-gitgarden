@@ -22,7 +22,6 @@ public class ServiceController {
         }
     }
 
-
     /**
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param product   Name of the product
@@ -39,16 +38,14 @@ public class ServiceController {
         }
     }
 
-
     /**
      * Checks if the input is alphanumeric.
      * @param input     Input to the program
      * @return boolean that indicates if the input is alphanumeric.
      */
     public static boolean isAlphanumeric(String input){
-        return input.matches("^[a-zA-Z0-9]*$");
+        return input.matches("^[a-zA-Z0-9]+$");
     }
-
 
     /**
      * Checks if the input is numeric
@@ -57,7 +54,7 @@ public class ServiceController {
      *         string is empty or blank.
      */
     public static boolean isNumeric(String input){
-        return !input.isEmpty() && !input.isBlank();
+        return input.matches("^[0-9]+$");
     }
 
 }

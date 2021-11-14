@@ -2,7 +2,7 @@ package Entities;
 
 import java.util.HashMap;
 
-public interface IDistributor extends Comparable<Distributor>{
+public interface IDistributor extends Comparable<Distributor>, IUser{
 
     HashMap<String, Double> prodMap();
 

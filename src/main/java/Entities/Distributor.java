@@ -39,7 +39,7 @@ public class Distributor extends User implements IDistributor {
             for (Double price : allPrices.get(prodName)){
                 average += price;
             }
-            average = average / allPrices.size();
+            average = average / allPrices.get(prodName).size();
             prodMap.put(prodName, average);
         }
         return prodMap;

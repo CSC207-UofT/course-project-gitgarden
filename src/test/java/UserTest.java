@@ -85,7 +85,6 @@ public class UserTest {
     @Test(timeout = 50)
     public void TestToString() {
         assertEquals("Name: wrongName\n" +
-                "Address: wrongAddress\n" +
-                "Summary: Default Summary\n", temp.toString());
+                "Address: wrongAddress", temp.toString());
     }
 }

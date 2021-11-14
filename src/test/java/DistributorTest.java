@@ -12,8 +12,8 @@ public class DistributorTest {
     Distributor distributor1 = new Distributor("distributor_1", "distributor address1");
     Request request1 = new Request(farmer1, "request_name_1", 100, 10);
     Request request2 = new Request(farmer1, "request_name_2", 200, 20);
-    Request offer1 = new Request(distributor1, "offer_name3", 300, 30);
-    Request offer2 = new Request(distributor1, "offer_name4", 400, 40);
+    Request offer1 = new Request(distributor1, "Orange", 300, 3.00);
+    Request offer2 = new Request(distributor1, "NotOrange", 400, 3.50);
 
 
     @Test

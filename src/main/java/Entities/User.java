@@ -6,8 +6,8 @@ public class User implements IUser{
     private String userName;
     private final int userId;
     private String userAddress;
-    protected ArrayList<Request> currentRequests;
-    protected ArrayList<Request> offerHistory;
+    protected ArrayList<Request> currentRequests = new ArrayList<>();
+    protected ArrayList<Request> offerHistory = new ArrayList<>();
 
      /**
      * Construct a User, giving them the name and address
@@ -87,7 +87,7 @@ public class User implements IUser{
      */
     public String toString(){
         return "Name: " + userName + "\n" +
-                "Address: " + userAddress + "\n";
+                "Address: " + userAddress;
     }
 
 }

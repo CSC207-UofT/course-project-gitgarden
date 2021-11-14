@@ -6,10 +6,10 @@ import java.util.HashMap;
 public class Distributor extends User implements IDistributor {
 
     private double exposure;
-    private double speed; // Average number of hours in which transactions are completed after being finalized
-    private double carbon; // Number of grams CO2eq emitted per transaction
+    private double speed;
+    private double carbon;
 
-    private double ranking; // Comparable object
+    private double ranking;
 
     public Distributor(String distributor_name, String distributor_address){
         super(distributor_name, distributor_address);

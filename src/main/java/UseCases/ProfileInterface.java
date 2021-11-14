@@ -2,6 +2,8 @@ package UseCases;
 
 import Entities.*;
 
+import java.util.ArrayList;
+
 public interface ProfileInterface {
     static void createFarmer(String name, String address){
         Farmer farmer = new Farmer(name, address);
@@ -13,8 +15,8 @@ public interface ProfileInterface {
         ProfileManager.distributorList.add(dist);
     }
 
-    static void modifyUser(IUser user, String name, String address, String summary){
-        user.setUserName(name);
+    static void modifyUser(IUser user, String newName, String address){
+        user.setUserName(newName);
         user.setUserAddress(address);
     }
 
@@ -31,4 +33,13 @@ public interface ProfileInterface {
         dist.setCarbon(slider4);
     }
 
+    static ArrayList<String> getAllNames(){
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<IUser> userList = new ArrayList<>(ProfileManager.farmerList);
+        userList.addAll(ProfileManager.distributorList);
+        for (IUser user : userList) {
+            names.add(user.getUserName());
+        }
+        return names;
+    }
 }

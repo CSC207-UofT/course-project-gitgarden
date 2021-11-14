@@ -17,7 +17,7 @@ public class User implements IUser{
      */
     public User(String userName, String userAddress){
         this.userName = userName;
-        this.userId = (int) (Math.random()*(90000000)+10000000);
+        this.userId = (int) (Math.random()*(900000000)+100000000);
         this.userAddress = userAddress;
     }
 

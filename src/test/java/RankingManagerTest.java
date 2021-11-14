@@ -36,7 +36,7 @@ public class RankingManagerTest {
             allDist.get(i).setSpeed(30 - 2 * i);
             allDist.get(i).setCarbon(5 + 10 * i);
         }
-        Farmer farmer = new Farmer("Pooria", "H");
+        IFarmer farmer = new Farmer("Pooria", "H");
         farmer.setPrefPrice(0);
         farmer.setPrefExposure(0);
         farmer.setPrefSpeed(0);

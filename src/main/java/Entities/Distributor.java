@@ -1,57 +1,49 @@
 package Entities;
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Distributor extends User implements Comparable<Distributor>, IDistributor {
-
-    private final ArrayList<RequestStructure> current_requests;
-    private final ArrayList<Offer> offer_history;
+public class Distributor extends User implements IDistributor {
 
     private double exposure;
     private double speed; // Average number of hours in which transactions are completed after being finalized
     private double carbon; // Number of grams CO2eq emitted per transaction
+
     private double ranking; // Comparable object
 
     public Distributor(String distributor_name, String distributor_address){
         super(distributor_name, distributor_address);
-        this.current_requests = new ArrayList<>();
-        this.offer_history = new ArrayList<>();
+        this.exposure = 10;
+        this.speed = 10;
+        this.carbon = 10;
     }
 
-    public void add_request(Request request){
-        this.current_requests.add(request);
-    }
-
-    public void remove_request(Request request) {
-        this.current_requests.remove(request);
-    }
-
-    public ArrayList<RequestStructure> getCurrent_requests(){
-        return this.current_requests;
-    }
-
-    public void add_offer(Offer offer){
-        this.offer_history.add(offer);
-    }
-
-    public void remove_offer(Offer offer) {
-        this.offer_history.remove(offer);
-    }
-      
-    public ArrayList<Offer> getOffer_history() {
-        return this.offer_history;
-    }
-
-    public HashMap<String, Float> prodMap(){
-        HashMap<String, Float> temp = new HashMap<>();
-        for (Offer item: this.offer_history){
-            temp.put(item.getProduct_name(), item.getProduct_price_per_unit());
+    public HashMap<String, Double> prodMap(){
+        HashMap<String, ArrayList<Double>> allPrices = new HashMap<>();
+        for (Request item: this.offerHistory) {
+            if (!allPrices.containsKey(item.getProdName())) {
+                ArrayList<Double> prices = new ArrayList<>();
+                prices.add(item.getProdPricePerKg());
+                allPrices.put(item.getProdName(), prices);
+            } else {
+                allPrices.get(item.getProdName()).add(item.getProdPricePerKg());
+            }
         }
-        return temp;
+        return prodAverages(allPrices);
     }
 
-    //=========================================================================
+    private HashMap<String, Double> prodAverages(HashMap<String, ArrayList<Double>> allPrices) {
+        HashMap<String, Double> prodMap = new HashMap<>();
+        for (String prodName : allPrices.keySet()){
+            double average = 0;
+            for (Double price : allPrices.get(prodName)){
+                average += price;
+            }
+            average = average / allPrices.size();
+            prodMap.put(prodName, average);
+        }
+        return prodMap;
+    }
 
     public int compareTo(Distributor other){
         return Double.compare(this.ranking, other.ranking);

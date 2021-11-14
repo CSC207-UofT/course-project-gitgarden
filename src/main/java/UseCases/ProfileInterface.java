@@ -14,9 +14,8 @@ public interface ProfileInterface {
     }
 
     static void modifyUser(IUser user, String name, String address, String summary){
-        user.setUser_name(name);
-        user.setUser_address(address);
-        user.setSummary(summary);
+        user.setUserName(name);
+        user.setUserAddress(address);
     }
 
     static void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4){

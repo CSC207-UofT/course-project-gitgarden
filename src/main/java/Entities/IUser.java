@@ -1,18 +1,28 @@
 package Entities;
 
+import java.util.ArrayList;
+
 public interface IUser {
 
-    void setUser_name(String name);
+    void addRequest(Request request);
 
-    String getUser_name();
+    void removeRequest(Request request);
 
-    int getUser_id();
+    ArrayList<Request> getCurrentRequests();
 
-    void setUser_address(String address);
+    void addOffer(Request offer);
 
-    String getUser_address();
+    void removeOffer(Request offer);
 
-    void setSummary(String summary);
+    ArrayList<Request> getOfferHistory();
 
-    String getSummary();
+    void setUserName(String name);
+
+    String getUserName();
+
+    int getUserId();
+
+    void setUserAddress(String address);
+
+    String getUserAddress();
 }

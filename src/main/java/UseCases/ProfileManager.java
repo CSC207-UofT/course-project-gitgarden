@@ -18,7 +18,10 @@ public class ProfileManager implements ProfileInterface{
         distributorList.add(dist);
     }
 
-
+    public static void modifyUser(IUser user, String userName, String userAddress){
+        user.setUserName(userName);
+        user.setUserAddress(userAddress);
+    }
 
     public static void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4){
         farmer.setPrefPrice(slider1);

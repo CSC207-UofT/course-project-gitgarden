@@ -1,6 +1,6 @@
 package UseCases;
 
-import Entities.Distributor;
+import Entities.IDistributor;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ public class MatchManager {
      * @param req_price Price per kg of product in request
      * @return All distributors fulfilling requested criteria
      */
-    public static ArrayList<Distributor> match(ArrayList<Distributor> distributors, String req_name, String req_price){
-        ArrayList<Distributor> match_list = new ArrayList<>();
-        for(Distributor dist: distributors){
+    public static ArrayList<IDistributor> match(ArrayList<IDistributor> distributors, String req_name, String req_price){
+        ArrayList<IDistributor> match_list = new ArrayList<>();
+        for(IDistributor dist: distributors){
             if (dist.prodMap().containsKey(req_name)){
                 if (dist.prodMap().get(req_name) >= Double.parseDouble(req_price)){
                     match_list.add(dist);

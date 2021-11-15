@@ -2,6 +2,7 @@ package UI;
 
 import Controller.ServiceController;
 import Entities.Distributor;
+import Entities.IDistributor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +78,7 @@ public class UserInterface
                     productPrice = reader.nextLine();
                 }
 
-                ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
+                ArrayList<IDistributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
 
                 if (matchList.size() != 0) {
                     System.out.println("Request created and processed. The list of available distributors is as follows: ");

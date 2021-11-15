@@ -20,7 +20,7 @@ public class Distributor extends User implements IDistributor {
 
     public HashMap<String, Double> prodMap(){
         HashMap<String, ArrayList<Double>> allPrices = new HashMap<>();
-        for (Request item: this.offerHistory) {
+        for (IRequest item: this.offerHistory) {
             if (!allPrices.containsKey(item.getProdName())) {
                 ArrayList<Double> prices = new ArrayList<>();
                 prices.add(item.getProdPricePerKg());

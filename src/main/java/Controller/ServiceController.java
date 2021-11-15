@@ -4,10 +4,7 @@ import Entities.IFarmer;
 import Entities.IDistributor;
 import Entities.IUser;
 import UI.ErrorThrower;
-import UseCases.ProfileInterface;
-import UseCases.RankInterface;
-import UseCases.RankingManager;
-import UseCases.RequestManager;
+import UseCases.*;
 
 import java.util.ArrayList;
 
@@ -19,12 +16,13 @@ public class ServiceController {
      * @param address   Address of the user
      */
     public static void createProfileCheck(String name, String address, boolean flag) {
+        ProfileInterface pm = new ProfileManager();
         if (isAlphanumeric(name) && isAlphanumeric(address)){
             if (isUniqueName(name)){
                 if (flag){
-                    ProfileInterface.createFarmer(name, address);
+                    pm.createFarmer(name, address);
                 } else {
-                    ProfileInterface.createDistributor(name, address);
+                    pm.createDistributor(name, address);
                 }
             } else {
                 ErrorThrower.message("That name has been taken.");
@@ -36,9 +34,10 @@ public class ServiceController {
     }
 
     public static void modifyUserCheck(IUser user, String newName, String address) {
+        ProfileInterface pm = new ProfileManager();
         if (isAlphanumeric(newName) && isAlphanumeric(address)){
             if (isUniqueName(newName)){
-                ProfileInterface.modifyUser(user, newName, address);
+                pm.modifyUser(user, newName, address);
             } else {
                 ErrorThrower.message("That name has been taken.");
             }
@@ -48,18 +47,21 @@ public class ServiceController {
     }
 
     public static void modifyFarmerCheck(IFarmer farmer, double slider1, double slider2, double slider3, double slider4){
-        ProfileInterface.modifyFarmer(farmer, slider1, slider2, slider3, slider4);
+        ProfileInterface pm = new ProfileManager();
+        pm.modifyFarmer(farmer, slider1, slider2, slider3, slider4);
     } // Nothing to check, but there may be in future
 
     public static void modifyDistributorCheck(IDistributor dist, double slider2, double slider3, double slider4){
-        ProfileInterface.modifyDistributor(dist, slider2, slider3, slider4);
+        ProfileInterface pm = new ProfileManager();
+        pm.modifyDistributor(dist, slider2, slider3, slider4);
     } // Nothing to check, but there may be in future
 
-    public static void createRequestCheck(String product, String quantity, String price){
+    public static void createRequestCheck(IUser user, String product, String quantity, String price){
+        RequestInterface rm = new RequestManager();
         if (isAlphanumeric(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
-                    RequestManager.createRequest(product, Double.parseDouble(quantity), Double.parseDouble(price));
+                    rm.createRequest(user, product, Double.parseDouble(quantity), Double.parseDouble(price));
                 } else {
                     ErrorThrower.message("Your price input must have two decimal places.");
                 }
@@ -105,7 +107,8 @@ public class ServiceController {
     }
 
     public static boolean isUniqueName(String input){
-        for (String name: ProfileInterface.getAllNames()){
+        ProfileInterface pm = new ProfileManager();
+        for (String name: pm.getAllNames()){
             if (input.equals(name)){
                 return false;
             }

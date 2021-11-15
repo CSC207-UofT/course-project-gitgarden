@@ -29,7 +29,7 @@ public class RankingManagerTest {
         allDist.add(e);
         allDist.add(f);
         allDist.add(g);
-        Request offer = new Request((User) a, "Orange", 50, 3.00);
+        Request offer = new Request(a, "Orange", 50, 3.00, null);
         for (int i = 0; i < allDist.size(); i++){
             allDist.get(i).addOffer(offer);
             allDist.get(i).setExposure(1 + abs(i - 5));

@@ -6,8 +6,8 @@ public class User implements IUser{
     private String userName;
     private final int userId;
     private String userAddress;
-    protected ArrayList<Request> currentRequests = new ArrayList<>();
-    protected ArrayList<Request> offerHistory = new ArrayList<>();
+    protected ArrayList<IRequest> currentRequests = new ArrayList<>();
+    protected ArrayList<IRequest> offerHistory = new ArrayList<>();
 
      /**
      * Construct a User, giving them the name and address
@@ -21,27 +21,27 @@ public class User implements IUser{
         this.userAddress = userAddress;
     }
 
-    public void addRequest(Request request){
+    public void addRequest(IRequest request){
         this.currentRequests.add(request);
     }
 
-    public void removeRequest(Request request) {
+    public void removeRequest(IRequest request) {
         this.currentRequests.remove(request);
     }
 
-    public ArrayList<Request> getCurrentRequests(){
+    public ArrayList<IRequest> getCurrentRequests(){
         return this.currentRequests;
     }
 
-    public void addOffer(Request offer){
+    public void addOffer(IRequest offer){
         this.offerHistory.add(offer);
     }
 
-    public void removeOffer(Request offer) {
+    public void removeOffer(IRequest offer) {
         this.offerHistory.remove(offer);
     }
 
-    public ArrayList<Request> getOfferHistory() {
+    public ArrayList<IRequest> getOfferHistory() {
         return this.offerHistory;
     }
 

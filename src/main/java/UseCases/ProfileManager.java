@@ -1,50 +1,39 @@
 package UseCases;
 
-import Entities.Distributor;
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
+import Entities.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class ProfileManager {
-    //public static ArrayList<User> farmerList = new ArrayList<>();
-    public static ArrayList<Distributor> distributorList = new ArrayList<>();
+public class ProfileManager implements ProfileInterface{
+    public static ArrayList<IFarmer> farmerList = new ArrayList<>();
+    public static ArrayList<IDistributor> distributorList = new ArrayList<>();
+
+    public static void createFarmer(String name, String address){
+        IFarmer farmer = new Farmer(name, address);
+        farmerList.add(farmer);
+    }
 
     public static void createDistributor(String name, String address){
-        Distributor dist = new Distributor(name, address);
+        IDistributor dist = new Distributor(name, address);
         distributorList.add(dist);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        //Created these two distributors for testing purposes.
-        createDistributor("Mark","Toronto");
-        createDistributor("Divit","Toronto");
-
-        //This will convert distributorList to a json format.
-        Gson gson = new Gson();
-        try(FileWriter writer = new FileWriter("dists.json")){
-            writer.write(gson.toJson(distributorList));
-            writer.flush();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        //Read json file and create distributors based on the json file.
-        //Assuming that distributorList will be cleared when the program ends, thus
-        //  simply calling createDistributors to add them to distributorList
-
-        //Note that when run this code now, it will print distributorList twice since the
-        // distributors from the saving as json part is still in distributorList.
-        JsonReader reader = new JsonReader(new FileReader("dists.json"));
-        Distributor[] distributors = gson.fromJson(reader, Distributor[].class);
-        for (Distributor d : distributors) {
-            createDistributor(d.getUser_name(), d.getUser_address());
-        }
-        System.out.println(distributorList);
+    public static void modifyUser(IUser user, String userName, String userAddress){
+        user.setUserName(userName);
+        user.setUserAddress(userAddress);
     }
+
+    public static void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4){
+        farmer.setPrefPrice(slider1);
+        farmer.setPrefExposure(slider2);
+        farmer.setPrefSpeed(slider3);
+        farmer.setPrefCarbon(slider4);
+    }
+
+    public static void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4){
+        dist.setExposure(slider2);
+        dist.setSpeed(slider3);
+        dist.setCarbon(slider4);
+    }
+
 }

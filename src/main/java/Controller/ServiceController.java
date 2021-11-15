@@ -1,6 +1,6 @@
 package Controller;
 
-import Entities.Distributor;
+import Entities.IDistributor;
 import UseCases.MatchManager;
 import UseCases.ProfileManager;
 
@@ -22,23 +22,21 @@ public class ServiceController {
         }
     }
 
-
     /**
      * Method for UserInterface, pass parameters to ProfileManager if the input is valid
      * @param product   Name of the product
      * @param quantity  Quantity of the product
      * @param price     Price of the product per kilogram
      */
-    public static ArrayList<Distributor> createRequest(String product, String quantity, String price)
+    public static ArrayList<IDistributor> createRequest(String product, String quantity, String price)
             throws Exception{
         if (isAlphanumeric(product) && isNumeric(quantity) && isNumeric(price)){
-            ArrayList<Distributor> distributors = ProfileManager.distributorList;
+            ArrayList<IDistributor> distributors = ProfileManager.distributorList;
             return MatchManager.match(distributors, product, price);
         } else {
             throw new Exception("Your input is not valid!");
         }
     }
-
 
     /**
      * Checks if the input is alphanumeric.
@@ -46,9 +44,8 @@ public class ServiceController {
      * @return boolean that indicates if the input is alphanumeric.
      */
     public static boolean isAlphanumeric(String input){
-        return input.matches("^[a-zA-Z0-9]*$");
+        return input.matches("^[a-zA-Z0-9]+$");
     }
-
 
     /**
      * Checks if the input is numeric
@@ -57,7 +54,7 @@ public class ServiceController {
      *         string is empty or blank.
      */
     public static boolean isNumeric(String input){
-        return !input.isEmpty() && !input.isBlank();
+        return input.matches("^[0-9]+$");
     }
 
 }

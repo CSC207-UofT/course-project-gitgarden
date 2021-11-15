@@ -1,16 +1,16 @@
 # CURRENT - Project Phase 1
 
-- [ ] Task 1 - User Interface (java gui) - [60%finished], working on code and connection with back end
+- [x] Task 1 - User Interface (java gui) - [100% complete]
 
-- [ ] Task 2 - Data Persistency [90% complete], require implementation with rest of the code
+- [x] Task 2 - Data Persistency [100% complete]
 
-- [ ] Task 3 - Preferences and RankingManager [90% complete], requires only integration with rest of code and final testing
+- [x] Task 3 - Preferences and RankingManager [100% complete]
 
-- [x] Task 4 - Request [100% complete], resolve conflict with github
+- [x] Task 4 - Request [100% complete]
 
-- [ ] Task 5 - Feedback Refactoring [50% complete], in process along with document
+- [x] Task 5 - Feedback Refactoring [100% complete]
 
-- [ ] Task 6 - Design Document [0% complete], in progress, each person is working on their part
+- [x] Task 6 - Design Document [100% complete]
 
 
 

@@ -2,14 +2,14 @@ package Entities;
 
 import java.util.ArrayList;
 
-public class Request implements RequestStructure{
+public class Request {
 
     private final int request_id;
     private Farmer farmer;
     private String product_name;
     private int product_quantity;
     private float product_price_per_unit;
-    private final ArrayList<RequestStructure> counteroffer;
+    public ArrayList<Request> counteroffer;
 
     public Request(Farmer Farmer, String p_name, int p_quantity,
                    float p_price_per_unit) {
@@ -116,25 +116,25 @@ public class Request implements RequestStructure{
                 "Price: " + this.product_price_per_unit;
     }
 
-    @Override
-    public void add(RequestStructure request) {
+    // @Override
+    public void add(Request request) {
         this.counteroffer.add(request);
     }
 
-    @Override
-    public void remove(RequestStructure request) {
+    // @Override
+    public void remove(Request request) {
         this.counteroffer.remove(request);
     }
 
-    @Override
-    public ArrayList<RequestStructure> counteroffers() {
+    // @Override
+    public ArrayList<Request> counteroffers() {
         return this.counteroffer;
     }
 
-    @Override
+    // @Override
     public ArrayList<Offer> offers(){
         ArrayList<Offer> temp = new ArrayList<>();
-        for(RequestStructure item: this.counteroffer){
+        for(Request item: this.counteroffer){
             if (item instanceof Request){
                 item.offers();
             }
@@ -145,11 +145,11 @@ public class Request implements RequestStructure{
         return temp;
     }
 
-    @Override
+    /** @Override
     public ArrayList<RequestStructure> search(Offer offer){
         ArrayList<ArrayList<RequestStructure>> paths = new ArrayList<>();
 
-        for(RequestStructure item: this.counteroffer){
+        for(Request item: this.counteroffer){
 
             ArrayList<RequestStructure> temp = new ArrayList<>();
             temp.add(this);
@@ -179,6 +179,6 @@ public class Request implements RequestStructure{
             System.out.println("======");
             item.show();
             System.out.println("======");
-            }
         }
-    }
+    } */
+}

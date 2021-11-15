@@ -2,6 +2,7 @@ package UI;
 
 import Controller.ServiceController;
 import Entities.Distributor;
+import Entities.Farmer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +42,6 @@ public class UserInterface
 
         ui.GetUserInfo();
     }
-
     public void GetUserInfo() throws Exception {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         System.out.println("Create a new profile (Type 'Yes' to continue)");
@@ -77,7 +77,9 @@ public class UserInterface
                     productPrice = reader.nextLine();
                 }
 
-                ArrayList<Distributor> matchList = ServiceController.createRequest(productName, productQuantity, productPrice);
+                Farmer farmer = new Farmer("Jagat", "123");
+                ArrayList<Distributor> matchList = ServiceController.createRequest(farmer, productName, productQuantity,
+                        productPrice);
 
                 if (matchList.size() != 0) {
                     System.out.println("Request created and processed. The list of available distributors is as follows: ");

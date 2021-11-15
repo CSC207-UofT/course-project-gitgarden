@@ -1,6 +1,9 @@
 package UI;
 
 import Controller.ServiceController;
+import Entities.Farmer;
+import Entities.User;
+import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -59,14 +62,50 @@ public class welcomePage extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(800, 700);
+
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = newUserName.getText();
-                farmerPage farmerPage = new farmerPage();
-                setVisible(false);
-                farmerPage.setVisible(true);
-                setContentPane(new farmerPage().mainPanel);
+                String username = nameInput.getText();
+
+                if (username.equals("") || username == null) {
+                    JOptionPane.showMessageDialog(null,"Please enter your User Name");
+                    newUserName.requestFocusInWindow();
+                }
+
+                else {
+
+                    for (Entities.Farmer farmer : ProfileManager.farmerList) {
+                        if (farmer.getUser_name() == username) {
+                            ProfileManager.currentUser = farmer;
+                        }
+                    }
+
+                    for (Entities.Distributor distributor : ProfileManager.distributorList) {
+                        if (distributor.getUser_name() == username) {
+                            ProfileManager.currentUser = distributor;
+                        }
+                    }
+
+                    if (ProfileManager.currentUser == null) {
+                        JOptionPane.showMessageDialog(null,"Please enter a valid User Name or " +
+                                "Create a new Profile");
+                        newUserName.requestFocusInWindow();
+                    }
+
+                    else if (ProfileManager.currentUser instanceof Farmer) {
+                        farmerPage farmerPage = new farmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                    }
+
+                    else {
+                        distributorPage distributorPage = new distributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                    }
+
+                }
             }
         });
         signupButton.addActionListener(new ActionListener() {
@@ -84,6 +123,14 @@ public class welcomePage extends JFrame{
                 }
 
                 else {
+                    try {
+                        ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
+                                slider4_value, flag);
+
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
 
                     if (flag) {
                         farmerPage farmerPage = new farmerPage();
@@ -95,21 +142,14 @@ public class welcomePage extends JFrame{
                         distributorPage distributorPage = new distributorPage();
                         setVisible(false);
                         distributorPage.setVisible(true);
-                        setContentPane(new farmerPage().mainPanel);
+                        setContentPane(new distributorPage().mainPanel);
                     }
-                }
-                try {
-                    ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
-                            slider4_value, flag);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
                 }
             }
         });
         nameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String oldUserName = nameInput.getText();
                 // TODO: 2021/11/10 Sign this person in.
                 // TODO: 2021/11/11 change flag to true if farmer, false if distributor
             }
@@ -118,14 +158,12 @@ public class welcomePage extends JFrame{
         newUserName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newUsername = newUserName.getText();
             }
         });
 
         addressInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String address = addressInput.getText();
             }
         });
         farmerButton.addActionListener(new ActionListener() {
@@ -157,26 +195,26 @@ public class welcomePage extends JFrame{
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+                // double score = slider1.getValue(); REDUNDANT
             }
         });
         slider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+               // double score = slider1.getValue(); REDUNDANT
             }
         });
         slider3.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-                System.out.print(score);
+                // double score = slider1.getValue(); REDUNDANT
+                // System.out.print(score);
             }
         });
         slider4.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+               // double score = slider1.getValue(); REDUNDANT
             }
         });
     }

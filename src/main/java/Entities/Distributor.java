@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Distributor extends User implements Comparable<Distributor> {
 
-    private final ArrayList<RequestStructure> current_requests;
-    private final ArrayList<Offer> offer_history;
+    public ArrayList<Request> current_requests;
+    public ArrayList<Offer> offer_history;
 
     private double exposure;
     private double speed; // Average number of hours in which transactions are completed after being finalized
@@ -19,15 +19,18 @@ public class Distributor extends User implements Comparable<Distributor> {
         this.offer_history = new ArrayList<>();
     }
 
+    /**
     public void add_request(Request request){
         this.current_requests.add(request);
     }
+
+     */
 
     public void remove_request(Request request) {
         this.current_requests.remove(request);
     }
 
-    public ArrayList<RequestStructure> getCurrent_requests(){
+    public ArrayList<Request> getCurrent_requests(){
         return this.current_requests;
     }
 

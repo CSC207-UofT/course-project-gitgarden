@@ -1,11 +1,21 @@
 package UI;
 
+import Entities.Distributor;
+import Entities.Farmer;
+import Entities.Offer;
+import Entities.Request;
+import UseCases.ProfileManager;
+
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class distributorPage extends JFrame{
-    private JPanel mainPanel;
+    public JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel titleTextPanel;
     private JLabel titleText;
@@ -49,22 +59,61 @@ public class distributorPage extends JFrame{
             }
         });
 
-        String [] data = {"one", "two", "three", "four"};
-        DefaultListModel<String> listModel= new DefaultListModel<String>();
+        HashMap<String, Request> requestMap = new HashMap<>();
+        int i = 1;
+        Entities.Distributor distributor = (Distributor) ProfileManager.currentUser;
+
+        ArrayList<Request> request = distributor.getCurrent_requests();
+        String [] data = new String[request.size()];
+
+        for (Request requests : request) {
+            requestMap.put(String.valueOf(i), requests);
+            String product_name = requests.getProduct_name();
+            data[i-1] =  i + " " + product_name;
+            i += 1;
+        }
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
         for(String item: data){
             listModel.addElement(item);
         }
-        historyList.setModel(listModel);
+
+        String [] data2 = new String[distributor.getOffer_history().size()];
+
+        for (Offer pastTransaction : distributor.getOffer_history()) {
+            String product_name = pastTransaction.getProduct_name();
+            data2[i-1] =  i + " " + product_name;
+            i += 1;
+        }
+
+        DefaultListModel<String> listModel2 = new DefaultListModel<String>();
+        for(String item: data2){
+            listModel.addElement(item);
+        }
+
         existingList.setModel(listModel);
-        existingList.addListSelectionListener(e -> {
-                    //example for how to get the value
-                    // TODO: 2021/11/11 pass the corresponding request to details page to make details.
-                    String number = historyList.getSelectedValue();
-                    System.out.print(number);
+        historyList.setModel(listModel2);
+
+
+        existingList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String number = existingList.getSelectedValue().toString();
+                    String split[] = number.split(" ");
+                    String index_number = split[0];
+                    Request request = requestMap.get(index_number+"");
+
+
+
                     setVisible(false);
-                    JFrame detailsPage = new detailsPage();
-                    detailsPage.setVisible(true);
+
+                    detailsPage detailspage = new detailsPage(request);
+
+                    detailspage.setVisible(true);
                 }
-        );
+            }
+        });
     }
 }
+

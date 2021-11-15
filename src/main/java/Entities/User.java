@@ -79,5 +79,4 @@ public class User {
                 "Address: " + user_address + "\n" +
                 "Summary: " + summary + "\n";
     }
-
 }

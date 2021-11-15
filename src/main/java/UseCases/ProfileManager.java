@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class ProfileManager implements ProfileInterface{
     public static ArrayList<Farmer> farmerList = new ArrayList<>();
     public static ArrayList<Distributor> distributorList = new ArrayList<>();
+    public static User currentUser;
 
     public static void createUser(String name, String address, double slider1, double slider2, double slider3,
                                   double slider4, boolean flag){
@@ -17,11 +18,13 @@ public class ProfileManager implements ProfileInterface{
             Farmer farmer = new Farmer(name, address);
             modifyPreference(farmer, slider1, slider2, slider3, slider4);
             farmerList.add(farmer);
+            currentUser = farmerList.get(farmerList.indexOf(farmer));
         }
         else{
             Distributor dist = new Distributor(name, address);
             modifyPreference(dist, slider1, slider2, slider3, slider4);
             distributorList.add(dist);
+            currentUser = distributorList.get(distributorList.indexOf(dist));
         }
     }
 

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Farmer extends User {
 
-    private final ArrayList<RequestStructure> current_requests;
-    private final ArrayList<Offer> offer_history;
+    public ArrayList<Request> current_requests;
+    public ArrayList<Request> offer_history;
 
     private double prefPrice; // Int from 0-10 detailing preference for exact or better price (10 is rigid price)
     private double prefExposure; // Int from 0-10 detailing preference for high exposure (10 is maximum exposure)
@@ -27,11 +27,11 @@ public class Farmer extends User {
         this.current_requests.remove(request);
     }
 
-    public ArrayList<RequestStructure> getCurrent_requests() {
+    public ArrayList<Request> getCurrent_requests() {
         return this.current_requests;
     }
 
-    public void add_offer(Offer offer) {
+    public void add_offer(Request offer) {
         this.offer_history.add(offer);
     }
 
@@ -39,11 +39,11 @@ public class Farmer extends User {
         this.offer_history.remove(offer);
     }
 
-    public ArrayList<Offer> getOffer_history() {
+    public ArrayList<Request> getOffer_history() {
         return this.offer_history;
     }
 
-    //=========================================================================
+    // =========================================================================
 
     public void setPrefPrice(double prefPrice) {
         this.prefPrice = prefPrice;

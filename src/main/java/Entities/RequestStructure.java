@@ -1,3 +1,4 @@
+
 package Entities;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ interface RequestStructure {
      *
      * @param request THe new request to be added.
      */
-    void add(RequestStructure request);
+    // void add(RequestStructure request);
 
     /**
      * Remove the given request in counteroffer of the current request.

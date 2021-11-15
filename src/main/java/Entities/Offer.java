@@ -140,8 +140,8 @@ public class Offer implements RequestStructure{
                 "Price: " + this.product_price_per_unit;
     }
 
-    @Override
-    public void add(RequestStructure request) {
+    // @Override
+    public void add(Request request) {
     }
 
     @Override

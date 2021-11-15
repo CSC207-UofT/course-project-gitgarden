@@ -1,5 +1,7 @@
 package UI;
 
+import UseCases.ProfileManager;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -24,7 +26,7 @@ public class modifyPage extends JFrame{
     private JTextField addressInput;
     private JPanel mainPanel;
     private JPanel buttonPanel;
-    private JButton createButton;
+    private JButton ModifyButton;
     private JSlider slider1;
     private JLabel priceText;
     private JLabel exposureText;
@@ -40,10 +42,26 @@ public class modifyPage extends JFrame{
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
-        createButton.addActionListener(new ActionListener() {
+        ModifyButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: 2021/11/11
+
+                String address = addressInput.getText();
+                double slider1_value = slider1.getValue();
+                double slider2_value = slider2.getValue();
+                double slider3_value = slider3.getValue();
+                double slider4_value = slider4.getValue();
+                String name = nameInput.getText();
+
+                Entities.User user = ProfileManager.currentUser;
+
+                ProfileManager.modifyPreference(user, slider1_value, slider2_value, slider3_value,
+                        slider4_value);
+                user.setUser_name(name);
+                user.setUser_address(address);
+
                 if (welcomePage.flag) {
                     farmerPage farmerPage = new farmerPage();
                     setVisible(false);

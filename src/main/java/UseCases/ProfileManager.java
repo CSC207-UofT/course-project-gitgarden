@@ -51,6 +51,27 @@ public class ProfileManager implements ProfileInterface{
         return names;
     }
 
+// Old persistence code
+//    public static void loadFarmer(String name, String address, double slider1, double slider2, double slider3,
+//                                  double slider4, boolean flag, ArrayList<Request> current_requests,
+//                                  ArrayList<Request> offer_history){
+//
+//        Farmer farmer = new Farmer(name, address, current_requests, offer_history);
+//        modifyPreference(farmer, slider1, slider2, slider3, slider4);
+//        farmerList.add(farmer);
+//        currentUser = farmerList.get(farmerList.indexOf(farmer));
+//    }
+//
+//    public static void loadDistributor(String name, String address, double slider1, double slider2, double slider3,
+//                                       double slider4, boolean flag, ArrayList<Request> current_requests,
+//                                       ArrayList<Offer> offer_history){
+//
+//        Distributor distributor = new Distributor(name, address, current_requests, offer_history);
+//        modifyPreference(distributor, slider1, slider2, slider3, slider4);
+//        distributorList.add(distributor);
+//        currentUser = distributorList.get(distributorList.indexOf(distributor));
+//    }
+
     @Override
     public ArrayList<IFarmer> getFarmerList(){
         return farmerList;

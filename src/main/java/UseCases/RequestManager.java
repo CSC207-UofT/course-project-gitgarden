@@ -33,13 +33,13 @@ public class RequestManager implements RequestInterface{
     @Override
     public void createCounterOffer(IUser user, IRequest request, Double quantity, Double price){
         IRequest co = new Request(user, request.getProdName(), quantity, price, request);
-        request.add(co); // Adds co as a counteroffer to previous request
+        request.add(co);
         if (request.getPrevious().getPrevious() != null){
             user.removeRequest(request);
             request.getPrevious().getUser().removeRequest(request);
         }
-        user.addRequest(co); // Adds co to user's current
-        request.getPrevious().getUser().addRequest(co); // Adds co to previous user's current
+        user.addRequest(co);
+        request.getPrevious().getUser().addRequest(co);
     }
 
     /**
@@ -54,7 +54,6 @@ public class RequestManager implements RequestInterface{
         deleteCurrent(request);
         IRequest root = requestRoot(request);
         root.getUser().removeRequest(root);
-
     }
 
     /**

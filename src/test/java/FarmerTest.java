@@ -9,10 +9,10 @@ public class FarmerTest {
     User farmer2 = new Farmer("tempName2", "tempAddress2");
     Distributor distributor1 = new Distributor("distributorName1", "distributorAddress1");
     Distributor distributor2 = new Distributor("distributorName2", "distributorAddress2");
-    Request request1 = new Request(farmer1, "request_name_1", 100, 10);
-    Request request2 = new Request(farmer2, "request_name_2", 200, 20);
-    Request offer1 = new Request(distributor1, "offer_name3", 300, 3.00);
-    Request offer2 = new Request(distributor1, "offer_name4", 400, 4.00);
+    IRequest request1 = new Request(farmer1, "request_name_1", 100, 10, null);
+    IRequest request2 = new Request(farmer2, "request_name_2", 200, 20, null);
+    IRequest offer1 = new Request(distributor1, "offer_name3", 300, 3.00, request1);
+    IRequest offer2 = new Request(distributor2, "offer_name4", 400, 4.00, request2);
 
     @Test(timeout = 50)
     public void TestAddRequest(){
@@ -31,7 +31,7 @@ public class FarmerTest {
     @Test(timeout = 50)
     public void TestGetCurrentRequests(){
         farmer1.addRequest(request1);
-        ArrayList<Request> temp = new ArrayList<>();
+        ArrayList<IRequest> temp = new ArrayList<>();
         temp.add(request1);
         assertEquals(temp, farmer1.getCurrentRequests());
     }
@@ -53,7 +53,7 @@ public class FarmerTest {
     @Test(timeout = 50)
     public void TestGetOffer_history(){
         farmer1.addOffer(offer1);
-        ArrayList<Request> temp = new ArrayList<>();
+        ArrayList<IRequest> temp = new ArrayList<>();
         temp.add(offer1);
         assertEquals(temp, farmer1.getOfferHistory());
     }

@@ -1,8 +1,6 @@
 package Entities;
 
-import java.util.ArrayList;
-
-public interface IFarmer {
+public interface IFarmer extends IUser{
 
     void setPrefPrice(double prefPrice);
 

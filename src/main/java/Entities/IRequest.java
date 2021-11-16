@@ -4,19 +4,21 @@ import java.util.ArrayList;
 
 public interface IRequest {
 
-    void add(Request request);
+    void add(IRequest request);
 
-    void remove(Request request);
+    void remove(IRequest request);
 
-    ArrayList<Request> getCounteroffers();
+    ArrayList<IRequest> getCounteroffers();
 
     int getRequestId();
 
-    User getUser();
+    IUser getUser();
 
     String getProdName();
 
-    int getProdQuantity();
+    double getProdQuantity();
 
     double getProdPricePerKg();
+
+    IRequest getPrevious();
 }

@@ -2,29 +2,31 @@ package Entities;
 
 import java.util.ArrayList;
 
-public class Request {
+public class Request implements IRequest{
 
     private final int requestId;
-    private final User user;
+    private final IUser user;
     private final String prodName;
-    private final int prodQuantity;
+    private final double prodQuantity;
     private final double prodPricePerKg;
-    private ArrayList<Request> counteroffers;
+    private ArrayList<IRequest> counteroffers;
+    private final IRequest previous;
 
-    public Request(User user, String pName, int pQuantity, double pPricePerKg) {
+    public Request(IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
         this.requestId = (int) (Math.random()*(90000000)+10000000);
         this.user = user;
         this.prodName = pName;
         this.prodQuantity = pQuantity;
         this.prodPricePerKg = pPricePerKg;
         this.counteroffers = new ArrayList<>();
+        this.previous = previous;
     }
 
     /**
      * Adds a counteroffer to the request.
      * @param co The counteroffer to be added.
      */
-    public void add(Request co){
+    public void add(IRequest co){
         this.counteroffers.add(co);
     }
 
@@ -32,14 +34,14 @@ public class Request {
      * Removes a counteroffer from the request.
      * @param co The counteroffer to be removed.
      */
-    public void remove(Request co){
+    public void remove(IRequest co){
         this.counteroffers.remove(co);
     }
 
     /**
      * @return the current counteroffers to the request.
      */
-    public ArrayList<Request> getCounteroffers(){
+    public ArrayList<IRequest> getCounteroffers(){
         return this.counteroffers;
     }
 
@@ -51,31 +53,38 @@ public class Request {
     }
 
     /**
-     * @return the current farmer of this request. (Farmer)
+     * @return the user making this request.
      */
-    public User getUser(){
+    public IUser getUser(){
         return this.user;
     }
 
     /**
-     * @return the current value of product's name. (String)
+     * @return the value of product's name. (String)
      */
     public String getProdName(){
         return this.prodName;
     }
 
     /**
-     * @return the current value of product's quantity. (int)
+     * @return the value of product's quantity. (double)
      */
-    public int getProdQuantity(){
+    public double getProdQuantity(){
         return this.prodQuantity;
     }
 
     /**
-     * @return the current value of product's price per unit. (float)
+     * @return the value of product's price per unit. (double)
      */
     public double getProdPricePerKg(){
         return this.prodPricePerKg;
+    }
+
+    /**
+     * @return the request to which this was a counteroffer, null if none.
+     */
+    public IRequest getPrevious(){
+        return this.previous;
     }
 
     /**

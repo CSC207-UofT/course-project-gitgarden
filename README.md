@@ -1,6 +1,23 @@
-> Note: please refer to the `working_main` branch for phase 1 submission. The `main` branch contains experimental code for phase 2.
+# Current - Project Phase 2
 
-# CURRENT - Project Phase 1
+UI TEAM - @Melaney, @Patric, @Jagat
+
+- [ ] Task 1 - Merge use case to main @Onyx, @UI TEAM [DDL: Nov. 19, Fri]
+- [ ] Task 2 - Intergrating UI with phase 2 @UI TEAM [DDL: Nov. 22, Mon]
+- [ ] Task 3 - `DataBase` class @Divit, @Mark [DDL: Nov. 27, Sat]
+- [ ] Task 4 - Test Cases @Andy [DDL: Nov. 27, Sat]
+- [ ] Task 5 - Report functionality by farmer @Onyx + @UI TEAM [DDL: Nov. 27, Sat]
+  - Report speed
+
+--- 
+
+Optional: 
+
+- [ ] Task 6 - Blocking users @UI TEAM +  [DDL: Dec 3, Fri]
+- [ ] Task 7 - Memento @ [DDL: Dec 3, Fri]
+- [ ] Task 8 - User Ratings @UI TEAM +  [DDL: ]
+
+# DONE - Project Phase 1
 
 - [x] Task 1 - User Interface (java gui) - [100% complete]
 

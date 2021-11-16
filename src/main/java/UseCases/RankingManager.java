@@ -1,7 +1,7 @@
 package UseCases;
 
-import Entities.Farmer;
 import Entities.IDistributor;
+import Entities.IFarmer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,10 +12,10 @@ public class RankingManager implements RankInterface {
     private static final double SINGLE_RANKING = 2.5;
 
     private final ArrayList<IDistributor> allDistributors;
-    private final Farmer farmer;
+    private final IFarmer farmer;
     private final String product;
 
-    public RankingManager(ArrayList<IDistributor> allDistributors, Farmer farmer, String product) {
+    public RankingManager(ArrayList<IDistributor> allDistributors, IFarmer farmer, String product) {
         this.allDistributors = allDistributors;
         this.farmer = farmer;
         this.product = product;
@@ -59,11 +59,12 @@ public class RankingManager implements RankInterface {
             case "carbon":
                 return dist.getCarbon();
             default:
-                return dist.prodMap().get(product);
+                return dist.prodMap().getOrDefault(product, 0.01);
+
         }
     }
 
-    public double getPrefCriterion(Farmer farmer, String criterion) {
+    public double getPrefCriterion(IFarmer farmer, String criterion) {
         switch (criterion) {
             case "exposure":
                 return farmer.getPrefExposure();
@@ -80,7 +81,7 @@ public class RankingManager implements RankInterface {
         return this.allDistributors;
     }
 
-    public Farmer getFarmer(){
+    public IFarmer getFarmer(){
         return this.farmer;
     }
 

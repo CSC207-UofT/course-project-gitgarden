@@ -1,4 +1,4 @@
-> Note: please refer to the `working_ui` branch for this submission. The `main` branch contains experimental code for phase 2.
+> Note: please refer to the `working_ui` branch for phase 1 submission. The `main` branch contains experimental code for phase 2.
 
 # CURRENT - Project Phase 1
 

@@ -17,8 +17,6 @@ Optional:
 - [ ] Task 7 - Memento @ [DDL: Dec 3, Fri]
 - [ ] Task 8 - User Ratings @UI TEAM +  [DDL: ]
 
-
-
 # DONE - Project Phase 1
 
 - [x] Task 1 - User Interface (java gui) - [100% complete]

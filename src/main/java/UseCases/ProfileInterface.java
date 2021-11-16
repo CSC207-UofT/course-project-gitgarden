@@ -16,4 +16,8 @@ public interface ProfileInterface {
     void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4);
 
     ArrayList<String> getAllNames();
+
+    ArrayList<IFarmer> getFarmerList();
+
+    ArrayList<IDistributor> getDistributorList();
 }

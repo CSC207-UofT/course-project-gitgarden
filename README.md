@@ -1,3 +1,5 @@
+> Note: please refer to the `working_ui` branch for this submission. The `main` branch contains experimental code for phase 2.
+
 # CURRENT - Project Phase 1
 
 - [x] Task 1 - User Interface (java gui) - [100% complete]

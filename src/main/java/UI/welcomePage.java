@@ -1,10 +1,15 @@
 package UI;
 
+import Controller.ServiceController;
+import Entities.Farmer;
+import UseCases.ProfileManager;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class welcomePage extends JFrame{
     private JPanel mainPanel;
@@ -16,7 +21,7 @@ public class welcomePage extends JFrame{
     private JPanel signinButtonPanel;
     private JTextField nameInput;
     private JLabel nameText;
-    private JButton createButton;
+    private JButton signInButton;
     private JPanel sinupPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
@@ -57,52 +62,110 @@ public class welcomePage extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(800, 700);
-        createButton.addActionListener(new ActionListener() {
+
+        signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                farmerPage farmerPage = new farmerPage();
-                setVisible(false);
-                farmerPage.setVisible(true);
-                setContentPane(new farmerPage().mainPanel);
+                String username = nameInput.getText();
+
+                if (username.equals("") || username == null) {
+                    JOptionPane.showMessageDialog(null,"Please enter your User Name");
+                    newUserName.requestFocusInWindow();
+                }
+
+                else {
+
+                    for (Entities.Farmer farmer : ProfileManager.farmerList) {
+                        if (farmer.getUser_name().equals(username)) {
+                            ProfileManager.currentUser = farmer;
+                            flag = true;
+                        }
+                    }
+
+                    for (Entities.Distributor distributor : ProfileManager.distributorList) {
+                        if (distributor.getUser_name().equals(username)) {
+                            ProfileManager.currentUser = distributor;
+                            flag = false;
+                        }
+                    }
+
+                    if (ProfileManager.currentUser == null) {
+                        JOptionPane.showMessageDialog(null,"Please enter a valid User Name or " +
+                                "Create a new Profile");
+                        newUserName.requestFocusInWindow();
+                    }
+
+                    else if (ProfileManager.currentUser instanceof Farmer) {
+                        farmerPage farmerPage = new farmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                    }
+
+                    else {
+                        distributorPage distributorPage = new distributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                    }
+
+                }
             }
         });
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(flag) {
-                    farmerPage farmerPage = new farmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
-                    setContentPane(new farmerPage().mainPanel);
+                String address = addressInput.getText();
+                double slider1_value = slider1.getValue();
+                double slider2_value = slider2.getValue();
+                double slider3_value = slider3.getValue();
+                double slider4_value = slider4.getValue();
+                String name = newUserName.getText();
+                if (name.equals("") || name == null) {
+                    JOptionPane.showMessageDialog(null,"Please enter your User Name.");
+                    newUserName.requestFocusInWindow();
                 }
-                else{
-                    distributorPage distributorPage = new distributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-                    setContentPane(new farmerPage().mainPanel);
+
+                else {
+                    try {
+                        ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
+                                slider4_value, flag);
+
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    if (flag) {
+                        farmerPage farmerPage = new farmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                        setContentPane(new farmerPage().mainPanel);
+                    }
+                    else {
+                        distributorPage distributorPage = new distributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                        setContentPane(new distributorPage().mainPanel);
+                    }
                 }
             }
         });
         nameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String oldUserName = nameInput.getText();
                 // TODO: 2021/11/10 Sign this person in.
-                // TODO: 2021/11/11 change flag to true if farmer, false if distributor 
+                // TODO: 2021/11/11 change flag to true if farmer, false if distributor
             }
         });
 
         newUserName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newUsername = newUserName.getText();
             }
         });
 
         addressInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String address = addressInput.getText();
             }
         });
         farmerButton.addActionListener(new ActionListener() {
@@ -134,32 +197,51 @@ public class welcomePage extends JFrame{
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+                // double score = slider1.getValue(); REDUNDANT
             }
         });
         slider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+               // double score = slider1.getValue(); REDUNDANT
             }
         });
         slider3.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-                System.out.print(score);
+                // double score = slider1.getValue(); REDUNDANT
+                // System.out.print(score);
             }
         });
         slider4.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
+               // double score = slider1.getValue(); REDUNDANT
             }
         });
     }
 
     public static void main(String[] args){
+        try {
+            ServiceController.read();
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+
         welcomePage welcomePage = new welcomePage();
         welcomePage.setVisible(true);
+
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            public void run()
+            {
+                try {
+                    ServiceController.write();
+                } catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                System.out.println("Shutdown Hook is running !");
+            }
+        });
     }
 }

@@ -1,5 +1,9 @@
 package UI;
 
+import Controller.ServiceController;
+import Entities.Farmer;
+import UseCases.ProfileManager;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +37,16 @@ public class requestPage extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String product = ProductNameInput.getText();
+                String quantity = quantityInput.getText();
+                String price = priceInput.getText();
+
                 if (welcomePage.flag){
+                    try {
+                        ServiceController.createRequest((Farmer) ProfileManager.currentUser, product, quantity, price);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                     JFrame profile = new farmerPage();
                     setVisible(false);
                     profile.setVisible(true);
@@ -48,21 +61,18 @@ public class requestPage extends JFrame{
         quantityInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double quantity = Double.parseDouble(quantityInput.getText());
 
             }
         });
         ProductNameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double product = Double.parseDouble(ProductNameInput.getText());
 
             }
         });
         priceInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = Double.parseDouble(priceInput.getText());
             }
         });
     }

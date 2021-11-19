@@ -1,8 +1,16 @@
 package UI;
 
+import Entities.Farmer;
+import Entities.Request;
+import UseCases.ProfileManager;
+
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class farmerPage extends JFrame{
     public JPanel mainPanel;
@@ -20,7 +28,7 @@ public class farmerPage extends JFrame{
     private JLabel existingText;
     private JPanel existingTextPanel;
     private JPanel existingRequestPanel;
-    private JList requestList;
+    private JList<String> existingList;
     private JButton acceptButton;
     private JButton declineButton;
     private JButton counterButton;
@@ -28,7 +36,8 @@ public class farmerPage extends JFrame{
     private JPanel historyTextPanel;
     private JLabel historyText;
     private JPanel historyListPanel;
-    private JList historyList;
+    private JList<String> historyList;
+
     public farmerPage(){
         setTitle("farmerPage");
         setContentPane(mainPanel);
@@ -59,24 +68,56 @@ public class farmerPage extends JFrame{
                 requestPage.setVisible(true);
             }
         });
-        counterButton.addActionListener(new ActionListener() {
+
+        HashMap<String, Request> requestMap = new HashMap<>();
+        int i = 1;
+        Entities.Farmer farmer = (Farmer) ProfileManager.currentUser;
+        ArrayList<Request> requests = farmer.current_requests;
+        String [] data = new String[requests.size()];
+
+        for (Request request : requests) {
+            requestMap.put(String.valueOf(i), request);
+            String product_name = request.getProduct_name();
+            data[i-1] =  i + " " + product_name;
+            i += 1;
+        }
+
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        for(String item: data){
+            listModel.addElement(item);
+        }
+
+        String [] data2 = new String[farmer.getOffer_history().size()];
+
+        for (Request pastTransaction : farmer.getOffer_history()) {
+            String product_name = pastTransaction.getProduct_name();
+            data2[i-1] =  i + " " + product_name;
+            i += 1;
+        }
+
+        DefaultListModel<String> listModel2 = new DefaultListModel<String>();
+        for(String item: data2){
+            listModel.addElement(item);
+        }
+
+        existingList.setModel(listModel);
+        historyList.setModel(listModel2);
+
+        existingList.addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                counterOfferPage counterOfferPage = new counterOfferPage();
-                counterOfferPage.setVisible(true);
-            }
-        });
-        acceptButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/11
-            }
-        });
-        declineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/11
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String number = existingList.getSelectedValue().toString();
+                    String split[] = number.split(" ");
+                    String index_number = split[0];
+                    Request request = requestMap.get(index_number+"");
+
+                    setVisible(false);
+
+                    detailsPage detailspage = new detailsPage(request);
+
+                    detailspage.setVisible(true);
+                }
             }
         });
     }

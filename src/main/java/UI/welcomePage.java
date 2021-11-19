@@ -2,7 +2,6 @@ package UI;
 
 import Controller.ServiceController;
 import Entities.Farmer;
-import Entities.User;
 import UseCases.ProfileManager;
 
 import javax.swing.*;
@@ -10,6 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class welcomePage extends JFrame{
     private JPanel mainPanel;
@@ -76,14 +76,16 @@ public class welcomePage extends JFrame{
                 else {
 
                     for (Entities.Farmer farmer : ProfileManager.farmerList) {
-                        if (farmer.getUser_name() == username) {
+                        if (farmer.getUser_name().equals(username)) {
                             ProfileManager.currentUser = farmer;
+                            flag = true;
                         }
                     }
 
                     for (Entities.Distributor distributor : ProfileManager.distributorList) {
-                        if (distributor.getUser_name() == username) {
+                        if (distributor.getUser_name().equals(username)) {
                             ProfileManager.currentUser = distributor;
+                            flag = false;
                         }
                     }
 
@@ -220,7 +222,26 @@ public class welcomePage extends JFrame{
     }
 
     public static void main(String[] args){
+        try {
+            ServiceController.read();
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+
         welcomePage welcomePage = new welcomePage();
         welcomePage.setVisible(true);
+
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            public void run()
+            {
+                try {
+                    ServiceController.write();
+                } catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+                System.out.println("Shutdown Hook is running !");
+            }
+        });
     }
 }

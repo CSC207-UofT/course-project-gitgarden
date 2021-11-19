@@ -1,16 +1,35 @@
-# CURRENT - Project Phase 1
+# Current - Project Phase 2
 
-- [ ] Task 1 - User Interface (java gui) - [60%finished], working on code and connection with back end
+UI TEAM - @Melaney, @Patric, @Jagat
 
-- [ ] Task 2 - Data Persistency [90% complete], require implementation with rest of the code
+- [ ] Task 1 - Merge use case to main @Onyx, @UI TEAM [DDL: Nov. 19, Fri]
+- [ ] Task 2 - Intergrating UI with phase 2 @UI TEAM [DDL: Nov. 22, Mon]
+- [ ] Task 3 - `DataBase` class @Divit, @Mark [DDL: Nov. 27, Sat]
+- [ ] Task 4 - Test Cases @Andy [DDL: Nov. 27, Sat]
+- [ ] Task 5 - Report functionality by farmer @Onyx + @UI TEAM [DDL: Nov. 27, Sat]
+  - Report speed
 
-- [ ] Task 3 - Preferences and RankingManager [90% complete], requires only integration with rest of code and final testing
+--- 
 
-- [x] Task 4 - Request [100% complete], resolve conflict with github
+Optional: 
 
-- [ ] Task 5 - Feedback Refactoring [50% complete], in process along with document
+- [ ] Task 6 - Blocking users @UI TEAM +  [DDL: Dec 3, Fri]
+- [ ] Task 7 - Memento @ [DDL: Dec 3, Fri]
+- [ ] Task 8 - User Ratings @UI TEAM +  [DDL: ]
 
-- [ ] Task 6 - Design Document [0% complete], in progress, each person is working on their part
+# DONE - Project Phase 1
+
+- [x] Task 1 - User Interface (java gui) - [100% complete]
+
+- [x] Task 2 - Data Persistency [100% complete]
+
+- [x] Task 3 - Preferences and RankingManager [100% complete]
+
+- [x] Task 4 - Request [100% complete]
+
+- [x] Task 5 - Feedback Refactoring [100% complete]
+
+- [x] Task 6 - Design Document [100% complete]
 
 
 

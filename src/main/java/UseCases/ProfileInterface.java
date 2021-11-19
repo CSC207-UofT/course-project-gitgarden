@@ -1,22 +1,23 @@
 package UseCases;
 
-import Entities.User;
+import Entities.*;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public interface ProfileInterface {
-    static void createFarmer(String name, String address){
+    void createFarmer(String name, String address);
 
-    }
+    void createDistributor(String name, String address);
 
-    static void createDistributor(String name, String address, HashMap<String, Double> prodMap){
+    void modifyUser(IUser user, String newName, String address);
 
-    }
+    void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4);
 
-    static void modifyUser(User user, String name, String address, String summary){
+    void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4);
 
-    }
+    ArrayList<String> getAllNames();
 
+    ArrayList<IFarmer> getFarmerList();
 
-
+    ArrayList<IDistributor> getDistributorList();
 }

@@ -1,52 +1,85 @@
 package UseCases;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.User;
+import Entities.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ProfileManager implements ProfileInterface{
-    public static ArrayList<Farmer> farmerList = new ArrayList<>();
-    public static ArrayList<Distributor> distributorList = new ArrayList<>();
-    public static User currentUser;
+    private static final ArrayList<IFarmer> farmerList = new ArrayList<>();
+    private static final ArrayList<IDistributor> distributorList = new ArrayList<>();
 
-    public static void createUser(String name, String address, double slider1, double slider2, double slider3,
-                                  double slider4, boolean flag){
-        if(flag){
-            Farmer farmer = new Farmer(name, address);
-            modifyPreference(farmer, slider1, slider2, slider3, slider4);
-            farmerList.add(farmer);
-            currentUser = farmerList.get(farmerList.indexOf(farmer));
-        }
-        else{
-            Distributor dist = new Distributor(name, address);
-            modifyPreference(dist, slider1, slider2, slider3, slider4);
-            distributorList.add(dist);
-            currentUser = distributorList.get(distributorList.indexOf(dist));
-        }
+    @Override
+    public void createFarmer(String name, String address){
+        IFarmer farmer = new Farmer(name, address);
+        ProfileManager.farmerList.add(farmer);
     }
 
-    public static void modifyPreference(User user, double slider1, double slider2, double slider3, double slider4){
-        if (user instanceof Farmer){
-            ((Farmer)user).setPrefPrice(slider1);
-            ((Farmer)user).setPrefExposure(slider2);
-            ((Farmer)user).setPrefSpeed(slider3);
-            ((Farmer)user).setPrefCarbon(slider4);
-        }
-        else{
-            // slider1 is not used
-            ((Distributor)user).setExposure(slider2);
-            ((Distributor)user).setSpeed(slider3);
-            ((Distributor)user).setCarbon(slider4);
-        }
+    @Override
+    public void createDistributor(String name, String address){
+        IDistributor dist = new Distributor(name, address);
+        ProfileManager.distributorList.add(dist);
     }
 
-    public static void modifyUser(User user, String name, String address, String summary){
-        user.setUser_name(name);
-        user.setUser_address(address);
-        user.setSummary(summary);
+    @Override
+    public void modifyUser(IUser user, String newName, String address){
+        user.setUserName(newName);
+        user.setUserAddress(address);
+    }
+
+    @Override
+    public void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4){
+        farmer.setPrefPrice(slider1);
+        farmer.setPrefExposure(slider2);
+        farmer.setPrefSpeed(slider3);
+        farmer.setPrefCarbon(slider4);
+    }
+
+    @Override
+    public void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4){
+        dist.setExposure(slider2);
+        dist.setSpeed(slider3);
+        dist.setCarbon(slider4);
+    }
+    @Override
+    public ArrayList<String> getAllNames(){
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<IUser> userList = new ArrayList<>(ProfileManager.farmerList);
+        userList.addAll(ProfileManager.distributorList);
+        for (IUser user : userList) {
+            names.add(user.getUserName());
+        }
+        return names;
+    }
+
+// Old persistence code
+//    public static void loadFarmer(String name, String address, double slider1, double slider2, double slider3,
+//                                  double slider4, boolean flag, ArrayList<Request> current_requests,
+//                                  ArrayList<Request> offer_history){
+//
+//        Farmer farmer = new Farmer(name, address, current_requests, offer_history);
+//        modifyPreference(farmer, slider1, slider2, slider3, slider4);
+//        farmerList.add(farmer);
+//        currentUser = farmerList.get(farmerList.indexOf(farmer));
+//    }
+//
+//    public static void loadDistributor(String name, String address, double slider1, double slider2, double slider3,
+//                                       double slider4, boolean flag, ArrayList<Request> current_requests,
+//                                       ArrayList<Offer> offer_history){
+//
+//        Distributor distributor = new Distributor(name, address, current_requests, offer_history);
+//        modifyPreference(distributor, slider1, slider2, slider3, slider4);
+//        distributorList.add(distributor);
+//        currentUser = distributorList.get(distributorList.indexOf(distributor));
+//    }
+
+    @Override
+    public ArrayList<IFarmer> getFarmerList(){
+        return farmerList;
+    }
+
+    @Override
+    public ArrayList<IDistributor> getDistributorList(){
+        return distributorList;
     }
 
 }

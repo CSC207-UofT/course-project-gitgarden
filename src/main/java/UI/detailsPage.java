@@ -66,6 +66,12 @@ public class detailsPage extends JFrame{
 
         DefaultListModel<String> listModel= new DefaultListModel<String>();
 
+        for (Farmer farmer : ProfileManager.farmerList) {
+            if (farmer.getUser_name().equals(request.farmer_name)){
+                request.farmer = farmer;
+            }
+        }
+
         listModel.addElement("Request ID: " + request.getRequest_id());
         listModel.addElement("Product name: " + request.getProduct_name());
         listModel.addElement("Farmer name: " + request.getFarmer().getUser_name());

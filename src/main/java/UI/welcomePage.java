@@ -1,11 +1,11 @@
 package UI;
 
 import Controller.ControllerInterface;
+import Controller.DataPresenter;
+import Controller.IFetch;
 import Controller.ServiceController;
 import Entities.Farmer;
-import Entities.IFarmer;
 import Entities.IUser;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -57,11 +57,10 @@ public class welcomePage extends JFrame{
     private JSlider slider4;
     private JLabel userTest;
     public static boolean flag;
-    public static IUser currentUser = null;
     // TODO: 2021/11/18 check if instantiating entity level interface is allowed
 
     public ControllerInterface sc = new ServiceController();
-    // TODO: 2021/11/10 set size
+    public IFetch presenter = new DataPresenter();
     public welcomePage() {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -80,44 +79,25 @@ public class welcomePage extends JFrame{
                 }
 
                 else {
-                    // TODO: 2021/11/18 fetch farmer list.
-                    for (IUser farmer : sc.fetch()) {
-                        if (farmer.getUserName().equals(username)) {
-                            // TODO: 2021/11/18 find the farmer, and assign it. Need instance of current user too.
-                            // PofileManager.currentUser = farmer;
-                            // TODO: 2021/11/18 get this farmer
-                            currentUser = sc.fetch();
-                            flag = true;
-                        }
-                    }
-                    // TODO: 2021/11/18 fetch distributor list
-                    for (IUser distributor : sc.fetch()) {
-                        if (distributor.getUserName().equals(username)) {
-                            // TODO: 2021/11/18 find the distributor, assign it. Also need the instance.
-                            // ProfileManager.currentUser = distributor;
-                            currentUser = sc.fetch();
-                            flag = false;
-                        }
-                    }
-
-                    if (currentUser == null) {
-                        JOptionPane.showMessageDialog(null,"Please enter a valid User Name or " +
-                                "Create a new Profile");
-                        newUserName.requestFocusInWindow();
-                    }
-
-                    else if (currentUser instanceof Farmer) {
+                    if (presenter.fetchUserName().contains(username)){
+                        // TODO: 2021/11/19 pass down this name 
+                        flag = true;
                         farmerPage farmerPage = new farmerPage();
                         setVisible(false);
                         farmerPage.setVisible(true);
                     }
-
-                    else {
+                    else if (presenter.fetchAllDistNames().contains(username)){
+                        // TODO: 2021/11/19 pass down this name 
+                        flag = false;
                         distributorPage distributorPage = new distributorPage();
                         setVisible(false);
                         distributorPage.setVisible(true);
                     }
-
+                    else {
+                        JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
+                                "Create a new Profile");
+                        newUserName.requestFocusInWindow();
+                    }
                 }
             }
         });
@@ -134,12 +114,12 @@ public class welcomePage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter your User Name.");
                     newUserName.requestFocusInWindow();
                 }
-
                 else {
                     try {
-                        // TODO: 2021/11/18 change so we can edit farmer, right now, no user instance to use
+                        // TODO: 2021/11/19 are we passing down name/id?
                         sc.createProfileCheck(name, address, flag);
-                        sc.modifyFarmerCheck(sc.fetch(),slider1_value,slider2_value,slider3_value,slider4_value);
+                        sc.modifyFarmerCheck(presenter.fetchUserName(),slider1_value,slider2_value,slider3_value,
+                                slider4_value);
                     }
                     catch (Exception ex) {
                         ex.printStackTrace();

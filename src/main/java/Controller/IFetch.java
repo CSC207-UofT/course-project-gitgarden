@@ -7,6 +7,9 @@ public interface IFetch {
 
     String fetchUserID();
 
+    // TODO: 2021/11/19 I think this one would be tricky because we have to know who the current user is, so work in pm?
+    String fetchUserName();
+
     ArrayList<String> fetchAllFarmerNames();
 
     ArrayList<String> fetchAllDistNames();

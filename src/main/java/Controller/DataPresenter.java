@@ -2,7 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
-public class DataPresenter {
+public class DataPresenter implements IFetch{
     public String fetchUserAddress(){
         return "no implementation yet";
     }

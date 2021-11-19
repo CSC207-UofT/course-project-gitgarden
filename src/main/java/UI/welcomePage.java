@@ -1,7 +1,10 @@
 package UI;
 
+import Controller.ControllerInterface;
 import Controller.ServiceController;
 import Entities.Farmer;
+import Entities.IFarmer;
+import Entities.IUser;
 import UseCases.ProfileManager;
 
 import javax.swing.*;
@@ -54,7 +57,10 @@ public class welcomePage extends JFrame{
     private JSlider slider4;
     private JLabel userTest;
     public static boolean flag;
+    public static IUser currentUser = null;
+    // TODO: 2021/11/18 check if instantiating entity level interface is allowed
 
+    public ControllerInterface sc = new ServiceController();
     // TODO: 2021/11/10 set size
     public welcomePage() {
         setContentPane(mainPanel);
@@ -74,28 +80,33 @@ public class welcomePage extends JFrame{
                 }
 
                 else {
-
-                    for (Entities.Farmer farmer : ProfileManager.farmerList) {
-                        if (farmer.getUser_name().equals(username)) {
-                            ProfileManager.currentUser = farmer;
+                    // TODO: 2021/11/18 fetch farmer list.
+                    for (IUser farmer : sc.fetch()) {
+                        if (farmer.getUserName().equals(username)) {
+                            // TODO: 2021/11/18 find the farmer, and assign it. Need instance of current user too.
+                            // PofileManager.currentUser = farmer;
+                            // TODO: 2021/11/18 get this farmer
+                            currentUser = sc.fetch();
                             flag = true;
                         }
                     }
-
-                    for (Entities.Distributor distributor : ProfileManager.distributorList) {
-                        if (distributor.getUser_name().equals(username)) {
-                            ProfileManager.currentUser = distributor;
+                    // TODO: 2021/11/18 fetch distributor list
+                    for (IUser distributor : sc.fetch()) {
+                        if (distributor.getUserName().equals(username)) {
+                            // TODO: 2021/11/18 find the distributor, assign it. Also need the instance.
+                            // ProfileManager.currentUser = distributor;
+                            currentUser = sc.fetch();
                             flag = false;
                         }
                     }
 
-                    if (ProfileManager.currentUser == null) {
+                    if (currentUser == null) {
                         JOptionPane.showMessageDialog(null,"Please enter a valid User Name or " +
                                 "Create a new Profile");
                         newUserName.requestFocusInWindow();
                     }
 
-                    else if (ProfileManager.currentUser instanceof Farmer) {
+                    else if (currentUser instanceof Farmer) {
                         farmerPage farmerPage = new farmerPage();
                         setVisible(false);
                         farmerPage.setVisible(true);
@@ -126,9 +137,9 @@ public class welcomePage extends JFrame{
 
                 else {
                     try {
-                        ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
-                                slider4_value, flag);
-
+                        // TODO: 2021/11/18 change so we can edit farmer, right now, no user instance to use
+                        sc.createProfileCheck(name, address, flag);
+                        sc.modifyFarmerCheck(sc.fetch(),slider1_value,slider2_value,slider3_value,slider4_value);
                     }
                     catch (Exception ex) {
                         ex.printStackTrace();
@@ -149,11 +160,10 @@ public class welcomePage extends JFrame{
                 }
             }
         });
+        // TODO: 2021/11/18 test if we need them or not, if not delete all listeners
         nameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/10 Sign this person in.
-                // TODO: 2021/11/11 change flag to true if farmer, false if distributor
             }
         });
 
@@ -180,12 +190,6 @@ public class welcomePage extends JFrame{
                 flag = false;
             }
         });
-        if (flag){
-            // TODO: 2021/11/11 create farmer
-        }
-        else{
-            // TODO: 2021/11/11 create distributor
-        }
         slider1.setPaintTicks(true);
         slider1.setMinorTickSpacing(10);
         slider2.setPaintTicks(true);
@@ -223,6 +227,7 @@ public class welcomePage extends JFrame{
 
     public static void main(String[] args){
         try {
+            // TODO: 2021/11/18 data persistency team's method, double check names
             ServiceController.read();
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -236,6 +241,7 @@ public class welcomePage extends JFrame{
             public void run()
             {
                 try {
+                    // TODO: 2021/11/18 data persistency team's method, double check names.
                     ServiceController.write();
                 } catch (FileNotFoundException e){
                     e.printStackTrace();

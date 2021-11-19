@@ -29,14 +29,14 @@ public class RankingManagerTest {
         allDist.add(e);
         allDist.add(f);
         allDist.add(g);
-        Request offer = new Request((User) a, "Orange", 50, 3.00);
+        Request offer = new Request(a, "Orange", 50, 3.00, null);
         for (int i = 0; i < allDist.size(); i++){
             allDist.get(i).addOffer(offer);
             allDist.get(i).setExposure(1 + abs(i - 5));
             allDist.get(i).setSpeed(30 - 2 * i);
             allDist.get(i).setCarbon(5 + 10 * i);
         }
-        Farmer farmer = new Farmer("Pooria", "H");
+        IFarmer farmer = new Farmer("Pooria", "H");
         farmer.setPrefPrice(0);
         farmer.setPrefExposure(0);
         farmer.setPrefSpeed(0);

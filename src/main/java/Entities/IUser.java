@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public interface IUser {
 
-    void addRequest(Request request);
+    void addRequest(IRequest request);
 
-    void removeRequest(Request request);
+    void removeRequest(IRequest request);
 
-    ArrayList<Request> getCurrentRequests();
+    ArrayList<IRequest> getCurrentRequests();
 
-    void addOffer(Request offer);
+    void addOffer(IRequest offer);
 
-    void removeOffer(Request offer);
+    void removeOffer(IRequest offer);
 
-    ArrayList<Request> getOfferHistory();
+    ArrayList<IRequest> getOfferHistory();
 
     void setUserName(String name);
 

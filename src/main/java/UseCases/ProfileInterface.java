@@ -17,6 +17,8 @@ public interface ProfileInterface {
 
     ArrayList<String> getAllNames();
 
+    IUser getUserFromName(String name);
+
     ArrayList<IFarmer> getFarmerList();
 
     ArrayList<IDistributor> getDistributorList();

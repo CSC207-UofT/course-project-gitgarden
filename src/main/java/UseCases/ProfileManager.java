@@ -5,8 +5,8 @@ import Entities.*;
 import java.util.ArrayList;
 
 public class ProfileManager implements ProfileInterface{
-    private static final ArrayList<IFarmer> farmerList = new ArrayList<>();
-    private static final ArrayList<IDistributor> distributorList = new ArrayList<>();
+    public static ArrayList<IFarmer> farmerList = new ArrayList<>();
+    public static ArrayList<IDistributor> distributorList = new ArrayList<>();
 
     @Override
     public void createFarmer(String name, String address){
@@ -49,6 +49,18 @@ public class ProfileManager implements ProfileInterface{
             names.add(user.getUserName());
         }
         return names;
+    }
+
+    @Override
+    public IUser getUserFromName(String name){
+        ArrayList<IUser> userList = new ArrayList<>(ProfileManager.farmerList);
+        userList.addAll(ProfileManager.distributorList);
+        for (IUser user : userList) {
+            if (user.getUserName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
     }
 
 // Old persistence code

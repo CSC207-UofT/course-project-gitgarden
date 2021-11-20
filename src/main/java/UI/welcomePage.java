@@ -150,6 +150,7 @@ public class welcomePage extends JFrame{
                             setContentPane(new farmerPage().mainPanel);
                         }
                         else {
+                            // TODO: 2021/11/20 do not allow dis to modify price pref
                             currUserId = sc.createProfileCheck(name, address, flag);
                             sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
                             distributorPage distributorPage = new distributorPage();

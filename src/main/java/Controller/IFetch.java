@@ -17,13 +17,8 @@ public interface IFetch {
 
     ArrayList<String> fetchCurrentUserRequests(String id);
 
-    String fetchRequestUserName(String requestId);
-
-    String fetchRequestProduct(String requestId);
-
-    String fetchRequestQuantity(String requestId);
-
-    String fetchRequestPrice(String requestId);
+    // TODO: 2021/11/20 return [name, quantity, price, name],I think array is easier to work with
+    String[] fetchRequestInformation(String requestId);
 
     ArrayList<String> fetchCounteroffers(String requestId);
 

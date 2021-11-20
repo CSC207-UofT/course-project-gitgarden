@@ -12,24 +12,25 @@ public interface ControllerInterface {
     // TODO: 2021/11/20  return ID
     String createProfileCheck(String name, String address, boolean flag);
 
-    void modifyUserCheck(IUser user, String newName, String address);
+    void modifyUserCheck(String Userid, String newName, String address);
 
-    void modifyFarmerCheck(IFarmer farmer, double slider1, double slider2, double slider3, double slider4);
+    void modifyFarmerCheck(String FarmerId, double slider1, double slider2, double slider3, double slider4);
 
-    void modifyDistributorCheck(IDistributor dist, double slider2, double slider3, double slider4);
+    void modifyDistributorCheck(String distId, double slider2, double slider3, double slider4);
 
-    void createRequestCheck(IUser user, String product, String quantity, String price);
+    void createRequestCheck(String userId, String product, String quantity, String price);
 
-    void createCounterOfferCheck(IUser user, IRequest request, String quantity, String price);
+    void createCounterOfferCheck(String userId, String requestId, String quantity, String price);
 
-    void acceptRequestCheck(IRequest request);
+    void acceptRequestCheck(String requestId);
 
-    void declineRequestCheck(IRequest request);
+    void declineRequestCheck(String requestId);
 
-    void trashRequestCheck(IRequest request);
+    void trashRequestCheck(String requestId);
 
     Object fetch(Object obj);
 
+    // TODO: 2021/11/20 change this parameter, this still has instances of Iuser
     ArrayList<IDistributor> rank(ArrayList<IDistributor> distributors, IFarmer farmer, String product);
 
 }

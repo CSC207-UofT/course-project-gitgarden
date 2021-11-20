@@ -56,9 +56,8 @@ public class welcomePage extends JFrame{
     private JSlider slider3;
     private JSlider slider4;
     private JLabel userTest;
-    public static boolean flag;
-    // TODO: 2021/11/18 check if instantiating entity level interface is allowed
-
+    public static Boolean flag;
+    public static String currUserId = "";
     public ControllerInterface sc = new ServiceController();
     public IFetch presenter = new DataPresenter();
     public welcomePage() {
@@ -79,26 +78,39 @@ public class welcomePage extends JFrame{
                 }
 
                 else {
-                    if (presenter.fetchUserName().contains(username)){
-                        // TODO: 2021/11/19 pass down this name 
+                    if (presenter.fetchAllFarmerNames().contains(username)){
+                        currUserId = presenter.fetchUserId(username);
                         flag = true;
                         farmerPage farmerPage = new farmerPage();
                         setVisible(false);
                         farmerPage.setVisible(true);
                     }
                     else if (presenter.fetchAllDistNames().contains(username)){
-                        // TODO: 2021/11/19 pass down this name 
+                        currUserId = presenter.fetchUserId(username);
                         flag = false;
                         distributorPage distributorPage = new distributorPage();
                         setVisible(false);
                         distributorPage.setVisible(true);
                     }
                     else {
+                        // TODO: 2021/11/20 show different dialogs based on the erorr message
                         JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
                                 "Create a new Profile");
                         newUserName.requestFocusInWindow();
                     }
                 }
+            }
+        });
+        farmerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flag = true;
+            }
+        });
+        distributorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flag = false;
             }
         });
         signupButton.addActionListener(new ActionListener() {
@@ -115,28 +127,38 @@ public class welcomePage extends JFrame{
                     newUserName.requestFocusInWindow();
                 }
                 else {
-                    try {
-                        // TODO: 2021/11/19 are we passing down name/id?
-                        sc.createProfileCheck(name, address, flag);
-                        sc.modifyFarmerCheck(presenter.fetchUserName(),slider1_value,slider2_value,slider3_value,
-                                slider4_value);
+                    // TODO: 2021/11/20 what is the try and catch
+//                    try {
+//                        currUserId = sc.createProfileCheck(name, address, flag);
+//                        sc.modifyFarmerCheck(currUserId,slider1_value,slider2_value,slider3_value,
+//                                slider4_value);
+//                    }
+//                    catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+                    if (flag == null) {
+                        JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
+                        newUserName.requestFocusInWindow();
                     }
-                    catch (Exception ex) {
-                        ex.printStackTrace();
+                    else{
+                        if (flag) {
+                            currUserId = sc.createProfileCheck(name,address, flag);
+                            sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
+                            farmerPage farmerPage = new farmerPage();
+                            setVisible(false);
+                            farmerPage.setVisible(true);
+                            setContentPane(new farmerPage().mainPanel);
+                        }
+                        else {
+                            currUserId = sc.createProfileCheck(name, address, flag);
+                            sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
+                            distributorPage distributorPage = new distributorPage();
+                            setVisible(false);
+                            distributorPage.setVisible(true);
+                            setContentPane(new distributorPage().mainPanel);
+                        }
                     }
 
-                    if (flag) {
-                        farmerPage farmerPage = new farmerPage();
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                        setContentPane(new farmerPage().mainPanel);
-                    }
-                    else {
-                        distributorPage distributorPage = new distributorPage();
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                        setContentPane(new distributorPage().mainPanel);
-                    }
                 }
             }
         });
@@ -158,18 +180,7 @@ public class welcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
             }
         });
-        farmerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                flag = true;
-            }
-        });
-        distributorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                flag = false;
-            }
-        });
+
         slider1.setPaintTicks(true);
         slider1.setMinorTickSpacing(10);
         slider2.setPaintTicks(true);

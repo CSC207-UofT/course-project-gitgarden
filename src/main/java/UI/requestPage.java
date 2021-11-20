@@ -1,5 +1,6 @@
 package UI;
 
+import Controller.ControllerInterface;
 import Controller.ServiceController;
 import Entities.Farmer;
 import UseCases.ProfileManager;
@@ -29,6 +30,7 @@ public class requestPage extends JFrame{
     private JTextField quantityInput;
     private JTextField priceInput;
     private JButton createButton;
+    private final ControllerInterface sc = new ServiceController();
     public requestPage(){
         setTitle("requestPage");
         setContentPane(mainPanel);
@@ -40,13 +42,17 @@ public class requestPage extends JFrame{
                 String product = ProductNameInput.getText();
                 String quantity = quantityInput.getText();
                 String price = priceInput.getText();
-
+                if (product.equals("")|| quantity.equals("")|| price.equals("")) {
+                    JOptionPane.showMessageDialog(null,"Please enter all information");
+                }
                 if (welcomePage.flag){
-                    try {
-                        ServiceController.createRequest((Farmer) ProfileManager.currentUser, product, quantity, price);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+                    // TODO: 2021/11/20 what is this try catch block
+//                    try {
+//                        sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+                    sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
                     JFrame profile = new farmerPage();
                     setVisible(false);
                     profile.setVisible(true);
@@ -58,6 +64,7 @@ public class requestPage extends JFrame{
                 }
             }
         });
+        // TODO: 2021/11/20 check if duplicate
         quantityInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

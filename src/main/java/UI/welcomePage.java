@@ -58,8 +58,8 @@ public class welcomePage extends JFrame{
     private JLabel userTest;
     public static Boolean flag;
     public static String currUserId = "";
-    public ControllerInterface sc = new ServiceController();
-    public IFetch presenter = new DataPresenter();
+    private final ControllerInterface sc = new ServiceController();
+    private final IFetch presenter = new DataPresenter();
     public welcomePage() {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -122,9 +122,8 @@ public class welcomePage extends JFrame{
                 double slider3_value = slider3.getValue();
                 double slider4_value = slider4.getValue();
                 String name = newUserName.getText();
-                if (name.equals("") || name == null) {
+                if (name.equals("")) {
                     JOptionPane.showMessageDialog(null,"Please enter your User Name.");
-                    newUserName.requestFocusInWindow();
                 }
                 else {
                     // TODO: 2021/11/20 what is the try and catch
@@ -138,7 +137,6 @@ public class welcomePage extends JFrame{
 //                    }
                     if (flag == null) {
                         JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
-                        newUserName.requestFocusInWindow();
                     }
                     else{
                         if (flag) {
@@ -218,28 +216,28 @@ public class welcomePage extends JFrame{
     }
 
     public static void main(String[] args){
-        try {
-            // TODO: 2021/11/18 data persistency team's method, double check names
-            ServiceController.read();
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
+//        try {
+//            // TODO: 2021/11/18 data persistency team's method, double check names
+//            ServiceController.read();
+//        } catch (FileNotFoundException e){
+//            e.printStackTrace();
+//        }
 
         welcomePage welcomePage = new welcomePage();
         welcomePage.setVisible(true);
 
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-            public void run()
-            {
-                try {
-                    // TODO: 2021/11/18 data persistency team's method, double check names.
-                    ServiceController.write();
-                } catch (FileNotFoundException e){
-                    e.printStackTrace();
-                }
-                System.out.println("Shutdown Hook is running !");
-            }
-        });
+//        Runtime.getRuntime().addShutdownHook(new Thread()
+//        {
+//            public void run()
+//            {
+//                try {
+//                    // TODO: 2021/11/18 data persistency team's method, double check names.
+//                    ServiceController.write();
+//                } catch (FileNotFoundException e)
+//                    e.printStackTrace();
+//                }
+//                System.out.println("Shutdown Hook is running !");
+//            }
+//        });
     }
 }

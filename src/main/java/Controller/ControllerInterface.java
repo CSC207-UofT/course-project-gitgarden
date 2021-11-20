@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public interface ControllerInterface {
 
-    void createProfileCheck(String name, String address, boolean flag);
+    // TODO: 2021/11/20  return ID
+    String createProfileCheck(String name, String address, boolean flag);
 
     void modifyUserCheck(IUser user, String newName, String address);
 

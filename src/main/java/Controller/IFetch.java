@@ -3,28 +3,28 @@ package Controller;
 import java.util.ArrayList;
 
 public interface IFetch {
-    String fetchUserAddress();
-
-    String fetchUserID();
+    String fetchUserAddress(String id);
 
     // TODO: 2021/11/19 I think this one would be tricky because we have to know who the current user is, so work in pm?
-    String fetchUserName();
+    String fetchUserName(String id);
 
     ArrayList<String> fetchAllFarmerNames();
 
     ArrayList<String> fetchAllDistNames();
 
-    String fetchRequestUserName();
+    ArrayList<String> fetchCurrentUserRequests(String id);
 
-    String fetchRequestProduct();
+    String fetchRequestUserName(String requestId);
 
-    String fetchRequestQuantity();
+    String fetchRequestProduct(String requestId);
 
-    String fetchRequestPrice();
+    String fetchRequestQuantity(String requestId);
 
-    ArrayList<String> fetchCounteroffers();
+    String fetchRequestPrice(String requestId);
 
-    String fetchPreviousRequestID();
+    ArrayList<String> fetchCounteroffers(String requestId);
+
+    String fetchPreviousRequestID(String requestId);
 
 
 }

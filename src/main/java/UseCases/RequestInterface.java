@@ -1,7 +1,5 @@
 package UseCases;
 
-import Entities.IDistributor;
-import Entities.IFarmer;
 import Entities.IRequest;
 import Entities.IUser;
 
@@ -18,4 +16,15 @@ public interface RequestInterface {
 
     void trashRequest(IRequest request);
 
+    String nameFromID(String requestID, String userName);
+
+    String productFromID(String requestID, String userName);
+
+    String quantityFromID(String requestID, String userName);
+
+    String priceFromID(String requestID, String userName);
+
+    ArrayList<String> coFromID(String requestID, String userName);
+
+    String previousIDFromID(String requestID, String userName);
 }

@@ -7,7 +7,8 @@ import Entities.Request;
 import java.util.ArrayList;
 
 public class RequestManager implements RequestInterface{
-    private static final ArrayList<IRequest> allActiveRequests = new ArrayList<>();
+    public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
+    public static ArrayList<IRequest> allOffers = new ArrayList<>(); // May be removed if it turns out to be unneeded
 
     /**
      * Creates a request.
@@ -54,6 +55,7 @@ public class RequestManager implements RequestInterface{
         deleteCurrent(request);
         IRequest root = requestRoot(request);
         root.getUser().removeRequest(root);
+        allOffers.add(request);
     }
 
     /**
@@ -72,6 +74,52 @@ public class RequestManager implements RequestInterface{
     @Override
     public void trashRequest(IRequest request){
         allActiveRequests.remove(request);
+    }
+
+    @Override
+    public String nameFromID(String requestID, String userName) {
+        ProfileInterface pm = new ProfileManager();
+        IUser user = pm.getUserFromName(userName);
+        ArrayList<IRequest> allRequests = getAllRequests(user);
+        for (IRequest request: allRequests){
+            if (String.valueOf(request.getRequestId()).equals(requestID)){
+                return request.getUser().getUserName();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String productFromID(String requestID, String userName) {
+        ProfileInterface pm = new ProfileManager();
+        IUser user = pm.getUserFromName(userName);
+        ArrayList<IRequest> allRequests = getAllRequests(user);
+        for (IRequest request: allRequests){
+            if (String.valueOf(request.getRequestId()).equals(requestID)){
+                return request.getProdName();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String quantityFromID(String requestID, String userName) {
+        return null;
+    }
+
+    @Override
+    public String priceFromID(String requestID, String userName) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> coFromID(String requestID, String userName) {
+        return null;
+    }
+
+    @Override
+    public String previousIDFromID(String requestID, String userName) {
+        return null;
     }
 
     /**
@@ -100,6 +148,13 @@ public class RequestManager implements RequestInterface{
 
     public ArrayList<IRequest> getAllActiveRequests(){
         return allActiveRequests;
+    }
+
+    private ArrayList<IRequest> getAllRequests(IUser user){
+        ArrayList<IRequest> allRequests = new ArrayList<>();
+        allRequests.addAll(user.getCurrentRequests());
+        allRequests.addAll(user.getOfferHistory());
+        return allRequests;
     }
 
 

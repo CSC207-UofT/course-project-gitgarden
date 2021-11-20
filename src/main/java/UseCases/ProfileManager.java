@@ -40,16 +40,6 @@ public class ProfileManager implements ProfileInterface{
         dist.setSpeed(slider3);
         dist.setCarbon(slider4);
     }
-    @Override
-    public ArrayList<String> getAllNames(){
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<IUser> userList = new ArrayList<>(ProfileManager.farmerList);
-        userList.addAll(ProfileManager.distributorList);
-        for (IUser user : userList) {
-            names.add(user.getUserName());
-        }
-        return names;
-    }
 
     @Override
     public IUser getUserFromName(String name){
@@ -85,6 +75,24 @@ public class ProfileManager implements ProfileInterface{
 //    }
 
     @Override
+    public ArrayList<String> getAllFarmerNames(){
+        ArrayList<String> names = new ArrayList<>();
+        for (IUser user: farmerList){
+            names.add(user.getUserName());
+        }
+        return names;
+    }
+
+    @Override
+    public ArrayList<String> getAllDistNames(){
+        ArrayList<String> names = new ArrayList<>();
+        for (IUser user: farmerList){
+            names.add(user.getUserName());
+        }
+        return names;
+    }
+
+    @Override
     public ArrayList<IFarmer> getFarmerList(){
         return farmerList;
     }
@@ -92,6 +100,16 @@ public class ProfileManager implements ProfileInterface{
     @Override
     public ArrayList<IDistributor> getDistributorList(){
         return distributorList;
+    }
+
+    @Override
+    public String addressFromName(String name) {
+        return null;
+    }
+
+    @Override
+    public String IDFromName(String name) {
+        return null;
     }
 
 }

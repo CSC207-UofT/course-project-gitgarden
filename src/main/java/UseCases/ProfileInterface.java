@@ -5,6 +5,7 @@ import Entities.*;
 import java.util.ArrayList;
 
 public interface ProfileInterface {
+
     void createFarmer(String name, String address);
 
     void createDistributor(String name, String address);
@@ -15,11 +16,17 @@ public interface ProfileInterface {
 
     void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4);
 
-    ArrayList<String> getAllNames();
-
     IUser getUserFromName(String name);
+
+    ArrayList<String> getAllFarmerNames();
+
+    ArrayList<String> getAllDistNames();
 
     ArrayList<IFarmer> getFarmerList();
 
     ArrayList<IDistributor> getDistributorList();
+
+    String addressFromName(String name);
+
+    String IDFromName(String name);
 }

@@ -210,7 +210,10 @@ public class ServiceController implements ControllerInterface{
      */
     public boolean isUniqueName(String input){
         ProfileInterface pm = new ProfileManager();
-        for (String name: pm.getAllNames()){
+        ArrayList<String> names = new ArrayList<>();
+        names.addAll(pm.getAllFarmerNames());
+        names.addAll(pm.getAllDistNames());
+        for (String name: names){
             if (input.equals(name)){
                 return false;
             }

@@ -12,13 +12,13 @@ public interface ControllerInterface {
     // TODO: 2021/11/20  return ID
     String createProfileCheck(String name, String address, boolean flag);
 
-    boolean modifyUserCheck(String Userid, String newName, String address);
+    void modifyUserCheck(String Userid, String newName, String address);
 
-    boolean modifyFarmerCheck(String FarmerId, double slider1, double slider2, double slider3, double slider4);
+    void modifyFarmerCheck(String FarmerId, double slider1, double slider2, double slider3, double slider4);
 
-    boolean modifyDistributorCheck(String distId, double slider2, double slider3, double slider4);
+    void modifyDistributorCheck(String distId, double slider2, double slider3, double slider4);
 
-    boolean createRequestCheck(String userId, String product, String quantity, String price);
+    void createRequestCheck(String userId, String product, String quantity, String price);
 
     void createCounterOfferCheck(String userId, String requestId, String quantity, String price);
 

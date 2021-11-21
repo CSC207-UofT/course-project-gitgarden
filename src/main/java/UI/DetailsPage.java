@@ -1,10 +1,10 @@
 package UI;
 
+import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
 import Entities.Distributor;
-import Entities.Farmer;
 import Entities.Request;
 import UseCases.ProfileManager;
 
@@ -13,7 +13,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DetailsPage extends JFrame{
@@ -42,9 +41,9 @@ public class DetailsPage extends JFrame{
     private JPanel descriptionPanel;
     private JLabel descriptionText;
 
-    private ArrayList<Request> tempRequests;
-    private Request tempVariable;
+    private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();
+    private final ControllerInterface sc = new ServiceController();
 
     /**
     public void addDetails(Request request) {
@@ -82,34 +81,12 @@ public class DetailsPage extends JFrame{
         acceptRequest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-
-                if (WelcomePage.flag) {
-                    if (tempVariable == null) {
-                        JOptionPane.showMessageDialog(null,"Please Select Something.");
-                        acceptRequest.requestFocusInWindow();
-                    }
-
-                    Farmer farmer = (Farmer) ProfileManager.currentUser;
-
-                    for (Distributor distributor : ProfileManager.distributorList) {
-                        if (distributor.current_requests.contains(tempVariable)) {
-                            Distributor dist = distributor;
-                            ServiceController.farmerAcceptOffer(farmer, dist, tempVariable);
-                            break;
-                        }
-                    }
-
-                    JFrame farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
+                if (tempRequest == null) {
+                    JOptionPane.showMessageDialog(null,"Please Select Something.");
                 }
-
                 else{
-                    JOptionPane.showMessageDialog(null,"Sorry! You Cannot Accept Your Own Offer.");
-                    acceptRequest.requestFocusInWindow();
-
-                    JFrame distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
+                    sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
+                    // TODO: 2021/11/21 see if pass the check
                 }
             }
         });
@@ -117,31 +94,20 @@ public class DetailsPage extends JFrame{
         declineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-
-                if (WelcomePage.flag) {
-                    JOptionPane.showMessageDialog(null,"Declined.");
-                    acceptRequest.requestFocusInWindow();
-
-                    JFrame farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
+                if (tempRequest == null) {
+                    JOptionPane.showMessageDialog(null,"Please Select Something.");
                 }
-
                 else{
-                    JOptionPane.showMessageDialog(null,"Declined");
-                    acceptRequest.requestFocusInWindow();
-
-                    JFrame distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
+                    sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
+                    // TODO: 2021/11/21 see if pass the check
                 }
-
             }
         });
         counterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                CounterOfferPage counterOfferPage = new CounterOfferPage(tempVariable);
+                CounterOfferPage counterOfferPage = new CounterOfferPage(tempRequest);
                 counterOfferPage.setVisible(true);
             }
         });
@@ -159,35 +125,11 @@ public class DetailsPage extends JFrame{
                 }
             }
         });
-
-        HashMap<String, Request> requestMap = new HashMap<>();
         int i = 1;
-
-        if (WelcomePage.flag) {
-            System.out.println(tempVariable);
-            //Entities.Farmer farmer = (Farmer) ProfileManager.currentUser;
-            System.out.println(request);
-            tempRequests = request.counteroffer;
-            // tempRequest = request;
-        }
-
-        else {
-            Entities.Distributor distributor = (Distributor) ProfileManager.currentUser;
-            tempRequests = distributor.getCurrent_requests();
-        }
-
-        String [] data = new String[tempRequests.size()];
-
-        for (Request requests : tempRequests) {
-            requestMap.put(String.valueOf(i), requests);
-            String product_name = requests.getProduct_name();
-            data[i-1] =  i + " " + product_name;
-            i += 1;
-        }
-
-        DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for(String item: data){
-            listModel2.addElement(item);
+        DefaultListModel<String> listModel2 = new DefaultListModel<>();
+        for(String requestId: presenter.fetchCounteroffers(request)){
+            String product_name = presenter.fetchRequestInformation(requestId)[0];
+            listModel2.addElement(i+" "+product_name);
         }
 
         responseList.setModel(listModel2);
@@ -195,14 +137,9 @@ public class DetailsPage extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    String number = responseList.getSelectedValue().toString();
-                    String split[] = number.split(" ");
-                    String index_number = split[0];
-                    Request request = requestMap.get(index_number+"");
-
-                    tempVariable = request;
-
-                    setVisible(false);
+                    String selectedRequest = responseList.getSelectedValue().toString();
+                    int index = listModel.indexOf(selectedRequest);
+                    tempRequest = presenter.fetchCounteroffers(request).get(index);
                 }
             }
         });

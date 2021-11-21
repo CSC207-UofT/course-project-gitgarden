@@ -58,7 +58,7 @@ public class FarmerPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestListPage = new ExistingRequests();
+                JFrame requestListPage = new OthersExistingRequests();
                 requestListPage.setVisible(true);
             }
         });

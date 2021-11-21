@@ -22,7 +22,8 @@ public interface ControllerInterface {
 
     void createCounterOfferCheck(String userId, String requestId, String quantity, String price);
 
-    void acceptRequestCheck(String requestId);
+    // TODO: 2021/11/21 added userId
+    void acceptRequestCheck(String requestId, String userId);
 
     void declineRequestCheck(String requestId);
 

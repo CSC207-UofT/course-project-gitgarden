@@ -1,9 +1,7 @@
 package UI;
 
-import Entities.Distributor;
-import Entities.Offer;
-import Entities.Request;
-import UseCases.ProfileManager;
+import Controller.DataPresenter;
+import Controller.IFetch;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -11,7 +9,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DistributorPage extends JFrame{
     public JPanel mainPanel;
@@ -34,6 +31,7 @@ public class DistributorPage extends JFrame{
     private JList<String> historyList;
     private JButton viewButton;
     private JList<String> existingList;
+    private final IFetch presenter = new DataPresenter();
 
     public DistributorPage(){
         setTitle("distributorPage");
@@ -53,41 +51,25 @@ public class DistributorPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestListPage = new ExistingRequests();
+                JFrame requestListPage = new OthersExistingRequests();
                 requestListPage.setVisible(true);
             }
         });
-
-        HashMap<String, Request> requestMap = new HashMap<>();
         int i = 1;
-        Entities.Distributor distributor = (Distributor) ProfileManager.currentUser;
-
-        ArrayList<Request> request = distributor.getCurrent_requests();
-        String [] data = new String[request.size()];
-
-        for (Request requests : request) {
-            requestMap.put(String.valueOf(i), requests);
-            String product_name = requests.getProduct_name();
-            data[i-1] =  i + " " + product_name;
-            i += 1;
-        }
-
+        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        for(String item: data){
-            listModel.addElement(item);
-        }
 
-        String [] data2 = new String[distributor.getOffer_history().size()];
-
-        for (Offer pastTransaction : distributor.getOffer_history()) {
-            String product_name = pastTransaction.getProduct_name();
-            data2[i-1] =  i + " " + product_name;
+        for (String request : requestIdList) {
+            String product_name = presenter.fetchRequestInformation(request)[0];
+            listModel.addElement(i + " " + product_name);
             i += 1;
         }
 
+        i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for(String item: data2){
-            listModel.addElement(item);
+        for (String requestId : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
+            String product_name = presenter.fetchRequestInformation(requestId)[0];
+            listModel2.addElement(i + " " + product_name);
         }
 
         existingList.setModel(listModel);
@@ -98,17 +80,10 @@ public class DistributorPage extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    String number = existingList.getSelectedValue().toString();
-                    String split[] = number.split(" ");
-                    String index_number = split[0];
-                    Request request = requestMap.get(index_number+"");
-
-
-
+                    String request = existingList.getSelectedValue().toString();
+                    int index = listModel.indexOf(request);
                     setVisible(false);
-
-                    DetailsPage detailspage = new DetailsPage(request);
-
+                    DetailsPage detailspage = new DetailsPage(requestIdList.get(index));
                     detailspage.setVisible(true);
                 }
             }

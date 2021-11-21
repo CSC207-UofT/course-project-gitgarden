@@ -11,9 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class farmerPage extends JFrame{
+public class FarmerPage extends JFrame{
     public JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -41,7 +40,7 @@ public class farmerPage extends JFrame{
     private final IFetch presenter = new DataPresenter();
     private final ControllerInterface sc = new ServiceController();
 
-    public farmerPage(){
+    public FarmerPage(){
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +50,7 @@ public class farmerPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame modifyPage = new modifyPage();
+                JFrame modifyPage = new ModifyPage();
                 modifyPage.setVisible(true);
             }
         });
@@ -59,7 +58,7 @@ public class farmerPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestListPage = new existingRequests();
+                JFrame requestListPage = new ExistingRequests();
                 requestListPage.setVisible(true);
             }
         });
@@ -67,13 +66,13 @@ public class farmerPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestPage = new requestPage();
+                JFrame requestPage = new RequestPage();
                 requestPage.setVisible(true);
             }
         });
 
         int i = 1;
-        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(welcomePage.currUserId);
+        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
 
         for (String request : requestIdList) {
@@ -84,7 +83,7 @@ public class farmerPage extends JFrame{
 
         i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for (String requestId : presenter.fetchRequestHistory(welcomePage.currUserId)) {
+        for (String requestId : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
             String product_name = presenter.fetchRequestInformation(requestId)[0];
             listModel2.addElement(i + " " + product_name);
         }
@@ -99,7 +98,7 @@ public class farmerPage extends JFrame{
                     String request = existingList.getSelectedValue().toString();
                     int index = listModel.indexOf(request);
                     setVisible(false);
-                    detailsPage detailspage = new detailsPage(requestIdList.get(index));
+                    DetailsPage detailspage = new DetailsPage(requestIdList.get(index));
                     detailspage.setVisible(true);
                 }
             }

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class existingRequests extends JFrame {
+public class ExistingRequests extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -34,7 +34,7 @@ public class existingRequests extends JFrame {
 
     private Request tempVariable;
 
-    public existingRequests() {
+    public ExistingRequests() {
         setTitle("requestPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,10 +45,10 @@ public class existingRequests extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO: 2021/11/12 show message
                 setVisible(false);
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Accept A Request.");
                     acceptRequest.requestFocusInWindow();
-                    JFrame farmerPage = new farmerPage();
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
                 else {
@@ -61,7 +61,7 @@ public class existingRequests extends JFrame {
                             ":)");
                     acceptRequest.requestFocusInWindow();
 
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }
@@ -72,16 +72,16 @@ public class existingRequests extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO: 2021/11/12 show message
                 setVisible(false);
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Decline A Request.");
                     declineButton.requestFocusInWindow();
-                    JFrame farmerPage = new farmerPage();
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
                 else {
                     JOptionPane.showMessageDialog(null,"Declined.");
                     declineButton.requestFocusInWindow();
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }
@@ -91,12 +91,12 @@ public class existingRequests extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                if (welcomePage.flag) {
-                    JFrame farmerPage = new farmerPage();
+                if (WelcomePage.flag) {
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
                 else {
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }
@@ -106,14 +106,14 @@ public class existingRequests extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
                             "A Request.");
                     declineButton.requestFocusInWindow();
-                    JFrame farmerPage = new farmerPage();
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 } else {
-                    JFrame counterOfferPage = new counterOfferPage(tempVariable);
+                    JFrame counterOfferPage = new CounterOfferPage(tempVariable);
                     counterOfferPage.setVisible(true);
                 }
             }
@@ -127,7 +127,7 @@ public class existingRequests extends JFrame {
 
         for (Farmer farmer : ProfileManager.farmerList) {
             for (Request requests : farmer.getCurrent_requests()) {
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     if ((Farmer) user != farmer) {
                         request.add(requests);
                     }
@@ -166,7 +166,7 @@ public class existingRequests extends JFrame {
 
                     setVisible(false);
 
-                    JFrame detailsPage = new detailsPage(tempVariable);
+                    JFrame detailsPage = new DetailsPage(tempVariable);
                     detailsPage.setVisible(true);
                 }
             }

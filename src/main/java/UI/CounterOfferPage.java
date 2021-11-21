@@ -6,12 +6,10 @@ import java.awt.event.ActionListener;
 
 import Controller.ServiceController;
 import Entities.Distributor;
-import Entities.Farmer;
 import Entities.Request;
-import Entities.User;
 import UseCases.ProfileManager;
 
-public class counterOfferPage extends JFrame{
+public class CounterOfferPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
@@ -30,7 +28,7 @@ public class counterOfferPage extends JFrame{
     private JTextField quantityInput;
     private JButton createButton;
 
-    public counterOfferPage(Request request) {
+    public CounterOfferPage(Request request) {
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +38,7 @@ public class counterOfferPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                if(welcomePage.flag) {
+                if(WelcomePage.flag) {
                     /*
                     String price = priceInput.getText();
                     String quantity = quantityInput.getText();
@@ -55,7 +53,7 @@ public class counterOfferPage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer.");
                     createButton.requestFocusInWindow();
 
-                    farmerPage farmerPage = new farmerPage();
+                    FarmerPage farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
                 else{
@@ -69,7 +67,7 @@ public class counterOfferPage extends JFrame{
                         ex.printStackTrace();
                     }
 
-                    distributorPage distributorPage = new distributorPage();
+                    DistributorPage distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }

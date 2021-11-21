@@ -1,7 +1,6 @@
 package UI;
 
 import Entities.Distributor;
-import Entities.Farmer;
 import Entities.Offer;
 import Entities.Request;
 import UseCases.ProfileManager;
@@ -14,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class distributorPage extends JFrame{
+public class DistributorPage extends JFrame{
     public JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel titleTextPanel;
@@ -36,7 +35,7 @@ public class distributorPage extends JFrame{
     private JButton viewButton;
     private JList<String> existingList;
 
-    public distributorPage(){
+    public DistributorPage(){
         setTitle("distributorPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +45,7 @@ public class distributorPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame modifyPage = new modifyPage();
+                JFrame modifyPage = new ModifyPage();
                 modifyPage.setVisible(true);
             }
         });
@@ -54,7 +53,7 @@ public class distributorPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestListPage = new existingRequests();
+                JFrame requestListPage = new ExistingRequests();
                 requestListPage.setVisible(true);
             }
         });
@@ -108,7 +107,7 @@ public class distributorPage extends JFrame{
 
                     setVisible(false);
 
-                    detailsPage detailspage = new detailsPage(request);
+                    DetailsPage detailspage = new DetailsPage(request);
 
                     detailspage.setVisible(true);
                 }

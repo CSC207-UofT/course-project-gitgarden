@@ -1,5 +1,7 @@
 package UI;
 
+import Controller.DataPresenter;
+import Controller.IFetch;
 import Controller.ServiceController;
 import Entities.Distributor;
 import Entities.Farmer;
@@ -14,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class detailsPage extends JFrame{
+public class DetailsPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -22,12 +24,12 @@ public class detailsPage extends JFrame{
     private JPanel detailsTextPanel;
     private JLabel detailsText;
     private JPanel detailsListPanel;
-    private JList detailsList;
+    private JList<String> detailsList;
     private JPanel responsePanel;
     private JPanel responseTextPanel;
     private JLabel responseText;
     private JPanel responseListPanel;
-    private JList responseList;
+    private JList<String> responseList;
     private JPanel buttonPanel;
     private JPanel acceptButtonPanel;
     private JButton acceptRequest;
@@ -42,6 +44,7 @@ public class detailsPage extends JFrame{
 
     private ArrayList<Request> tempRequests;
     private Request tempVariable;
+    private final IFetch presenter = new DataPresenter();
 
     /**
     public void addDetails(Request request) {
@@ -58,26 +61,21 @@ public class detailsPage extends JFrame{
         detailsList.setModel(listModel);
     } */
 
-    public detailsPage(Request request){
+    public DetailsPage(String request){
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
         DefaultListModel<String> listModel= new DefaultListModel<String>();
+        String[] info = presenter.fetchRequestInformation(request);
 
-        for (Farmer farmer : ProfileManager.farmerList) {
-            if (farmer.getUser_name().equals(request.farmer_name)){
-                request.farmer = farmer;
-            }
-        }
-
-        listModel.addElement("Request ID: " + request.getRequest_id());
-        listModel.addElement("Product name: " + request.getProduct_name());
-        listModel.addElement("Farmer name: " + request.getFarmer().getUser_name());
-        listModel.addElement("Farmer address: " + request.getFarmer().getUser_address());
-        listModel.addElement("Product Quantity: " + request.getProduct_quantity());
-        listModel.addElement("Product Price: " + request.getProduct_price_per_unit());
+        listModel.addElement("Request ID: " + request);
+        listModel.addElement("Product name: " + info[0]);
+        listModel.addElement("Farmer name: " + info[3]);
+        listModel.addElement("Farmer address: " + presenter.fetchUserAddress(WelcomePage.currUserId));
+        listModel.addElement("Product Quantity: " + info[1]);
+        listModel.addElement("Product Price: " + info[2]);
 
         detailsList.setModel(listModel);
 
@@ -86,7 +84,7 @@ public class detailsPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
 
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     if (tempVariable == null) {
                         JOptionPane.showMessageDialog(null,"Please Select Something.");
                         acceptRequest.requestFocusInWindow();
@@ -102,7 +100,7 @@ public class detailsPage extends JFrame{
                         }
                     }
 
-                    JFrame farmerPage = new farmerPage();
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
 
@@ -110,7 +108,7 @@ public class detailsPage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Sorry! You Cannot Accept Your Own Offer.");
                     acceptRequest.requestFocusInWindow();
 
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }
@@ -121,11 +119,11 @@ public class detailsPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
 
-                if (welcomePage.flag) {
+                if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Declined.");
                     acceptRequest.requestFocusInWindow();
 
-                    JFrame farmerPage = new farmerPage();
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
 
@@ -133,7 +131,7 @@ public class detailsPage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Declined");
                     acceptRequest.requestFocusInWindow();
 
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
 
@@ -143,7 +141,7 @@ public class detailsPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                counterOfferPage counterOfferPage = new counterOfferPage(tempVariable);
+                CounterOfferPage counterOfferPage = new CounterOfferPage(tempVariable);
                 counterOfferPage.setVisible(true);
             }
         });
@@ -151,12 +149,12 @@ public class detailsPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                if(welcomePage.flag){
-                    JFrame farmerPage = new farmerPage();
+                if(WelcomePage.flag){
+                    JFrame farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
                 }
                 else{
-                    JFrame distributorPage = new distributorPage();
+                    JFrame distributorPage = new DistributorPage();
                     distributorPage.setVisible(true);
                 }
             }
@@ -165,7 +163,7 @@ public class detailsPage extends JFrame{
         HashMap<String, Request> requestMap = new HashMap<>();
         int i = 1;
 
-        if (welcomePage.flag) {
+        if (WelcomePage.flag) {
             System.out.println(tempVariable);
             //Entities.Farmer farmer = (Farmer) ProfileManager.currentUser;
             System.out.println(request);

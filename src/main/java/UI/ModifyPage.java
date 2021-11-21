@@ -2,7 +2,6 @@ package UI;
 
 import Controller.ControllerInterface;
 import Controller.ServiceController;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -10,7 +9,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class modifyPage extends JFrame{
+public class ModifyPage extends JFrame{
     private JPanel titlePanel;
     private JLabel titleText;
     private JPanel middlePanel;
@@ -40,7 +39,7 @@ public class modifyPage extends JFrame{
     private JSlider slider4;
     ControllerInterface sc = new ServiceController();
 
-    public modifyPage(){
+    public ModifyPage(){
         setTitle("modifyPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,19 +55,19 @@ public class modifyPage extends JFrame{
                 double slider3_value = slider3.getValue();
                 double slider4_value = slider4.getValue();
 
-                if (welcomePage.flag) {
-                    sc.modifyUserCheck(welcomePage.currUserId, newName, newAddress);
-                    sc.modifyFarmerCheck(welcomePage.currUserId, slider1_value, slider2_value,
+                if (WelcomePage.flag) {
+                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
                             slider3_value, slider4_value);
-                    farmerPage farmerPage = new farmerPage();
+                    FarmerPage farmerPage = new FarmerPage();
                     setVisible(false);
                     farmerPage.setVisible(true);
                 }
                 else{
                     // TODO: 2021/11/20 do not allow dis to modify price pref
-                    sc.modifyUserCheck(welcomePage.currUserId, newName, newAddress);
-                    sc.modifyDistributorCheck(welcomePage.currUserId, slider2_value, slider3_value, slider4_value);
-                    distributorPage distributorPage = new distributorPage();
+                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                    DistributorPage distributorPage = new DistributorPage();
                     setVisible(false);
                     distributorPage.setVisible(true);
                 }

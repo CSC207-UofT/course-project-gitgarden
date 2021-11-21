@@ -2,14 +2,12 @@ package UI;
 
 import Controller.ControllerInterface;
 import Controller.ServiceController;
-import Entities.Farmer;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class requestPage extends JFrame{
+public class RequestPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel middlePanel;
@@ -31,7 +29,7 @@ public class requestPage extends JFrame{
     private JTextField priceInput;
     private JButton createButton;
     private final ControllerInterface sc = new ServiceController();
-    public requestPage(){
+    public RequestPage(){
         setTitle("requestPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,20 +43,20 @@ public class requestPage extends JFrame{
                 if (product.equals("")|| quantity.equals("")|| price.equals("")) {
                     JOptionPane.showMessageDialog(null,"Please enter all information");
                 }
-                if (welcomePage.flag){
+                if (WelcomePage.flag){
                     // TODO: 2021/11/20 what is this try catch block
 //                    try {
 //                        sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
 //                    } catch (Exception ex) {
 //                        ex.printStackTrace();
 //                    }
-                    sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
-                    JFrame profile = new farmerPage();
+                    sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
+                    JFrame profile = new FarmerPage();
                     setVisible(false);
                     profile.setVisible(true);
                 }
                 else{
-                    JFrame profile = new distributorPage();
+                    JFrame profile = new DistributorPage();
                     setVisible(false);
                     profile.setVisible(true);
                 }

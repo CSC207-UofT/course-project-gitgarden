@@ -26,13 +26,10 @@ public class OthersExistingRequests extends JFrame {
     private JLabel descriptionText;
     private JPanel acceptButtonPanel;
     private JButton acceptRequest;
-    private JPanel declineButtonPanel;
-    private JButton declineButton;
     private JPanel closeButtonPanel;
     private JButton closeButton;
     private JList<String> requestList;
     private JPanel buttonPanel;
-    private JPanel counterButtonPanel;
     private JButton counterOfferButton;
 
     private String tempRequest = null;

@@ -17,12 +17,10 @@ public interface IFetch {
 
     ArrayList<String> fetchCurrentUserRequests(String id);
 
-    // TODO: 2021/11/20 return [name, quantity, price, name],I think array is easier to work with
+    // TODO: 2021/11/20 return [name, quantity, price, Farmer name, prevRequestId],I think array is easier to work with
     String[] fetchRequestInformation(String requestId);
 
     ArrayList<String> fetchCounteroffers(String requestId);
-
-    String fetchPreviousRequestID(String requestId);
 
 
 }

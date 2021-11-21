@@ -9,7 +9,9 @@ public interface IFetch {
     String fetchUserName(String id);
 
     // TODO: 2021/11/20 find the user id based on the input user name for existing username
-    String fetchUserId(String Name);
+    String fetchUserId(String UserName);
+
+    String[] fetchRequestHistory(String id);
 
     ArrayList<String> fetchAllFarmerNames();
 
@@ -21,6 +23,5 @@ public interface IFetch {
     String[] fetchRequestInformation(String requestId);
 
     ArrayList<String> fetchCounteroffers(String requestId);
-
 
 }

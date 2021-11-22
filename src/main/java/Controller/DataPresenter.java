@@ -41,9 +41,7 @@ public class DataPresenter implements IFetch{
     public String[] fetchRequestInformation(String requestID){
         RequestInterface rm = new RequestManager();
         String[] data = rm.dataFromId(requestID);
-        if (data[2].matches("\\.[0-9]$")){
-            data[2] = data[2] + "0";
-        }
+        if (data[2].matches("\\.[0-9]$")){ data[2] = data[2] + "0";}
         return data;
     }
 

@@ -15,9 +15,9 @@ public class User implements IUser{
      * @param userName String for name
      * @param userAddress  String for address
      */
-    public User(String userName, String userAddress){
+    public User(String userName, String userAddress, int userId){
         this.userName = userName;
-        this.userId = (int) (Math.random()*(900000000)+100000000);
+        this.userId = userId;
         this.userAddress = userAddress;
     }
 

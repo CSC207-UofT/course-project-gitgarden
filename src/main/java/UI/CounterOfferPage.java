@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Controller.ControllerInterface;
+import Controller.DataPresenter;
 import Controller.ServiceController;
 import Entities.Distributor;
-import Entities.Farmer;
 import Entities.Request;
-import Entities.User;
 import UseCases.ProfileManager;
 
-public class counterOfferPage extends JFrame{
+public class CounterOfferPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
@@ -29,8 +29,9 @@ public class counterOfferPage extends JFrame{
     private JTextField priceInput;
     private JTextField quantityInput;
     private JButton createButton;
+    private final ControllerInterface sc = new ServiceController();
 
-    public counterOfferPage(Request request) {
+    public CounterOfferPage(String request) {
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,38 +40,20 @@ public class counterOfferPage extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                if(welcomePage.flag) {
-                    /*
-                    String price = priceInput.getText();
-                    String quantity = quantityInput.getText();
-                    Farmer farmer = (Farmer) ProfileManager.currentUser;
-
-                    try {
-                        ServiceController.createCounterOffer(request, farmer, quantity, price);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    } */
-
-                    JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer.");
-                    createButton.requestFocusInWindow();
-
-                    farmerPage farmerPage = new farmerPage();
+                String price = priceInput.getText();
+                String quantity = quantityInput.getText();
+// TODO: 2021/11/21 what is this??
+//                try {
+//                    ServiceController.createCounterOffer(request, distributor, quantity, price);
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+                sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
+                // TODO: 2021/11/21 check if passed
+                if(WelcomePage.flag){
+                    setVisible(false);
+                    FarmerPage farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
-                }
-                else{
-                    String price = priceInput.getText();
-                    String quantity = quantityInput.getText();
-                    Distributor distributor = (Distributor) ProfileManager.currentUser;
-
-                    try {
-                        ServiceController.createCounterOffer(request, distributor, quantity, price);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-
-                    distributorPage distributorPage = new distributorPage();
-                    distributorPage.setVisible(true);
                 }
             }
         });

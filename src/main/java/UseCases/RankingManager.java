@@ -11,19 +11,19 @@ public class RankingManager implements RankInterface {
 
     private static final double SINGLE_RANKING = 2.5;
 
-    private final ArrayList<IDistributor> allDistributors;
-    private final IFarmer farmer;
+    private final ArrayList<String> allDistributorIDs;
+    private final String farmerID;
     private final String product;
 
-    public RankingManager(ArrayList<IDistributor> allDistributors, IFarmer farmer, String product) {
-        this.allDistributors = allDistributors;
-        this.farmer = farmer;
+    public RankingManager(ArrayList<String> allDistributorIDs, String farmerID, String product) {
+        this.allDistributorIDs = allDistributorIDs;
+        this.farmerID = farmerID;
         this.product = product;
     }
 
     @Override
-    public ArrayList<IDistributor> rankDistributors(){
-        ArrayList<IDistributor> rankList = new ArrayList<>(allDistributors);
+    public ArrayList<String> rankDistributors(){
+        ArrayList<IDistributor> rankList = new ArrayList<>(idToDist(allDistributorIDs));
 
         for (IDistributor dist: rankList){
             double priceRanking = calcRanking(dist, rankList, "price");
@@ -34,15 +34,17 @@ public class RankingManager implements RankInterface {
             dist.setRanking(distRanking);
         }
         rankList.sort(Collections.reverseOrder());
-        return rankList;
+        return distToId(rankList);
     }
 
     public double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
+        ProfileInterface pm = new ProfileManager();
         ArrayList<Double> critList = new ArrayList<>();
         for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
         Collections.sort(critList);
+        IFarmer farmer = (IFarmer) pm.getUserFromId(farmerID);
         Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
-        double ratio = ref / getCriterion(input_dist, crit);
+        double ratio = ref / (getCriterion(input_dist, crit) + 0.01);
         if (ratio >= 1) {
             return SINGLE_RANKING;
         } else {
@@ -77,12 +79,21 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public ArrayList<IDistributor> getAllDistributors(){
-        return this.allDistributors;
+    public ArrayList<IDistributor> idToDist(ArrayList<String> allDistributors){
+        ProfileInterface pm = new ProfileManager();
+        ArrayList<IDistributor> returned = new ArrayList<>();
+        for (String distID: allDistributors){
+            returned.add((IDistributor) pm.getUserFromId(distID));
+        }
+        return returned;
     }
 
-    public IFarmer getFarmer(){
-        return this.farmer;
+    public ArrayList<String> distToId(ArrayList<IDistributor> rankList){
+        ArrayList<String> returned = new ArrayList<>();
+        for (IDistributor dist: rankList){
+            returned.add(String.valueOf(dist.getUserId()));
+        }
+        return returned;
     }
 
     public String getProduct(){

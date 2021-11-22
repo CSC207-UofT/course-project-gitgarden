@@ -7,10 +7,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RequestTest {
-    Farmer farmer1 = new Farmer("tempName1", "tempAddress1");
-    Farmer farmer2 = new Farmer("tempName2", "tempAddress2");
-    Distributor distributor1 = new Distributor("distributor1", "distributorAddress1");
-    Distributor distributor2 = new Distributor("distributor2", "distributorAddress2");
+    Farmer farmer1 = new Farmer("tempName1", "tempAddress1", 0);
+    Farmer farmer2 = new Farmer("tempName2", "tempAddress2", 0);
+    Distributor distributor1 = new Distributor("distributor1", "distributorAddress1", 0);
+    Distributor distributor2 = new Distributor("distributor2", "distributorAddress2", 0);
     IRequest request1 = new Request(farmer1, "requestName1", 100, 10, null);
     IRequest request2 = new Request(farmer2, "requestName2", 200, 20, null);
     IRequest counteroffer1 = new Request(distributor1, "offerName3", 300, 30, request1);

@@ -1,6 +1,5 @@
 package Controller;
 
-import UI.ErrorThrower;
 import UseCases.*;
 
 import java.util.ArrayList;
@@ -122,7 +121,11 @@ public class ServiceController implements ControllerInterface{
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
                 rm.createCounterOffer(id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+            } else {
+                ErrorThrower.message("Your price input must have two decimal places.");
             }
+        } else {
+            ErrorThrower.message("Your quantity input must be numeric.");
         }
     }
 

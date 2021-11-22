@@ -25,7 +25,7 @@ public interface ControllerInterface {
     // TODO: 2021/11/21 added userId
     void acceptRequestCheck(String requestId, String userId);
 
-    void declineRequestCheck(String requestId);
+    void declineRequestCheck(String requestId, String userId);
 
     void trashRequestCheck(String requestId);
 

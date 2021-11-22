@@ -98,7 +98,7 @@ public class DetailsPage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please Select Something.");
                 }
                 else{
-                    sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
+                    sc.declineRequestCheck(tempRequest, WelcomePage.currUserId);
                     // TODO: 2021/11/21 see if pass the check
                 }
             }

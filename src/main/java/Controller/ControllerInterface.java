@@ -24,7 +24,7 @@ public interface ControllerInterface {
 
     void trashRequestCheck(String requestId);
 
-    // TODO: 2021/11/20 change this parameter, this still has instances of Iuser
-    ArrayList<String> rank(ArrayList<String> distributors, String farmer, String product);
+    // TODO: 2021/11/22 outputs a list of request ids now. 
+    ArrayList<String> rank(String requestId, String farmer);
 
 }

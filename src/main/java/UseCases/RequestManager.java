@@ -157,7 +157,7 @@ public class RequestManager implements RequestInterface{
      * @param requestID The ID of the request.
      * @return The request matching the ID.
      */
-    private IRequest getRequestFromId(String requestID){
+    public IRequest getRequestFromId(String requestID){
         ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
         for (IRequest request : allRequests){
             if (String.valueOf(request.getRequestId()).equals(requestID)){

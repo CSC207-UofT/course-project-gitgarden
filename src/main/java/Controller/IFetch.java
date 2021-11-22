@@ -3,25 +3,22 @@ package Controller;
 import java.util.ArrayList;
 
 public interface IFetch {
-    String fetchUserAddress();
+    String fetchUserAddress(String id);
 
-    String fetchUserID();
+    String fetchUserName(String id);
+
+    String fetchUserId(String UserName);
 
     ArrayList<String> fetchAllFarmerNames();
 
     ArrayList<String> fetchAllDistNames();
 
-    String fetchRequestUserName();
+    ArrayList<String> fetchCurrentUserRequests(String id);
 
-    String fetchRequestProduct();
+    String[] fetchRequestInformation(String requestId);
 
-    String fetchRequestQuantity();
+    ArrayList<String> fetchRequestHistory(String id);
 
-    String fetchRequestPrice();
-
-    ArrayList<String> fetchCounteroffers();
-
-    String fetchPreviousRequestID();
-
+    ArrayList<String> fetchCounteroffers(String requestId);
 
 }

@@ -1,7 +1,5 @@
 package UseCases;
 
-import Entities.IDistributor;
-
 import java.util.ArrayList;
 
 public interface RankInterface {
@@ -10,5 +8,5 @@ public interface RankInterface {
      *
      * @return A list of all distributors sorted by highest ranking.
      */
-    ArrayList<IDistributor> rankDistributors();
+    ArrayList<String> rankDistributors();
 }

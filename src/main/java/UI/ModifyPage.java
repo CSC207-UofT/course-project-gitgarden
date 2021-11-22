@@ -1,12 +1,15 @@
 package UI;
 
+import Controller.ControllerInterface;
+import Controller.ServiceController;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class modifyPage extends JFrame{
+public class ModifyPage extends JFrame{
     private JPanel titlePanel;
     private JLabel titleText;
     private JPanel middlePanel;
@@ -24,7 +27,7 @@ public class modifyPage extends JFrame{
     private JTextField addressInput;
     private JPanel mainPanel;
     private JPanel buttonPanel;
-    private JButton createButton;
+    private JButton ModifyButton;
     private JSlider slider1;
     private JLabel priceText;
     private JLabel exposureText;
@@ -34,28 +37,43 @@ public class modifyPage extends JFrame{
     private JPanel JPanel;
     private JSlider slider3;
     private JSlider slider4;
+    ControllerInterface sc = new ServiceController();
 
-    public modifyPage(){
+    public ModifyPage(){
         setTitle("modifyPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
-        createButton.addActionListener(new ActionListener() {
+        ModifyButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/11
-                if (welcomePage.flag) {
-                    farmerPage farmerPage = new farmerPage();
+                String newAddress = addressInput.getText();
+                String newName = nameInput.getText();
+                double slider1_value = slider1.getValue();
+                double slider2_value = slider2.getValue();
+                double slider3_value = slider3.getValue();
+                double slider4_value = slider4.getValue();
+
+                if (WelcomePage.flag) {
+                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                            slider3_value, slider4_value);
+                    FarmerPage farmerPage = new FarmerPage();
                     setVisible(false);
                     farmerPage.setVisible(true);
                 }
                 else{
-                    distributorPage distributorPage = new distributorPage();
+                    // TODO: 2021/11/20 do not allow dis to modify price pref
+                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                    DistributorPage distributorPage = new DistributorPage();
                     setVisible(false);
                     distributorPage.setVisible(true);
                 }
             }
         });
+        // TODO: 2021/11/20 check if these are redundant
         nameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +96,8 @@ public class modifyPage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
+
+        // TODO: 2021/11/20 check if these are redundant
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {

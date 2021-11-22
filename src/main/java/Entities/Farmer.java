@@ -7,8 +7,8 @@ public class Farmer extends User implements IFarmer{
     private double prefSpeed;
     private double prefCarbon;
 
-    public Farmer(String farmer_name, String farmer_address){
-        super(farmer_name, farmer_address);
+    public Farmer(String farmer_name, String farmer_address, int id){
+        super(farmer_name, farmer_address, id);
         this.prefPrice = 5;
         this.prefExposure = 5;
         this.prefSpeed = 5;

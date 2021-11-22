@@ -11,8 +11,8 @@ public class Distributor extends User implements IDistributor {
 
     private double ranking;
 
-    public Distributor(String distributor_name, String distributor_address){
-        super(distributor_name, distributor_address);
+    public Distributor(String distributor_name, String distributor_address, int id){
+        super(distributor_name, distributor_address, id);
         this.exposure = 10;
         this.speed = 10;
         this.carbon = 10;

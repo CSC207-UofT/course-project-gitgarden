@@ -7,12 +7,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserTest {
-    User temp = new User("wrongName", "wrongAddress");
+    User temp = new User("wrongName", "wrongAddress", 10000000);
 
-    User farmer1 = new Farmer("tempName2", "tempAddress1");
-    User farmer2 = new Farmer("tempName2", "tempAddress2");
-    User distributor1 = new Distributor("distributorName1", "distributorAddress1");
-    User distributor2 = new Distributor("distributorName2", "distributorAddress2");
+    User farmer1 = new Farmer("tempName2", "tempAddress1", 0);
+    User farmer2 = new Farmer("tempName2", "tempAddress2", 0);
+    User distributor1 = new Distributor("distributorName1", "distributorAddress1", 0);
+    User distributor2 = new Distributor("distributorName2", "distributorAddress2", 0);
     IRequest request1 = new Request(farmer1, "request_name_1", 100, 10, null);
     IRequest request2 = new Request(farmer2, "request_name_2", 200, 20, null);
     IRequest offer1 = new Request(distributor1, "offer_name3", 300, 3.00, request1);

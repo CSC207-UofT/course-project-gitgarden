@@ -6,27 +6,33 @@ import java.util.ArrayList;
 
 public interface ProfileInterface {
 
-    void createFarmer(String name, String address);
+    void createFarmer(String name, String address, int id);
 
-    void createDistributor(String name, String address);
+    void createDistributor(String name, String address, int id);
 
-    void modifyUser(IUser user, String newName, String address);
+    void modifyUser(String id, String newName, String address);
 
-    void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4);
+    void modifyFarmer(String id, double slider1, double slider2, double slider3, double slider4);
 
-    void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4);
-
-    IUser getUserFromName(String name);
+    void modifyDistributor(String id, double slider2, double slider3, double slider4);
 
     ArrayList<String> getAllFarmerNames();
 
     ArrayList<String> getAllDistNames();
 
-    ArrayList<IFarmer> getFarmerList();
+    ArrayList<Integer> getAllIds();
 
-    ArrayList<IDistributor> getDistributorList();
+    String addressFromId(String id);
 
-    String addressFromName(String name);
+    String nameFromId(String id_);
 
-    String IDFromName(String name);
+    String idFromName(String name);
+
+    ArrayList<String> requestsFromId(String id);
+
+    ArrayList<String> historyFromId(String id);
+
+    IUser getUserFromId(String id);
+
+    IUser getUserFromName(String name);
 }

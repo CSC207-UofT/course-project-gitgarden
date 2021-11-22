@@ -1,30 +1,19 @@
 package UseCases;
 
-import Entities.IRequest;
-import Entities.IUser;
-
 import java.util.ArrayList;
 
 public interface RequestInterface {
-    void createRequest(IUser user, String product, Double quantity, Double price);
+    void createRequest(String id, String product, Double quantity, Double price);
 
-    void createCounterOffer(IUser user, IRequest request, Double quantity, Double price);
+    void createCounterOffer(String id, String requestID, Double quantity, Double price);
 
-    void acceptRequest(IRequest request);
+    void acceptRequest(String requestID);
 
-    void declineRequest(IRequest request);
+    void declineRequest(String requestID);
 
-    void trashRequest(IRequest request);
+    void trashRequest(String requestID);
 
-    String nameFromID(String requestID, String userName);
+    String[] dataFromId(String requestID);
 
-    String productFromID(String requestID, String userName);
-
-    String quantityFromID(String requestID, String userName);
-
-    String priceFromID(String requestID, String userName);
-
-    ArrayList<String> coFromID(String requestID, String userName);
-
-    String previousIDFromID(String requestID, String userName);
+    ArrayList<String> coFromId(String requestID);
 }

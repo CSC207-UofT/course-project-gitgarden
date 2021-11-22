@@ -7,15 +7,20 @@ import UseCases.RequestManager;
 
 import java.util.ArrayList;
 
-public class DataPresenter {
-    public String fetchUserAddress(String name){
+public class DataPresenter implements IFetch{
+    public String fetchUserAddress(String id){
         ProfileInterface pm = new ProfileManager();
-        return pm.addressFromName(name);
+        return pm.addressFromId(id);
     }
 
-    public String fetchUserID(String name){
+    public String fetchUserName(String id){
         ProfileInterface pm = new ProfileManager();
-        return pm.IDFromName(name);
+        return pm.nameFromId(id);
+    }
+
+    public String fetchUserId(String userName){
+        ProfileInterface pm = new ProfileManager();
+        return pm.idFromName(userName);
     }
 
     public ArrayList<String> fetchAllFarmerNames(){
@@ -28,34 +33,24 @@ public class DataPresenter {
         return pm.getAllDistNames();
     }
 
-    public String fetchRequestUserName(String requestID, String name){
-        RequestInterface rm = new RequestManager();
-        return rm.nameFromID(requestID, name);
+    public ArrayList<String> fetchCurrentUserRequests(String id){
+        ProfileInterface pm = new ProfileManager();
+        return pm.requestsFromId(id);
     }
 
-    public String fetchRequestProduct(String requestID, String name){
+    public String[] fetchRequestInformation(String requestID){
         RequestInterface rm = new RequestManager();
-        return rm.productFromID(requestID, name);
+        return rm.dataFromId(requestID);
     }
 
-    public String fetchRequestQuantity(String requestID, String name){
-        RequestInterface rm = new RequestManager();
-        return rm.quantityFromID(requestID, name);
+    public ArrayList<String> fetchRequestHistory(String id){
+        ProfileInterface pm = new ProfileManager();
+        return pm.historyFromId(id);
     }
 
-    public String fetchRequestPrice(String requestID, String name){
+    public ArrayList<String> fetchCounteroffers(String requestID){
         RequestInterface rm = new RequestManager();
-        return rm.priceFromID(requestID, name);
-    }
-
-    public ArrayList<String> fetchCounteroffers(String requestID, String name){
-        RequestInterface rm = new RequestManager();
-        return rm.coFromID(requestID, name);
-    }
-
-    public String fetchPreviousRequestID(String requestID, String name){
-        RequestInterface rm = new RequestManager();
-        return rm.previousIDFromID(requestID, name);
+        return rm.coFromId(requestID);
     }
 
 }

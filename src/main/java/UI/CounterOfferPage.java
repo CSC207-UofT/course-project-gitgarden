@@ -4,7 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class counterOfferPage extends JFrame{
+import Controller.ControllerInterface;
+import Controller.DataPresenter;
+import Controller.ServiceController;
+import Entities.Distributor;
+import Entities.Request;
+import UseCases.ProfileManager;
+
+public class CounterOfferPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
@@ -22,7 +29,9 @@ public class counterOfferPage extends JFrame{
     private JTextField priceInput;
     private JTextField quantityInput;
     private JButton createButton;
-    public counterOfferPage() {
+    private final ControllerInterface sc = new ServiceController();
+
+    public CounterOfferPage(String request) {
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,15 +40,20 @@ public class counterOfferPage extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(welcomePage.flag){
+                String price = priceInput.getText();
+                String quantity = quantityInput.getText();
+// TODO: 2021/11/21 what is this??
+//                try {
+//                    ServiceController.createCounterOffer(request, distributor, quantity, price);
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+                sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
+                // TODO: 2021/11/21 check if passed
+                if(WelcomePage.flag){
                     setVisible(false);
-                    farmerPage farmerPage = new farmerPage();
+                    FarmerPage farmerPage = new FarmerPage();
                     farmerPage.setVisible(true);
-                }
-                else{
-                    setVisible(false);
-                    distributorPage distributorPage = new distributorPage();
-                    distributorPage.setVisible(true);
                 }
             }
         });
@@ -47,13 +61,12 @@ public class counterOfferPage extends JFrame{
         priceInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = Double.parseDouble(priceInput.getText());
+
             }
         });
         quantityInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double quantity = Double.parseDouble(quantityInput.getText());
             }
         });
 

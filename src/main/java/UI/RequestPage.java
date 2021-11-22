@@ -1,10 +1,13 @@
 package UI;
 
+import Controller.ControllerInterface;
+import Controller.ServiceController;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class requestPage extends JFrame{
+public class RequestPage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel middlePanel;
@@ -25,7 +28,8 @@ public class requestPage extends JFrame{
     private JTextField quantityInput;
     private JTextField priceInput;
     private JButton createButton;
-    public requestPage(){
+    private final ControllerInterface sc = new ServiceController();
+    public RequestPage(){
         setTitle("requestPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,36 +37,47 @@ public class requestPage extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (welcomePage.flag){
-                    JFrame profile = new farmerPage();
+                String product = ProductNameInput.getText();
+                String quantity = quantityInput.getText();
+                String price = priceInput.getText();
+                if (product.equals("")|| quantity.equals("")|| price.equals("")) {
+                    JOptionPane.showMessageDialog(null,"Please enter all information");
+                }
+                if (WelcomePage.flag){
+                    // TODO: 2021/11/20 what is this try catch block
+//                    try {
+//                        sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+                    sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
+                    JFrame profile = new FarmerPage();
                     setVisible(false);
                     profile.setVisible(true);
                 }
                 else{
-                    JFrame profile = new distributorPage();
+                    JFrame profile = new DistributorPage();
                     setVisible(false);
                     profile.setVisible(true);
                 }
             }
         });
+        // TODO: 2021/11/20 check if duplicate
         quantityInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double quantity = Double.parseDouble(quantityInput.getText());
 
             }
         });
         ProductNameInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double product = Double.parseDouble(ProductNameInput.getText());
 
             }
         });
         priceInput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double price = Double.parseDouble(priceInput.getText());
             }
         });
     }

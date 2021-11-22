@@ -29,9 +29,7 @@ public class ProfileManager implements ProfileInterface{
 
     @Override
     public void modifyFarmer(String id, double slider1, double slider2, double slider3, double slider4){
-        System.out.println(id);
         IFarmer farmer = (IFarmer) getUserFromId(id);
-        System.out.println(farmer);
         farmer.setPrefPrice(slider1);
         farmer.setPrefExposure(slider2);
         farmer.setPrefSpeed(slider3);
@@ -113,9 +111,7 @@ public class ProfileManager implements ProfileInterface{
     public IUser getUserFromId(String id){
         ArrayList<IUser> userList = new ArrayList<>(ProfileManager.farmerList);
         userList.addAll(ProfileManager.distributorList);
-        System.out.println(userList);
         for (IUser user : userList) {
-            System.out.println(user.getUserId());
             if (String.valueOf(user.getUserId()).equals(id)) {
                 return user;
             }

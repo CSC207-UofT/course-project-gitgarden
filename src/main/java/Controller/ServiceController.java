@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ServiceController implements ControllerInterface{
+    private static final int LOWER_BOUND = 100000000;
+    private static final int UPPER_BOUND = 800000000;
 
     /**
      * Creates a profile if inputs are valid.
@@ -17,12 +19,13 @@ public class ServiceController implements ControllerInterface{
     @Override
     public String createProfileCheck(String name, String address, boolean flag) {
         ProfileInterface pm = new ProfileManager();
+        int id = uniqueId();
         if (isAlphanumeric(name) && isAlphanumeric(address)){
             if (isUniqueName(name)){
                 if (flag){
-                    pm.createFarmer(name, address, uniqueId());
+                    pm.createFarmer(name, address, id);
                 } else {
-                    pm.createDistributor(name, address, uniqueId());
+                    pm.createDistributor(name, address, id);
                 }
             } else {
                 ErrorThrower.message("That name has been taken.");
@@ -31,7 +34,7 @@ public class ServiceController implements ControllerInterface{
         } else {
             ErrorThrower.message("Your input must be alphanumeric.");
         }
-        return "";
+        return String.valueOf(id);
     }
 
     /**
@@ -213,10 +216,15 @@ public class ServiceController implements ControllerInterface{
     }
 
     private int uniqueId(){
-//        ProfileInterface pm = new ProfileManager();
-//        ArrayList<Integer> ids = pm.getAllIds();
+        ProfileInterface pm = new ProfileManager();
+        ArrayList<Integer> ids = pm.getAllIds();
         Random random = new Random();
-        return random.nextInt(900000000) + 100000000;
+        int id = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
+        while (ids.contains(id)){
+            id = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
+        }
+        return id;
+
     }
 
 }

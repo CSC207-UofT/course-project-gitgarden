@@ -37,15 +37,14 @@ public class RequestManager implements RequestInterface{
     public void createCounterOffer(String id, String requestID, Double quantity, Double price){
         ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
-        IRequest request = getRequestFromId(id);
+        System.out.println("REQUEST ID: " + requestID);
+        IRequest request = getRequestFromId(requestID);
         IRequest co = new Request(user, request.getProdName(), quantity, price, request);
         request.add(co);
-        if (request.getPrevious().getPrevious() != null){
-            user.removeRequest(request);
-            request.getPrevious().getUser().removeRequest(request);
+        if (request.getPrevious() != null){
+            deleteCurrent(request);
         }
-        user.addRequest(co);
-        request.getPrevious().getUser().addRequest(co);
+        addCurrent(co);
     }
 
     /**
@@ -63,6 +62,7 @@ public class RequestManager implements RequestInterface{
         deleteCurrent(request);
         IRequest root = requestRoot(request);
         root.getUser().removeRequest(root);
+        allActiveRequests.remove(root);
         allOffers.add(request);
     }
 
@@ -94,7 +94,12 @@ public class RequestManager implements RequestInterface{
         data[1] = String.valueOf(request.getProdQuantity());
         data[2] = String.valueOf(request.getProdPricePerKg());
         data[3] = request.getUser().getUserName();
-        data[4] = String.valueOf(request.getPrevious().getRequestId());
+        if (request.getPrevious() == null){
+            data[4] = null;
+        } else {
+            data[4] = String.valueOf(request.getPrevious().getRequestId());
+        }
+
         return data;
     }
 
@@ -131,7 +136,18 @@ public class RequestManager implements RequestInterface{
      * Deletes this request from the farmer and distributor's current requests.
      * @param request The request to be deleted.
      */
+    private void addCurrent(IRequest request){
+        allActiveRequests.add(request);
+        IUser previousUser = request.getPrevious().getUser();
+        request.getUser().addRequest(request);
+        previousUser.addRequest(request);
+    }
+    /**
+     * Deletes this request from the farmer and distributor's current requests.
+     * @param request The request to be deleted.
+     */
     private void deleteCurrent(IRequest request){
+        allActiveRequests.remove(request);
         IUser previousUser = request.getPrevious().getUser();
         request.getUser().removeRequest(request);
         previousUser.removeRequest(request);
@@ -143,7 +159,7 @@ public class RequestManager implements RequestInterface{
      * @return The request matching the ID.
      */
     private IRequest getRequestFromId(String requestID){
-        ArrayList<IRequest> allRequests = allActiveRequests;
+        ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
         for (IRequest request : allRequests){
             if (String.valueOf(request.getRequestId()).equals(requestID)){
                 return request;

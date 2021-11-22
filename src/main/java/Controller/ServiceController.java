@@ -141,7 +141,7 @@ public class ServiceController implements ControllerInterface{
      * @param requestID ID of request to be declined.
      */
     @Override
-    public void declineRequestCheck(String requestID){
+    public void declineRequestCheck(String requestID, String userID){
         RequestInterface rm = new RequestManager();
         rm.declineRequest(requestID);
     } // Nothing to check for now, but there may be in future

@@ -158,14 +158,13 @@ public class ServiceController implements ControllerInterface{
 
     /**
      * Ranks distributors according to farmer preferences.
-     * @param distributors Distributors to be ranked.
+     * @param requestID Request whose counteroffers are to be ranked.
      * @param farmerID ID of farmer whose preferences must be known.
-     * @param product Product being sold.
      * @return A list of distributors sorted by ranking.
      */
     @Override
-    public ArrayList<String> rank(ArrayList<String> distributors, String farmerID, String product){
-        RankInterface rm = new RankingManager(distributors, farmerID, product);
+    public ArrayList<String> rank(String requestID, String farmerID){
+        RankInterface rm = new RankingManager(requestID, farmerID);
         return rm.rankDistributors();
 
     }

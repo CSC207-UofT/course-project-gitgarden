@@ -12,7 +12,7 @@
 - Dark blue solid lines with parallelogram arrows represent *compositions*
 - Solid line with arrow signs represent *associations*
 - Doted lines with arrow signs represent *dependency*
-James
+
 > - For detailed legend for the diagram, please refer to this [picture](https://en.wikipedia.org/wiki/Class_diagram#/media/File:Uml_classes_en.svg)
 > - More details for the backend classes can be seen under [crcCards](https://github.com/CSC207-UofT/course-project-gitgarden/blob/working_main/crcCards.md) document (the crcCards does not include the classes for the GUI)
 

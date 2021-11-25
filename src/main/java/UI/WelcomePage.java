@@ -158,25 +158,6 @@ public class WelcomePage extends JFrame{
                 }
             }
         });
-        // TODO: 2021/11/18 test if we need them or not, if not delete all listeners
-        nameInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        newUserName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        addressInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
         slider1.setPaintTicks(true);
         slider1.setMinorTickSpacing(10);
         slider2.setPaintTicks(true);
@@ -185,31 +166,6 @@ public class WelcomePage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
-        slider1.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // double score = slider1.getValue(); REDUNDANT
-            }
-        });
-        slider2.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-               // double score = slider1.getValue(); REDUNDANT
-            }
-        });
-        slider3.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // double score = slider1.getValue(); REDUNDANT
-                // System.out.print(score);
-            }
-        });
-        slider4.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-               // double score = slider1.getValue(); REDUNDANT
-            }
-        });
     }
 
     public static void main(String[] args){

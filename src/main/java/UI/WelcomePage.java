@@ -123,21 +123,17 @@ public class WelcomePage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter your User Name.");
                 }
                 else {
-                    // TODO: 2021/11/20 what is the try and catch
-//                    try {
-//                        currUserId = sc.createProfileCheck(name, address, flag);
-//                        sc.modifyFarmerCheck(currUserId,slider1_value,slider2_value,slider3_value,
-//                                slider4_value);
-//                    }
-//                    catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
                     if (flag == null) {
                         JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
                     }
                     else{
                         if (flag) {
-                            currUserId = sc.createProfileCheck(name,address, flag);
+                            try{
+                                currUserId = sc.createProfileCheck(name,address, flag);
+                            }
+                            catch (Exception profileException){
+                                JOptionPane.showMessageDialog(null,profileException.getMessage());
+                            }
                             sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
                             FarmerPage farmerPage = new FarmerPage();
                             setVisible(false);
@@ -145,8 +141,12 @@ public class WelcomePage extends JFrame{
                             setContentPane(new FarmerPage().mainPanel);
                         }
                         else {
-                            // TODO: 2021/11/20 do not allow dis to modify price pref
-                            currUserId = sc.createProfileCheck(name, address, flag);
+                            try {
+                                currUserId = sc.createProfileCheck(name, address, flag);
+                            }
+                            catch (Exception profileException){
+                                JOptionPane.showMessageDialog(null,profileException.getMessage());
+                            }
                             sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
                             DistributorPage distributorPage = new DistributorPage();
                             setVisible(false);

@@ -1,11 +1,28 @@
 package UseCases;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.User;
-import Entities.Request;
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
+import Entities.*;
+import UseCases.ProfileManager;
 
 public interface DataAccessInterface {
+
+    /*
+    Read the saved files.
+     */
+    void read();
+
+    /*
+    Write the current java variables to another file type
+     */
+    void write();
+
+    /*
+    Load the Farmer from previously saved files
+     */
+    void loadFarmer();
+
+    /*
+    Load the Distributor from previously saved files
+     */
+    void loadDistributor();
+
 }

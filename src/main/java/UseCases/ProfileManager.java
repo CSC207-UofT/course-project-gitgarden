@@ -75,6 +75,16 @@ public class ProfileManager implements ProfileInterface{
     }
 
     @Override
+    public ArrayList<IFarmer> getFarmerList() {
+        return farmerList;
+    }
+
+    @Override
+    public ArrayList<IDistributor> getDistributorList() {
+        return distributorList;
+    }
+
+    @Override
     public String addressFromId(String id) {
         IUser user = getUserFromId(id);
         return user.getUserAddress();

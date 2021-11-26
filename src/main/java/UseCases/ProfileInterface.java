@@ -22,6 +22,10 @@ public interface ProfileInterface {
 
     ArrayList<Integer> getAllIds();
 
+    ArrayList<IFarmer> getFarmerList();
+
+    ArrayList<IDistributor> getDistributorList();
+
     String addressFromId(String id);
 
     String nameFromId(String id_);

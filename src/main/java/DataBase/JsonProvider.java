@@ -8,9 +8,6 @@ import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.io.*;
 
-import static UseCases.ProfileManager.distributorList;
-import static UseCases.ProfileManager.farmerList;
-
 public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
 
@@ -43,14 +40,16 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public void write(){
         try(FileWriter writer = new FileWriter("distributors.json")){
-            writer.write(gson.toJson(distributorList));
+            ProfileManager pm = new ProfileManager();
+            writer.write(gson.toJson(pm.getDistributorList()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();
         }
 
         try(FileWriter writer = new FileWriter("farmers.json")){
-            writer.write(gson.toJson(farmerList));
+            ProfileManager pm = new ProfileManager();
+            writer.write(gson.toJson(pm.getFarmerList()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();

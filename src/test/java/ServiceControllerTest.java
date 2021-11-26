@@ -6,10 +6,10 @@ import static org.junit.Assert.*;
 public class ServiceControllerTest {
 
     @Test(timeout = 50)
-    public void TestisAlphanumeric() {
+    public void TestisAlphabetic() {
         ServiceController sc = new ServiceController();
         String temp_str = "str2021";
-        assertTrue(sc.isAlphanumeric(temp_str));
+        assertFalse(sc.isAlphabetic(temp_str));
     }
 
 }

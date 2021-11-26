@@ -19,7 +19,7 @@ public class ServiceController implements ControllerInterface{
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
         int id = uniqueId();
-        if (isAlphanumeric(name) && isAlphanumeric(address)){
+        if (hasLetter(name) && isAlphanumeric(name) && isAlphanumeric(address)){
             if (isUniqueName(name)){
                 if (flag){
                     pm.createFarmer(name, address, id);
@@ -95,7 +95,7 @@ public class ServiceController implements ControllerInterface{
     @Override
     public void createRequestCheck(String id, String product, String quantity, String price) throws Exception{
         RequestInterface rm = new RequestManager();
-        if (isAlphanumeric(product)){
+        if (isAlphabetic(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
                     rm.createRequest(id, product, Double.parseDouble(quantity), Double.parseDouble(price));
@@ -106,7 +106,7 @@ public class ServiceController implements ControllerInterface{
                 throw new Exception("Your quantity input must be numeric.");
             }
         } else {
-            throw new Exception("Your product input must be alphanumeric.");
+            throw new Exception("Your product input must be alphabetic.");
         }
     }
 
@@ -175,6 +175,15 @@ public class ServiceController implements ControllerInterface{
     }
 
     /**
+     * Checks if the input is a valid name.
+     * @param input Input from the user.
+     * @return boolean that indicates if the name is valid.
+     */
+    public boolean hasLetter(String input){
+        return input.matches("[a-zA-Z]");
+    }
+
+    /**
      * Checks if the input is alphanumeric.
      * @param input Input from the user.
      * @return boolean that indicates if the input is alphanumeric.
@@ -184,9 +193,18 @@ public class ServiceController implements ControllerInterface{
     }
 
     /**
+     * Checks if the input is alphabetic.
+     * @param input Input from the user.
+     * @return boolean that indicates if the input is alphanumeric.
+     */
+    public boolean isAlphabetic(String input){
+        return input.matches("^[a-zA-Z]+$");
+    }
+
+    /**
      * Checks if the input is a valid quantity.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is valid. Exception if the string is empty or blank.
+     * @return boolean that indicates if the input is valid.
      */
     public boolean isValidQuantity(String input){
         return input.matches("^[0-9]+(\\.[0-9])?[0-9]*$");
@@ -195,7 +213,7 @@ public class ServiceController implements ControllerInterface{
     /**
      * Checks if the input is a valid price.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is valid. Exception if the string is empty or blank.
+     * @return boolean that indicates if the input is valid.
      */
     public boolean isValidPrice(String input){
         return input.matches("^[0-9]+\\.[0-9]{2}$");

@@ -114,7 +114,7 @@ public class farmerPage extends JFrame{
 
                     setVisible(false);
 
-                    detailsPage detailspage = new detailsPage(request);
+                    checkerPage detailspage = new checkerPage(request);
 
                     detailspage.setVisible(true);
                 }

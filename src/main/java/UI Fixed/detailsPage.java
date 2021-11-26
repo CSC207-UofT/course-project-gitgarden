@@ -137,7 +137,7 @@ public class detailsPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                counterOfferPage counterOfferPage = new counterOfferPage(tempVariable);
+                UI.checkerPage counterOfferPage = new UI.checkerPage(tempVariable);
                 counterOfferPage.setVisible(true);
             }
         });

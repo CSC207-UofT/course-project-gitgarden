@@ -1,7 +1,6 @@
 package UI;
 
 import Entities.Distributor;
-import Entities.Farmer;
 import Entities.Offer;
 import Entities.Request;
 import UseCases.ProfileManager;
@@ -108,7 +107,7 @@ public class distributorPage extends JFrame{
 
                     setVisible(false);
 
-                    detailsPage detailspage = new detailsPage(request);
+                    checkerPage detailspage = new checkerPage(request);
 
                     detailspage.setVisible(true);
                 }

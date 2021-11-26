@@ -111,8 +111,7 @@ public class OthersExistingRequests extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String selectedRequest = requestList.getSelectedValue().toString();
-                    String requestId = selectedRequest.split(" ")[0];
-                    tempRequest = requestId;
+                    tempRequest = selectedRequest.split(" ")[0];
                 }
             }
         });

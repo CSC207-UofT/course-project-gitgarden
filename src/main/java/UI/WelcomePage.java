@@ -75,7 +75,6 @@ public class WelcomePage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter your User Name");
                     newUserName.requestFocusInWindow();
                 }
-
                 else {
                     if (presenter.fetchAllFarmerNames().contains(username)){
                         currUserId = presenter.fetchUserId(username);
@@ -92,7 +91,6 @@ public class WelcomePage extends JFrame{
                         distributorPage.setVisible(true);
                     }
                     else {
-                        // TODO: 2021/11/20 show different dialogs based on the erorr message
                         JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
                                 "Create a new Profile");
                         newUserName.requestFocusInWindow();
@@ -125,21 +123,17 @@ public class WelcomePage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter your User Name.");
                 }
                 else {
-                    // TODO: 2021/11/20 what is the try and catch
-//                    try {
-//                        currUserId = sc.createProfileCheck(name, address, flag);
-//                        sc.modifyFarmerCheck(currUserId,slider1_value,slider2_value,slider3_value,
-//                                slider4_value);
-//                    }
-//                    catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
                     if (flag == null) {
                         JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
                     }
                     else{
                         if (flag) {
-                            currUserId = sc.createProfileCheck(name,address, flag);
+                            try{
+                                currUserId = sc.createProfileCheck(name,address, flag);
+                            }
+                            catch (Exception profileException){
+                                JOptionPane.showMessageDialog(null,profileException.getMessage());
+                            }
                             sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
                             FarmerPage farmerPage = new FarmerPage();
                             setVisible(false);
@@ -147,8 +141,12 @@ public class WelcomePage extends JFrame{
                             setContentPane(new FarmerPage().mainPanel);
                         }
                         else {
-                            // TODO: 2021/11/20 do not allow dis to modify price pref
-                            currUserId = sc.createProfileCheck(name, address, flag);
+                            try {
+                                currUserId = sc.createProfileCheck(name, address, flag);
+                            }
+                            catch (Exception profileException){
+                                JOptionPane.showMessageDialog(null,profileException.getMessage());
+                            }
                             sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
                             DistributorPage distributorPage = new DistributorPage();
                             setVisible(false);
@@ -160,25 +158,6 @@ public class WelcomePage extends JFrame{
                 }
             }
         });
-        // TODO: 2021/11/18 test if we need them or not, if not delete all listeners
-        nameInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        newUserName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        addressInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
         slider1.setPaintTicks(true);
         slider1.setMinorTickSpacing(10);
         slider2.setPaintTicks(true);
@@ -187,31 +166,6 @@ public class WelcomePage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
-        slider1.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // double score = slider1.getValue(); REDUNDANT
-            }
-        });
-        slider2.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-               // double score = slider1.getValue(); REDUNDANT
-            }
-        });
-        slider3.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // double score = slider1.getValue(); REDUNDANT
-                // System.out.print(score);
-            }
-        });
-        slider4.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-               // double score = slider1.getValue(); REDUNDANT
-            }
-        });
     }
 
     public static void main(String[] args){

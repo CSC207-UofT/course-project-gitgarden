@@ -1,6 +1,5 @@
 package Controller;
 
-import UI.ErrorThrower;
 import UseCases.*;
 
 import java.util.ArrayList;
@@ -122,7 +121,11 @@ public class ServiceController implements ControllerInterface{
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
                 rm.createCounterOffer(id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+            } else {
+                ErrorThrower.message("Your price input must have two decimal places.");
             }
+        } else {
+            ErrorThrower.message("Your quantity input must be numeric.");
         }
     }
 
@@ -141,7 +144,7 @@ public class ServiceController implements ControllerInterface{
      * @param requestID ID of request to be declined.
      */
     @Override
-    public void declineRequestCheck(String requestID){
+    public void declineRequestCheck(String requestID, String userId){
         RequestInterface rm = new RequestManager();
         rm.declineRequest(requestID);
     } // Nothing to check for now, but there may be in future
@@ -158,14 +161,13 @@ public class ServiceController implements ControllerInterface{
 
     /**
      * Ranks distributors according to farmer preferences.
-     * @param distributors Distributors to be ranked.
+     * @param requestID Request whose counteroffers are to be ranked.
      * @param farmerID ID of farmer whose preferences must be known.
-     * @param product Product being sold.
      * @return A list of distributors sorted by ranking.
      */
     @Override
-    public ArrayList<String> rank(ArrayList<String> distributors, String farmerID, String product){
-        RankInterface rm = new RankingManager(distributors, farmerID, product);
+    public ArrayList<String> rank(String requestID, String farmerID){
+        RankInterface rm = new RankingManager(requestID, farmerID);
         return rm.rankDistributors();
 
     }

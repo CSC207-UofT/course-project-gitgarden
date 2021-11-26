@@ -5,8 +5,8 @@ import Entities.*;
 import java.util.ArrayList;
 
 public class ProfileManager implements ProfileInterface{
-    public static ArrayList<IFarmer> farmerList = new ArrayList<>();
-    public static ArrayList<IDistributor> distributorList = new ArrayList<>();
+    private static final ArrayList<IFarmer> farmerList = new ArrayList<>();
+    private static final ArrayList<IDistributor> distributorList = new ArrayList<>();
 
     @Override
     public void createFarmer(String name, String address, int id){

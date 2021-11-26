@@ -2,6 +2,7 @@ package UseCases;
 
 import Entities.IDistributor;
 import Entities.IFarmer;
+import Entities.IRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,19 +12,17 @@ public class RankingManager implements RankInterface {
 
     private static final double SINGLE_RANKING = 2.5;
 
-    private final ArrayList<IDistributor> allDistributors;
-    private final IFarmer farmer;
-    private final String product;
+    private final String requestID;
+    private final String farmerID;
 
-    public RankingManager(ArrayList<IDistributor> allDistributors, IFarmer farmer, String product) {
-        this.allDistributors = allDistributors;
-        this.farmer = farmer;
-        this.product = product;
+    public RankingManager(String requestID, String farmerID) {
+        this.requestID = requestID;
+        this.farmerID = farmerID;
     }
 
     @Override
-    public ArrayList<IDistributor> rankDistributors(){
-        ArrayList<IDistributor> rankList = new ArrayList<>(allDistributors);
+    public ArrayList<String> rankDistributors(){
+        ArrayList<IDistributor> rankList = distributorsFromRequestId(requestID);
 
         for (IDistributor dist: rankList){
             double priceRanking = calcRanking(dist, rankList, "price");
@@ -34,15 +33,17 @@ public class RankingManager implements RankInterface {
             dist.setRanking(distRanking);
         }
         rankList.sort(Collections.reverseOrder());
-        return rankList;
+        return counterofferIdsFromDistributors(rankList);
     }
 
     public double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
+        ProfileInterface pm = new ProfileManager();
         ArrayList<Double> critList = new ArrayList<>();
         for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
         Collections.sort(critList);
+        IFarmer farmer = (IFarmer) pm.getUserFromId(farmerID);
         Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
-        double ratio = ref / getCriterion(input_dist, crit);
+        double ratio = ref / (getCriterion(input_dist, crit) + 0.01);
         if (ratio >= 1) {
             return SINGLE_RANKING;
         } else {
@@ -59,7 +60,7 @@ public class RankingManager implements RankInterface {
             case "carbon":
                 return dist.getCarbon();
             default:
-                return dist.prodMap().getOrDefault(product, 0.01);
+                return dist.prodMap().getOrDefault(productFromRequestId(requestID), 0.01);
 
         }
     }
@@ -77,16 +78,35 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public ArrayList<IDistributor> getAllDistributors(){
-        return this.allDistributors;
+    private ArrayList<IDistributor> distributorsFromRequestId(String requestID) {
+        RequestInterface requestManager = new RequestManager();
+        ArrayList<IDistributor> allDistributors = new ArrayList<>();
+        IRequest request = requestManager.getRequestFromId(requestID);
+        for (IRequest counteroffer: request.getCounteroffers()){
+            allDistributors.add((IDistributor) counteroffer.getUser());
+        }
+        return allDistributors;
     }
 
-    public IFarmer getFarmer(){
-        return this.farmer;
+    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList){
+        ArrayList<String> allIds = new ArrayList<>();
+        RequestInterface requestManager = new RequestManager();
+        IRequest request = requestManager.getRequestFromId(requestID);
+        for (IDistributor dist: rankList){
+            for (IRequest counteroffer: request.getCounteroffers()){
+                if (counteroffer.getUser().equals(dist)){
+                    allIds.add(String.valueOf(counteroffer.getRequestId()));
+                }
+            }
+
+        }
+        return allIds;
     }
 
-    public String getProduct(){
-        return this.product;
+    private String productFromRequestId(String requestID){
+        RequestInterface requestManager = new RequestManager();
+        IRequest request = requestManager.getRequestFromId(requestID);
+        return request.getProdName();
     }
 
 }

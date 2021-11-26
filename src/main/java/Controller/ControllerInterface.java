@@ -1,34 +1,27 @@
 package Controller;
 
-import Entities.IDistributor;
-import Entities.IFarmer;
-import Entities.IRequest;
-import Entities.IUser;
-
 import java.util.ArrayList;
 
 public interface ControllerInterface {
 
-    void createProfileCheck(String name, String address, boolean flag);
+    String createProfileCheck(String name, String address, boolean flag);
 
-    void modifyUserCheck(IUser user, String newName, String address);
+    void modifyUserCheck(String Userid, String newName, String address);
 
-    void modifyFarmerCheck(IFarmer farmer, double slider1, double slider2, double slider3, double slider4);
+    void modifyFarmerCheck(String FarmerId, double slider1, double slider2, double slider3, double slider4);
 
-    void modifyDistributorCheck(IDistributor dist, double slider2, double slider3, double slider4);
+    void modifyDistributorCheck(String distId, double slider2, double slider3, double slider4);
 
-    void createRequestCheck(IUser user, String product, String quantity, String price);
+    void createRequestCheck(String userId, String product, String quantity, String price);
 
-    void createCounterOfferCheck(IUser user, IRequest request, String quantity, String price);
+    void createCounterOfferCheck(String userId, String requestId, String quantity, String price);
 
-    void acceptRequestCheck(IRequest request);
+    void acceptRequestCheck(String requestId, String userId);
 
-    void declineRequestCheck(IRequest request);
+    void declineRequestCheck(String requestId, String userId);
 
-    void trashRequestCheck(IRequest request);
+    void trashRequestCheck(String requestId);
 
-    Object fetch(Object obj);
-
-    ArrayList<IDistributor> rank(ArrayList<IDistributor> distributors, IFarmer farmer, String product);
+    ArrayList<String> rank(String requestId, String farmer);
 
 }

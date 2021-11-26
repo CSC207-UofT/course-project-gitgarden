@@ -1,10 +1,9 @@
 package UI;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.Offer;
-import Entities.Request;
-import UseCases.ProfileManager;
+import Controller.ControllerInterface;
+import Controller.DataPresenter;
+import Controller.IFetch;
+import Controller.ServiceController;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,19 +11,24 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class distributorPage extends JFrame{
+public class FarmerPage extends JFrame{
     public JPanel mainPanel;
     private JPanel titlePanel;
-    private JPanel titleTextPanel;
     private JLabel titleText;
+    private JPanel titleTextPanel;
     private JPanel modifyPanel;
     private JButton modifyButton;
+    private JPanel buttonPanel;
+    private JPanel modifyButtonPanel;
+    private JButton createRequest;
+    private JButton viewButton;
+    private JPanel viewButtonPanel;
     private JPanel existingPanel;
-    private JPanel existingTextPanel;
     private JLabel existingText;
+    private JPanel existingTextPanel;
     private JPanel existingRequestPanel;
+    private JList<String> existingList;
     private JButton acceptButton;
     private JButton declineButton;
     private JButton counterButton;
@@ -33,11 +37,11 @@ public class distributorPage extends JFrame{
     private JLabel historyText;
     private JPanel historyListPanel;
     private JList<String> historyList;
-    private JButton viewButton;
-    private JList<String> existingList;
+    private final IFetch presenter = new DataPresenter();
+    private final ControllerInterface sc = new ServiceController();
 
-    public distributorPage(){
-        setTitle("distributorPage");
+    public FarmerPage(){
+        setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
@@ -46,7 +50,7 @@ public class distributorPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame modifyPage = new modifyPage();
+                JFrame modifyPage = new ModifyPage();
                 modifyPage.setVisible(true);
             }
         });
@@ -54,66 +58,50 @@ public class distributorPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                JFrame requestListPage = new existingRequests();
+                JFrame requestListPage = new OthersExistingRequests();
                 requestListPage.setVisible(true);
             }
         });
+        createRequest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                JFrame requestPage = new RequestPage();
+                requestPage.setVisible(true);
+            }
+        });
 
-        HashMap<String, Request> requestMap = new HashMap<>();
         int i = 1;
-        Entities.Distributor distributor = (Distributor) ProfileManager.currentUser;
-
-        ArrayList<Request> request = distributor.getCurrent_requests();
-        String [] data = new String[request.size()];
-
-        for (Request requests : request) {
-            requestMap.put(String.valueOf(i), requests);
-            String product_name = requests.getProduct_name();
-            data[i-1] =  i + " " + product_name;
-            i += 1;
-        }
-
+        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
-        for(String item: data){
-            listModel.addElement(item);
-        }
 
-        String [] data2 = new String[distributor.getOffer_history().size()];
-
-        for (Offer pastTransaction : distributor.getOffer_history()) {
-            String product_name = pastTransaction.getProduct_name();
-            data2[i-1] =  i + " " + product_name;
+        for (String request : requestIdList) {
+            String product_name = presenter.fetchRequestInformation(request)[0];
+            listModel.addElement(i + " " + product_name);
             i += 1;
         }
 
+        i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for(String item: data2){
-            listModel.addElement(item);
+        for (String requestId : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
+            String product_name = presenter.fetchRequestInformation(requestId)[0];
+            listModel2.addElement(i + " " + product_name);
         }
 
         existingList.setModel(listModel);
         historyList.setModel(listModel2);
 
-
         existingList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    String number = existingList.getSelectedValue().toString();
-                    String split[] = number.split(" ");
-                    String index_number = split[0];
-                    Request request = requestMap.get(index_number+"");
-
-
-
+                    String request = existingList.getSelectedValue().toString();
+                    int index = listModel.indexOf(request);
                     setVisible(false);
-
-                    detailsPage detailspage = new detailsPage(request);
-
+                    DetailsPage detailspage = new DetailsPage(requestIdList.get(index));
                     detailspage.setVisible(true);
                 }
             }
         });
     }
 }
-

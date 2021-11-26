@@ -5,19 +5,34 @@ import Entities.*;
 import java.util.ArrayList;
 
 public interface ProfileInterface {
-    void createFarmer(String name, String address);
 
-    void createDistributor(String name, String address);
+    void createFarmer(String name, String address, int id);
 
-    void modifyUser(IUser user, String newName, String address);
+    void createDistributor(String name, String address, int id);
 
-    void modifyFarmer(IFarmer farmer, double slider1, double slider2, double slider3, double slider4);
+    void modifyUser(String id, String newName, String address);
 
-    void modifyDistributor(IDistributor dist, double slider2, double slider3, double slider4);
+    void modifyFarmer(String id, double slider1, double slider2, double slider3, double slider4);
 
-    ArrayList<String> getAllNames();
+    void modifyDistributor(String id, double slider2, double slider3, double slider4);
 
-    ArrayList<IFarmer> getFarmerList();
+    ArrayList<String> getAllFarmerNames();
 
-    ArrayList<IDistributor> getDistributorList();
+    ArrayList<String> getAllDistNames();
+
+    ArrayList<Integer> getAllIds();
+
+    String addressFromId(String id);
+
+    String nameFromId(String id_);
+
+    String idFromName(String name);
+
+    ArrayList<String> requestsFromId(String id);
+
+    ArrayList<String> historyFromId(String id);
+
+    IUser getUserFromId(String id);
+
+    IUser getUserFromName(String name);
 }

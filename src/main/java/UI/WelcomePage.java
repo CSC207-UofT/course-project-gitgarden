@@ -1,17 +1,17 @@
 package UI;
 
+import Controller.ControllerInterface;
+import Controller.DataPresenter;
+import Controller.IFetch;
 import Controller.ServiceController;
-import Entities.Farmer;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
-public class welcomePage extends JFrame{
+public class WelcomePage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -53,10 +53,11 @@ public class welcomePage extends JFrame{
     private JSlider slider3;
     private JSlider slider4;
     private JLabel userTest;
-    public static boolean flag;
-
-    // TODO: 2021/11/10 set size
-    public welcomePage() {
+    public static Boolean flag;
+    public static String currUserId = "";
+    private final ControllerInterface sc = new ServiceController();
+    private final IFetch presenter = new DataPresenter();
+    public WelcomePage() {
         setContentPane(mainPanel);
         setTitle("Welcome");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,104 +69,33 @@ public class welcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String username = nameInput.getText();
 
-                if (username.equals("") || username == null) {
+                if (username.equals("")) {
                     JOptionPane.showMessageDialog(null,"Please enter your User Name");
                     newUserName.requestFocusInWindow();
                 }
 
                 else {
-
-                    for (Entities.Farmer farmer : ProfileManager.farmerList) {
-                        if (farmer.getUser_name().equals(username)) {
-                            ProfileManager.currentUser = farmer;
-                            flag = true;
-                        }
+                    if (presenter.fetchAllFarmerNames().contains(username)){
+                        currUserId = presenter.fetchUserId(username);
+                        flag = true;
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
                     }
-
-                    for (Entities.Distributor distributor : ProfileManager.distributorList) {
-                        if (distributor.getUser_name().equals(username)) {
-                            ProfileManager.currentUser = distributor;
-                            flag = false;
-                        }
+                    else if (presenter.fetchAllDistNames().contains(username)){
+                        currUserId = presenter.fetchUserId(username);
+                        flag = false;
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
                     }
-
-                    if (ProfileManager.currentUser == null) {
-                        JOptionPane.showMessageDialog(null,"Please enter a valid User Name or " +
+                    else {
+                        // TODO: 2021/11/20 show different dialogs based on the erorr message
+                        JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
                                 "Create a new Profile");
                         newUserName.requestFocusInWindow();
                     }
-
-                    else if (ProfileManager.currentUser instanceof Farmer) {
-                        farmerPage farmerPage = new farmerPage();
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                    }
-
-                    else {
-                        distributorPage distributorPage = new distributorPage();
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                    }
-
                 }
-            }
-        });
-        signupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String address = addressInput.getText();
-                double slider1_value = slider1.getValue();
-                double slider2_value = slider2.getValue();
-                double slider3_value = slider3.getValue();
-                double slider4_value = slider4.getValue();
-                String name = newUserName.getText();
-                if (name.equals("") || name == null) {
-                    JOptionPane.showMessageDialog(null,"Please enter your User Name.");
-                    newUserName.requestFocusInWindow();
-                }
-
-                else {
-                    try {
-                        ServiceController.createProfile(name, address, slider1_value, slider2_value, slider3_value,
-                                slider4_value, flag);
-
-                    }
-                    catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-
-                    if (flag) {
-                        farmerPage farmerPage = new farmerPage();
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                        setContentPane(new farmerPage().mainPanel);
-                    }
-                    else {
-                        distributorPage distributorPage = new distributorPage();
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                        setContentPane(new distributorPage().mainPanel);
-                    }
-                }
-            }
-        });
-        nameInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: 2021/11/10 Sign this person in.
-                // TODO: 2021/11/11 change flag to true if farmer, false if distributor
-            }
-        });
-
-        newUserName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-        addressInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
             }
         });
         farmerButton.addActionListener(new ActionListener() {
@@ -180,12 +110,73 @@ public class welcomePage extends JFrame{
                 flag = false;
             }
         });
-        if (flag){
-            // TODO: 2021/11/11 create farmer
-        }
-        else{
-            // TODO: 2021/11/11 create distributor
-        }
+        signupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String address = addressInput.getText();
+                double slider1_value = slider1.getValue();
+                double slider2_value = slider2.getValue();
+                double slider3_value = slider3.getValue();
+                double slider4_value = slider4.getValue();
+                String name = newUserName.getText();
+                if (name.equals("")) {
+                    JOptionPane.showMessageDialog(null,"Please enter your User Name.");
+                }
+                else {
+                    // TODO: 2021/11/20 what is the try and catch
+//                    try {
+//                        currUserId = sc.createProfileCheck(name, address, flag);
+//                        sc.modifyFarmerCheck(currUserId,slider1_value,slider2_value,slider3_value,
+//                                slider4_value);
+//                    }
+//                    catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+                    if (flag == null) {
+                        JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
+                    }
+                    else{
+                        if (flag) {
+                            currUserId = sc.createProfileCheck(name,address, flag);
+                            sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
+                            FarmerPage farmerPage = new FarmerPage();
+                            setVisible(false);
+                            farmerPage.setVisible(true);
+                            setContentPane(new FarmerPage().mainPanel);
+                        }
+                        else {
+                            // TODO: 2021/11/20 do not allow dis to modify price pref
+                            currUserId = sc.createProfileCheck(name, address, flag);
+                            sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
+                            DistributorPage distributorPage = new DistributorPage();
+                            setVisible(false);
+                            distributorPage.setVisible(true);
+                            setContentPane(new DistributorPage().mainPanel);
+                        }
+                    }
+
+                }
+            }
+        });
+        // TODO: 2021/11/18 test if we need them or not, if not delete all listeners
+        nameInput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
+        newUserName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
+        addressInput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+
         slider1.setPaintTicks(true);
         slider1.setMinorTickSpacing(10);
         slider2.setPaintTicks(true);
@@ -222,26 +213,28 @@ public class welcomePage extends JFrame{
     }
 
     public static void main(String[] args){
-        try {
-            ServiceController.read();
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
+//        try {
+//            // TODO: 2021/11/18 data persistency team's method, double check names
+//            ServiceController.read();
+//        } catch (FileNotFoundException e){
+//            e.printStackTrace();
+//        }
 
-        welcomePage welcomePage = new welcomePage();
+        WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);
 
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-            public void run()
-            {
-                try {
-                    ServiceController.write();
-                } catch (FileNotFoundException e){
-                    e.printStackTrace();
-                }
-                System.out.println("Shutdown Hook is running !");
-            }
-        });
+//        Runtime.getRuntime().addShutdownHook(new Thread()
+//        {
+//            public void run()
+//            {
+//                try {
+//                    // TODO: 2021/11/18 data persistency team's method, double check names.
+//                    ServiceController.write();
+//                } catch (FileNotFoundException e)
+//                    e.printStackTrace();
+//                }
+//                System.out.println("Shutdown Hook is running !");
+//            }
+//        });
     }
 }

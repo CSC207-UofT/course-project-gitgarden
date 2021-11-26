@@ -215,12 +215,13 @@ public class WelcomePage extends JFrame{
     }
 
     public static void main(String[] args){
-        //TODO: Cannot call non-static method from static class. But gson has to be non-static
-//        try {
-//            farmers = JsonProvider.readFarmer();
-//        } catch (FileNotFoundException e){
-//            e.printStackTrace();
-//        }
+        try {
+            JsonProvider jp = new JsonProvider();
+            jp.loadFarmer(jp.readFarmer("farmers.json"));
+            jp.loadDistributor(jp.readDistributor("distributors.json"));
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
 
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);

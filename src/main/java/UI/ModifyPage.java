@@ -39,11 +39,11 @@ public class ModifyPage extends JFrame{
     private JSlider slider4;
     ControllerInterface sc = new ServiceController();
 
-    public ModifyPage(){
+    public ModifyPage() {
         setTitle("modifyPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
         ModifyButton.addActionListener(new ActionListener() {
 
             @Override
@@ -56,36 +56,39 @@ public class ModifyPage extends JFrame{
                 double slider4_value = slider4.getValue();
 
                 if (WelcomePage.flag) {
-                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
-                            slider3_value, slider4_value);
+                    try {
+                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    }
+                    catch (Exception UserCheckException){
+                        JOptionPane.showMessageDialog(null,UserCheckException.getMessage());
+                    }
+                    try {
+                        sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                                slider3_value, slider4_value);
+                    }
+                    catch (Exception farmerCheckException){
+                        JOptionPane.showMessageDialog(null, farmerCheckException.getMessage());
+                    }
                     FarmerPage farmerPage = new FarmerPage();
                     setVisible(false);
                     farmerPage.setVisible(true);
-                }
-                else{
-                    // TODO: 2021/11/20 do not allow dis to modify price pref
-                    sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                } else {
+                    try {
+                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    }
+                    catch (Exception UserCheckException){
+                        JOptionPane.showMessageDialog(null, UserCheckException.getMessage());
+                    }
+                    try {
+                        sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                    }
+                    catch (Exception distributorCheck){
+                        JOptionPane.showMessageDialog(null, distributorCheck.getMessage());
+                    }
                     DistributorPage distributorPage = new DistributorPage();
                     setVisible(false);
                     distributorPage.setVisible(true);
                 }
-            }
-        });
-        // TODO: 2021/11/20 check if these are redundant
-        nameInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String newUserName = nameInput.getText();
-                // TODO: 2021/11/11  
-            }
-        });
-        addressInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String address = addressInput.getText();
-                // TODO: 2021/11/11  
             }
         });
         slider1.setPaintTicks(true);
@@ -96,33 +99,5 @@ public class ModifyPage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
-
-        // TODO: 2021/11/20 check if these are redundant
-        slider1.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-            }
-        });
-        slider2.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-            }
-        });
-        slider3.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-                System.out.print(score);
-            }
-        });
-        slider4.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                double score = slider1.getValue();
-            }
-        });
-        }
-        
+    }
 }

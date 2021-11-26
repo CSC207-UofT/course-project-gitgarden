@@ -16,7 +16,7 @@ public class ServiceController implements ControllerInterface{
      * @param flag Boolean representing farmer/distributor
      */
     @Override
-    public String createProfileCheck(String name, String address, boolean flag) {
+    public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
         int id = uniqueId();
         if (isAlphanumeric(name) && isAlphanumeric(address)){
@@ -27,11 +27,13 @@ public class ServiceController implements ControllerInterface{
                     pm.createDistributor(name, address, id);
                 }
             } else {
-                ErrorThrower.message("That name has been taken.");
+                //ErrorThrower.message("That name has been taken.");
+                throw new Exception("That name has been taken.");
             }
 
         } else {
-            ErrorThrower.message("Your input must be alphanumeric.");
+            //ErrorThrower.message("Your input must be alphanumeric.");
+            throw new Exception("Your input must be alphanumeric.");
         }
         return String.valueOf(id);
     }
@@ -43,16 +45,16 @@ public class ServiceController implements ControllerInterface{
      * @param address User's new address.
      */
     @Override
-    public void modifyUserCheck(String id, String newName, String address) {
+    public void modifyUserCheck(String id, String newName, String address) throws Exception {
         ProfileInterface pm = new ProfileManager();
         if (isAlphanumeric(newName) && isAlphanumeric(address)){
             if (isUniqueName(newName)){
                 pm.modifyUser(id, newName, address);
             } else {
-                ErrorThrower.message("That name has been taken.");
+                throw new Exception("That name has been taken.");
             }
         } else {
-            ErrorThrower.message("Your input must be alphanumeric.");
+            throw new Exception("Your input must be alphanumeric.");
         }
     }
 
@@ -91,20 +93,20 @@ public class ServiceController implements ControllerInterface{
      * @param price Price per kg of product being sold.
      */
     @Override
-    public void createRequestCheck(String id, String product, String quantity, String price){
+    public void createRequestCheck(String id, String product, String quantity, String price) throws Exception{
         RequestInterface rm = new RequestManager();
         if (isAlphanumeric(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
                     rm.createRequest(id, product, Double.parseDouble(quantity), Double.parseDouble(price));
                 } else {
-                    ErrorThrower.message("Your price input must have two decimal places.");
+                    throw new Exception("Your price input must have two decimal places.");
                 }
             } else {
-                ErrorThrower.message("Your quantity input must be numeric.");
+                throw new Exception("Your quantity input must be numeric.");
             }
         } else {
-            ErrorThrower.message("Your product input must be alphanumeric.");
+            throw new Exception("Your product input must be alphanumeric.");
         }
     }
 
@@ -116,16 +118,16 @@ public class ServiceController implements ControllerInterface{
      * @param price New price per kg of product.
      */
     @Override
-    public void createCounterOfferCheck(String id, String requestID, String quantity, String price){
+    public void createCounterOfferCheck(String id, String requestID, String quantity, String price) throws Exception{
         RequestInterface rm = new RequestManager();
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
                 rm.createCounterOffer(id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
             } else {
-                ErrorThrower.message("Your price input must have two decimal places.");
+                throw new Exception("Your price input must have two decimal places.");
             }
         } else {
-            ErrorThrower.message("Your quantity input must be numeric.");
+            throw new Exception("Your quantity input must be numeric.");
         }
     }
 

@@ -73,7 +73,6 @@ public class WelcomePage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter your User Name");
                     newUserName.requestFocusInWindow();
                 }
-
                 else {
                     if (presenter.fetchAllFarmerNames().contains(username)){
                         currUserId = presenter.fetchUserId(username);
@@ -90,7 +89,6 @@ public class WelcomePage extends JFrame{
                         distributorPage.setVisible(true);
                     }
                     else {
-                        // TODO: 2021/11/20 show different dialogs based on the erorr message
                         JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
                                 "Create a new Profile");
                         newUserName.requestFocusInWindow();

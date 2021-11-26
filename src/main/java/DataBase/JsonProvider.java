@@ -1,13 +1,12 @@
 package DataBase;
 
+import Entities.*;
 import UseCases.DataAccessInterface;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.Request;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.io.*;
+import java.util.ArrayList;
 
 import static UseCases.ProfileManager.distributorList;
 import static UseCases.ProfileManager.farmerList;
@@ -15,9 +14,14 @@ import static UseCases.ProfileManager.farmerList;
 public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
 
+    /**
+     * Read the saved json files and convert everything into Java
+     * @return The ArrayList of users
+     */
     @Override
-    public void read(){
-
+    public User[] read(String fileName) throws FileNotFoundException{
+        JsonReader reader = new JsonReader(new FileReader(fileName));
+        return gson.fromJson(reader, User.class);
     }
 
     /**

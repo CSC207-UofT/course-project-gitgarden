@@ -2,6 +2,7 @@ package UseCases;
 
 import Entities.*;
 import UseCases.ProfileManager;
+import java.util.ArrayList;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +12,7 @@ public interface DataAccessInterface {
     /*
     Read the saved files.
      */
-    void read();
+    User[] read(String fileName) throws FileNotFoundException;
 
     /*
     Write the current java variables to another file type

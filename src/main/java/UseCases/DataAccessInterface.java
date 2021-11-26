@@ -1,11 +1,8 @@
 package UseCases;
 
 import Entities.*;
-import UseCases.ProfileManager;
-import java.util.ArrayList;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public interface DataAccessInterface {
 

@@ -9,7 +9,7 @@ public class Request implements IRequest{
     private final String prodName;
     private final double prodQuantity;
     private final double prodPricePerKg;
-    private ArrayList<IRequest> counteroffers;
+    private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
 
     public Request(IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {

@@ -1,5 +1,7 @@
 package UseCases;
 
+import Entities.IRequest;
+
 import java.util.ArrayList;
 
 public interface RequestInterface {
@@ -16,4 +18,6 @@ public interface RequestInterface {
     String[] dataFromId(String requestID);
 
     ArrayList<String> coFromId(String requestID);
+
+    IRequest getRequestFromId(String requestID);
 }

@@ -44,13 +44,12 @@ public class RequestPage extends JFrame{
                     JOptionPane.showMessageDialog(null,"Please enter all information");
                 }
                 if (WelcomePage.flag){
-                    // TODO: 2021/11/20 what is this try catch block
-//                    try {
-//                        sc.createRequestCheck(welcomePage.currUserId, product, quantity, price);
-//                    } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
-                    sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
+                    try{
+                        sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
+                    }
+                    catch(Exception requestException){
+                        JOptionPane.showMessageDialog(null,requestException.getMessage());
+                    }
                     JFrame profile = new FarmerPage();
                     setVisible(false);
                     profile.setVisible(true);
@@ -60,24 +59,6 @@ public class RequestPage extends JFrame{
                     setVisible(false);
                     profile.setVisible(true);
                 }
-            }
-        });
-        // TODO: 2021/11/20 check if duplicate
-        quantityInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        ProductNameInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        priceInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
             }
         });
     }

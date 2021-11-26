@@ -91,6 +91,19 @@ public class FarmerPage extends JFrame{
         existingList.setModel(listModel);
         historyList.setModel(listModel2);
 
+        historyList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String request = historyList.getSelectedValue().toString();
+                    int index = listModel2.indexOf(request);
+                    setVisible(false);
+                    HistoryPage historyPage= new HistoryPage(requestIdList.get(index));
+                    historyPage.setVisible(true);
+                }
+            }
+        });
+
         existingList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {

@@ -2,6 +2,7 @@ package UseCases;
 
 import Entities.IDistributor;
 import Entities.IFarmer;
+import Entities.IRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,19 +12,17 @@ public class RankingManager implements RankInterface {
 
     private static final double SINGLE_RANKING = 2.5;
 
-    private final ArrayList<String> allDistributorIDs;
+    private final String requestID;
     private final String farmerID;
-    private final String product;
 
-    public RankingManager(ArrayList<String> allDistributorIDs, String farmerID, String product) {
-        this.allDistributorIDs = allDistributorIDs;
+    public RankingManager(String requestID, String farmerID) {
+        this.requestID = requestID;
         this.farmerID = farmerID;
-        this.product = product;
     }
 
     @Override
     public ArrayList<String> rankDistributors(){
-        ArrayList<IDistributor> rankList = new ArrayList<>(idToDist(allDistributorIDs));
+        ArrayList<IDistributor> rankList = distributorsFromRequestId(requestID);
 
         for (IDistributor dist: rankList){
             double priceRanking = calcRanking(dist, rankList, "price");
@@ -34,7 +33,7 @@ public class RankingManager implements RankInterface {
             dist.setRanking(distRanking);
         }
         rankList.sort(Collections.reverseOrder());
-        return distToId(rankList);
+        return counterofferIdsFromDistributors(rankList);
     }
 
     public double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
@@ -61,7 +60,7 @@ public class RankingManager implements RankInterface {
             case "carbon":
                 return dist.getCarbon();
             default:
-                return dist.prodMap().getOrDefault(product, 0.01);
+                return dist.prodMap().getOrDefault(productFromRequestId(requestID), 0.01);
 
         }
     }
@@ -79,25 +78,35 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public ArrayList<IDistributor> idToDist(ArrayList<String> allDistributors){
-        ProfileInterface pm = new ProfileManager();
-        ArrayList<IDistributor> returned = new ArrayList<>();
-        for (String distID: allDistributors){
-            returned.add((IDistributor) pm.getUserFromId(distID));
+    private ArrayList<IDistributor> distributorsFromRequestId(String requestID) {
+        RequestInterface requestManager = new RequestManager();
+        ArrayList<IDistributor> allDistributors = new ArrayList<>();
+        IRequest request = requestManager.getRequestFromId(requestID);
+        for (IRequest counteroffer: request.getCounteroffers()){
+            allDistributors.add((IDistributor) counteroffer.getUser());
         }
-        return returned;
+        return allDistributors;
     }
 
-    public ArrayList<String> distToId(ArrayList<IDistributor> rankList){
-        ArrayList<String> returned = new ArrayList<>();
+    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList){
+        ArrayList<String> allIds = new ArrayList<>();
+        RequestInterface requestManager = new RequestManager();
+        IRequest request = requestManager.getRequestFromId(requestID);
         for (IDistributor dist: rankList){
-            returned.add(String.valueOf(dist.getUserId()));
+            for (IRequest counteroffer: request.getCounteroffers()){
+                if (counteroffer.getUser().equals(dist)){
+                    allIds.add(String.valueOf(counteroffer.getRequestId()));
+                }
+            }
+
         }
-        return returned;
+        return allIds;
     }
 
-    public String getProduct(){
-        return this.product;
+    private String productFromRequestId(String requestID){
+        RequestInterface requestManager = new RequestManager();
+        IRequest request = requestManager.getRequestFromId(requestID);
+        return request.getProdName();
     }
 
 }

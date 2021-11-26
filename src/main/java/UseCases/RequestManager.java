@@ -37,7 +37,6 @@ public class RequestManager implements RequestInterface{
     public void createCounterOffer(String id, String requestID, Double quantity, Double price){
         ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
-        System.out.println("REQUEST ID: " + requestID);
         IRequest request = getRequestFromId(requestID);
         IRequest co = new Request(user, request.getProdName(), quantity, price, request);
         request.add(co);
@@ -158,7 +157,7 @@ public class RequestManager implements RequestInterface{
      * @param requestID The ID of the request.
      * @return The request matching the ID.
      */
-    private IRequest getRequestFromId(String requestID){
+    public IRequest getRequestFromId(String requestID){
         ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
         for (IRequest request : allRequests){
             if (String.valueOf(request.getRequestId()).equals(requestID)){

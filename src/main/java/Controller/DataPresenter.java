@@ -40,7 +40,9 @@ public class DataPresenter implements IFetch{
 
     public String[] fetchRequestInformation(String requestID){
         RequestInterface rm = new RequestManager();
-        return rm.dataFromId(requestID);
+        String[] data = rm.dataFromId(requestID);
+        if (data[2].matches("\\.[0-9]$")){ data[2] = data[2] + "0";}
+        return data;
     }
 
     public ArrayList<String> fetchRequestHistory(String id){

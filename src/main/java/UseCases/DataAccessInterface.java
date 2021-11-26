@@ -3,6 +3,9 @@ package UseCases;
 import Entities.*;
 import UseCases.ProfileManager;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public interface DataAccessInterface {
 
     /*

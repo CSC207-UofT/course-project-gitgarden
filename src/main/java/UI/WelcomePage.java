@@ -4,12 +4,14 @@ import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
+import DataBase.JsonProvider;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class WelcomePage extends JFrame{
     private JPanel mainPanel;
@@ -213,9 +215,9 @@ public class WelcomePage extends JFrame{
     }
 
     public static void main(String[] args){
+        //TODO: Cannot call non-static method from static class. But gson has to be non-static
 //        try {
-//            // TODO: 2021/11/18 data persistency team's method, double check names
-//            ServiceController.read();
+//            farmers = JsonProvider.readFarmer();
 //        } catch (FileNotFoundException e){
 //            e.printStackTrace();
 //        }
@@ -223,17 +225,16 @@ public class WelcomePage extends JFrame{
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);
 
+        //TODO: Cannot call non-static method from static class. But gson has to be non-static
 //        Runtime.getRuntime().addShutdownHook(new Thread()
 //        {
 //            public void run()
 //            {
 //                try {
-//                    // TODO: 2021/11/18 data persistency team's method, double check names.
-//                    ServiceController.write();
-//                } catch (FileNotFoundException e)
+//                    JsonProvider.write();
+//                } catch (FileNotFoundException e){
 //                    e.printStackTrace();
 //                }
-//                System.out.println("Shutdown Hook is running !");
 //            }
 //        });
     }

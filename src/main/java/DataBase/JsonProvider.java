@@ -3,6 +3,7 @@ package DataBase;
 import Entities.*;
 import UseCases.DataAccessInterface;
 
+import UseCases.ProfileManager;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.io.*;
@@ -65,14 +66,21 @@ public class JsonProvider implements DataAccessInterface {
     public void loadFarmer(Farmer[] farmers) {
         if(farmers != null){
             for (Farmer f : farmers){
-                //TODO: Call ProfileManager will require createFarmer() to be static...
-                IFarmer farmer = new Farmer(f.getUserName(), f.getUserAddress(),
-                        f.getUserId());
-                farmer.setPrefPrice(f.getPrefPrice());
-                farmer.setPrefExposure(f.getPrefExposure());
-                farmer.setPrefSpeed(f.getPrefSpeed());
-                farmer.setPrefCarbon(f.getPrefCarbon());
-                farmerList.add(farmer);
+                ProfileManager pm = new ProfileManager();
+                pm.createFarmer(f.getUserName(), f.getUserAddress(), f.getUserId());
+                pm.modifyFarmer(String.valueOf(f.getUserId()), f.getPrefPrice(),
+                        f.getPrefExposure(), f.getPrefSpeed(), f.getPrefCarbon());
+                /*
+                In case the above code does not work as intended.../interact directly with Entities
+                rather than using ProfileManager.
+                 */
+//                IFarmer farmer = new Farmer(f.getUserName(), f.getUserAddress(),
+//                        f.getUserId());
+//                farmer.setPrefPrice(f.getPrefPrice());
+//                farmer.setPrefExposure(f.getPrefExposure());
+//                farmer.setPrefSpeed(f.getPrefSpeed());
+//                farmer.setPrefCarbon(f.getPrefCarbon());
+//                farmerList.add(farmer);
             }
         }
     }
@@ -87,13 +95,20 @@ public class JsonProvider implements DataAccessInterface {
     public void loadDistributor(Distributor[] distributors) {
         if (distributors != null){
             for (Distributor d : distributors){
-                //TODO: Call ProfileManager will require createDistributor() to be static...
-                IDistributor dist = new Distributor(d.getUserName(), d.getUserAddress(),
-                        d.getUserId());
-                dist.setExposure(d.getExposure());
-                dist.setSpeed(d.getSpeed());
-                dist.setCarbon(d.getCarbon());
-                distributorList.add(dist);
+                ProfileManager pm = new ProfileManager();
+                pm.createDistributor(d.getUserName(), d.getUserAddress(), d.getUserId());
+                pm.modifyDistributor(String.valueOf(d.getUserId()), d.getExposure(),
+                        d.getSpeed(), d.getCarbon());
+                /*
+                In case the above code does not work as intended.../interact directly with Entities
+                rather than using ProfileManager.
+                 */
+//                IDistributor dist = new Distributor(d.getUserName(), d.getUserAddress(),
+//                        d.getUserId());
+//                dist.setExposure(d.getExposure());
+//                dist.setSpeed(d.getSpeed());
+//                dist.setCarbon(d.getCarbon());
+//                distributorList.add(dist);
             }
         }
     }

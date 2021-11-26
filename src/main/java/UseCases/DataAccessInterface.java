@@ -10,9 +10,14 @@ import java.io.IOException;
 public interface DataAccessInterface {
 
     /*
-    Read the saved files.
+    Read the saved farmer files.
      */
-    User[] read(String fileName) throws FileNotFoundException;
+    Farmer[] readFarmer(String fileName) throws FileNotFoundException;
+
+    /*
+    Read the saved distributor files.
+     */
+    Distributor[] readDistributor(String fileName) throws FileNotFoundException;
 
     /*
     Write the current java variables to another file type
@@ -22,11 +27,11 @@ public interface DataAccessInterface {
     /*
     Load the Farmer from previously saved files
      */
-    void loadFarmer();
+    void loadFarmer(Farmer[] farmers);
 
     /*
     Load the Distributor from previously saved files
      */
-    void loadDistributor();
+    void loadDistributor(Distributor[] distributors);
 
 }

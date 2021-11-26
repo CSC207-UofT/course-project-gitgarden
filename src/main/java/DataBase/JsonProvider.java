@@ -3,6 +3,7 @@ package DataBase;
 import Entities.*;
 import UseCases.DataAccessInterface;
 
+import UseCases.ProfileManager;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.io.*;
@@ -16,12 +17,24 @@ public class JsonProvider implements DataAccessInterface {
 
     /**
      * Read the saved json files and convert everything into Java
-     * @return The ArrayList of users
+     * @param fileName The file name of the saved json file containing farmers
+     * @return list of farmers
      */
     @Override
-    public User[] read(String fileName) throws FileNotFoundException{
+    public Farmer[] readFarmer(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, User.class);
+        return gson.fromJson(reader, Farmer.class);
+    }
+
+    /**
+     * Read the saved json files and convert everything into Java
+     * @param fileName The file name of the saved json file containing distributors
+     * @return list of distributors
+     */
+    @Override
+    public Distributor[] readDistributor(String fileName) throws FileNotFoundException {
+        JsonReader reader = new JsonReader(new FileReader(fileName));
+        return gson.fromJson(reader, Distributor.class);
     }
 
     /**
@@ -46,12 +59,12 @@ public class JsonProvider implements DataAccessInterface {
     }
 
     @Override
-    public void loadFarmer() {
+    public void loadFarmer(Farmer[] farmers) {
 
     }
 
     @Override
-    public void loadDistributor() {
+    public void loadDistributor(Distributor[] distributors) {
 
     }
 }

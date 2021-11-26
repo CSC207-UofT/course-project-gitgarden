@@ -226,17 +226,13 @@ public class WelcomePage extends JFrame{
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);
 
-        //TODO: Cannot call non-static method from static class. But gson has to be non-static
-//        Runtime.getRuntime().addShutdownHook(new Thread()
-//        {
-//            public void run()
-//            {
-//                try {
-//                    JsonProvider.write();
-//                } catch (FileNotFoundException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            public void run()
+            {
+                JsonProvider jp = new JsonProvider();
+                jp.write();
+            }
+        });
     }
 }

@@ -48,7 +48,12 @@ public class CounterOfferPage extends JFrame{
 //                } catch (Exception ex) {
 //                    ex.printStackTrace();
 //                }
-                sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
+                try {
+                    sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
+                }
+                catch (Exception counterOfferException){
+                    JOptionPane.showMessageDialog(null, counterOfferException.getMessage());
+                }
                 // TODO: 2021/11/21 check if passed
                 if(WelcomePage.flag){
                     setVisible(false);

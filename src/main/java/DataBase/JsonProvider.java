@@ -35,7 +35,7 @@ public class JsonProvider implements DataAccessInterface {
 
     /**
      * Take the farmerList and distributorList, convert them to json format and save them
-     * in "distributors.json" and "farmers.json"
+     * as "distributors.json" and "farmers.json"
      */
     @Override
     public void write(){
@@ -57,8 +57,8 @@ public class JsonProvider implements DataAccessInterface {
     }
 
     /**
-     * Load the farmers to farmerList based on the array returned from readFarmer()
-     * @param farmers array of Farmers that needs to be converted to IFarmer and add to farmerList
+     * Load the farmers to farmerList based on the list returned from readFarmer()
+     * @param farmers list of Farmers that needs to be converted to IFarmer and add to farmerList
      * TODO: Check whether requests and offer history work properly
      */
     @Override
@@ -85,8 +85,8 @@ public class JsonProvider implements DataAccessInterface {
     }
 
     /**
-     * Load the distributors to distributorList based on the array returned from readDistributor()
-     * @param distributors array of Distributors that needs to be converted to IDistributor and add to
+     * Load the distributors to distributorList based on the list returned from readDistributor()
+     * @param distributors list of Distributors that needs to be converted to IDistributor and add to
      *                     distributorList.
      * TODO: Check whether requests and offer history work properly
      */

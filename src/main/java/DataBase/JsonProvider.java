@@ -19,7 +19,7 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public Farmer[] readFarmer(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Farmer.class);
+        return gson.fromJson(reader, Farmer[].class);
     }
 
     /**
@@ -30,7 +30,7 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public Distributor[] readDistributor(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Distributor.class);
+        return gson.fromJson(reader, Distributor[].class);
     }
 
     /**

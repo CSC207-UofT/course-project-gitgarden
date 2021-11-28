@@ -170,14 +170,9 @@ public class WelcomePage extends JFrame{
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);
 
-        //TODO: replace the Thread() as Intellij suggested?
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-            public void run()
-            {
-                JsonProvider jp = new JsonProvider();
-                jp.write();
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            JsonProvider jp = new JsonProvider();
+            jp.write();
+        }));
     }
 }

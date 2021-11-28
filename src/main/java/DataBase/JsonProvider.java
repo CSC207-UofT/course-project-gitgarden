@@ -19,7 +19,7 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public Farmer[] readFarmer(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Farmer.class);
+        return gson.fromJson(reader, Farmer[].class);
     }
 
     /**
@@ -30,12 +30,12 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public Distributor[] readDistributor(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Distributor.class);
+        return gson.fromJson(reader, Distributor[].class);
     }
 
     /**
      * Take the farmerList and distributorList, convert them to json format and save them
-     * in "distributors.json" and "farmers.json"
+     * as "distributors.json" and "farmers.json"
      */
     @Override
     public void write(){
@@ -57,9 +57,8 @@ public class JsonProvider implements DataAccessInterface {
     }
 
     /**
-     * Load the farmers to farmerList based on the array returned from readFarmer()
-     * @param farmers array of Farmers that needs to be converted to IFarmer and add to farmerList
-     * TODO: Check whether requests and offer history work properly
+     * Load the farmers to farmerList based on the list returned from readFarmer()
+     * @param farmers list of Farmers that needs to be converted to IFarmer and add to farmerList
      */
     @Override
     public void loadFarmer(Farmer[] farmers) {
@@ -69,26 +68,14 @@ public class JsonProvider implements DataAccessInterface {
                 pm.createFarmer(f.getUserName(), f.getUserAddress(), f.getUserId());
                 pm.modifyFarmer(String.valueOf(f.getUserId()), f.getPrefPrice(),
                         f.getPrefExposure(), f.getPrefSpeed(), f.getPrefCarbon());
-                /*
-                In case the above code does not work as intended.../interact directly with Entities
-                rather than using ProfileManager.
-                 */
-//                IFarmer farmer = new Farmer(f.getUserName(), f.getUserAddress(),
-//                        f.getUserId());
-//                farmer.setPrefPrice(f.getPrefPrice());
-//                farmer.setPrefExposure(f.getPrefExposure());
-//                farmer.setPrefSpeed(f.getPrefSpeed());
-//                farmer.setPrefCarbon(f.getPrefCarbon());
-//                farmerList.add(farmer);
             }
         }
     }
 
     /**
-     * Load the distributors to distributorList based on the array returned from readDistributor()
-     * @param distributors array of Distributors that needs to be converted to IDistributor and add to
+     * Load the distributors to distributorList based on the list returned from readDistributor()
+     * @param distributors list of Distributors that needs to be converted to IDistributor and add to
      *                     distributorList.
-     * TODO: Check whether requests and offer history work properly
      */
     @Override
     public void loadDistributor(Distributor[] distributors) {
@@ -98,16 +85,6 @@ public class JsonProvider implements DataAccessInterface {
                 pm.createDistributor(d.getUserName(), d.getUserAddress(), d.getUserId());
                 pm.modifyDistributor(String.valueOf(d.getUserId()), d.getExposure(),
                         d.getSpeed(), d.getCarbon());
-                /*
-                In case the above code does not work as intended.../interact directly with Entities
-                rather than using ProfileManager.
-                 */
-//                IDistributor dist = new Distributor(d.getUserName(), d.getUserAddress(),
-//                        d.getUserId());
-//                dist.setExposure(d.getExposure());
-//                dist.setSpeed(d.getSpeed());
-//                dist.setCarbon(d.getCarbon());
-//                distributorList.add(dist);
             }
         }
     }

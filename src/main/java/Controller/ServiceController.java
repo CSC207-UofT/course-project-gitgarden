@@ -19,7 +19,7 @@ public class ServiceController implements ControllerInterface{
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
         int id = uniqueId();
-        if (hasLetter(name) && isAlphanumeric(name) && isAlphanumeric(address)){
+        if (isAlphanumeric(name) && isAlphanumeric(address)){
             if (isUniqueName(name)){
                 if (flag){
                     pm.createFarmer(name, address, id);

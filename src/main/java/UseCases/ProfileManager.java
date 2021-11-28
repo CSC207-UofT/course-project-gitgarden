@@ -56,7 +56,7 @@ public class ProfileManager implements ProfileInterface{
     @Override
     public ArrayList<String> getAllDistNames(){
         ArrayList<String> names = new ArrayList<>();
-        for (IUser user: farmerList){
+        for (IUser user: distributorList){
             names.add(user.getUserName());
         }
         return names;

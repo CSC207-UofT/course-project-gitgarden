@@ -8,16 +8,6 @@ UI TEAM - @Melaney, @Patric, @Jagat
 - [ ] Task 4 - Test Cases @Andy [DDL: Nov. 27, Sat]
 - [ ] Task 5 - User Ratings @UI TEAM +  [DDL: Nov. 27, Sat]
 
---- 
-
-Optional: 
-
-- [ ] Task 6 - Blocking users @UI TEAM +  [DDL: Dec 3, Fri]
-- [ ] Task 7 - Memento @ [DDL: Dec 3, Fri]
-- [ ] Task 8 - Report functionality by farmer @Onyx + @UI TEAM [DDL: Dec 3, Fri]
-  - Report speed
-
-
 # DONE - Project Phase 1
 
 - [x] Task 1 - User Interface (java gui) - [100% complete]

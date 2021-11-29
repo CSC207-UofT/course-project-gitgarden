@@ -19,22 +19,14 @@ public class ServiceController implements ControllerInterface{
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
         int id = uniqueId();
-        if (isValidName(name) && isAlphanumeric(address)){
-            if (isUniqueName(name)){
-                if (flag){
-                    pm.createFarmer(name, address, id);
-                } else {
-                    pm.createDistributor(name, address, id);
-                }
-            } else {
-                //ErrorThrower.message("That name has been taken.");
-                throw new Exception("That name has been taken.");
-            }
-
-        } else {
-            //ErrorThrower.message("Your input must be alphanumeric.");
-            throw new Exception("Your input must be alphanumeric.");
-        }
+        if (isValidName(name)){
+            if (isAlphanumeric(address)){
+                if (isUniqueName(name)){
+                    if (flag) { pm.createFarmer(name, address, id); }
+                    else { pm.createDistributor(name, address, id); }
+                } else { throw new Exception("That name has been taken."); }
+            } else { throw new Exception("Please enter an alphanumeric address."); }
+        } else { throw new Exception("Please enter an alphanumeric name containing at least one letter."); }
         return String.valueOf(id);
     }
 
@@ -47,15 +39,13 @@ public class ServiceController implements ControllerInterface{
     @Override
     public void modifyUserCheck(String id, String newName, String address) throws Exception {
         ProfileInterface pm = new ProfileManager();
-        if (isValidName(newName) && isAlphanumeric(address)){
-            if (isUniqueName(newName)){
-                pm.modifyUser(id, newName, address);
-            } else {
-                throw new Exception("That name has been taken.");
-            }
-        } else {
-            throw new Exception("Your input must be alphanumeric.");
-        }
+        if (isValidName(newName)){
+            if (isAlphanumeric(address)){
+                if (isUniqueName(newName)){
+                    pm.modifyUser(id, newName, address);
+                } else { throw new Exception("That name has been taken."); }
+            } else { throw new Exception("Please enter an alphanumeric address."); }
+        } else { throw new Exception("Please enter an alphanumeric name containing at least one letter."); }
     }
 
     /**

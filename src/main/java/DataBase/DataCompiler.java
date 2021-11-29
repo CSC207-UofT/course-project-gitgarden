@@ -70,8 +70,6 @@ public class DataCompiler {
      *     .create();
      * </pre>
      *
-     * @author Inderjeet Singh
-     * @author Joel Leitch
      *
      * @see GsonBuilder#setExclusionStrategies(ExclusionStrategy...)
      * @see GsonBuilder#addDeserializationExclusionStrategy(ExclusionStrategy)

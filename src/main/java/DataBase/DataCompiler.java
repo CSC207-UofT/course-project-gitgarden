@@ -93,4 +93,116 @@ public class DataCompiler {
          */
         public boolean shouldSkipClass(Class<?> clazz);
     }
+    /*
+         public Gson() {
+    this(Excluder.DEFAULT, FieldNamingPolicy.IDENTITY,
+        Collections.<Type, InstanceCreator<?>>emptyMap(), DEFAULT_SERIALIZE_NULLS,
+        DEFAULT_COMPLEX_MAP_KEYS, DEFAULT_JSON_NON_EXECUTABLE, DEFAULT_ESCAPE_HTML,
+        DEFAULT_PRETTY_PRINT, DEFAULT_LENIENT, DEFAULT_SPECIALIZE_FLOAT_VALUES,
+        LongSerializationPolicy.DEFAULT, null, DateFormat.DEFAULT, DateFormat.DEFAULT,
+        Collections.<TypeAdapterFactory>emptyList(), Collections.<TypeAdapterFactory>emptyList(),
+        Collections.<TypeAdapterFactory>emptyList(), ToNumberPolicy.DOUBLE, ToNumberPolicy.LAZILY_PARSED_NUMBER);
+  }
+
+  Gson(Excluder excluder, FieldNamingStrategy fieldNamingStrategy,
+      Map<Type, InstanceCreator<?>> instanceCreators, boolean serializeNulls,
+      boolean complexMapKeySerialization, boolean generateNonExecutableGson, boolean htmlSafe,
+      boolean prettyPrinting, boolean lenient, boolean serializeSpecialFloatingPointValues,
+      LongSerializationPolicy longSerializationPolicy, String datePattern, int dateStyle,
+      int timeStyle, List<TypeAdapterFactory> builderFactories,
+      List<TypeAdapterFactory> builderHierarchyFactories,
+      List<TypeAdapterFactory> factoriesToBeAdded,
+          ToNumberStrategy objectToNumberStrategy, ToNumberStrategy numberToNumberStrategy) {
+    this.excluder = excluder;
+    this.fieldNamingStrategy = fieldNamingStrategy;
+    this.instanceCreators = instanceCreators;
+    this.constructorConstructor = new ConstructorConstructor(instanceCreators);
+    this.serializeNulls = serializeNulls;
+    this.complexMapKeySerialization = complexMapKeySerialization;
+    this.generateNonExecutableJson = generateNonExecutableGson;
+    this.htmlSafe = htmlSafe;
+    this.prettyPrinting = prettyPrinting;
+    this.lenient = lenient;
+    this.serializeSpecialFloatingPointValues = serializeSpecialFloatingPointValues;
+    this.longSerializationPolicy = longSerializationPolicy;
+    this.datePattern = datePattern;
+    this.dateStyle = dateStyle;
+    this.timeStyle = timeStyle;
+    this.builderFactories = builderFactories;
+    this.builderHierarchyFactories = builderHierarchyFactories;
+    this.objectToNumberStrategy = objectToNumberStrategy;
+    this.numberToNumberStrategy = numberToNumberStrategy;
+
+    List<TypeAdapterFactory> factories = new ArrayList<TypeAdapterFactory>();
+
+    // built-in type adapters that cannot be overridden
+    factories.add(TypeAdapters.JSON_ELEMENT_FACTORY);
+    factories.add(ObjectTypeAdapter.getFactory(objectToNumberStrategy));
+
+    // the excluder must precede all adapters that handle user-defined types
+    factories.add(excluder);
+
+    // users' type adapters
+    factories.addAll(factoriesToBeAdded);
+
+    // type adapters for basic platform types
+    factories.add(TypeAdapters.STRING_FACTORY);
+    factories.add(TypeAdapters.INTEGER_FACTORY);
+    factories.add(TypeAdapters.BOOLEAN_FACTORY);
+    factories.add(TypeAdapters.BYTE_FACTORY);
+    factories.add(TypeAdapters.SHORT_FACTORY);
+    TypeAdapter<Number> longAdapter = longAdapter(longSerializationPolicy);
+    factories.add(TypeAdapters.newFactory(long.class, Long.class, longAdapter));
+    factories.add(TypeAdapters.newFactory(double.class, Double.class,
+            doubleAdapter(serializeSpecialFloatingPointValues)));
+    factories.add(TypeAdapters.newFactory(float.class, Float.class,
+            floatAdapter(serializeSpecialFloatingPointValues)));
+    factories.add(NumberTypeAdapter.getFactory(numberToNumberStrategy));
+    factories.add(TypeAdapters.ATOMIC_INTEGER_FACTORY);
+    factories.add(TypeAdapters.ATOMIC_BOOLEAN_FACTORY);
+    factories.add(TypeAdapters.newFactory(AtomicLong.class, atomicLongAdapter(longAdapter)));
+    factories.add(TypeAdapters.newFactory(AtomicLongArray.class, atomicLongArrayAdapter(longAdapter)));
+    factories.add(TypeAdapters.ATOMIC_INTEGER_ARRAY_FACTORY);
+    factories.add(TypeAdapters.CHARACTER_FACTORY);
+    factories.add(TypeAdapters.STRING_BUILDER_FACTORY);
+    factories.add(TypeAdapters.STRING_BUFFER_FACTORY);
+    factories.add(TypeAdapters.newFactory(BigDecimal.class, TypeAdapters.BIG_DECIMAL));
+    factories.add(TypeAdapters.newFactory(BigInteger.class, TypeAdapters.BIG_INTEGER));
+    factories.add(TypeAdapters.URL_FACTORY);
+    factories.add(TypeAdapters.URI_FACTORY);
+    factories.add(TypeAdapters.UUID_FACTORY);
+    factories.add(TypeAdapters.CURRENCY_FACTORY);
+    factories.add(TypeAdapters.LOCALE_FACTORY);
+    factories.add(TypeAdapters.INET_ADDRESS_FACTORY);
+    factories.add(TypeAdapters.BIT_SET_FACTORY);
+    factories.add(DateTypeAdapter.FACTORY);
+    factories.add(TypeAdapters.CALENDAR_FACTORY);
+
+    if (SqlTypesSupport.SUPPORTS_SQL_TYPES) {
+      factories.add(SqlTypesSupport.TIME_FACTORY);
+      factories.add(SqlTypesSupport.DATE_FACTORY);
+      factories.add(SqlTypesSupport.TIMESTAMP_FACTORY);
+    }
+
+    factories.add(ArrayTypeAdapter.FACTORY);
+    factories.add(TypeAdapters.CLASS_FACTORY);
+
+    // type adapters for composite and user-defined types
+    factories.add(new CollectionTypeAdapterFactory(constructorConstructor));
+    factories.add(new MapTypeAdapterFactory(constructorConstructor, complexMapKeySerialization));
+    this.jsonAdapterFactory = new JsonAdapterAnnotationTypeAdapterFactory(constructorConstructor);
+    factories.add(jsonAdapterFactory);
+    factories.add(TypeAdapters.ENUM_FACTORY);
+    factories.add(new ReflectiveTypeAdapterFactory(
+        constructorConstructor, fieldNamingStrategy, excluder, jsonAdapterFactory));
+
+    this.factories = Collections.unmodifiableList(factories);
+  }
+
+  /**
+   * Returns a new GsonBuilder containing all custom factories and configuration used by the current
+   * instance.
+   *
+   * @return a GsonBuilder instance.
+   */
 }

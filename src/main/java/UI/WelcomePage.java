@@ -125,23 +125,22 @@ public class WelcomePage extends JFrame{
                 else{
                     try{
                         currUserId = sc.createProfileCheck(name,address, flag);
+                        if (flag) {
+                            sc.modifyFarmerCheck(currUserId, slider1_value, slider2_value, slider3_value, slider4_value);
+                            FarmerPage farmerPage = new FarmerPage();
+                            setVisible(false);
+                            farmerPage.setVisible(true);
+                            setContentPane(new FarmerPage().mainPanel);
+                        } else {
+                            sc.modifyDistributorCheck(currUserId, slider2_value, slider3_value, slider4_value);
+                            DistributorPage distributorPage = new DistributorPage();
+                            setVisible(false);
+                            distributorPage.setVisible(true);
+                            setContentPane(new DistributorPage().mainPanel);
+                        }
                     }
                     catch (Exception profileException){
                         JOptionPane.showMessageDialog(null,profileException.getMessage());
-                    }
-                    if (flag) {
-                        sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
-                        FarmerPage farmerPage = new FarmerPage();
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                        setContentPane(new FarmerPage().mainPanel);
-                    }
-                    else {
-                        sc.modifyDistributorCheck(currUserId, slider2_value, slider3_value, slider4_value);
-                        DistributorPage distributorPage = new DistributorPage();
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                        setContentPane(new DistributorPage().mainPanel);
                     }
                 }
             }

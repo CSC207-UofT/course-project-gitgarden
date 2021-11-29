@@ -21,4 +21,8 @@ public interface IRequest {
     double getProdPricePerKg();
 
     IRequest getPrevious();
+
+    void setRating(int rating);
+
+    int getRating();
 }

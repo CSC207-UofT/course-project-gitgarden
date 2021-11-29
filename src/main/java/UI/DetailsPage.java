@@ -86,7 +86,6 @@ public class DetailsPage extends JFrame{
                 }
                 else{
                     sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
-                    // TODO: 2021/11/21 see if pass the check
                 }
             }
         });
@@ -99,7 +98,6 @@ public class DetailsPage extends JFrame{
                 }
                 else{
                     sc.declineRequestCheck(tempRequest, WelcomePage.currUserId);
-                    // TODO: 2021/11/21 see if pass the check
                 }
             }
         });
@@ -134,7 +132,8 @@ public class DetailsPage extends JFrame{
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
         for(String requestId: sc.rank(request, WelcomePage.currUserId)){
             String[] product_info = presenter.fetchRequestInformation(requestId);
-            listModel2.addElement(i+" "+ product_info[0] + product_info[1] + product_info[2]);
+            listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                    "Price :" + product_info[2]);
         }
 
         responseList.setModel(listModel2);

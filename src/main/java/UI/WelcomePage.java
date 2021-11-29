@@ -119,42 +119,30 @@ public class WelcomePage extends JFrame{
                 double slider3_value = slider3.getValue();
                 double slider4_value = slider4.getValue();
                 String name = newUserName.getText();
-                if (name.equals("")) {
-                    JOptionPane.showMessageDialog(null,"Please enter your User Name.");
+                if (flag == null) {
+                    JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
                 }
-                else {
-                    if (flag == null) {
-                        JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
+                else{
+                    try{
+                        currUserId = sc.createProfileCheck(name,address, flag);
                     }
-                    else{
-                        if (flag) {
-                            try{
-                                currUserId = sc.createProfileCheck(name,address, flag);
-                            }
-                            catch (Exception profileException){
-                                JOptionPane.showMessageDialog(null,profileException.getMessage());
-                            }
-                            sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
-                            FarmerPage farmerPage = new FarmerPage();
-                            setVisible(false);
-                            farmerPage.setVisible(true);
-                            setContentPane(new FarmerPage().mainPanel);
-                        }
-                        else {
-                            try {
-                                currUserId = sc.createProfileCheck(name, address, flag);
-                            }
-                            catch (Exception profileException){
-                                JOptionPane.showMessageDialog(null,profileException.getMessage());
-                            }
-                            sc.modifyDistributorCheck(currUserId, slider2_value,slider3_value, slider4_value);
-                            DistributorPage distributorPage = new DistributorPage();
-                            setVisible(false);
-                            distributorPage.setVisible(true);
-                            setContentPane(new DistributorPage().mainPanel);
-                        }
+                    catch (Exception profileException){
+                        JOptionPane.showMessageDialog(null,profileException.getMessage());
                     }
-
+                    if (flag) {
+                        sc.modifyFarmerCheck(currUserId, slider1_value,slider2_value, slider3_value, slider4_value);
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                        setContentPane(new FarmerPage().mainPanel);
+                    }
+                    else {
+                        sc.modifyDistributorCheck(currUserId, slider2_value, slider3_value, slider4_value);
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                        setContentPane(new DistributorPage().mainPanel);
+                    }
                 }
             }
         });
@@ -166,16 +154,18 @@ public class WelcomePage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
+
     }
 
+
     public static void main(String[] args){
-        try {
-            JsonProvider jp = new JsonProvider();
-            jp.loadFarmer(jp.readFarmer("farmers.json"));
-            jp.loadDistributor(jp.readDistributor("distributors.json"));
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
+//        try {
+//            JsonProvider jp = new JsonProvider();
+//            jp.loadFarmer(jp.readFarmer("farmers.json"));
+//            jp.loadDistributor(jp.readDistributor("distributors.json"));
+//        } catch (FileNotFoundException e){
+//            e.printStackTrace();
+//        }
 
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.setVisible(true);

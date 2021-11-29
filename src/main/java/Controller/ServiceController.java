@@ -19,7 +19,7 @@ public class ServiceController implements ControllerInterface{
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
         int id = uniqueId();
-        if (isAlphanumeric(name) && isAlphanumeric(address)){
+        if (isValidName(name) && isAlphanumeric(address)){
             if (isUniqueName(name)){
                 if (flag){
                     pm.createFarmer(name, address, id);
@@ -47,7 +47,7 @@ public class ServiceController implements ControllerInterface{
     @Override
     public void modifyUserCheck(String id, String newName, String address) throws Exception {
         ProfileInterface pm = new ProfileManager();
-        if (isAlphanumeric(newName) && isAlphanumeric(address)){
+        if (isValidName(newName) && isAlphanumeric(address)){
             if (isUniqueName(newName)){
                 pm.modifyUser(id, newName, address);
             } else {
@@ -179,8 +179,8 @@ public class ServiceController implements ControllerInterface{
      * @param input Input from the user.
      * @return boolean that indicates if the name is valid.
      */
-    public boolean hasLetter(String input){
-        return input.matches("[a-zA-Z]");
+    public boolean isValidName(String input){
+        return input.matches("^\\d*[a-zA-Z][a-zA-Z0-9]*$");
     }
 
     /**

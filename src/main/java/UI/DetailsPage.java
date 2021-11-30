@@ -149,5 +149,21 @@ public class DetailsPage extends JFrame{
                 }
             }
         });
+        TrashButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sc.trashRequestCheck(request);
+                JOptionPane.showMessageDialog(null, "Your request has been trashed.");
+                setVisible(false);
+                if(WelcomePage.flag){
+                    FarmerPage farmerPage = new FarmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    DistributorPage distributorPage = new DistributorPage();
+                    distributorPage.setVisible(true);
+                }
+            }
+        });
     }
 }

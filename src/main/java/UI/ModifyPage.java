@@ -58,36 +58,26 @@ public class ModifyPage extends JFrame{
                 if (WelcomePage.flag) {
                     try {
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    }
-                    catch (Exception UserCheckException){
-                        JOptionPane.showMessageDialog(null,UserCheckException.getMessage());
-                    }
-                    try {
                         sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
                                 slider3_value, slider4_value);
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
                     }
-                    catch (Exception farmerCheckException){
-                        JOptionPane.showMessageDialog(null, farmerCheckException.getMessage());
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
-                    FarmerPage farmerPage = new FarmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
                 } else {
                     try {
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    }
-                    catch (Exception UserCheckException){
-                        JOptionPane.showMessageDialog(null, UserCheckException.getMessage());
-                    }
-                    try {
                         sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
                     }
-                    catch (Exception distributorCheck){
-                        JOptionPane.showMessageDialog(null, distributorCheck.getMessage());
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
-                    DistributorPage distributorPage = new DistributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
                 }
             }
         });

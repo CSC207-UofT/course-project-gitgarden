@@ -29,17 +29,19 @@ public class DetailsPage extends JFrame{
     private JLabel responseText;
     private JPanel responseListPanel;
     private JList<String> responseList;
-    private JPanel buttonPanel;
-    private JPanel acceptButtonPanel;
     private JButton acceptRequest;
-    private JPanel declineButtonPanel;
     private JButton declineButton;
-    private JPanel counterButtonPanel;
     private JButton counterButton;
-    private JPanel closeButtonPanel;
     private JButton closeButton;
     private JPanel descriptionPanel;
     private JLabel descriptionText;
+    private JPanel buttonPanel;
+    private JPanel acceptButtonPanel;
+    private JPanel declineButtonPanel;
+    private JPanel counterButtonPanel;
+    private JPanel closeButtonPanel;
+    private JPanel trashButtonPanel;
+    private JButton TrashButton;
 
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();

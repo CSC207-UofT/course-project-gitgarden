@@ -43,21 +43,14 @@ public class RequestPage extends JFrame{
                 if (product.equals("")|| quantity.equals("")|| price.equals("")) {
                     JOptionPane.showMessageDialog(null,"Please enter all information");
                 }
-                if (WelcomePage.flag){
-                    try{
-                        sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
-                    }
-                    catch(Exception requestException){
-                        JOptionPane.showMessageDialog(null,requestException.getMessage());
-                    }
+                try{
+                    sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
                     JFrame profile = new FarmerPage();
                     setVisible(false);
                     profile.setVisible(true);
                 }
-                else{
-                    JFrame profile = new DistributorPage();
-                    setVisible(false);
-                    profile.setVisible(true);
+                catch(Exception requestException){
+                    JOptionPane.showMessageDialog(null,requestException.getMessage());
                 }
             }
         });

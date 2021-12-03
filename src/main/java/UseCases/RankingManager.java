@@ -1,5 +1,6 @@
 package UseCases;
 
+import Entities.Distributor;
 import Entities.IDistributor;
 import Entities.IFarmer;
 import Entities.IRequest;
@@ -123,7 +124,7 @@ public class RankingManager implements RankInterface {
         return (1 <= value && value <= 10);
     }
 
-    public static double getHistoryAvg(IDistributor user){
+    public static Double getHistoryAvg(IDistributor user){
         ArrayList<IRequest> temp = user.getOfferHistory();
         int value = 0;
         double count = 0;

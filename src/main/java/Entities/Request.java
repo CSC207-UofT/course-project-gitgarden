@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Request implements IRequest{
 
     private final int requestId;
-    private final IUser user;
+    private transient IUser user;
     private final String prodName;
     private final double prodQuantity;
     private final double prodPricePerKg;
@@ -22,6 +22,15 @@ public class Request implements IRequest{
         this.counteroffers = new ArrayList<>();
         this.previous = previous;
         this.rating = -1;
+    }
+
+    public Request(String pName, double pQuantity, double pPricePerKg, IRequest previous) {
+        this.requestId = (int) (Math.random()*(90000000)+10000000);
+        this.prodName = pName;
+        this.prodQuantity = pQuantity;
+        this.prodPricePerKg = pPricePerKg;
+        this.counteroffers = new ArrayList<>();
+        this.previous = previous;
     }
 
     /**

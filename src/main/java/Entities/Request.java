@@ -12,8 +12,8 @@ public class Request implements IRequest{
     private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
 
-    public Request(IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
-        this.requestId = (int) (Math.random()*(90000000)+10000000);
+    public Request(int id, IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
+        this.requestId = id;
         this.user = user;
         this.prodName = pName;
         this.prodQuantity = pQuantity;
@@ -22,8 +22,8 @@ public class Request implements IRequest{
         this.previous = previous;
     }
 
-    public Request(String pName, double pQuantity, double pPricePerKg, IRequest previous) {
-        this.requestId = (int) (Math.random()*(90000000)+10000000);
+    public Request(int id, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
+        this.requestId = id;
         this.prodName = pName;
         this.prodQuantity = pQuantity;
         this.prodPricePerKg = pPricePerKg;

@@ -6,7 +6,7 @@ public class User implements IUser{
     private String userName;
     private final int userId;
     private String userAddress;
-    protected transient ArrayList<IRequest> currentRequests = new ArrayList<>();
+    protected ArrayList<IRequest> currentRequests = new ArrayList<>();
     protected ArrayList<IRequest> offerHistory = new ArrayList<>();
 
      /**

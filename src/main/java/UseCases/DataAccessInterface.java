@@ -40,10 +40,22 @@ public interface DataAccessInterface {
     void loadFarmer(Farmer[] farmers);
 
     /**
+     * Load the Farmer from previously saved files
+     * @param users list of Users that needs to be converted to IFarmer and add to farmerList.
+     */
+    void userLoadFarmer(User[] users);
+
+    /**
      * Load the Distributor from previously saved files
      * @param distributors list of Distributors that needs to be converted to IDistributor and add to
      *                     distributorList.
      */
     void loadDistributor(Distributor[] distributors);
+
+    /**
+     * Load the Distributor from previously saved files
+     * @param users list of Users that needs to be converted to IDistributor and add to distributorList.
+     */
+    void userLoadDistributor(User[] users);
 
 }

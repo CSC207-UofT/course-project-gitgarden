@@ -2,9 +2,17 @@ package UseCases;
 
 import Entities.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 public interface DataAccessInterface {
+
+    /**
+     * Read the saved files from the given fileName.
+     * @param fileName The file name of the saved json file containing farmers/distributors
+     * @return list of users
+     */
+    User[] readUser(String fileName) throws FileNotFoundException;
 
     /**
      * Read the saved farmer files from given fileName.

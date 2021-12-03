@@ -12,6 +12,17 @@ public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
 
     /**
+     * Read the save json files and convert everything into Java
+     * @param fileName the file name of the save json file containing farmers/distributors
+     * @return list of users
+     */
+    @Override
+    public User[] readUser(String fileName) throws FileNotFoundException {
+        JsonReader reader = new JsonReader(new FileReader(fileName));
+        return gson.fromJson(reader, User[].class);
+    }
+
+    /**
      * Read the saved json files and convert everything into Java
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers

@@ -55,7 +55,9 @@ public class RequestManager implements RequestInterface{
         IRequest request = getRequestFromId(requestID);
         IUser previousUser = request.getPrevious().getUser();
 
+        //Call Rating System for current user
         request.getUser().addOffer(request);
+        //call Rating System for previous user
         previousUser.addOffer(request);
 
         deleteCurrent(request);

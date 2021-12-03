@@ -12,6 +12,17 @@ public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
 
     /**
+     * Read the save json files and convert everything into Java
+     * @param fileName the file name of the save json file containing farmers/distributors
+     * @return list of users
+     */
+    @Override
+    public User[] readUser(String fileName) throws FileNotFoundException {
+        JsonReader reader = new JsonReader(new FileReader(fileName));
+        return gson.fromJson(reader, User[].class);
+    }
+
+    /**
      * Read the saved json files and convert everything into Java
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers
@@ -63,11 +74,24 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public void loadFarmer(Farmer[] farmers) {
         if(farmers != null){
+            ProfileManager pm = new ProfileManager();
             for (Farmer f : farmers){
-                ProfileManager pm = new ProfileManager();
                 pm.createFarmer(f.getUserName(), f.getUserAddress(), f.getUserId());
                 pm.modifyFarmer(String.valueOf(f.getUserId()), f.getPrefPrice(),
                         f.getPrefExposure(), f.getPrefSpeed(), f.getPrefCarbon());
+            }
+        }
+    }
+
+    /**
+     * Load the farmers to farmerList using User object instead of Farmer
+     * @param users list of Users that needs to be converted to IFarmer and add to farmerList.
+     */
+    public void userLoadFarmer(User[] users){
+        if(users != null){
+            ProfileManager pm = new ProfileManager();
+            for (User u : users){
+                pm.createFarmer(u.getUserName(), u.getUserAddress(), u.getUserId());
             }
         }
     }
@@ -80,11 +104,25 @@ public class JsonProvider implements DataAccessInterface {
     @Override
     public void loadDistributor(Distributor[] distributors) {
         if (distributors != null){
+            ProfileManager pm = new ProfileManager();
             for (Distributor d : distributors){
-                ProfileManager pm = new ProfileManager();
                 pm.createDistributor(d.getUserName(), d.getUserAddress(), d.getUserId());
                 pm.modifyDistributor(String.valueOf(d.getUserId()), d.getExposure(),
                         d.getSpeed(), d.getCarbon());
+            }
+        }
+    }
+
+    /**
+     * Load the distributors to distributorList using User object instead of Distributor
+     * @param users list of Users that needs to be converted to IDistributor and add to distributorList.
+     */
+    @Override
+    public void userLoadDistributor(User[] users){
+        if(users != null){
+            ProfileManager pm = new ProfileManager();
+            for (User u : users){
+                pm.createDistributor(u.getUserName(), u.getUserAddress(), u.getUserId());
             }
         }
     }

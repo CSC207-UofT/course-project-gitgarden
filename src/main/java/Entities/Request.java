@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Request implements IRequest{
 
     private final int requestId;
-    private transient IUser user;
+    private IUser user;
     private final String prodName;
     private final double prodQuantity;
     private final double prodPricePerKg;

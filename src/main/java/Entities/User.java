@@ -1,12 +1,18 @@
 package Entities;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 public class User implements IUser{
     private String userName;
     private final int userId;
     private String userAddress;
+
+    @Expose(serialize = false)
     protected ArrayList<IRequest> currentRequests = new ArrayList<>();
+
+    @Expose(serialize = false)
     protected ArrayList<IRequest> offerHistory = new ArrayList<>();
 
      /**

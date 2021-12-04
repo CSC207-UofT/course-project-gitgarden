@@ -18,7 +18,7 @@ public class ServiceController implements ControllerInterface{
     @Override
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         ProfileInterface pm = new ProfileManager();
-        int id = uniqueId();
+        int id = uniqueUserId();
         if (isValidName(name)){
             if (isAlphanumeric(address)){
                 if (isUniqueName(name)){
@@ -88,7 +88,7 @@ public class ServiceController implements ControllerInterface{
         if (isAlphabetic(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
-                    rm.createRequest(id, product, Double.parseDouble(quantity), Double.parseDouble(price));
+                    rm.createRequest(uniqueRequestId(), id, product, Double.parseDouble(quantity), Double.parseDouble(price));
                 } else {
                     throw new Exception("Your price input must have two decimal places.");
                 }
@@ -112,7 +112,7 @@ public class ServiceController implements ControllerInterface{
         RequestInterface rm = new RequestManager();
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
-                rm.createCounterOffer(id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+                rm.createCounterOffer(uniqueRequestId(), id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
             } else {
                 throw new Exception("Your price input must have two decimal places.");
             }
@@ -227,7 +227,7 @@ public class ServiceController implements ControllerInterface{
         return true;
     }
 
-    private int uniqueId(){
+    private int uniqueUserId(){
         ProfileInterface pm = new ProfileManager();
         ArrayList<Integer> ids = pm.getAllIds();
         Random random = new Random();
@@ -236,7 +236,16 @@ public class ServiceController implements ControllerInterface{
             id = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
         }
         return id;
-
     }
 
+    private int uniqueRequestId(){
+        RequestInterface requestManager = new RequestManager();
+        ArrayList<Integer> ids = requestManager.getAllRequestIds();
+        Random random = new Random();
+        int id = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
+        while (ids.contains(id)){
+            id = random.nextInt(UPPER_BOUND) + LOWER_BOUND;
+        }
+        return id;
+    }
 }

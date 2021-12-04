@@ -4,8 +4,6 @@ import Controller.ControllerInterface;
 import Controller.ServiceController;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,15 +26,19 @@ public class ModifyPage extends JFrame{
     private JPanel mainPanel;
     private JPanel buttonPanel;
     private JButton ModifyButton;
-    private JSlider slider1;
+    private JSlider PriceSlider;
     private JLabel priceText;
     private JLabel exposureText;
     private JLabel speedText;
     private JLabel carbonText;
-    private JSlider slider2;
-    private JPanel JPanel;
-    private JSlider slider3;
-    private JSlider slider4;
+    private JSlider ExposureSlider;
+    private JPanel speedSliPanel;
+    private JSlider SpeedSlider;
+    private JSlider CarbonSlider;
+    private JButton UndoButton;
+    private JPanel priceSliPanel;
+    private JPanel exposureSliPanel;
+    private JPanel carbonSliPanel;
     ControllerInterface sc = new ServiceController();
 
     public ModifyPage() {
@@ -50,54 +52,44 @@ public class ModifyPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String newAddress = addressInput.getText();
                 String newName = nameInput.getText();
-                double slider1_value = slider1.getValue();
-                double slider2_value = slider2.getValue();
-                double slider3_value = slider3.getValue();
-                double slider4_value = slider4.getValue();
+                double slider1_value = PriceSlider.getValue();
+                double slider2_value = ExposureSlider.getValue();
+                double slider3_value = SpeedSlider.getValue();
+                double slider4_value = CarbonSlider.getValue();
 
                 if (WelcomePage.flag) {
                     try {
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    }
-                    catch (Exception UserCheckException){
-                        JOptionPane.showMessageDialog(null,UserCheckException.getMessage());
-                    }
-                    try {
                         sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
                                 slider3_value, slider4_value);
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
                     }
-                    catch (Exception farmerCheckException){
-                        JOptionPane.showMessageDialog(null, farmerCheckException.getMessage());
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
-                    FarmerPage farmerPage = new FarmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
                 } else {
                     try {
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    }
-                    catch (Exception UserCheckException){
-                        JOptionPane.showMessageDialog(null, UserCheckException.getMessage());
-                    }
-                    try {
                         sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
                     }
-                    catch (Exception distributorCheck){
-                        JOptionPane.showMessageDialog(null, distributorCheck.getMessage());
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
-                    DistributorPage distributorPage = new DistributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
                 }
             }
         });
-        slider1.setPaintTicks(true);
-        slider1.setMinorTickSpacing(10);
-        slider2.setPaintTicks(true);
-        slider2.setMinorTickSpacing(10);
-        slider3.setPaintTicks(true);
-        slider3.setMinorTickSpacing(10);
-        slider4.setPaintTicks(true);
-        slider4.setMinorTickSpacing(10);
+        PriceSlider.setPaintTicks(true);
+        PriceSlider.setMinorTickSpacing(10);
+        ExposureSlider.setPaintTicks(true);
+        ExposureSlider.setMinorTickSpacing(10);
+        SpeedSlider.setPaintTicks(true);
+        SpeedSlider.setMinorTickSpacing(10);
+        CarbonSlider.setPaintTicks(true);
+        CarbonSlider.setMinorTickSpacing(10);
     }
 }

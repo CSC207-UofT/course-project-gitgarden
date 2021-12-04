@@ -42,39 +42,17 @@ public class CounterOfferPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String price = priceInput.getText();
                 String quantity = quantityInput.getText();
-// TODO: 2021/11/21 what is this??
-//                try {
-//                    ServiceController.createCounterOffer(request, distributor, quantity, price);
-//                } catch (Exception ex) {
-//                    ex.printStackTrace();
-//                }
                 try {
                     sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
+                    DistributorPage distributorPage = new DistributorPage();
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                    setContentPane(new DistributorPage().mainPanel);
                 }
                 catch (Exception counterOfferException){
                     JOptionPane.showMessageDialog(null, counterOfferException.getMessage());
                 }
-                // TODO: 2021/11/21 check if passed
-                if(WelcomePage.flag){
-                    setVisible(false);
-                    FarmerPage farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
-                }
             }
         });
-
-        priceInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        quantityInput.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
-
     }
 }

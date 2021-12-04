@@ -10,33 +10,35 @@ public class RequestManager implements RequestInterface{
 
     /**
      * Creates a request.
+     * @param requestID The ID of the new request.
      * @param id ID of the user creating the request.
      * @param product The product being sold.
      * @param quantity The quantity in kilograms of product to be sold.
      * @param price The price per kilogram of the product.
      */
     @Override
-    public void createRequest(String id, String product, Double quantity, Double price) {
+    public void createRequest(int requestID, String id, String product, Double quantity, Double price) {
         ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
-        IRequest request = new Request(user, product, quantity, price, null);
+        IRequest request = new Request(requestID, user, product, quantity, price, null);
         user.addRequest(request);
         allActiveRequests.add(request);
     }
 
     /**
      * Creates a counteroffer.
+     * @param requestID The ID of the new counteroffer.
      * @param id The ID of the user making the counteroffer.
-     * @param requestID The ID of the request upon which the counteroffer is made.
+     * @param counteredRequestID The ID of the request upon which the counteroffer is made.
      * @param quantity The new quantity in kilograms of product to be sold.
      * @param price The new price per kilogram of the product.
      */
     @Override
-    public void createCounterOffer(String id, String requestID, Double quantity, Double price){
+    public void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price){
         ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
-        IRequest request = getRequestFromId(requestID);
-        IRequest co = new Request(user, request.getProdName(), quantity, price, request);
+        IRequest request = getRequestFromId(counteredRequestID);
+        IRequest co = new Request(requestID, user, request.getProdName(), quantity, price, request);
         request.add(co);
         if (request.getPrevious() != null){
             deleteCurrent(request);
@@ -85,6 +87,11 @@ public class RequestManager implements RequestInterface{
         allActiveRequests.remove(request);
     }
 
+    /**
+     * Gets request data based on ID.
+     * @param requestID The ID of the request whose data must be found.
+     * @return A string array with request data as [product name, quantity, price/kg, username, previous requestID]
+     */
     @Override
     public String[] dataFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
@@ -114,6 +121,11 @@ public class RequestManager implements RequestInterface{
         return data;
     }
 
+    /**
+     * Gets the counteroffers of a request based on ID.
+     * @param requestID The ID of the request whose counteroffers must be found.
+     * @return The counteroffers of the request.
+     */
     @Override
     public ArrayList<String> coFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
@@ -121,6 +133,7 @@ public class RequestManager implements RequestInterface{
         return requestToId(counteroffers);
     }
 
+    @Override
     public ArrayList<String> requestToId(ArrayList<IRequest> requests){
         ArrayList<String> ids = new ArrayList<>();
         for (IRequest request : requests){
@@ -176,7 +189,22 @@ public class RequestManager implements RequestInterface{
                 return request;
             }
         }
-        return new Request(null, null, 0, 0, null);
+        return new Request(0, null, null, 0, 0, null);
+    }
+
+    /**
+     * Gets all request IDs.
+     * @return All request IDs.
+     */
+    @Override
+    public ArrayList<Integer> getAllRequestIds() {
+        ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
+        allRequests.addAll(allOffers);
+        for (IRequest request: allRequests){
+            ids.add(request.getRequestId());
+        }
+        return ids;
     }
 
 }

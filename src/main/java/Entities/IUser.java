@@ -12,8 +12,6 @@ public interface IUser {
 
     void addOffer(IRequest offer);
 
-    void removeOffer(IRequest offer);
-
     ArrayList<IRequest> getOfferHistory();
 
     void setUserName(String name);

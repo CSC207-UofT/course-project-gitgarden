@@ -29,3 +29,10 @@ The users starts the program and is prompted with a screen asking them what they
             + Make Counteroffer
         + Edit Request
     * View Others’ Requests
+- Login to Profile (User)
+    * Modify Profile
+        * **Undo Changes (Memento Design Pattern)**
+    * Create New Request
+    * View Existing Request
+        + Accept/Decline Offer
+            + Make Counteroffer

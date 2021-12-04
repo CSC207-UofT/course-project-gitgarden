@@ -85,3 +85,9 @@ The Entity classes are:
     - Farmer
     - Distributor
     - **IDistributor**
+    - **IFarmer**
+    - **IRequest**
+    - **IUser**
+- RequestStructure
+    - Request
+    - **IRequest**

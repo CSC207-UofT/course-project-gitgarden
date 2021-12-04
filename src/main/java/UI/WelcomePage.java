@@ -161,10 +161,8 @@ public class WelcomePage extends JFrame{
     public static void main(String[] args){
         try {
             JsonProvider jp = new JsonProvider();
-//            jp.loadFarmer(jp.readFarmer("farmers.json"));
-//            jp.loadDistributor(jp.readDistributor("distributors.json"));
-            System.out.println(jp.readFarmer("farmers.json"));
-//            System.out.println(jp.readDistributor("distributors.json"));
+            jp.loadFarmer("farmers.json");
+            jp.loadDistributor("distributors.json");
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }

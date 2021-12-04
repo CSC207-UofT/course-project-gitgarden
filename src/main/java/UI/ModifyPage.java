@@ -51,7 +51,7 @@ public class ModifyPage extends JFrame{
     private JPanel carbonSliPanel;
     ControllerInterface sc = new ServiceController();
     DataPresenter dp = new DataPresenter();
-    /*
+
     Stack<Farmer.Momento> farmerStack = new Stack<>();
     Stack<Distributor.Momento> distributorStack = new Stack<>();
 
@@ -95,7 +95,7 @@ public class ModifyPage extends JFrame{
                         FarmerPage farmerPage = new FarmerPage();
                         setVisible(false);
                         farmerPage.setVisible(true); */
-                    } /*
+                    }
                     catch (Exception modifyException){
                         JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
@@ -122,7 +122,7 @@ public class ModifyPage extends JFrame{
                         DistributorPage distributorPage = new DistributorPage();
                         setVisible(false);
                         distributorPage.setVisible(true); */
-                    } /*
+                    }
                     catch (Exception modifyException){
                         JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
@@ -192,4 +192,3 @@ public class ModifyPage extends JFrame{
         CarbonSlider.setMinorTickSpacing(10);
     }
 }
-*/

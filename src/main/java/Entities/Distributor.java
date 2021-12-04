@@ -76,7 +76,6 @@ public class Distributor extends User implements IDistributor {
         this.ranking = ranking;
     }
 
-    /*
     public static class Momento {
 
         private String name;
@@ -119,6 +118,6 @@ public class Distributor extends User implements IDistributor {
         public double getCarbon() {
             return carbon;
         }
-    } */
+    }
 
 }

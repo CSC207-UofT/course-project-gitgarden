@@ -54,3 +54,5 @@ The UI classes are:
 - DistributorPage
 - FarmerPage
 - HistoryPage
+- MessagePage
+- ModifyPage

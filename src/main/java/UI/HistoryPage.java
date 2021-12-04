@@ -21,6 +21,11 @@ public class HistoryPage extends JFrame{
     private JPanel buttonPanel;
     private JPanel closeButtonPanel;
     private JButton closeButton;
+    private JPanel ratePanel;
+    private JPanel rateTextPanel;
+    private JLabel rateText;
+    private JPanel ratingSliPanel;
+    private JSlider RatingSlider;
 
     private final IFetch presenter = new DataPresenter();
     public HistoryPage(String request){

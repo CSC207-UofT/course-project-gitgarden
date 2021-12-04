@@ -78,3 +78,9 @@ The Use Case classes are:
 - **RankInterface**
 - **RequestInterface**
 - **RequestManager**
+
+
+The Entity classes are:
+- User
+    - Farmer
+    - Distributor

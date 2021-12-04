@@ -45,3 +45,5 @@ The controller (ServiceController) takes in the inputs of the UI and does one of
 - Accept the input
     * Makes the correct variable for the use case classes to use
 - Decline the input
+    * Prompt the user to input again with an error message stating why the input was not accepted
+

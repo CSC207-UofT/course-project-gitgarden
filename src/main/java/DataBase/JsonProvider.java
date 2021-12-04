@@ -109,10 +109,10 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void loadDistributor(String fileName) throws FileNotFoundException{
-        ArrayList<String[]> dists = readFile(fileName);
-        if (dists != null){
+        ArrayList<String[]> distributors = readFile(fileName);
+        if (distributors != null){
             ProfileManager pm = new ProfileManager();
-            for (String[] f : dists){
+            for (String[] f : distributors){
                 pm.createDistributor(f[0], f[1], Integer.parseInt(f[2]));
             }
         }
@@ -141,10 +141,10 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void modifyDistributor(String fileName) throws FileNotFoundException {
-        ArrayList<String[]> dists = readFile(fileName);
-        if (dists != null){
+        ArrayList<String[]> distributors = readFile(fileName);
+        if (distributors != null){
             ProfileManager pm = new ProfileManager();
-            for (String[] d : dists){
+            for (String[] d : distributors){
                 pm.modifyDistributor(d[0], Double.parseDouble(d[1]),
                         Double.parseDouble(d[2]), Double.parseDouble(d[3]));
             }

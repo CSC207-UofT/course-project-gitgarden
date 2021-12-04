@@ -19,6 +19,8 @@ public interface RequestInterface {
 
     ArrayList<String> coFromId(String requestID);
 
+    ArrayList<String> requestToId(ArrayList<IRequest> requests);
+
     IRequest getRequestFromId(String requestID);
 
     ArrayList<Integer> getAllRequestIds();

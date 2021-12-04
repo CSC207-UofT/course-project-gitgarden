@@ -13,11 +13,11 @@ public class User implements IUser{
 //    @Expose(serialize = false)
     protected ArrayList<IRequest> offerHistory = new ArrayList<>();
 
-     /**
-     * Construct a User, giving them the name and address
-     *
+    /**
+     * Construct a User with a name, address, and ID.
      * @param userName String for name
-     * @param userAddress  String for address
+     * @param userAddress String for address
+     * @param userId String for ID
      */
     public User(String userName, String userAddress, int userId){
         this.userName = userName;
@@ -25,26 +25,42 @@ public class User implements IUser{
         this.userAddress = userAddress;
     }
 
+    /**
+     * Adds a request to this user's current requests.
+     * @param request The request to be added.
+     */
     public void addRequest(IRequest request){
         this.currentRequests.add(request);
     }
 
+    /**
+     * Removes a request from this user's current requests.
+     * @param request The request to be removed.
+     */
     public void removeRequest(IRequest request) {
         this.currentRequests.remove(request);
     }
 
+    /**
+     * Gets all current requests of this user.
+     * @return currentRequests
+     */
     public ArrayList<IRequest> getCurrentRequests(){
         return this.currentRequests;
     }
 
+    /**
+     * Adds a request to this user's offer history.
+     * @param offer The request which was accepted.
+     */
     public void addOffer(IRequest offer){
         this.offerHistory.add(offer);
     }
 
-    public void removeOffer(IRequest offer) {
-        this.offerHistory.remove(offer);
-    }
-
+    /**
+     * Gets the offer history of this user.
+     * @return offerHistory
+     */
     public ArrayList<IRequest> getOfferHistory() {
         return this.offerHistory;
     }
@@ -57,14 +73,16 @@ public class User implements IUser{
         this.userName = name;
     }
 
-     /**
-      * @return the current value of user_name (String)
-      */
+    /**
+     * Gets the user's current name.
+     * @return the current value of userName.
+     */
     public String getUserName(){
         return this.userName;
     }
 
     /**
+     * Gets the user's ID.
      * @return the user's ID.
      */
     public int getUserId(){
@@ -79,14 +97,16 @@ public class User implements IUser{
         this.userAddress = address;
     }
 
-     /**
-     * @return the current value of user's address (String)
+    /**
+     * Gets the user's address.
+     * @return the current address of the user.
      */
     public String getUserAddress(){
         return this.userAddress;
     }
 
-     /**
+    /**
+     * Gets a string representation of the user.
      * @return the String representation of the user
      */
     public String toString(){

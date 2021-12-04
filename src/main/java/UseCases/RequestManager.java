@@ -87,6 +87,11 @@ public class RequestManager implements RequestInterface{
         allActiveRequests.remove(request);
     }
 
+    /**
+     * Gets request data based on ID.
+     * @param requestID The ID of the request whose data must be found.
+     * @return A string array with request data as [product name, quantity, price/kg, username, previous requestID]
+     */
     @Override
     public String[] dataFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
@@ -104,6 +109,11 @@ public class RequestManager implements RequestInterface{
         return data;
     }
 
+    /**
+     * Gets the counteroffers of a request based on ID.
+     * @param requestID The ID of the request whose counteroffers must be found.
+     * @return The counteroffers of the request.
+     */
     @Override
     public ArrayList<String> coFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
@@ -111,6 +121,7 @@ public class RequestManager implements RequestInterface{
         return requestToId(counteroffers);
     }
 
+    @Override
     public ArrayList<String> requestToId(ArrayList<IRequest> requests){
         ArrayList<String> ids = new ArrayList<>();
         for (IRequest request : requests){
@@ -169,6 +180,10 @@ public class RequestManager implements RequestInterface{
         return new Request(0, null, null, 0, 0, null);
     }
 
+    /**
+     * Gets all request IDs.
+     * @return All request IDs.
+     */
     @Override
     public ArrayList<Integer> getAllRequestIds() {
         ArrayList<Integer> ids = new ArrayList<>();

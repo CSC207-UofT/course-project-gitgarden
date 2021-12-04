@@ -20,6 +20,10 @@ public class RankingManager implements RankInterface {
         this.farmerID = farmerID;
     }
 
+    /**
+     * Ranks distributors who have countered a request based on farmer preferences.
+     * @return The ranked list of distributors.
+     */
     @Override
     public ArrayList<String> rankDistributors(){
         ArrayList<IDistributor> rankList = distributorsFromRequestId(requestID);
@@ -36,7 +40,7 @@ public class RankingManager implements RankInterface {
         return counterofferIdsFromDistributors(rankList);
     }
 
-    public double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
+    private double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
         ProfileInterface pm = new ProfileManager();
         ArrayList<Double> critList = new ArrayList<>();
         for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
@@ -51,7 +55,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public double getCriterion(IDistributor dist, String criterion){
+    private double getCriterion(IDistributor dist, String criterion){
         switch (criterion) {
             case "exposure":
                 return dist.getExposure();
@@ -65,7 +69,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    public double getPrefCriterion(IFarmer farmer, String criterion) {
+    private double getPrefCriterion(IFarmer farmer, String criterion) {
         switch (criterion) {
             case "exposure":
                 return farmer.getPrefExposure();

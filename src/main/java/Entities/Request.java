@@ -48,6 +48,7 @@ public class Request implements IRequest{
     }
 
     /**
+     * Gets this request's counteroffers.
      * @return the current counteroffers to the request.
      */
     public ArrayList<IRequest> getCounteroffers(){
@@ -55,48 +56,55 @@ public class Request implements IRequest{
     }
 
     /**
-     * @return the current value of request id. (int)
+     * Gets this request's ID.
+     * @return the current value of requestID.
      */
     public int getRequestId(){
         return this.requestId;
     }
 
     /**
-     * @return the user making this request.
+     * Gets this request's user.
+     * @return The user making this request.
      */
     public IUser getUser(){
         return this.user;
     }
 
     /**
-     * @return the value of product's name. (String)
+     * Gets this request's product name.
+     * @return The product name.
      */
     public String getProdName(){
         return this.prodName;
     }
 
     /**
-     * @return the value of product's quantity. (double)
+     * Gets this request's product quantity.
+     * @return The product quantity.
      */
     public double getProdQuantity(){
         return this.prodQuantity;
     }
 
     /**
-     * @return the value of product's price per unit. (double)
+     * Gets this request's product price per kilogram.
+     * @return The product price per kilogram.
      */
     public double getProdPricePerKg(){
         return this.prodPricePerKg;
     }
 
     /**
-     * @return the request to which this was a counteroffer, null if none.
+     * Gets this request's previous request.
+     * @return The request to which this was a counteroffer, null if none.
      */
     public IRequest getPrevious(){
         return this.previous;
     }
 
     /**
+     * Converts this request into String format.
      * @return The String Representation of the request.
      */
     public String toString(){

@@ -42,7 +42,7 @@ public class DetailsPage extends JFrame{
     private JPanel closeButtonPanel;
     private JPanel trashButtonPanel;
     private JButton TrashButton;
-    private JButton button1;
+    private JCheckBox RankingButton;
 
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();

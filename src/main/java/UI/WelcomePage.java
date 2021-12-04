@@ -7,13 +7,10 @@ import Controller.ServiceController;
 import DataBase.JsonProvider;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class WelcomePage extends JFrame{
     private JPanel mainPanel;
@@ -57,6 +54,7 @@ public class WelcomePage extends JFrame{
     private JSlider slider3;
     private JSlider slider4;
     private JLabel userTest;
+    private JCheckBox darkCheckBox;
     public static Boolean flag;
     public static String currUserId = "";
     private final ControllerInterface sc = new ServiceController();
@@ -158,6 +156,15 @@ public class WelcomePage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
+
+        darkCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (JPanel i : panelList) {
+                    i.setBackground(new Color(0x011627));
+                }
+            }
+        });
 
     }
 

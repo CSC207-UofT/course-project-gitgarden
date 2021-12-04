@@ -68,7 +68,7 @@ public class WelcomePage extends JFrame{
     public static Boolean dark = false;
     private final ControllerInterface sc = new ServiceController();
     private final IFetch presenter = new DataPresenter();
-    private JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,
+    private final JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,
             namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel, priceInputPanel, textsPanel,
             inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,

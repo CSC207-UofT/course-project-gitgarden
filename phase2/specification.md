@@ -84,3 +84,4 @@ The Entity classes are:
 - User
     - Farmer
     - Distributor
+    - **IDistributor**

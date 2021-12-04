@@ -76,3 +76,5 @@ The Use Case classes are:
 - ProfileManager
 - **RankingManager**
 - **RankInterface**
+- **RequestInterface**
+- **RequestManager**

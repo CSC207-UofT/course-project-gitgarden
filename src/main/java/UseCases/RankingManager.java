@@ -1,9 +1,12 @@
 package UseCases;
 
+import Entities.Distributor;
 import Entities.IDistributor;
 import Entities.IFarmer;
 import Entities.IRequest;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import static java.lang.Math.round;
@@ -111,6 +114,59 @@ public class RankingManager implements RankInterface {
         RequestInterface requestManager = new RequestManager();
         IRequest request = requestManager.getRequestFromId(requestID);
         return request.getProdName();
+    }
+
+    /**
+     *Rating Structure
+     */
+    public static double roundHundredth(double value){
+        BigDecimal bigDecimal = new BigDecimal(value);
+        return bigDecimal.setScale(2, RoundingMode.UP).doubleValue();
+    }
+
+    public static boolean isLegal(double value){
+        return (1 <= value && value <= 10);
+    }
+
+    public static Double getHistoryAvg(IDistributor user){
+        ArrayList<IRequest> temp = user.getOfferHistory();
+        int value = 0;
+        double count = 0;
+        for(IRequest offer: temp){
+            if (isLegal(offer.getRating())){
+                value += offer.getRating();
+                count += 1.0;
+            }
+        }
+
+        if (count != 0){
+            return roundHundredth(value / count);
+        }
+        else{
+            return 0.00d;
+        }
+    }
+
+    public ArrayList<String> rateDistributors(){
+        ArrayList<IDistributor> distributors = distributorsFromRequestId(requestID);
+        IDistributor[] temp = new IDistributor[distributors.size()];
+        distributors.toArray(temp);
+
+        for (int i = 0; i < distributors.toArray().length - 1; i++){
+            int min = i;
+            for (int j = i + 1; j < distributors.toArray().length - 1; j++) {
+                if (getHistoryAvg(temp[i]) > getHistoryAvg(temp[min])){
+                    min = j;
+                }
+            }
+            if (i != min) {
+                IDistributor n = temp[min];
+                temp[min] = temp[i];
+                temp[i] = n;
+            }
+        }
+
+        return counterofferIdsFromDistributors(distributors);
     }
 
 }

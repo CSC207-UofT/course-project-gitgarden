@@ -1,8 +1,6 @@
 package UseCases;
 
-import Entities.IRequest;
-import Entities.IUser;
-import Entities.Request;
+import Entities.*;
 
 import java.util.ArrayList;
 
@@ -57,7 +55,9 @@ public class RequestManager implements RequestInterface{
         IRequest request = getRequestFromId(requestID);
         IUser previousUser = request.getPrevious().getUser();
 
+        //Call Rating System for current user
         request.getUser().addOffer(request);
+        //call Rating System for previous user
         previousUser.addOffer(request);
 
         deleteCurrent(request);
@@ -95,7 +95,7 @@ public class RequestManager implements RequestInterface{
     @Override
     public String[] dataFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
-        String[] data = new String[5];
+        String[] data = new String[6];
         data[0] = request.getProdName();
         data[1] = String.valueOf(request.getProdQuantity());
         data[2] = String.valueOf(request.getProdPricePerKg());
@@ -104,6 +104,18 @@ public class RequestManager implements RequestInterface{
             data[4] = null;
         } else {
             data[4] = String.valueOf(request.getPrevious().getRequestId());
+        }
+
+        if (request.getUser() instanceof Distributor) {
+            data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getUser()));
+        }
+        else if (request.getUser() instanceof Farmer) {
+            if (request.getPrevious() != null) {
+                data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getPrevious().getUser()));
+            }
+            else {
+                data[5] = null;
+            }
         }
 
         return data;

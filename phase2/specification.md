@@ -63,4 +63,8 @@ The Database Class is:
 
 
 The Controller classes are:
-- Service Controller
+- ServiceController
+- **Controller Interface**
+- **DataPresenter**
+- **ErrorThrower**
+- **IFetch**

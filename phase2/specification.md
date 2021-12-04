@@ -56,3 +56,7 @@ The UI classes are:
 - HistoryPage
 - MessagePage
 - ModifyPage
+- OthersExistingRequests
+
+The Database Class is:
+- **JsonProvider**

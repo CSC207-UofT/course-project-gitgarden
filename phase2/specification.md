@@ -39,3 +39,6 @@ The users starts the program and is prompted with a screen asking them what they
     * View Others’ Requests
         + Make Offer
         + Make Counteroffer
+
+
+The controller (ServiceController) takes in the inputs of the UI and does one of two things:

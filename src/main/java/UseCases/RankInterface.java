@@ -9,4 +9,6 @@ public interface RankInterface {
      * @return A list of all distributors sorted by highest ranking.
      */
     ArrayList<String> rankDistributors();
+
+    ArrayList<String> rateDistributors();
 }

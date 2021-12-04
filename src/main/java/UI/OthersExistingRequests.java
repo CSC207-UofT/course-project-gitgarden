@@ -4,16 +4,12 @@ import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
-import Entities.*;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class OthersExistingRequests extends JFrame {
     private JPanel mainPanel;
@@ -30,6 +26,7 @@ public class OthersExistingRequests extends JFrame {
     private JButton closeButton;
     private JList<String> requestList;
     private JPanel buttonPanel;
+    private JPanel counterOfferPanel;
     private JButton counterOfferButton;
 
     private String tempRequest = null;

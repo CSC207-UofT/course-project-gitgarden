@@ -68,3 +68,11 @@ The Controller classes are:
 - **DataPresenter**
 - **ErrorThrower**
 - **IFetch**
+
+
+The Use Case classes are:
+- **DataAccessInterface**
+- **ProfileInterface**
+- ProfileManager
+- **RankingManager**
+- **RankInterface**

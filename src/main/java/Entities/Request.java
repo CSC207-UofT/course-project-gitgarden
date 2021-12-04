@@ -11,7 +11,7 @@ public class Request implements IRequest{
     private final double prodPricePerKg;
     private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
-    private int rating;
+    private double rating;
 
     public Request(IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
         this.requestId = (int) (Math.random()*(90000000)+10000000);
@@ -98,11 +98,11 @@ public class Request implements IRequest{
         return this.previous;
     }
 
-    public void setRating(int rating){
+    public void setRating(double rating){
         this.rating = rating;
     }
 
-    public int getRating(){
+    public double getRating(){
         return this.rating;
     }
 

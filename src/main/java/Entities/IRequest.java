@@ -22,7 +22,7 @@ public interface IRequest {
 
     IRequest getPrevious();
 
-    void setRating(int rating);
+    void setRating(double rating);
 
-    int getRating();
+    double getRating();
 }

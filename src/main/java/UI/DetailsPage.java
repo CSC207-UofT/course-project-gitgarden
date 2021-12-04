@@ -29,17 +29,19 @@ public class DetailsPage extends JFrame{
     private JLabel responseText;
     private JPanel responseListPanel;
     private JList<String> responseList;
-    private JPanel buttonPanel;
-    private JPanel acceptButtonPanel;
     private JButton acceptRequest;
-    private JPanel declineButtonPanel;
     private JButton declineButton;
-    private JPanel counterButtonPanel;
     private JButton counterButton;
-    private JPanel closeButtonPanel;
     private JButton closeButton;
     private JPanel descriptionPanel;
     private JLabel descriptionText;
+    private JPanel buttonPanel;
+    private JPanel acceptButtonPanel;
+    private JPanel declineButtonPanel;
+    private JPanel counterButtonPanel;
+    private JPanel closeButtonPanel;
+    private JPanel trashButtonPanel;
+    private JButton TrashButton;
 
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();
@@ -144,6 +146,22 @@ public class DetailsPage extends JFrame{
                     String selectedRequest = responseList.getSelectedValue().toString();
                     int index = listModel.indexOf(selectedRequest);
                     tempRequest = presenter.fetchCounteroffers(request).get(index);
+                }
+            }
+        });
+        TrashButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sc.trashRequestCheck(request);
+                JOptionPane.showMessageDialog(null, "Your request has been trashed.");
+                setVisible(false);
+                if(WelcomePage.flag){
+                    FarmerPage farmerPage = new FarmerPage();
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    DistributorPage distributorPage = new DistributorPage();
+                    distributorPage.setVisible(true);
                 }
             }
         });

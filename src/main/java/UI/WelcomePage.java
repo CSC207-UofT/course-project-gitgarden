@@ -164,7 +164,7 @@ public class WelcomePage extends JFrame{
             jp.loadFarmer("farmers.json");
             jp.loadDistributor("distributors.json");
         } catch (FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("First time running, there's nothing to be read yet!");
         }
 
         WelcomePage welcomePage = new WelcomePage();

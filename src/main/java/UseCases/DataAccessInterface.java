@@ -1,8 +1,7 @@
 package UseCases;
 
-import Entities.*;
-
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public interface DataAccessInterface {
 
@@ -11,19 +10,19 @@ public interface DataAccessInterface {
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers
      */
-    Farmer[] readFarmer(String fileName) throws FileNotFoundException;
+    ArrayList<String[]> readFarmer(String fileName) throws FileNotFoundException;
 
     /**
      * Read the saved distributor files.
      * @param fileName The file name of the saved json file containing distributors.
      * @return list of distributors
      */
-    Distributor[] readDistributor(String fileName) throws FileNotFoundException;
+    ArrayList<String[]> readDistributor(String fileName) throws FileNotFoundException;
 
     /**
-     * Write the current java variables to another file type
+     * Write the names of current farmers and distributors to another file type
      */
-    void write();
+    void writeUsers();
 
     /**
      * Create Farmers based on the json file read

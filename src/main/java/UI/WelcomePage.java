@@ -172,7 +172,7 @@ public class WelcomePage extends JFrame{
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             JsonProvider jp = new JsonProvider();
-            jp.write();
+            jp.writeUsers();
         }));
     }
 }

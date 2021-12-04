@@ -1,13 +1,15 @@
 package DataBase;
 
-import Entities.*;
 import UseCases.DataAccessInterface;
 
+import UseCases.JsonAdapter;
 import UseCases.ProfileManager;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
@@ -19,10 +21,11 @@ public class JsonProvider implements DataAccessInterface {
      * @return list of farmers
      */
     @Override
-    public Farmer[] readFarmer(String fileName) throws FileNotFoundException {
+    public ArrayList<String[]> readFarmer(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Farmer[].class);
+        return gson.fromJson(reader, new TypeToken<ArrayList<String[]>>() {}.getType());
     }
+
 
     /**
      * Read the saved json files and convert everything into Java
@@ -30,33 +33,40 @@ public class JsonProvider implements DataAccessInterface {
      * @return list of distributors
      */
     @Override
-    public Distributor[] readDistributor(String fileName) throws FileNotFoundException {
+    public ArrayList<String[]> readDistributor(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Distributor[].class);
+        return gson.fromJson(reader, new TypeToken<ArrayList<String[]>>() {}.getType());
     }
+
 
     /**
      * Take the farmerList and distributorList, convert them to json format and save them
      * as "distributors.json" and "farmers.json"
      */
     @Override
-    public void write(){
+    public void writeUsers(){
+
+
+        //This writes distributor names to json
         try(FileWriter writer = new FileWriter("distributors.json")){
-            ProfileManager pm = new ProfileManager();
-            writer.write(gson.toJson(pm.getDistributorList()));
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.distAdapter()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();
         }
 
+
+        //This writes farmer names to json
         try(FileWriter writer = new FileWriter("farmers.json")){
-            ProfileManager pm = new ProfileManager();
-            writer.write(gson.toJson(pm.getFarmerList()));
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.farmerAdapter()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
+
 
     /**
      * Create Farmers based on the json file read
@@ -64,13 +74,11 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void loadFarmer(String fileName) throws FileNotFoundException{
-        Farmer[] farmers = readFarmer(fileName);
+        ArrayList<String[]> farmers = readFarmer(fileName);
         if (farmers != null){
             ProfileManager pm = new ProfileManager();
-            for (Farmer f : farmers){
-                pm.createFarmer(f.getUserName(), f.getUserAddress(), f.getUserId());
-                pm.modifyFarmer(String.valueOf(f.getUserId()), f.getPrefPrice(), f.getPrefExposure(),
-                        f.getPrefSpeed(), f.getPrefCarbon());
+            for (String[] f : farmers){
+                pm.createFarmer(f[0], f[1], Integer.parseInt(f[2]));
             }
         }
     }
@@ -82,13 +90,11 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void loadDistributor(String fileName) throws FileNotFoundException{
-        Distributor[] distributors = readDistributor(fileName);
-        if (distributors != null){
+        ArrayList<String[]> dists = readDistributor(fileName);
+        if (dists != null){
             ProfileManager pm = new ProfileManager();
-            for (Distributor d : distributors){
-                pm.createDistributor(d.getUserName(), d.getUserAddress(), d.getUserId());
-                pm.modifyDistributor(String.valueOf(d.getUserId()), d.getExposure(),
-                        d.getSpeed(), d.getCarbon());
+            for (String[] f : dists){
+                pm.createFarmer(f[0], f[1], Integer.parseInt(f[2]));
             }
         }
     }

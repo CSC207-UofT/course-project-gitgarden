@@ -37,3 +37,5 @@ The users starts the program and is prompted with a screen asking them what they
         + Accept/Decline Offer
             + Make Counteroffer
     * View Others’ Requests
+        + Make Offer
+        + Make Counteroffer

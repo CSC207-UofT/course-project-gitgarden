@@ -165,6 +165,7 @@ public class WelcomePage extends JFrame{
             jp.loadDistributor("distributors.json");
             jp.modifyFarmer("farmerMod.json");
             jp.modifyDistributor("distMod.json");
+            jp.loadRequests("requests.json");
         } catch (FileNotFoundException e){
             System.out.println("First time running, there's nothing to be read yet!");
         }

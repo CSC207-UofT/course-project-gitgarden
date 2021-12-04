@@ -2,7 +2,6 @@ package UseCases;
 
 import Entities.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class JsonAdapter {
@@ -81,5 +80,28 @@ public class JsonAdapter {
             modDist.add(dists);
         }
         return modDist;
+    }
+
+
+    /**
+     * Convert the requests to an ArrayList for saving/reading
+     * @return An ArrayList of String arrays containing information needed for
+     *         creating requests
+     */
+    public ArrayList<String[]> requestAdapter(){
+        RequestManager rm = new RequestManager();
+        ArrayList<String[]> reqArray = new ArrayList<>();
+        ArrayList<Integer> ids = rm.getAllRequestIds();
+        for (int i : ids){
+            IRequest req = rm.getRequestFromId(String.valueOf(i));
+            String[] r = new String[5];
+            r[0] = String.valueOf(req.getRequestId());
+            r[1] = String.valueOf(req.getUser().getUserId());
+            r[2] = req.getProdName();
+            r[3] = String.valueOf(req.getProdQuantity());
+            r[4] = String.valueOf(req.getProdPricePerKg());
+            reqArray.add(r);
+        }
+        return reqArray;
     }
 }

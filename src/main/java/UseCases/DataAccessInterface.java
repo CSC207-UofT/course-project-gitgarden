@@ -10,19 +10,14 @@ public interface DataAccessInterface {
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers
      */
-    ArrayList<String[]> readFarmer(String fileName) throws FileNotFoundException;
+    ArrayList<String[]> readFile(String fileName) throws FileNotFoundException;
 
-    /**
-     * Read the saved distributor files.
-     * @param fileName The file name of the saved json file containing distributors.
-     * @return list of distributors
-     */
-    ArrayList<String[]> readDistributor(String fileName) throws FileNotFoundException;
 
     /**
      * Write the names of current farmers and distributors to another file type
      */
     void writeUsers();
+
 
     /**
      * Create Farmers based on the json file read
@@ -30,11 +25,13 @@ public interface DataAccessInterface {
      */
     void loadFarmer(String fileName) throws FileNotFoundException;
 
+
     /**
      * Create Distributors based on the json file read
       * @param fileName the file name of the json file that stores distributor information
      */
     void loadDistributor(String fileName) throws FileNotFoundException;
+
 
     /**
      * Modify Farmers based on the json file read
@@ -42,9 +39,17 @@ public interface DataAccessInterface {
      */
     void modifyFarmer(String fileName) throws FileNotFoundException;
 
+
     /**
      * Modify Distributors based on the json file read
      * @param fileName the file name of the json file that stores modify distributor information
      */
     void modifyDistributor(String fileName) throws FileNotFoundException;
+
+
+    /**
+     * Crete Requests based on the json file read
+     * @param fileName the file name of the json file that stores requests information
+     */
+    void loadRequests(String fileName) throws FileNotFoundException;
 }

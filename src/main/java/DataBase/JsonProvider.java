@@ -4,6 +4,7 @@ import UseCases.DataAccessInterface;
 
 import UseCases.JsonAdapter;
 import UseCases.ProfileManager;
+import UseCases.RequestManager;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -21,19 +22,7 @@ public class JsonProvider implements DataAccessInterface {
      * @return list of farmers
      */
     @Override
-    public ArrayList<String[]> readFarmer(String fileName) throws FileNotFoundException {
-        JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, new TypeToken<ArrayList<String[]>>() {}.getType());
-    }
-
-
-    /**
-     * Read the saved json files and convert everything into Java
-     * @param fileName The file name of the saved json file containing distributors
-     * @return list of distributors
-     */
-    @Override
-    public ArrayList<String[]> readDistributor(String fileName) throws FileNotFoundException {
+    public ArrayList<String[]> readFile(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
         return gson.fromJson(reader, new TypeToken<ArrayList<String[]>>() {}.getType());
     }
@@ -85,6 +74,16 @@ public class JsonProvider implements DataAccessInterface {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+
+        //This writes requests to json
+        try(FileWriter writer = new FileWriter("requests.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.requestAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -94,7 +93,7 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void loadFarmer(String fileName) throws FileNotFoundException{
-        ArrayList<String[]> farmers = readFarmer(fileName);
+        ArrayList<String[]> farmers = readFile(fileName);
         if (farmers != null){
             ProfileManager pm = new ProfileManager();
             for (String[] f : farmers){
@@ -110,7 +109,7 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void loadDistributor(String fileName) throws FileNotFoundException{
-        ArrayList<String[]> dists = readDistributor(fileName);
+        ArrayList<String[]> dists = readFile(fileName);
         if (dists != null){
             ProfileManager pm = new ProfileManager();
             for (String[] f : dists){
@@ -125,7 +124,7 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void modifyFarmer(String fileName) throws FileNotFoundException {
-        ArrayList<String[]> farmers = readFarmer(fileName);
+        ArrayList<String[]> farmers = readFile(fileName);
         if (farmers != null){
             ProfileManager pm = new ProfileManager();
             for (String[] f : farmers){
@@ -142,12 +141,29 @@ public class JsonProvider implements DataAccessInterface {
      */
     @Override
     public void modifyDistributor(String fileName) throws FileNotFoundException {
-        ArrayList<String[]> dists = readDistributor(fileName);
+        ArrayList<String[]> dists = readFile(fileName);
         if (dists != null){
             ProfileManager pm = new ProfileManager();
             for (String[] d : dists){
                 pm.modifyDistributor(d[0], Double.parseDouble(d[1]),
                         Double.parseDouble(d[2]), Double.parseDouble(d[3]));
+            }
+        }
+    }
+
+
+    /**
+     * Crete Requests based on the json file read
+     * @param fileName the file name of the json file that stores requests information
+     */
+    @Override
+    public void loadRequests(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> reqs = readFile(fileName);
+        if (reqs != null){
+            RequestManager rm = new RequestManager();
+            for (String[] r : reqs){
+                rm.createRequest(Integer.parseInt(r[0]), r[1], r[2], Double.parseDouble(r[3]),
+                        Double.parseDouble(r[4]));
             }
         }
     }

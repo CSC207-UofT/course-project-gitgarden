@@ -36,3 +36,4 @@ The users starts the program and is prompted with a screen asking them what they
     * View Existing Request
         + Accept/Decline Offer
             + Make Counteroffer
+    * View Others’ Requests

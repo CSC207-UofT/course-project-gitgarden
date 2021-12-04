@@ -60,3 +60,7 @@ The UI classes are:
 
 The Database Class is:
 - **JsonProvider**
+
+
+The Controller classes are:
+- Service Controller

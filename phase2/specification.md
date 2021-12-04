@@ -52,3 +52,5 @@ The UI classes are:
 - CounterOfferPage
 - DetailsPage
 - DistributorPage
+- FarmerPage
+- HistoryPage

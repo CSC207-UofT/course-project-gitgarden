@@ -104,9 +104,13 @@ public class DistributorPage extends JFrame{
                 }
             }
         });
-        if (WelcomePage.dark = true){
+        if (WelcomePage.dark){
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
+                existingList.setBackground(new Color(0x1d3b53));
+                historyList.setBackground(new Color(0x1d3b53));
+                modifyButton.setForeground(new Color(0x4C566A));
+                viewButton.setForeground(new Color(0x4C566A));
             }
         }
     }

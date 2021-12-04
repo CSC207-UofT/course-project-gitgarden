@@ -65,7 +65,7 @@ public class WelcomePage extends JFrame{
     private JPanel carbonPrePanel;
     public static Boolean flag;
     public static String currUserId = "";
-    public static Boolean dark;
+    public static Boolean dark = false;
     private final ControllerInterface sc = new ServiceController();
     private final IFetch presenter = new DataPresenter();
     private JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,

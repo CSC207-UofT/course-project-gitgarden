@@ -120,7 +120,7 @@ public class RankingManager implements RankInterface {
         return bigDecimal.setScale(2, RoundingMode.UP).doubleValue();
     }
 
-    public static boolean isLegal(int value){
+    public static boolean isLegal(double value){
         return (1 <= value && value <= 10);
     }
 

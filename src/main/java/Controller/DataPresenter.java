@@ -8,6 +8,7 @@ import UseCases.RequestManager;
 import java.util.ArrayList;
 
 public class DataPresenter implements IFetch{
+
     public String fetchUserAddress(String id){
         ProfileInterface pm = new ProfileManager();
         return pm.addressFromId(id);

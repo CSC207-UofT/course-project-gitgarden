@@ -8,7 +8,6 @@ public class Distributor extends User implements IDistributor {
     private double exposure;
     private double speed;
     private double carbon;
-
     private double ranking;
 
     public Distributor(String distributor_name, String distributor_address, int id){
@@ -76,5 +75,50 @@ public class Distributor extends User implements IDistributor {
     public void setRanking(double ranking) {
         this.ranking = ranking;
     }
+
+    /*
+    public static class Momento {
+
+        private String name;
+        private String address;
+        private double exposure;
+        private double speed;
+        private double carbon;
+        // private double ranking;
+
+        public Momento(String name, String address, double prefExposure, double prefSpeed, double prefCarbon) {
+
+            this.name = name;
+            this.address = address;
+            this.exposure = prefExposure;
+            this.speed = prefSpeed;
+            this.carbon = prefCarbon;
+            // this.ranking = ranking;
+        }
+
+        public Distributor.Momento getState() {
+            return this;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public double getExposure() {
+            return exposure;
+        }
+
+        public double getSpeed() {
+            return speed;
+        }
+
+        public double getCarbon() {
+            return carbon;
+        }
+    } */
 
 }

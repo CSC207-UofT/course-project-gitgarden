@@ -55,13 +55,24 @@ public class WelcomePage extends JFrame{
     private JSlider slider4;
     private JLabel userTest;
     private JCheckBox darkCheckBox;
+    private JPanel priceTextPanel;
+    private JPanel exposureTextPanel;
+    private JPanel speedTextPanel;
+    private JPanel carbonTextPanel;
+    private JPanel pricePrePanel;
+    private JPanel exposurePrePanel;
+    private JPanel speedPrePanel;
+    private JPanel carbonPrePanel;
     public static Boolean flag;
     public static String currUserId = "";
+    public static Boolean dark;
     private final ControllerInterface sc = new ServiceController();
     private final IFetch presenter = new DataPresenter();
     private JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,
             namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel, priceInputPanel, textsPanel,
-            inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel};
+            inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
+            mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
+            exposurePrePanel, speedPrePanel, carbonPrePanel};
     public WelcomePage() {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -160,8 +171,17 @@ public class WelcomePage extends JFrame{
         darkCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (JPanel i : panelList) {
-                    i.setBackground(new Color(0x011627));
+                if (darkCheckBox.isSelected()){
+                    dark = true;
+                    for (JPanel i : panelList) {
+                        i.setBackground(new Color(0x011627));
+                    }
+                }
+                else{
+                    dark = false;
+                    for (JPanel i : panelList) {
+                        i.setBackground(new Color(0x4C566A));
+                    }
                 }
             }
         });

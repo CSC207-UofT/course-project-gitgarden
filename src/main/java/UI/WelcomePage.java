@@ -173,14 +173,14 @@ public class WelcomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (darkCheckBox.isSelected()){
                     dark = true;
-                    for (JPanel i : panelList) {
-                        i.setBackground(new Color(0x011627));
+                    for (JPanel p : panelList) {
+                        p.setBackground(new Color(0x011627));
                     }
                 }
                 else{
                     dark = false;
-                    for (JPanel i : panelList) {
-                        i.setBackground(new Color(0x4C566A));
+                    for (JPanel p : panelList) {
+                        p.setBackground(new Color(0x4C566A));
                     }
                 }
             }

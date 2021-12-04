@@ -4,6 +4,7 @@ import Controller.ControllerInterface;
 import Controller.ServiceController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +30,11 @@ public class RequestPage extends JFrame{
     private JTextField priceInput;
     private JButton createButton;
     private final ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {mainPanel, titlePanel, middlePanel, buttonPanel, textPanel, inputPanel,
+                                        namePanel, quanInputPanel, pricePanel, nameInputPanel, quantityPanel,
+                                        priceInputPanel};
+
+
     public RequestPage(){
         setTitle("requestPage");
         setContentPane(mainPanel);
@@ -54,6 +60,17 @@ public class RequestPage extends JFrame{
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            ProductNameInput.setBackground(new Color(0x1d3b53));
+            priceInput.setBackground(new Color(0x1d3b53));
+            quantityInput.setBackground(new Color(0x1d3b53));
+            createButton.setForeground(new Color(0x4C566A));
+        }
+
     }
 
 }

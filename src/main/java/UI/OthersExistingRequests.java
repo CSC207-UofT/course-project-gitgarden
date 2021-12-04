@@ -8,6 +8,7 @@ import Controller.ServiceController;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,6 +33,8 @@ public class OthersExistingRequests extends JFrame {
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();
     private final ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {mainPanel, titlePanel, listPanel, descriptionPanel, acceptButtonPanel, 
+                                        closeButtonPanel, buttonPanel, counterOfferPanel};
 
     public OthersExistingRequests() {
         setTitle("requestPage");
@@ -112,5 +115,16 @@ public class OthersExistingRequests extends JFrame {
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            requestList.setBackground(new Color(0x1d3b53));
+            acceptRequest.setForeground(new Color(0x4C566A));
+            counterOfferButton.setForeground(new Color(0x4C566A));
+            closeButton.setForeground(new Color(0x4C566A));
+        }
+
     }
 }

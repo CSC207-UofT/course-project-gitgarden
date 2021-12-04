@@ -4,6 +4,7 @@ import Controller.ControllerInterface;
 import Controller.ServiceController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,7 +40,16 @@ public class ModifyPage extends JFrame{
     private JPanel priceSliPanel;
     private JPanel exposureSliPanel;
     private JPanel carbonSliPanel;
+    private JPanel priceTextPanel;
+    private JPanel exposureTextPanel;
+    private JPanel speedTextPanel;
+    private JPanel carbonTextPanel;
     ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
+                                        namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,
+                                        priceInputPanel, buttonPanel, mainPanel, priceTextPanel, exposureTextPanel,
+                                        speedTextPanel, carbonTextPanel, speedSliPanel, priceSliPanel, exposureSliPanel, 
+                                        carbonSliPanel};
 
     public ModifyPage() {
         setTitle("modifyPage");
@@ -91,5 +101,14 @@ public class ModifyPage extends JFrame{
         SpeedSlider.setMinorTickSpacing(10);
         CarbonSlider.setPaintTicks(true);
         CarbonSlider.setMinorTickSpacing(10);
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            nameInput.setBackground(new Color(0x1d3b53));
+            addressInput.setBackground(new Color(0x1d3b53));
+        }
+
     }
 }

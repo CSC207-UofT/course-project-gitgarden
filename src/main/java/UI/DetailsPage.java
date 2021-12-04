@@ -4,16 +4,13 @@ import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
-import Entities.Distributor;
-import Entities.Request;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class DetailsPage extends JFrame{
     private JPanel mainPanel;
@@ -47,6 +44,10 @@ public class DetailsPage extends JFrame{
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();
     private final ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
+                                        responsePanel, responseTextPanel, responseListPanel, descriptionPanel,
+                                        buttonPanel, acceptButtonPanel, declineButtonPanel, counterButtonPanel, 
+                                        closeButtonPanel, trashButtonPanel};
 
     /**
     public void addDetails(Request request) {
@@ -166,5 +167,19 @@ public class DetailsPage extends JFrame{
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            detailsList.setBackground(new Color(0x1d3b53));
+            responseList.setBackground(new Color(0x1d3b53));
+            acceptRequest.setForeground(new Color(0x4C566A));
+            declineButton.setForeground(new Color(0x4C566A));
+            counterButton.setForeground(new Color(0x4C566A));
+            TrashButton.setForeground(new Color(0x4C566A));
+            closeButton.setForeground(new Color(0x4C566A));
+        }
+
     }
 }

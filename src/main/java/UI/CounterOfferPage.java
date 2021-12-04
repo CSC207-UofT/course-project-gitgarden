@@ -1,15 +1,12 @@
 package UI;
 
+import Controller.ControllerInterface;
+import Controller.ServiceController;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import Controller.ControllerInterface;
-import Controller.DataPresenter;
-import Controller.ServiceController;
-import Entities.Distributor;
-import Entities.Request;
-import UseCases.ProfileManager;
 
 public class CounterOfferPage extends JFrame{
     private JPanel mainPanel;
@@ -30,6 +27,8 @@ public class CounterOfferPage extends JFrame{
     private JTextField quantityInput;
     private JButton createButton;
     private final ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {mainPanel, titlePanel, buttonPanel, middlePanel, textPanel,priceTextPanel,
+                                        quantityTextPanel, inputPanel, priceInputPanel, quantityInputPanel};
 
     public CounterOfferPage(String request) {
         setTitle("counterOffer");
@@ -54,5 +53,14 @@ public class CounterOfferPage extends JFrame{
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            priceInput.setBackground(new Color(0x1d3b53));
+            quantityInput.setBackground(new Color(0x1d3b53));
+            createButton.setForeground(new Color(0x4C566A));
+        }
     }
 }

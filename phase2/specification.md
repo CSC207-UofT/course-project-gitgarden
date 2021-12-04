@@ -48,3 +48,7 @@ The controller (ServiceController) takes in the inputs of the UI and does one of
     * Prompt the user to input again with an error message stating why the input was not accepted
 
 ## Classes Specification
+The UI classes are:
+- CounterOfferPage
+- DetailsPage
+- DistributorPage

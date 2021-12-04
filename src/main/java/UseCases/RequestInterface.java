@@ -5,9 +5,9 @@ import Entities.IRequest;
 import java.util.ArrayList;
 
 public interface RequestInterface {
-    void createRequest(String id, String product, Double quantity, Double price);
+    void createRequest(int requestID, String id, String product, Double quantity, Double price);
 
-    void createCounterOffer(String id, String requestID, Double quantity, Double price);
+    void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price);
 
     void acceptRequest(String requestID);
 
@@ -19,5 +19,9 @@ public interface RequestInterface {
 
     ArrayList<String> coFromId(String requestID);
 
+    ArrayList<String> requestToId(ArrayList<IRequest> requests);
+
     IRequest getRequestFromId(String requestID);
+
+    ArrayList<Integer> getAllRequestIds();
 }

@@ -11,10 +11,10 @@ public class RequestTest {
     Farmer farmer2 = new Farmer("tempName2", "tempAddress2", 0);
     Distributor distributor1 = new Distributor("distributor1", "distributorAddress1", 0);
     Distributor distributor2 = new Distributor("distributor2", "distributorAddress2", 0);
-    IRequest request1 = new Request(farmer1, "requestName1", 100, 10, null);
-    IRequest request2 = new Request(farmer2, "requestName2", 200, 20, null);
-    IRequest counteroffer1 = new Request(distributor1, "offerName3", 300, 30, request1);
-    IRequest counteroffer2 = new Request(distributor2, "offerName4", 400, 40, request2);
+    IRequest request1 = new Request(0, farmer1, "requestName1", 100, 10, null);
+    IRequest request2 = new Request(1, farmer2, "requestName2", 200, 20, null);
+    IRequest counteroffer1 = new Request(2, distributor1, "offerName3", 300, 30, request1);
+    IRequest counteroffer2 = new Request(3, distributor2, "offerName4", 400, 40, request2);
 
 
     @Test(timeout = 50)

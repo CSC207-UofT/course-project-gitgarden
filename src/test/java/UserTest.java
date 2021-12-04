@@ -13,10 +13,10 @@ public class UserTest {
     User farmer2 = new Farmer("tempName2", "tempAddress2", 0);
     User distributor1 = new Distributor("distributorName1", "distributorAddress1", 0);
     User distributor2 = new Distributor("distributorName2", "distributorAddress2", 0);
-    IRequest request1 = new Request(farmer1, "request_name_1", 100, 10, null);
-    IRequest request2 = new Request(farmer2, "request_name_2", 200, 20, null);
-    IRequest offer1 = new Request(distributor1, "offer_name3", 300, 3.00, request1);
-    IRequest offer2 = new Request(distributor2, "offer_name4", 400, 4.00, request2);
+    IRequest request1 = new Request(0, farmer1, "request_name_1", 100, 10, null);
+    IRequest request2 = new Request(1, farmer2, "request_name_2", 200, 20, null);
+    IRequest offer1 = new Request(2, distributor1, "offer_name3", 300, 3.00, request1);
+    IRequest offer2 = new Request(3, distributor2, "offer_name4", 400, 4.00, request2);
 
     @Test(timeout = 50)
     public void TestAddRequest(){

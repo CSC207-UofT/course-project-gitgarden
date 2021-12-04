@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Request implements IRequest{
 
     private final int requestId;
-    private transient IUser user;
+    private IUser user;
     private final String prodName;
     private final double prodQuantity;
     private final double prodPricePerKg;
     private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
 
-    public Request(IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
-        this.requestId = (int) (Math.random()*(90000000)+10000000);
+    public Request(int id, IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
+        this.requestId = id;
         this.user = user;
         this.prodName = pName;
         this.prodQuantity = pQuantity;
@@ -22,8 +22,8 @@ public class Request implements IRequest{
         this.previous = previous;
     }
 
-    public Request(String pName, double pQuantity, double pPricePerKg, IRequest previous) {
-        this.requestId = (int) (Math.random()*(90000000)+10000000);
+    public Request(int id, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
+        this.requestId = id;
         this.prodName = pName;
         this.prodQuantity = pQuantity;
         this.prodPricePerKg = pPricePerKg;
@@ -48,6 +48,7 @@ public class Request implements IRequest{
     }
 
     /**
+     * Gets this request's counteroffers.
      * @return the current counteroffers to the request.
      */
     public ArrayList<IRequest> getCounteroffers(){
@@ -55,48 +56,55 @@ public class Request implements IRequest{
     }
 
     /**
-     * @return the current value of request id. (int)
+     * Gets this request's ID.
+     * @return the current value of requestID.
      */
     public int getRequestId(){
         return this.requestId;
     }
 
     /**
-     * @return the user making this request.
+     * Gets this request's user.
+     * @return The user making this request.
      */
     public IUser getUser(){
         return this.user;
     }
 
     /**
-     * @return the value of product's name. (String)
+     * Gets this request's product name.
+     * @return The product name.
      */
     public String getProdName(){
         return this.prodName;
     }
 
     /**
-     * @return the value of product's quantity. (double)
+     * Gets this request's product quantity.
+     * @return The product quantity.
      */
     public double getProdQuantity(){
         return this.prodQuantity;
     }
 
     /**
-     * @return the value of product's price per unit. (double)
+     * Gets this request's product price per kilogram.
+     * @return The product price per kilogram.
      */
     public double getProdPricePerKg(){
         return this.prodPricePerKg;
     }
 
     /**
-     * @return the request to which this was a counteroffer, null if none.
+     * Gets this request's previous request.
+     * @return The request to which this was a counteroffer, null if none.
      */
     public IRequest getPrevious(){
         return this.previous;
     }
 
     /**
+     * Converts this request into String format.
      * @return The String Representation of the request.
      */
     public String toString(){

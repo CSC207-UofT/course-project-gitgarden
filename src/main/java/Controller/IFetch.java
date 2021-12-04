@@ -15,9 +15,9 @@ public interface IFetch {
 
     ArrayList<String> fetchCurrentUserRequests(String id);
 
-    String[] fetchRequestInformation(String requestId);
-
     ArrayList<String> fetchRequestHistory(String id);
+
+    String[] fetchRequestInformation(String requestId);
 
     ArrayList<String> fetchCounteroffers(String requestId);
 

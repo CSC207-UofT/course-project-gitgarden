@@ -163,6 +163,8 @@ public class WelcomePage extends JFrame{
             JsonProvider jp = new JsonProvider();
             jp.loadFarmer("farmers.json");
             jp.loadDistributor("distributors.json");
+            jp.modifyFarmer("farmerMod.json");
+            jp.modifyDistributor("distMod.json");
         } catch (FileNotFoundException e){
             System.out.println("First time running, there's nothing to be read yet!");
         }

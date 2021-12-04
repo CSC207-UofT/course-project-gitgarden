@@ -36,4 +36,15 @@ public interface DataAccessInterface {
      */
     void loadDistributor(String fileName) throws FileNotFoundException;
 
+    /**
+     * Modify Farmers based on the json file read
+     * @param fileName the file name of the json file that stores modify farmer information
+     */
+    void modifyFarmer(String fileName) throws FileNotFoundException;
+
+    /**
+     * Modify Distributors based on the json file read
+     * @param fileName the file name of the json file that stores modify distributor information
+     */
+    void modifyDistributor(String fileName) throws FileNotFoundException;
 }

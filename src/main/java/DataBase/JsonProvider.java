@@ -65,6 +65,26 @@ public class JsonProvider implements DataAccessInterface {
         } catch (IOException e){
             e.printStackTrace();
         }
+        
+        
+        //This writes distributor modify values to json
+        try(FileWriter writer = new FileWriter("distMod.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.modDistAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        
+        
+        //This writes farmer modify values to json
+        try(FileWriter writer = new FileWriter("farmerMod.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.modFarmerAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -94,7 +114,40 @@ public class JsonProvider implements DataAccessInterface {
         if (dists != null){
             ProfileManager pm = new ProfileManager();
             for (String[] f : dists){
-                pm.createFarmer(f[0], f[1], Integer.parseInt(f[2]));
+                pm.createDistributor(f[0], f[1], Integer.parseInt(f[2]));
+            }
+        }
+    }
+
+    /**
+     * Modify Farmers based on the json file read
+     * @param fileName the file name of the json file that stores modify farmer information
+     */
+    @Override
+    public void modifyFarmer(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> farmers = readFarmer(fileName);
+        if (farmers != null){
+            ProfileManager pm = new ProfileManager();
+            for (String[] f : farmers){
+                pm.modifyFarmer(f[0], Double.parseDouble(f[1]),
+                        Double.parseDouble(f[2]), Double.parseDouble(f[3]),
+                        Double.parseDouble(f[4]));
+            }
+        }
+    }
+
+    /**
+     * Modify Distributors based on the json file read
+     * @param fileName the file name of the json file that stores modify distributor information
+     */
+    @Override
+    public void modifyDistributor(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> dists = readDistributor(fileName);
+        if (dists != null){
+            ProfileManager pm = new ProfileManager();
+            for (String[] d : dists){
+                pm.modifyDistributor(d[0], Double.parseDouble(d[1]),
+                        Double.parseDouble(d[2]), Double.parseDouble(d[3]));
             }
         }
     }

@@ -12,6 +12,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class WelcomePage extends JFrame{
     private JPanel mainPanel;
@@ -160,10 +161,13 @@ public class WelcomePage extends JFrame{
     public static void main(String[] args){
         try {
             JsonProvider jp = new JsonProvider();
-            jp.loadFarmer(jp.readFarmer("farmers.json"));
-            jp.loadDistributor(jp.readDistributor("distributors.json"));
+            jp.loadFarmer("farmers.json");
+            jp.loadDistributor("distributors.json");
+            jp.modifyFarmer("farmerMod.json");
+            jp.modifyDistributor("distMod.json");
+            jp.loadRequests("requests.json");
         } catch (FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("First time running, there's nothing to be read yet!");
         }
 
         WelcomePage welcomePage = new WelcomePage();
@@ -171,7 +175,7 @@ public class WelcomePage extends JFrame{
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             JsonProvider jp = new JsonProvider();
-            jp.write();
+            jp.writeUsers();
         }));
     }
 }

@@ -1,61 +1,55 @@
 package UseCases;
 
-import Entities.*;
-
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public interface DataAccessInterface {
-
-    /**
-     * Read the saved files from the given fileName.
-     * @param fileName The file name of the saved json file containing farmers/distributors
-     * @return list of users
-     */
-    User[] readUser(String fileName) throws FileNotFoundException;
 
     /**
      * Read the saved farmer files from given fileName.
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers
      */
-    Farmer[] readFarmer(String fileName) throws FileNotFoundException;
+    ArrayList<String[]> readFile(String fileName) throws FileNotFoundException;
+
 
     /**
-     * Read the saved distributor files.
-     * @param fileName The file name of the saved json file containing distributors.
-     * @return list of distributors
+     * Write the names of current farmers and distributors to another file type
      */
-    Distributor[] readDistributor(String fileName) throws FileNotFoundException;
+    void writeUsers();
+
 
     /**
-     * Write the current java variables to another file type
+     * Create Farmers based on the json file read
+     * @param fileName the file name of the json file that stores farmer information
      */
-    void write();
+    void loadFarmer(String fileName) throws FileNotFoundException;
+
 
     /**
-     * Load the Farmer from previously saved files
-     * @param farmers list of Farmers that needs to be converted to IFarmer and add to farmerList.
+     * Create Distributors based on the json file read
+      * @param fileName the file name of the json file that stores distributor information
      */
-    void loadFarmer(Farmer[] farmers);
+    void loadDistributor(String fileName) throws FileNotFoundException;
+
 
     /**
-     * Load the Farmer from previously saved files
-     * @param users list of Users that needs to be converted to IFarmer and add to farmerList.
+     * Modify Farmers based on the json file read
+     * @param fileName the file name of the json file that stores modify farmer information
      */
-    void userLoadFarmer(User[] users);
+    void modifyFarmer(String fileName) throws FileNotFoundException;
+
 
     /**
-     * Load the Distributor from previously saved files
-     * @param distributors list of Distributors that needs to be converted to IDistributor and add to
-     *                     distributorList.
+     * Modify Distributors based on the json file read
+     * @param fileName the file name of the json file that stores modify distributor information
      */
-    void loadDistributor(Distributor[] distributors);
+    void modifyDistributor(String fileName) throws FileNotFoundException;
+
 
     /**
-     * Load the Distributor from previously saved files
-     * @param users list of Users that needs to be converted to IDistributor and add to distributorList.
+     * Crete Requests based on the json file read
+     * @param fileName the file name of the json file that stores requests information
      */
-    void userLoadDistributor(User[] users);
-
+    void loadRequests(String fileName) throws FileNotFoundException;
 }

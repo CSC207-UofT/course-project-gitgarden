@@ -1,26 +1,20 @@
 package DataBase;
 
-import Entities.*;
 import UseCases.DataAccessInterface;
 
+import UseCases.JsonAdapter;
 import UseCases.ProfileManager;
+import UseCases.RequestManager;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+
 import java.io.*;
+import java.util.ArrayList;
 
 public class JsonProvider implements DataAccessInterface {
     Gson gson = new Gson();
 
-    /**
-     * Read the save json files and convert everything into Java
-     * @param fileName the file name of the save json file containing farmers/distributors
-     * @return list of users
-     */
-    @Override
-    public User[] readUser(String fileName) throws FileNotFoundException {
-        JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, User[].class);
-    }
 
     /**
      * Read the saved json files and convert everything into Java
@@ -28,102 +22,150 @@ public class JsonProvider implements DataAccessInterface {
      * @return list of farmers
      */
     @Override
-    public Farmer[] readFarmer(String fileName) throws FileNotFoundException {
+    public ArrayList<String[]> readFile(String fileName) throws FileNotFoundException {
         JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Farmer[].class);
+        return gson.fromJson(reader, new TypeToken<ArrayList<String[]>>() {}.getType());
     }
 
-    /**
-     * Read the saved json files and convert everything into Java
-     * @param fileName The file name of the saved json file containing distributors
-     * @return list of distributors
-     */
-    @Override
-    public Distributor[] readDistributor(String fileName) throws FileNotFoundException {
-        JsonReader reader = new JsonReader(new FileReader(fileName));
-        return gson.fromJson(reader, Distributor[].class);
-    }
 
     /**
      * Take the farmerList and distributorList, convert them to json format and save them
      * as "distributors.json" and "farmers.json"
      */
     @Override
-    public void write(){
+    public void writeUsers(){
+
+
+        //This writes distributor names to json
         try(FileWriter writer = new FileWriter("distributors.json")){
-            ProfileManager pm = new ProfileManager();
-            writer.write(gson.toJson(pm.getDistributorList()));
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.distAdapter()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();
         }
 
+
+        //This writes farmer names to json
         try(FileWriter writer = new FileWriter("farmers.json")){
-            ProfileManager pm = new ProfileManager();
-            writer.write(gson.toJson(pm.getFarmerList()));
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.farmerAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        
+        
+        //This writes distributor modify values to json
+        try(FileWriter writer = new FileWriter("distMod.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.modDistAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        
+        
+        //This writes farmer modify values to json
+        try(FileWriter writer = new FileWriter("farmerMod.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.modFarmerAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        //This writes requests to json
+        try(FileWriter writer = new FileWriter("requests.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.requestAdapter()));
             writer.flush();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
+
     /**
-     * Load the farmers to farmerList based on the list returned from readFarmer()
-     * @param farmers list of Farmers that needs to be converted to IFarmer and add to farmerList
+     * Create Farmers based on the json file read
+     * @param fileName the file name of the json file that stores farmer information
      */
     @Override
-    public void loadFarmer(Farmer[] farmers) {
-        if(farmers != null){
+    public void loadFarmer(String fileName) throws FileNotFoundException{
+        ArrayList<String[]> farmers = readFile(fileName);
+        if (farmers != null){
             ProfileManager pm = new ProfileManager();
-            for (Farmer f : farmers){
-                pm.createFarmer(f.getUserName(), f.getUserAddress(), f.getUserId());
-                pm.modifyFarmer(String.valueOf(f.getUserId()), f.getPrefPrice(),
-                        f.getPrefExposure(), f.getPrefSpeed(), f.getPrefCarbon());
+            for (String[] f : farmers){
+                pm.createFarmer(f[0], f[1], Integer.parseInt(f[2]));
+            }
+        }
+    }
+
+
+    /**
+     * Create Distributors based on the json file read
+     * @param fileName the file name of the json file that stores distributor information
+     */
+    @Override
+    public void loadDistributor(String fileName) throws FileNotFoundException{
+        ArrayList<String[]> dists = readFile(fileName);
+        if (dists != null){
+            ProfileManager pm = new ProfileManager();
+            for (String[] f : dists){
+                pm.createDistributor(f[0], f[1], Integer.parseInt(f[2]));
             }
         }
     }
 
     /**
-     * Load the farmers to farmerList using User object instead of Farmer
-     * @param users list of Users that needs to be converted to IFarmer and add to farmerList.
+     * Modify Farmers based on the json file read
+     * @param fileName the file name of the json file that stores modify farmer information
      */
-    public void userLoadFarmer(User[] users){
-        if(users != null){
+    @Override
+    public void modifyFarmer(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> farmers = readFile(fileName);
+        if (farmers != null){
             ProfileManager pm = new ProfileManager();
-            for (User u : users){
-                pm.createFarmer(u.getUserName(), u.getUserAddress(), u.getUserId());
+            for (String[] f : farmers){
+                pm.modifyFarmer(f[0], Double.parseDouble(f[1]),
+                        Double.parseDouble(f[2]), Double.parseDouble(f[3]),
+                        Double.parseDouble(f[4]));
             }
         }
     }
 
     /**
-     * Load the distributors to distributorList based on the list returned from readDistributor()
-     * @param distributors list of Distributors that needs to be converted to IDistributor and add to
-     *                     distributorList.
+     * Modify Distributors based on the json file read
+     * @param fileName the file name of the json file that stores modify distributor information
      */
     @Override
-    public void loadDistributor(Distributor[] distributors) {
-        if (distributors != null){
+    public void modifyDistributor(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> dists = readFile(fileName);
+        if (dists != null){
             ProfileManager pm = new ProfileManager();
-            for (Distributor d : distributors){
-                pm.createDistributor(d.getUserName(), d.getUserAddress(), d.getUserId());
-                pm.modifyDistributor(String.valueOf(d.getUserId()), d.getExposure(),
-                        d.getSpeed(), d.getCarbon());
+            for (String[] d : dists){
+                pm.modifyDistributor(d[0], Double.parseDouble(d[1]),
+                        Double.parseDouble(d[2]), Double.parseDouble(d[3]));
             }
         }
     }
 
+
     /**
-     * Load the distributors to distributorList using User object instead of Distributor
-     * @param users list of Users that needs to be converted to IDistributor and add to distributorList.
+     * Crete Requests based on the json file read
+     * @param fileName the file name of the json file that stores requests information
      */
     @Override
-    public void userLoadDistributor(User[] users){
-        if(users != null){
-            ProfileManager pm = new ProfileManager();
-            for (User u : users){
-                pm.createDistributor(u.getUserName(), u.getUserAddress(), u.getUserId());
+    public void loadRequests(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> reqs = readFile(fileName);
+        if (reqs != null){
+            RequestManager rm = new RequestManager();
+            for (String[] r : reqs){
+                rm.createRequest(Integer.parseInt(r[0]), r[1], r[2], Double.parseDouble(r[3]),
+                        Double.parseDouble(r[4]));
             }
         }
     }
-  }
+
+}

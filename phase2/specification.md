@@ -43,3 +43,4 @@ The users starts the program and is prompted with a screen asking them what they
 
 The controller (ServiceController) takes in the inputs of the UI and does one of two things:
 - Accept the input
+    * Makes the correct variable for the use case classes to use

@@ -57,7 +57,16 @@ as it lacked the complete functionality of a Request despite having several comm
 variables with it. Therefore, we scrapped the idea of CounterOffer being a subclass
 of Request in Phase 2 unlike in Phase 1.
 #### Interface Segregation Principle: 
-Previously, there were very few interfaces in our code, which meant creating new classes would involve using a lot of redundant code. Now, not only have we introduced multiple interfaces, but also role-specific ones. This means that when one decides to extend our code, they will not be forced to implement redundant methods. Further, this was also helpful in obeying Clean Architecture Principles, and greatly improved our overall design methodology and efficiency of future extension and current code. An example of this would be ProfileInterface and Request Interface, that allows different types of profiles and requests to be made, with one needing only to mandatorily implement the methods relevant to all profiles and requests respectively.
+Previously, there were very few interfaces in our code, which meant creating new
+classes would involve using a lot of redundant code. Now, not only have we
+introduced multiple interfaces, but also role-specific ones. This means that when
+one decides to extend our code, they will not be forced to implement redundant
+methods. Further, this was also helpful in obeying Clean Architecture Principles,
+and greatly improved our overall design methodology and efficiency of future
+extension and current code. An example of this would be ProfileInterface and Request
+Interface, that allows different types of profiles and requests to be made, with one
+needing only to mandatorily implement the methods relevant to all profiles and
+requests respectively.
 
 #### Dependency Inversion Principle: 
 

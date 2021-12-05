@@ -45,7 +45,6 @@ public class OthersExistingRequests extends JFrame {
         acceptRequest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Accept A Request.");
                 }
@@ -79,7 +78,6 @@ public class OthersExistingRequests extends JFrame {
         counterOfferButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
                             "A Request.");
@@ -88,6 +86,7 @@ public class OthersExistingRequests extends JFrame {
                     JOptionPane.showMessageDialog(null,"Must select A Request.");
                 }
                 else{
+                    setVisible(false);
                     JFrame counterOfferPage = new CounterOfferPage(tempRequest);
                     counterOfferPage.setVisible(true);
                 }
@@ -96,14 +95,12 @@ public class OthersExistingRequests extends JFrame {
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for(String farmer: presenter.fetchAllFarmerNames()){
-            if(!farmer.equals(WelcomePage.currUserId)){
-                for(String requestId: presenter.fetchCurrentUserRequests(WelcomePage.currUserId)){
+            if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+                for(String requestId: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
                     String product_name = presenter.fetchRequestInformation(requestId)[0];
-                    String farmer_name = presenter.fetchUserName(farmer);
-                    listModel.addElement(requestId+" "+product_name + ", "+ farmer_name);
+                    listModel.addElement(requestId+" "+product_name + ", "+ farmer);
                 }
             }
-
         }
         requestList.setModel(listModel);
         requestList.addListSelectionListener(new ListSelectionListener() {

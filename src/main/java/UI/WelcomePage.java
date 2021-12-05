@@ -197,6 +197,7 @@ public class WelcomePage extends JFrame{
             jp.modifyFarmer("farmerMod.json");
             jp.modifyDistributor("distMod.json");
             jp.loadRequests("requests.json");
+            jp.loadCounterOffers("counters.json");
         } catch (FileNotFoundException e){
             System.out.println("First time running, there's nothing to be read yet!");
         }

@@ -37,7 +37,11 @@ class, Managing Farmer and Distributor Profiles (including their storage) in the
 ProfileManager Class, and handling the rankings of users via the RankingManager class.
 
 #### Open/Closed Principle
-
+A key example of this principle is in our DataAccessInterface class, 
+which allows for newer methods of Data Persistency such as .csv to be implemented
+by simply creating a class which implements the DataAccessInterface with minimal
+effort. Currently, we only use the .json file extension for saving data, but this
+opens the door to new methods
 #### Liskov Substitution Principle: 
 
 #### Interface Segregation Principle: 

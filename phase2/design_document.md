@@ -49,6 +49,13 @@ Initially, there was a lot of confusion regarding the Request, Counteroffer and
 Offer classes, as Request and Counteroffer were essentially containing the exact
 same methods and parameters, but the difference lay in the fact that a Counteroffer
 (as well as an Offer), are in response to a Request.
+This meant that although a Request can exist by itself, a Counteroffer and Offer
+cannot. Therefore, we were undecided on whether to use the same class to represent
+both Request and Counteroffer. After much thinking, we realised that based on the
+functionality of our code, a Counteroffer would disobey the Substitution Principle,
+as it lacked the complete functionality of a Request despite having several common
+variables with it. Therefore, we scrapped the idea of CounterOffer being a subclass
+of Request in Phase 2 unlike in Phase 1.
 #### Interface Segregation Principle: 
 
 #### Dependency Inversion Principle: 

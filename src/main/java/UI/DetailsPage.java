@@ -137,7 +137,7 @@ public class DetailsPage extends JFrame{
         for(String requestId: sc.rank(request, WelcomePage.currUserId)){
             String[] product_info = presenter.fetchRequestInformation(requestId);
             listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
-                    "Price :" + product_info[2] + "Rating:" + product_info[5]);
+                    "Price :" + product_info[2]);
         }
 
         responseList.setModel(listModel2);

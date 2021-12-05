@@ -15,6 +15,7 @@
 ## Usage of SOLID Principles
 
 #### Single Responsibility Principle
+In the previous phase, we were told about how there were too many responsibilities given to some classes, specifically those containing code for Data Persistency. We resolved this by creating a new class JsonProvider that handles the saving of data. Earlier, this code was present in the WelcomePage class, which was incorrect, since that class was related to presenting the user with an opening screen, and not the saving of files.
 
 #### Open/Closed Principle
 

@@ -41,7 +41,9 @@ A key example of this principle is in our DataAccessInterface class,
 which allows for newer methods of Data Persistency such as .csv to be implemented
 by simply creating a class which implements the DataAccessInterface with minimal
 effort. Currently, we only use the .json file extension for saving data, but this
-opens the door to new methods
+opens the door to new methods to be added without any hassle or affecting the rest
+of the program. In other places, the use of interfaces has ensured the potential
+for extension, while preventing the need and possibility of any modifications.
 #### Liskov Substitution Principle: 
 
 #### Interface Segregation Principle: 

@@ -67,10 +67,8 @@ extension and current code. An example of this would be ProfileInterface and Req
 Interface, that allows different types of profiles and requests to be made, with one
 needing only to mandatorily implement the methods relevant to all profiles and
 requests respectively.
-
 #### Dependency Inversion Principle: 
-
-
+This was a principle that we were extremely cautious about. To this end, we made an effort to ensure that our Use Case and Controller classes only referred to classes immediately below them in the hierarchy. Further, interfaces were created to add abstraction layers between levels of the code hierarchy as a further precaution. In fact, this was one of our major priorities in Phase 2, since we realised there were a few cases of hard dependencies in our Phase 1 code. The addition of interfaces, as well as getter and setter methods went a long way in resolving this issue, as well as the conscious avoidance of creating methods that called constructors of lower-level classes explicitly. Rather, we took in arguments of primitive types or avoided the dependency by taking the parameter of the class type directly instead of creating one in the higher-level class.
 ## Packaging Strategies
 
 

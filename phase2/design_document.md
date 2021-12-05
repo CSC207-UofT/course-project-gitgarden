@@ -45,7 +45,10 @@ opens the door to new methods to be added without any hassle or affecting the re
 of the program. In other places, the use of interfaces has ensured the potential
 for extension, while preventing the need and possibility of any modifications.
 #### Liskov Substitution Principle: 
-
+Initially, there was a lot of confusion regarding the Request, Counteroffer and
+Offer classes, as Request and Counteroffer were essentially containing the exact
+same methods and parameters, but the difference lay in the fact that a Counteroffer
+(as well as an Offer), are in response to a Request.
 #### Interface Segregation Principle: 
 
 #### Dependency Inversion Principle: 

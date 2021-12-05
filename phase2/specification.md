@@ -19,7 +19,7 @@ The users starts the program and is prompted with a screen asking them what they
     * Distributor
         + Name
         + Address
-        + Preferences (Expansion 2)
+        + Preferences
 - Login to Profile (Farmer)
     * Modify Profile
         * **Undo Changes (Memento Design Pattern)**

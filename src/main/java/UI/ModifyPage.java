@@ -192,3 +192,4 @@ public class ModifyPage extends JFrame{
         CarbonSlider.setMinorTickSpacing(10);
     }
 }
+

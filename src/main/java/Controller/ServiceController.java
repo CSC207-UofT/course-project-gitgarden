@@ -174,7 +174,7 @@ public class ServiceController implements ControllerInterface{
      * @return boolean that indicates if the input is valid.
      */
     public boolean isValidAddress(String input){
-        return input.matches("^[\\sa-zA-Z0-9]+$");
+        return input.matches("^[\\sa-zA-Z0-9.]+$");
     }
 
     /**

@@ -19,4 +19,11 @@ public class ServiceControllerTest {
         assertTrue(sc.isValidName(tempStr));
     }
 
+    @Test(timeout = 50)
+    public void TestIsValidAddress() {
+        ServiceController sc = new ServiceController();
+        String tempStr = "93 Nowhere Ave.";
+        assertTrue(sc.isValidAddress(tempStr));
+    }
+
 }

@@ -52,4 +52,11 @@ public interface DataAccessInterface {
      * @param fileName the file name of the json file that stores requests information
      */
     void loadRequests(String fileName) throws FileNotFoundException;
+
+
+    /**
+     * Crete CounterOffers based on the json file read
+     * @param fileName the file name of the json file that stores counteroffers information
+     */
+    void loadCounterOffers(String fileName) throws FileNotFoundException;
 }

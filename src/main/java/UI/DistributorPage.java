@@ -6,6 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,6 +33,10 @@ public class DistributorPage extends JFrame{
     private JButton viewButton;
     private JList<String> existingList;
     private final IFetch presenter = new DataPresenter();
+    private final JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel,existingPanel, 
+                                        existingTextPanel, existingRequestPanel, historyPanel,
+                                        historyTextPanel,historyListPanel};
+
 
     public DistributorPage(){
         setTitle("distributorPage");
@@ -99,6 +104,15 @@ public class DistributorPage extends JFrame{
                 }
             }
         });
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            existingList.setBackground(new Color(0x1d3b53));
+            historyList.setBackground(new Color(0x1d3b53));
+            modifyButton.setForeground(new Color(0x4C566A));
+            viewButton.setForeground(new Color(0x4C566A));
+        }
     }
 }
 

@@ -4,16 +4,13 @@ import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
-import Entities.*;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class OthersExistingRequests extends JFrame {
     private JPanel mainPanel;
@@ -30,11 +27,14 @@ public class OthersExistingRequests extends JFrame {
     private JButton closeButton;
     private JList<String> requestList;
     private JPanel buttonPanel;
+    private JPanel counterOfferPanel;
     private JButton counterOfferButton;
 
     private String tempRequest = null;
     private final IFetch presenter = new DataPresenter();
     private final ControllerInterface sc = new ServiceController();
+    private final JPanel[] panelList = {mainPanel, titlePanel, listPanel, descriptionPanel, acceptButtonPanel, 
+                                        closeButtonPanel, buttonPanel, counterOfferPanel};
 
     public OthersExistingRequests() {
         setTitle("requestPage");
@@ -45,7 +45,6 @@ public class OthersExistingRequests extends JFrame {
         acceptRequest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Accept A Request.");
                 }
@@ -79,7 +78,6 @@ public class OthersExistingRequests extends JFrame {
         counterOfferButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 if (WelcomePage.flag) {
                     JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
                             "A Request.");
@@ -88,6 +86,7 @@ public class OthersExistingRequests extends JFrame {
                     JOptionPane.showMessageDialog(null,"Must select A Request.");
                 }
                 else{
+                    setVisible(false);
                     JFrame counterOfferPage = new CounterOfferPage(tempRequest);
                     counterOfferPage.setVisible(true);
                 }
@@ -96,14 +95,12 @@ public class OthersExistingRequests extends JFrame {
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for(String farmer: presenter.fetchAllFarmerNames()){
-            if(!farmer.equals(WelcomePage.currUserId)){
-                for(String requestId: presenter.fetchCurrentUserRequests(WelcomePage.currUserId)){
+            if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+                for(String requestId: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
                     String product_name = presenter.fetchRequestInformation(requestId)[0];
-                    String farmer_name = presenter.fetchUserName(farmer);
-                    listModel.addElement(requestId+" "+product_name + ", "+ farmer_name);
+                    listModel.addElement(requestId+" "+product_name + ", "+ farmer);
                 }
             }
-
         }
         requestList.setModel(listModel);
         requestList.addListSelectionListener(new ListSelectionListener() {
@@ -115,5 +112,16 @@ public class OthersExistingRequests extends JFrame {
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            requestList.setBackground(new Color(0x1d3b53));
+            acceptRequest.setForeground(new Color(0x4C566A));
+            counterOfferButton.setForeground(new Color(0x4C566A));
+            closeButton.setForeground(new Color(0x4C566A));
+        }
+
     }
 }

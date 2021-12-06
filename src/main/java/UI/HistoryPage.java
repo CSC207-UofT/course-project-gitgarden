@@ -4,8 +4,7 @@ import Controller.DataPresenter;
 import Controller.IFetch;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,8 +20,16 @@ public class HistoryPage extends JFrame{
     private JPanel buttonPanel;
     private JPanel closeButtonPanel;
     private JButton closeButton;
+    private JPanel ratePanel;
+    private JPanel rateTextPanel;
+    private JLabel rateText;
+    private JPanel ratingSliPanel;
+    private JSlider RatingSlider;
 
     private final IFetch presenter = new DataPresenter();
+    private final JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
+                                        buttonPanel, closeButtonPanel,ratePanel, rateTextPanel, ratingSliPanel};
+
     public HistoryPage(String request){
         setTitle("farmerPage");
         setContentPane(mainPanel);
@@ -55,5 +62,14 @@ public class HistoryPage extends JFrame{
                 }
             }
         });
+
+        if (WelcomePage.dark){
+            for (JPanel p : panelList) {
+                p.setBackground(new Color(0x011627));
+            }
+            detailsList.setBackground(new Color(0x1d3b53));
+            closeButton.setForeground(new Color(0x4C566A));
+        }
+
     }
 }

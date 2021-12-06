@@ -19,11 +19,4 @@ public class ServiceControllerTest {
         assertTrue(sc.isValidName(tempStr));
     }
 
-    @Test(timeout = 50)
-    public void TestIsAlphanumeric() {
-        ServiceController sc = new ServiceController();
-        String tempStr = "";
-        assertFalse(sc.isAlphanumeric(tempStr));
-    }
-
 }

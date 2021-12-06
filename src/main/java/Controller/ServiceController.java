@@ -21,7 +21,7 @@ public class ServiceController implements ControllerInterface{
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
         int id = uniqueUserId();
         if (isValidName(name)){
-            if (isAlphanumeric(address)){
+            if (isValidAddress(address)){
                 if (isUniqueName(name)){
                     if (flag) { profileManager.createFarmer(name, address, id); }
                     else { profileManager.createDistributor(name, address, id); }
@@ -42,7 +42,7 @@ public class ServiceController implements ControllerInterface{
         IFetch dp = new DataPresenter();
         String oldName = dp.fetchUserName(id);
         if (isValidName(newName)){
-            if (isAlphanumeric(address)){
+            if (isValidAddress(address)){
                 if (isUniqueName(newName) || oldName.equals(newName)){
                     profileManager.modifyUser(id, newName, address);
                 } else { throw new Exception("That name has been taken."); }
@@ -169,18 +169,18 @@ public class ServiceController implements ControllerInterface{
     }
 
     /**
-     * Checks if the input is alphanumeric.
+     * Checks if the input is a valid address.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is alphanumeric.
+     * @return boolean that indicates if the input is valid.
      */
-    public boolean isAlphanumeric(String input){
-        return input.matches("^[a-zA-Z0-9]+$");
+    public boolean isValidAddress(String input){
+        return input.matches("^[\\sa-zA-Z0-9]+$");
     }
 
     /**
      * Checks if the input is alphabetic.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is alphanumeric.
+     * @return boolean that indicates if the input is alphabetic.
      */
     public boolean isAlphabetic(String input){
         return input.matches("^[a-zA-Z]+$");

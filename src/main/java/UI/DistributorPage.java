@@ -61,19 +61,21 @@ public class DistributorPage extends JFrame{
             }
         });
         int i = 1;
-        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
+        ArrayList<String> currentRequestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
 
-        for (String request : requestIdList) {
+        for (String request : currentRequestIdList) {
             String product_name = presenter.fetchRequestInformation(request)[0];
             listModel.addElement(i + " " + product_name);
             i += 1;
         }
 
         i = 1;
+        ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for (String requestId : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
-            String product_name = presenter.fetchRequestInformation(requestId)[0];
+
+        for (String request : historyRequestIdList) {
+            String product_name = presenter.fetchRequestInformation(request)[0];
             listModel2.addElement(i + " " + product_name);
         }
 
@@ -87,7 +89,7 @@ public class DistributorPage extends JFrame{
                     String request = historyList.getSelectedValue().toString();
                     int index = listModel2.indexOf(request);
                     setVisible(false);
-                    HistoryPage historyPage = new HistoryPage(requestIdList.get(index));
+                    HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index));
                     historyPage.setVisible(true);
                 }
             }
@@ -99,7 +101,7 @@ public class DistributorPage extends JFrame{
                     String request = existingList.getSelectedValue().toString();
                     int index = listModel.indexOf(request);
                     setVisible(false);
-                    DetailsPage detailspage = new DetailsPage(requestIdList.get(index));
+                    DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index));
                     detailspage.setVisible(true);
                 }
             }

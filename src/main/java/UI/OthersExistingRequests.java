@@ -96,9 +96,11 @@ public class OthersExistingRequests extends JFrame {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for(String farmer: presenter.fetchAllFarmerNames()){
             if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
-                for(String requestId: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
-                    String product_name = presenter.fetchRequestInformation(requestId)[0];
-                    listModel.addElement(requestId+" "+product_name + ", "+ farmer);
+                for(String request: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
+                    String[] info = presenter.fetchRequestInformation(request);
+                    listModel.addElement("Request ID: " + request + ", Product name: " + info[0] +
+                            ", Farmer name: " + info[3] + ", Product Quantity: " + info[1] +
+                            ", Product Price: " + info[2]);
                 }
             }
         }

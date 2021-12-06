@@ -9,7 +9,7 @@ public interface RequestInterface {
 
     void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price);
 
-    void acceptRequest(String requestID);
+    void acceptRequest(String requestID, String userID);
 
     void declineRequest(String requestID);
 

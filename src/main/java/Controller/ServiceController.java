@@ -125,7 +125,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void acceptRequestCheck(String requestID, String userID){
-        requestManager.acceptRequest(requestID);
+        requestManager.acceptRequest(requestID, userID);
     } // Nothing to check for now, but there may be in future
 
     /**
@@ -133,7 +133,7 @@ public class ServiceController implements ControllerInterface{
      * @param requestID ID of request to be declined.
      */
     @Override
-    public void declineRequestCheck(String requestID, String userId){
+    public void declineRequestCheck(String requestID, String userID){
         requestManager.declineRequest(requestID);
     } // Nothing to check for now, but there may be in future
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class RequestManager implements RequestInterface{
     public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
     public static ArrayList<IRequest> allOffers = new ArrayList<>(); // May be removed if it turns out to be unneeded
-
+    public static final ProfileInterface pm = new ProfileManager();
 
     /**
      * Creates a request.
@@ -19,7 +19,6 @@ public class RequestManager implements RequestInterface{
      */
     @Override
     public void createRequest(int requestID, String id, String product, Double quantity, Double price) {
-        ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
         IRequest request = new Request(requestID, user, product, quantity, price, null);
         user.addRequest(request);
@@ -36,7 +35,6 @@ public class RequestManager implements RequestInterface{
      */
     @Override
     public void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price){
-        ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
         IRequest request = getRequestFromId(counteredRequestID);
         IRequest co = new Request(requestID, user, request.getProdName(), quantity, price, request);
@@ -52,16 +50,16 @@ public class RequestManager implements RequestInterface{
      * @param requestID The ID of the request to be accepted.
      */
     @Override
-    public void acceptRequest(String requestID){
+    public void acceptRequest(String requestID, String userID){
         IRequest request = getRequestFromId(requestID);
-        IUser previousUser = request.getPrevious().getUser();
-
+        IUser user = pm.getUserFromId(userID);
         //Call Rating System for current user
         request.getUser().addOffer(request);
+        user.addOffer(request);
         //call Rating System for previous user
-        previousUser.addOffer(request);
-
-        deleteCurrent(request);
+        if (request.getPrevious() != null){
+            deleteCurrent(request);
+        }
         IRequest root = requestRoot(request);
         root.getUser().removeRequest(root);
         allActiveRequests.remove(root);

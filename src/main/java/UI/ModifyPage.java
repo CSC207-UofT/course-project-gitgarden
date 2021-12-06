@@ -44,6 +44,7 @@ public class ModifyPage extends JFrame{
     private JPanel exposureTextPanel;
     private JPanel speedTextPanel;
     private JPanel carbonTextPanel;
+    private JButton Undo;
     ControllerInterface sc = new ServiceController();
     private final JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
                                         namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,

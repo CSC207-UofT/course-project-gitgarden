@@ -53,10 +53,10 @@ The 8 classes in the skeleton program splitted between 7 group members. The firs
 The test cases were done majorly by:
 
 1. ServiceControllerTest: **Andy** + Onyx
-2. RequestTest: **Andy** + Divit
-3. UserTest: **Andy** + Divit
-4. FarmerTest: **Andy** + Divit
-5. DistributorTest: **Andy** + Divit
+2. Entities.RequestTest: **Andy** + Divit
+3. Entities.UserTest: **Andy** + Divit
+4. Entities.FarmerTest: **Andy** + Divit
+5. Entities.DistributorTest: **Andy** + Divit
 
 ## Future Plan
 We have only implemented 8 out of the 11 planned classes. The rest of the 3 classes were planned for program extensions. With the additional classes, we wish to make our program more user friendly and less prone to errors.

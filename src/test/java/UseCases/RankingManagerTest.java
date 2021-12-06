@@ -1,17 +1,25 @@
-//import Entities.*;
-//import UseCases.RankingManager;
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//import static org.junit.Assert.assertEquals;
-//
-//import java.util.ArrayList;
-//import static java.lang.Math.*;
-//
-//public class RankingManagerTest {
-//
-//    private RankingManager rankingManager;
-//
+package UseCases;
+
+import Entities.*;
+import UseCases.RankingManager;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import static java.lang.Math.*;
+
+public class RankingManagerTest {
+    private RankingManager rm;
+
+    @Before
+    public void setUp(){
+        rm = new RankingManager("0", "1");
+    }
+
+}
+
 //    @Before
 //    public void setUp(){
 //        ArrayList<IDistributor> allDist= new ArrayList<>();

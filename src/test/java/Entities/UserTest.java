@@ -1,3 +1,5 @@
+package Entities;
+
 import Entities.*;
 import org.junit.Test;
 
@@ -44,14 +46,6 @@ public class UserTest {
     public void TestAddOffer(){
         farmer1.addOffer(offer1);
         assertEquals(offer1, farmer1.getOfferHistory().get(0));
-    }
-
-    @Test(timeout = 50)
-    public void TestRemoveOffer(){
-        farmer1.addOffer(offer1);
-        farmer1.addOffer(offer2);
-        farmer1.removeOffer(offer1);
-        assertEquals(offer2, farmer1.getOfferHistory().get(0));
     }
 
     @Test(timeout = 50)

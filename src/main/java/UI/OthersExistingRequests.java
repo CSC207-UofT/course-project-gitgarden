@@ -46,7 +46,7 @@ public class OthersExistingRequests extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (WelcomePage.flag) {
-                    JOptionPane.showMessageDialog(null,"Farmer Cannot Accept A Request.");
+                    JOptionPane.showMessageDialog(null,"Farmers cannot accept requests.");
                 }
                 else if(tempRequest == null){
                     JOptionPane.showMessageDialog(null,"Must select A Request.");

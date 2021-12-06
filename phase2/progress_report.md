@@ -35,3 +35,12 @@ allowing profile modifications to be undone. This was implemented by **Jagat**.
 
 We modified our tests and expanded them to include more cases.
 This was done by **Andy and Onyx**.
+
+## Notable Pull Requests by Each Group Member
+- onyxc: Phase2 grand refactoring (https://github.com/CSC207-UofT/course-project-gitgarden/pull/22) and Working phase2 (https://github.com/CSC207-UofT/course-project-gitgarden/pull/42)
+
+  The first pull request formed the basis of our phase2 backend, fixing many of the Clean Architecture violations that had occurred over the course of phase 1. The second pull request was a large number of bugfix commits by the end of which the program was functional.
+
+- DivitSingh: Persistency (https://github.com/CSC207-UofT/course-project-gitgarden/pull/17)
+
+  Introduced the ability to save user profiles, as well as request details. This was a huge step forward in our application, as we could now test our request and counteroffer system, and made the code compatible with the JavaSwing GUI.

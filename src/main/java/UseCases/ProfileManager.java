@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ProfileManager implements ProfileInterface{
     private static final ArrayList<IFarmer> farmerList = new ArrayList<>();
     private static final ArrayList<IDistributor> distributorList = new ArrayList<>();
+    private static final RequestInterface rm = new RequestManager();
 
     /**
      * Creates a Farmer profile.
@@ -177,7 +178,6 @@ public class ProfileManager implements ProfileInterface{
      */
     @Override
     public ArrayList<String> requestsFromId(String id) {
-        RequestManager rm = new RequestManager();
         IUser user = getUserFromId(id);
         return rm.requestToId(user.getCurrentRequests());
     }
@@ -189,7 +189,6 @@ public class ProfileManager implements ProfileInterface{
      */
     @Override
     public ArrayList<String> historyFromId(String id) {
-        RequestManager rm = new RequestManager();
         IUser user = getUserFromId(id);
         return rm.requestToId(user.getOfferHistory());
     }

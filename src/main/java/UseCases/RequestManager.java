@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class RequestManager implements RequestInterface{
     public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
-    public static ArrayList<IRequest> allOffers = new ArrayList<>(); // May be removed if it turns out to be unneeded
+    public static ArrayList<IRequest> allOffers = new ArrayList<>();
     public static final ProfileInterface pm = new ProfileManager();
 
     /**
@@ -184,6 +184,7 @@ public class RequestManager implements RequestInterface{
      */
     public IRequest getRequestFromId(String requestID){
         ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
+        allRequests.addAll(allOffers);
         for (IRequest request : allRequests){
             if (String.valueOf(request.getRequestId()).equals(requestID)){
                 return request;

@@ -60,21 +60,27 @@ public class DistributorPage extends JFrame{
                 requestListPage.setVisible(true);
             }
         });
-        int i = 1;
-        ArrayList<String> requestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
+        ArrayList<String> currentRequestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
 
-        for (String request : requestIdList) {
-            String product_name = presenter.fetchRequestInformation(request)[0];
-            listModel.addElement(i + " " + product_name);
-            i += 1;
+        for (String request : currentRequestIdList) {
+            String[] info = presenter.fetchRequestInformation(request);
+            String product_name = info[0];
+            String user_name = info[3];
+            if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+                user_name = "me";
+            }
+            listModel.addElement("Product " + product_name + ", User: "+ user_name);
         }
 
-        i = 1;
+        ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
-        for (String requestId : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
-            String product_name = presenter.fetchRequestInformation(requestId)[0];
-            listModel2.addElement(i + " " + product_name);
+
+        for (String request : historyRequestIdList) {
+            String[] info = presenter.fetchRequestInformation(request);
+            String product_name = info[0];
+            String distributor_name = info[3];
+            listModel2.addElement("Product " + product_name + ", User: "+ distributor_name);
         }
 
         existingList.setModel(listModel);
@@ -87,7 +93,7 @@ public class DistributorPage extends JFrame{
                     String request = historyList.getSelectedValue().toString();
                     int index = listModel2.indexOf(request);
                     setVisible(false);
-                    HistoryPage historyPage = new HistoryPage(requestIdList.get(index));
+                    HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index));
                     historyPage.setVisible(true);
                 }
             }
@@ -99,7 +105,7 @@ public class DistributorPage extends JFrame{
                     String request = existingList.getSelectedValue().toString();
                     int index = listModel.indexOf(request);
                     setVisible(false);
-                    DetailsPage detailspage = new DetailsPage(requestIdList.get(index));
+                    DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index));
                     detailspage.setVisible(true);
                 }
             }

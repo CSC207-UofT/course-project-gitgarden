@@ -20,10 +20,10 @@ public class ServiceControllerTest {
     }
 
     @Test(timeout = 50)
-    public void TestIsAlphanumeric() {
+    public void TestIsValidAddress() {
         ServiceController sc = new ServiceController();
-        String tempStr = "";
-        assertFalse(sc.isAlphanumeric(tempStr));
+        String tempStr = "93 Nowhere Ave.";
+        assertTrue(sc.isValidAddress(tempStr));
     }
 
 }

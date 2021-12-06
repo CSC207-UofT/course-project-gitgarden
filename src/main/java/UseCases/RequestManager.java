@@ -1,14 +1,13 @@
 package UseCases;
 
-import Entities.IRequest;
-import Entities.IUser;
-import Entities.Request;
+import Entities.*;
 
 import java.util.ArrayList;
 
 public class RequestManager implements RequestInterface{
     public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
-    public static ArrayList<IRequest> allOffers = new ArrayList<>(); // May be removed if it turns out to be unneeded
+    public static ArrayList<IRequest> allOffers = new ArrayList<>();
+    public static final ProfileInterface pm = new ProfileManager();
 
     /**
      * Creates a request.
@@ -20,7 +19,6 @@ public class RequestManager implements RequestInterface{
      */
     @Override
     public void createRequest(int requestID, String id, String product, Double quantity, Double price) {
-        ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
         IRequest request = new Request(requestID, user, product, quantity, price, null);
         user.addRequest(request);
@@ -37,7 +35,6 @@ public class RequestManager implements RequestInterface{
      */
     @Override
     public void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price){
-        ProfileInterface pm = new ProfileManager();
         IUser user = pm.getUserFromId(id);
         IRequest request = getRequestFromId(counteredRequestID);
         IRequest co = new Request(requestID, user, request.getProdName(), quantity, price, request);
@@ -53,14 +50,16 @@ public class RequestManager implements RequestInterface{
      * @param requestID The ID of the request to be accepted.
      */
     @Override
-    public void acceptRequest(String requestID){
+    public void acceptRequest(String requestID, String userID){
         IRequest request = getRequestFromId(requestID);
-        IUser previousUser = request.getPrevious().getUser();
-
+        IUser user = pm.getUserFromId(userID);
+        //Call Rating System for current user
         request.getUser().addOffer(request);
-        previousUser.addOffer(request);
-
-        deleteCurrent(request);
+        user.addOffer(request);
+        //call Rating System for previous user
+        if (request.getPrevious() != null){
+            deleteCurrent(request);
+        }
         IRequest root = requestRoot(request);
         root.getUser().removeRequest(root);
         allActiveRequests.remove(root);
@@ -85,6 +84,7 @@ public class RequestManager implements RequestInterface{
     public void trashRequest(String requestID){
         IRequest request = getRequestFromId(requestID);
         allActiveRequests.remove(request);
+        request.getUser().removeRequest(request);
     }
 
     /**
@@ -95,7 +95,7 @@ public class RequestManager implements RequestInterface{
     @Override
     public String[] dataFromId(String requestID) {
         IRequest request = getRequestFromId(requestID);
-        String[] data = new String[5];
+        String[] data = new String[6];
         data[0] = request.getProdName();
         data[1] = String.valueOf(request.getProdQuantity());
         data[2] = String.valueOf(request.getProdPricePerKg());
@@ -104,6 +104,18 @@ public class RequestManager implements RequestInterface{
             data[4] = null;
         } else {
             data[4] = String.valueOf(request.getPrevious().getRequestId());
+        }
+
+        if (request.getUser() instanceof Distributor) {
+            data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getUser()));
+        }
+        else if (request.getUser() instanceof Farmer) {
+            if (request.getPrevious() != null) {
+                data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getPrevious().getUser()));
+            }
+            else {
+                data[5] = null;
+            }
         }
 
         return data;
@@ -172,6 +184,7 @@ public class RequestManager implements RequestInterface{
      */
     public IRequest getRequestFromId(String requestID){
         ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
+        allRequests.addAll(allOffers);
         for (IRequest request : allRequests){
             if (String.valueOf(request.getRequestId()).equals(requestID)){
                 return request;

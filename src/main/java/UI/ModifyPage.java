@@ -36,7 +36,7 @@ public class ModifyPage extends JFrame{
     private JPanel speedSliPanel;
     private JSlider SpeedSlider;
     private JSlider CarbonSlider;
-    private JButton UndoButton;
+    private JButton CloseButton;
     private JPanel priceSliPanel;
     private JPanel exposureSliPanel;
     private JPanel carbonSliPanel;
@@ -110,5 +110,20 @@ public class ModifyPage extends JFrame{
             addressInput.setBackground(new Color(0x1d3b53));
         }
 
+        CloseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (WelcomePage.flag){
+                    FarmerPage farmerPage = new FarmerPage();
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+                }
+                else{
+                    DistributorPage distributorPage = new DistributorPage();
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                }
+            }
+        });
     }
 }

@@ -8,6 +8,8 @@ import java.util.Random;
 public class ServiceController implements ControllerInterface{
     private static final int LOWER_BOUND = 100000000;
     private static final int UPPER_BOUND = 800000000;
+    private static final ProfileInterface profileManager = new ProfileManager();
+    private static final RequestInterface requestManager = new RequestManager();
 
     /**
      * Creates a profile if inputs are valid.
@@ -17,13 +19,12 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
-        ProfileInterface pm = new ProfileManager();
         int id = uniqueUserId();
         if (isValidName(name)){
-            if (isAlphanumeric(address)){
+            if (isValidAddress(address)){
                 if (isUniqueName(name)){
-                    if (flag) { pm.createFarmer(name, address, id); }
-                    else { pm.createDistributor(name, address, id); }
+                    if (flag) { profileManager.createFarmer(name, address, id); }
+                    else { profileManager.createDistributor(name, address, id); }
                 } else { throw new Exception("That name has been taken."); }
             } else { throw new Exception("Please enter an alphanumeric address."); }
         } else { throw new Exception("Please enter an alphanumeric name containing at least one letter."); }
@@ -38,11 +39,12 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void modifyUserCheck(String id, String newName, String address) throws Exception {
-        ProfileInterface pm = new ProfileManager();
+        IFetch dp = new DataPresenter();
+        String oldName = dp.fetchUserName(id);
         if (isValidName(newName)){
-            if (isAlphanumeric(address)){
-                if (isUniqueName(newName)){
-                    pm.modifyUser(id, newName, address);
+            if (isValidAddress(address)){
+                if (isUniqueName(newName) || oldName.equals(newName)){
+                    profileManager.modifyUser(id, newName, address);
                 } else { throw new Exception("That name has been taken."); }
             } else { throw new Exception("Please enter an alphanumeric address."); }
         } else { throw new Exception("Please enter an alphanumeric name containing at least one letter."); }
@@ -58,8 +60,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void modifyFarmerCheck(String id, double slider1, double slider2, double slider3, double slider4){
-        ProfileInterface pm = new ProfileManager();
-        pm.modifyFarmer(id, slider1, slider2, slider3, slider4);
+        profileManager.modifyFarmer(id, slider1, slider2, slider3, slider4);
     } // Nothing to check, but there may be in future
 
     /**
@@ -71,8 +72,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void modifyDistributorCheck(String id, double slider2, double slider3, double slider4){
-        ProfileInterface pm = new ProfileManager();
-        pm.modifyDistributor(id, slider2, slider3, slider4);
+        profileManager.modifyDistributor(id, slider2, slider3, slider4);
     } // Nothing to check, but there may be in future
 
     /**
@@ -84,11 +84,10 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void createRequestCheck(String id, String product, String quantity, String price) throws Exception{
-        RequestInterface rm = new RequestManager();
         if (isAlphabetic(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
-                    rm.createRequest(uniqueRequestId(), id, product, Double.parseDouble(quantity), Double.parseDouble(price));
+                    requestManager.createRequest(uniqueRequestId(), id, product, Double.parseDouble(quantity), Double.parseDouble(price));
                 } else {
                     throw new Exception("Your price input must have two decimal places.");
                 }
@@ -109,10 +108,9 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void createCounterOfferCheck(String id, String requestID, String quantity, String price) throws Exception{
-        RequestInterface rm = new RequestManager();
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
-                rm.createCounterOffer(uniqueRequestId(), id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+                requestManager.createCounterOffer(uniqueRequestId(), id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
             } else {
                 throw new Exception("Your price input must have two decimal places.");
             }
@@ -127,8 +125,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void acceptRequestCheck(String requestID, String userID){
-        RequestInterface rm = new RequestManager();
-        rm.acceptRequest(requestID);
+        requestManager.acceptRequest(requestID, userID);
     } // Nothing to check for now, but there may be in future
 
     /**
@@ -136,9 +133,8 @@ public class ServiceController implements ControllerInterface{
      * @param requestID ID of request to be declined.
      */
     @Override
-    public void declineRequestCheck(String requestID, String userId){
-        RequestInterface rm = new RequestManager();
-        rm.declineRequest(requestID);
+    public void declineRequestCheck(String requestID, String userID){
+        requestManager.declineRequest(requestID);
     } // Nothing to check for now, but there may be in future
 
     /**
@@ -147,8 +143,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void trashRequestCheck(String requestID){
-        RequestInterface rm = new RequestManager();
-        rm.trashRequest(requestID);
+        requestManager.trashRequest(requestID);
     } // Nothing to check for now, but there may be in future
 
     /**
@@ -159,8 +154,8 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public ArrayList<String> rank(String requestID, String farmerID){
-        RankInterface rm = new RankingManager(requestID, farmerID);
-        return rm.rankDistributors();
+        RankInterface rankInterface = new RankingManager(requestID, farmerID);
+        return rankInterface.rankDistributors();
 
     }
 
@@ -174,18 +169,18 @@ public class ServiceController implements ControllerInterface{
     }
 
     /**
-     * Checks if the input is alphanumeric.
+     * Checks if the input is a valid address.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is alphanumeric.
+     * @return boolean that indicates if the input is valid.
      */
-    public boolean isAlphanumeric(String input){
-        return input.matches("^[a-zA-Z0-9]+$");
+    public boolean isValidAddress(String input){
+        return input.matches("^[\\sa-zA-Z0-9.]+$");
     }
 
     /**
      * Checks if the input is alphabetic.
      * @param input Input from the user.
-     * @return boolean that indicates if the input is alphanumeric.
+     * @return boolean that indicates if the input is alphabetic.
      */
     public boolean isAlphabetic(String input){
         return input.matches("^[a-zA-Z]+$");

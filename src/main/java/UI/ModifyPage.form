@@ -375,7 +375,7 @@
               <text value="Modify"/>
             </properties>
           </component>
-          <component id="b81f2" class="javax.swing.JButton" binding="UndoButton">
+          <component id="b81f2" class="javax.swing.JButton" binding="CloseButton">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -384,7 +384,7 @@
               <enabled value="true"/>
               <font name="Arial" size="18" style="1"/>
               <foreground color="-7357253"/>
-              <text value="Undo"/>
+              <text value="Close"/>
             </properties>
           </component>
           <hspacer id="e2a96">

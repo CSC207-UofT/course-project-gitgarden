@@ -84,6 +84,16 @@ public class JsonProvider implements DataAccessInterface {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+
+        //This writes counter offers to json
+        try(FileWriter writer = new FileWriter("counters.json")){
+            JsonAdapter ja = new JsonAdapter();
+            writer.write(gson.toJson(ja.coAdapter()));
+            writer.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -164,6 +174,18 @@ public class JsonProvider implements DataAccessInterface {
             for (String[] r : reqs){
                 rm.createRequest(Integer.parseInt(r[0]), r[1], r[2], Double.parseDouble(r[3]),
                         Double.parseDouble(r[4]));
+            }
+        }
+    }
+
+    @Override
+    public void loadCounterOffers(String fileName) throws FileNotFoundException {
+        ArrayList<String[]> cos = readFile(fileName);
+        if (cos != null){
+            RequestManager rm = new RequestManager();
+            for (String[] c : cos){
+                rm.createCounterOffer(Integer.parseInt(c[0]), c[1], c[2], Double.parseDouble(c[3]),
+                        Double.parseDouble(c[4]));
             }
         }
     }

@@ -4,9 +4,9 @@ UI TEAM - @Melaney, @Patric, @Jagat
 
 - [x] Task 1 - Merge use cases to main @Onyx, @UI TEAM [DDL: Nov. 19, Fri]
 - [x] Task 2 - Integrating UI with phase 2 @UI TEAM [DDL: Nov. 22, Mon]
-- [ ] Task 3 - `DataBase` class @Divit, @Mark [DDL: Nov. 27, Sat]
+- [x] Task 3 - `DataBase` class @Divit, @Mark [DDL: Nov. 27, Sat]
 - [ ] Task 4 - Test Cases [DDL: Dec. 3, Sat]
-- [ ] Task 5 - User Ratings @Andy +  [DDL: Dec. 3, Sat]
+- [ ] Task 5 - User Ratings @Andy [DDL: Dec. 3, Sat]
 
 # DONE - Project Phase 1
 

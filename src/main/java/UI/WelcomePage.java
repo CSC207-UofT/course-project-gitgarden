@@ -7,12 +7,10 @@ import Controller.ServiceController;
 import DataBase.JsonProvider;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 
 public class WelcomePage extends JFrame{
     private JPanel mainPanel;
@@ -56,10 +54,25 @@ public class WelcomePage extends JFrame{
     private JSlider slider3;
     private JSlider slider4;
     private JLabel userTest;
+    private JCheckBox darkCheckBox;
+    private JPanel priceTextPanel;
+    private JPanel exposureTextPanel;
+    private JPanel speedTextPanel;
+    private JPanel carbonTextPanel;
+    private JPanel pricePrePanel;
+    private JPanel exposurePrePanel;
+    private JPanel speedPrePanel;
+    private JPanel carbonPrePanel;
     public static Boolean flag;
     public static String currUserId = "";
+    public static Boolean dark = false;
     private final ControllerInterface sc = new ServiceController();
     private final IFetch presenter = new DataPresenter();
+    private final JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,
+            namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel, priceInputPanel, textsPanel,
+            inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
+            mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
+            exposurePrePanel, speedPrePanel, carbonPrePanel};
     public WelcomePage() {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -154,6 +167,24 @@ public class WelcomePage extends JFrame{
         slider3.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setMinorTickSpacing(10);
+
+        darkCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (darkCheckBox.isSelected()){
+                    dark = true;
+                    for (JPanel p : panelList) {
+                        p.setBackground(new Color(0x011627));
+                    }
+                }
+                else{
+                    dark = false;
+                    for (JPanel p : panelList) {
+                        p.setBackground(new Color(0x4C566A));
+                    }
+                }
+            }
+        });
 
     }
 

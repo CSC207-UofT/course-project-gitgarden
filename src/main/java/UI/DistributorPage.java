@@ -60,23 +60,27 @@ public class DistributorPage extends JFrame{
                 requestListPage.setVisible(true);
             }
         });
-        int i = 1;
         ArrayList<String> currentRequestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<String>();
 
         for (String request : currentRequestIdList) {
-            String product_name = presenter.fetchRequestInformation(request)[0];
-            listModel.addElement(i + " " + product_name);
-            i += 1;
+            String[] info = presenter.fetchRequestInformation(request);
+            String product_name = info[0];
+            String user_name = info[3];
+            if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+                user_name = "me";
+            }
+            listModel.addElement("Product " + product_name + ", User: "+ user_name);
         }
 
-        i = 1;
         ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
 
         for (String request : historyRequestIdList) {
-            String product_name = presenter.fetchRequestInformation(request)[0];
-            listModel2.addElement(i + " " + product_name);
+            String[] info = presenter.fetchRequestInformation(request);
+            String product_name = info[0];
+            String distributor_name = info[3];
+            listModel2.addElement("Product " + product_name + ", User: "+ distributor_name);
         }
 
         existingList.setModel(listModel);

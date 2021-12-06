@@ -52,3 +52,17 @@ the program was functional.
   Introduced the ability to save user profiles, as well as request details. This
 was a huge step forward in our application, as we could now test our request and
 counteroffer system, and made the code compatible with the JavaSwing GUI.
+
+- Pkyuan(Pkyuan2001): Phase2 grand refactoring (https://github.com/CSC207-UofT/course-project-gitgarden/pull/22)
+
+  Rewrote phase2 front end, fixed all of the clean architecture violations that were present in UI. Added new features, pages and refactored some code.
+
+- hMarc16: Phase 2 Persistency Rework and Javadoc Update (https://github.com/CSC207-UofT/course-project-gitgarden/pull/38)
+
+  Rewrote most of the persistency to match phase 2 changes in the backend. Customized the format that gets saved to json. Fixed many Clean Architecture violations.
+
+- mel10c:
+
+- AndyWang-JM:
+
+- Jagat25:

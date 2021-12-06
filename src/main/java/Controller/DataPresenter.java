@@ -77,7 +77,7 @@ public class DataPresenter implements IFetch{
     }
 
     /**
-     * Fetches request information based on requestID
+     * Fetches request information based on requestID.
      * @param requestID The ID of the request whose information must be found.
      * @return The request's information.
      */

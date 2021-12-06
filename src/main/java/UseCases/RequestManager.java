@@ -8,6 +8,7 @@ public class RequestManager implements RequestInterface{
     public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
     public static ArrayList<IRequest> allOffers = new ArrayList<>(); // May be removed if it turns out to be unneeded
 
+
     /**
      * Creates a request.
      * @param requestID The ID of the new request.
@@ -85,6 +86,7 @@ public class RequestManager implements RequestInterface{
     public void trashRequest(String requestID){
         IRequest request = getRequestFromId(requestID);
         allActiveRequests.remove(request);
+        request.getUser().removeRequest(request);
     }
 
     /**

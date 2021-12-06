@@ -78,5 +78,54 @@ public class Farmer extends User implements IFarmer{
     public double getPrefCarbon(){
         return prefCarbon;
     }
+
+    public static class Momento {
+
+        private String name;
+        private String address;
+        private double prefPrice;
+
+        private double prefExposure;
+        private double prefSpeed;
+        private double prefCarbon;
+
+        public Momento(String name, String address, double prefPrice, double prefExposure, double prefSpeed,
+                       double prefCarbon) {
+            this.name = name;
+            this.address = address;
+            this.prefCarbon = prefCarbon;
+            this.prefPrice = prefPrice;
+            this.prefExposure = prefExposure;
+            this.prefSpeed = prefSpeed;
+        }
+
+        public Momento getState() {
+            return this;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public double getCarbon() {
+            return prefCarbon;
+        }
+
+        public double getPrice() {
+            return prefPrice;
+        }
+
+        public double getExposure() {
+            return prefExposure;
+        }
+
+        public double getSpeed() {
+            return prefSpeed;
+        }
+    }
   
 }

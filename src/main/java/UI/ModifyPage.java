@@ -1,12 +1,20 @@
 package UI;
 
 import Controller.ControllerInterface;
+import Controller.DataPresenter;
 import Controller.ServiceController;
+import Entities.Distributor;
+import Entities.Farmer;
+import Entities.IDistributor;
+import Entities.IFarmer;
+import UseCases.ProfileInterface;
+import UseCases.ProfileManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 public class ModifyPage extends JFrame{
     private JPanel titlePanel;
@@ -44,13 +52,18 @@ public class ModifyPage extends JFrame{
     private JPanel exposureTextPanel;
     private JPanel speedTextPanel;
     private JPanel carbonTextPanel;
-    private JButton Undo;
-    ControllerInterface sc = new ServiceController();
+    private JButton UndoButton;
     private final JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
                                         namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,
                                         priceInputPanel, buttonPanel, mainPanel, priceTextPanel, exposureTextPanel,
                                         speedTextPanel, carbonTextPanel, speedSliPanel, priceSliPanel, exposureSliPanel, 
                                         carbonSliPanel};
+
+    ControllerInterface sc = new ServiceController();
+    DataPresenter dp = new DataPresenter();
+
+    Stack<Farmer.Momento> farmerStack = new Stack<>();
+    Stack<Distributor.Momento> distributorStack = new Stack<>();
 
     public ModifyPage() {
         setTitle("modifyPage");
@@ -123,6 +136,58 @@ public class ModifyPage extends JFrame{
                     DistributorPage distributorPage = new DistributorPage();
                     setVisible(false);
                     distributorPage.setVisible(true);
+                }
+            }
+        });
+
+        UndoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (WelcomePage.flag) {
+                    Farmer.Momento restore = farmerStack.pop().getState();
+
+                    String ID = WelcomePage.currUserId;
+
+                    ProfileInterface pm = new ProfileManager();
+                    IFarmer farmer = (IFarmer) pm.getUserFromId(ID);
+
+                    farmer.setUserName(restore.getName());
+                    farmer.setUserAddress(restore.getAddress());
+                    farmer.setPrefCarbon(restore.getCarbon());
+                    farmer.setPrefExposure(restore.getExposure());
+                    farmer.setPrefPrice(restore.getPrice());
+                    farmer.setPrefSpeed(restore.getSpeed());
+
+                    JOptionPane.showMessageDialog(null,"Your changes have been restored.");
+                    UndoButton.requestFocusInWindow();
+
+                    FarmerPage farmerPage = new FarmerPage();
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+
+                }
+
+                else {
+                    Distributor.Momento restore = distributorStack.pop().getState();
+
+                    String ID = WelcomePage.currUserId;
+
+                    ProfileInterface pm = new ProfileManager();
+                    IDistributor distributor = (IDistributor) pm.getUserFromId(ID);
+
+                    distributor.setUserName(restore.getName());
+                    distributor.setUserAddress(restore.getAddress());
+                    distributor.setCarbon(restore.getCarbon());
+                    distributor.setExposure(restore.getExposure());
+                    distributor.setSpeed(restore.getSpeed());
+
+                    JOptionPane.showMessageDialog(null,"Your changes have been restored.");
+                    UndoButton.requestFocusInWindow();
+
+                    DistributorPage distributorPage = new DistributorPage();
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+
                 }
             }
         });

@@ -16,7 +16,7 @@ We had a substantial amount of refactoring to do with regards to data persistenc
 due to a Clean Architecture error in Phase 1 where the data access was placed in the
 wrong layer. **Divit** reworked the data access code and connected it to the initial Phase
 2 code which had significant differences in structure owing to Clean Architecture
-changes. **Mark** updated the database and data access reflect the changes made
+changes. **Mark** updated the database and data access to reflect the changes made
 later in Phase 2.
 
 There was also substantial refactoring to do in the backend, mostly with regards to

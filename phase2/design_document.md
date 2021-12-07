@@ -199,3 +199,19 @@ Given the nature of our program, the designated audience is fairly self-evident:
 ## Demographics of Users
 
 Since GitGarden is fundamentally designed as a tool to enable transactions to occur, even with the broadening of our designated audience detailed above, there would still be demographics which have no use for our program. Though we have allowed for individual distributors in the paragraph above, many people simply don't buy anything directly from the source. This is most likely in urban areas (at least for people who aren't managing companies' purchases), but affects people in rural areas too, who might simply not live nearby enough to a farmer to warrant being an individual distributor. Simply put, people who have nothing to sell, or who don't buy directly from producers, will not have a use for our program.
+
+# GitHub usage
+
+Our team used discord as a texting and communication channel, however we took advantage of a couple of GitHub functionalities to help our work flow.
+
+1. We created different branches to work with different sub teams. This can help use to avoid conflict and makes the pull request process easier.
+
+    <img src="assets/branches.png" width="180" align="left">
+
+2. We have created 42 pull requests through our duration of the project. We tried to leave descriptive comments for each pull request in Phase2. We also tried to use the emoji functions to indicate the a person have viewed the pull request. After 2-3 people's review, we would then merge or close the pull requests.
+
+    <img src="assets/pullReq.png" width="600" align="left">
+
+3. We also experimented with the issue function, but most of our issues were discussed on discord.
+
+4. Lastly, we used to use the README file as a project management and tracking platform. Refer to this [file](../status.md) now for details.

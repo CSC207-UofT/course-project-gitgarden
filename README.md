@@ -1,41 +1,21 @@
-# Current - Project Phase 2
+<h1 align="center"> &#127814 Welcome to GitGarden &#127814 </h1>
 
-UI TEAM - @Melaney, @Patric, @Jagat
+![titlePage](phase2/assets/titlePage.png)
 
-- [x] Task 1 - Merge use cases to main @Onyx, @UI TEAM [DDL: Nov. 19, Fri]
-- [x] Task 2 - Integrating UI with phase 2 @UI TEAM [DDL: Nov. 22, Mon]
-- [ ] Task 3 - `DataBase` class @Divit, @Mark [DDL: Nov. 27, Sat]
-- [ ] Task 4 - Test Cases [DDL: Dec. 3, Sat]
-- [ ] Task 5 - User Ratings @Andy +  [DDL: Dec. 3, Sat]
-
-# DONE - Project Phase 1
-
-- [x] Task 1 - User Interface (java gui) - [100% complete]
-
-- [x] Task 2 - Data Persistency [100% complete]
-
-- [x] Task 3 - Preferences and RankingManager [100% complete]
-
-- [x] Task 4 - Request [100% complete]
-
-- [x] Task 5 - Feedback Refactoring [100% complete]
-
-- [x] Task 6 - Design Document [100% complete]
+Our project is a medium for **connecting produce farmers to distributors of their products**. The target audiences are farmers and distributors looking to expand their network. The farmers and distributors indicate the prices and quantities of the produce they are willing to sell and buy, respectively.
 
 
+### System Requirements
 
-# DONE - Project Phase 0
+- This program is developed in `Java` using [IntelliJ](https://www.jetbrains.com/idea/) as the IDE
+- Build with `Maven`.
+- Uses Java GUI as the user interface.
+- Unit Tests are written with [Junit](https://junit.org/junit5/).
+- Uses `json` files for database storage with [gson](https://sites.google.com/site/gson/gson-user-guide) dependencies
 
-- [x] Task 1 - Pick domain - Complete  
 
-- [x] Task 2 - Write specification - Complete and awaiting review  
+### Documentations
 
-- [x] Task 3 - CRC model - Completed on Thursday (Oct. 7th) 5-6pm  
-
-- [X] Task 4 - Scenario Walk-Through - Completed on Monday (Oct. 11th) 4-6pm
-
-- [X] Task 5 - Skeleton Program - Finished on Friday (Oct. 15th) 4:30pm-5:30pm
-
-- [X] Task 5.1 - Test Case - Finished on Friday
-
-- [X] Task 6 - Progress Report - Completed on Friday (Oct. 15th) 4:30pm-5:30pm
+- For program usage, please refer to: [Specification](phase2/specification.md)
+- For design document, please refer to [Design Document](phase2/design_document.md)
+- For member contributions, please refer to [Progress Report](phase2/progress_report.md)

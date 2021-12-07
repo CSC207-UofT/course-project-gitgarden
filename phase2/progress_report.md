@@ -37,40 +37,28 @@ We modified our tests and expanded them to include more cases.
 This was done by **Andy and Onyx**.
 
 ## Notable Pull Requests by Each Group Member
-- onyxc: Phase2 grand refactoring 
-(https://github.com/CSC207-UofT/course-project-gitgarden/pull/22) and 
-Working phase2 (https://github.com/CSC207-UofT/course-project-gitgarden/pull/42)
-
-  The first pull request formed the basis of our Phase 2 backend, fixing many of
-the Clean Architecture violations that had occurred over the course of Phase 1. 
-The second pull request was a large number of bugfix commits by the end of which 
+- [@onyxc](https://github.com/onyxc): Phase2 grand refactoring
+    * PR [#22](https://github.com/CSC207-UofT/course-project-gitgarden/pull/22): This pull request formed the basis of our Phase 2 backend, fixing many of
+the Clean Architecture violations that had occurred over the course of Phase 1.
+    * PR [#43](https://github.com/CSC207-UofT/course-project-gitgarden/pull/42): This pull request was a large number of bugfix commits by the end of which 
 the program was functional.
 
-- DivitSingh: Persistency 
-(https://github.com/CSC207-UofT/course-project-gitgarden/pull/17) and Phase2 persistency
-(https://github.com/CSC207-UofT/course-project-gitgarden/pull/33)
+- [@DivitSingh](https://github.com/DivitSingh): Persistency 
+    * PR [#17](https://github.com/CSC207-UofT/course-project-gitgarden/pull/17): This pull request implemented the ability to save user profiles, as well as request details and offer history one could now test the request and counteroffer system, and made the code compatible with the JavaSwing GUI.
+    * PR [#33](https://github.com/CSC207-UofT/course-project-gitgarden/pull/33): This pull request fixed Clean Architecture violations and dealt with transiency and StackOverflow errors issues that prevented the application from saving complex data types.
 
-  First pull request implemented the ability to save user profiles, as well as request details and offer history-
-one could now test the request and counteroffer system, and made the code compatible with the JavaSwing GUI. 
-The second pull request fixed Clean Architecture violations and dealt with
-transiency and StackOverflow errors issues that prevented the application from 
-saving complex data types.
+- [@Pkyuan](https://github.com/Pkyuan)/[@Pkyuan2001](https://github.com/pkyuan2001): Phase2 grand refactoring 
+    * PR [#22](https://github.com/CSC207-UofT/course-project-gitgarden/pull/22): This pull request rewrote phase2 front end, fixed all of the Clean Architecture violations that were present in UI. Added new features, pages and refactored some code.
 
-- Pkyuan(Pkyuan2001): Phase2 grand refactoring 
-(https://github.com/CSC207-UofT/course-project-gitgarden/pull/22)
+- [@hMarc16](https://github.com/hMarc16): Phase 2 Persistency Rework and Javadoc Update 
+    * PR [#38](https://github.com/CSC207-UofT/course-project-gitgarden/pull/38): This pull request made persistency compatible with Phase 2 changes in the backend. Customized the format that gets saved to json. Fixed many Clean Architecture violations.
 
-  Rewrote phase2 front end, fixed all of the Clean Architecture violations that
-were present in UI. Added new features, pages and refactored some code.
+- [@mel10c](https://github.com/mel10c): UI maintenance and accessibility features
+    * PR [#10](https://github.com/CSC207-UofT/course-project-gitgarden/pull/10): This pull request included the start up UI skeleton pages for the program.
+    * PR [#40](https://github.com/CSC207-UofT/course-project-gitgarden/pull/40): This pull request is about the addition of the dark theme feature for accessibility purposes in Phase2.
 
-- hMarc16: Phase 2 Persistency Rework and Javadoc Update 
-(https://github.com/CSC207-UofT/course-project-gitgarden/pull/38)
+- [@AndyWang-JM](https://github.com/AndyWang-JM):
+    * PR [#]()
 
-  Made persistency compatible with Phase 2 changes in the backend. 
-Customized the format that gets saved to json. Fixed many Clean Architecture 
-violations.
-
-- mel10c:
-
-- AndyWang-JM:
-
-- Jagat25:
+- [@Jagat25](https://github.com/Jagat25):
+    * PR [#]()

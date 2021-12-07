@@ -158,20 +158,21 @@ We are using the Memento design pattern to allow users to undo modifications mad
 
 We are using Dependency Injection with interfaces for our classes to further depend on abstractions rather than each others' details.
 
+# Accessibility
 
 ## The 7 Principals of Universal Design
 
 #### 1: Equitable Use
 
-Our program aims to to provide the same means of usage for all users with diverse abilities. For the 2 different group of users (Farmer or Distributor), we designed the interfaces to look almost identical, with the only differences being in the pats where different type of users would take on different roles to either create offers (Farmers) or accept/decline offers (Distributors). We allowed both the Farmers and Distributors to create counter offers as their responses. This way would help avoid segregating or stigmatizing any users. There are no premium features of any kind. Thus, the functionality of privacy, security, and safety are equally available to all users.
+Our program aims to to provide the same means of usage for all users with diverse abilities. For the 2 different group of users (Farmer or Distributor), we designed the interfaces to look almost identical, with the only differences being in the parts where different type of users would take on different roles to either create requests (Farmers) or accept open requests (Distributors). We allowed both the Farmers and Distributors to create counter offers as their responses, and accept/decline counteroffers made directly to them. This way, we would avoid segregating or stigmatizing any users. There are no premium features of any kind. Thus, the functionality of privacy, security, and safety are equally available to all users.
 
 #### 2: Flexibility in Use
 
-Our program has multiple features designed to provide choices in methods of use for the users. For example, when creating an account, we allow the user to pick their preferences in ranking the Requests in the market with 4 key attributes (price, exposure, speed, carbon conscience). This way the user get to define the order in which they read the request and counter offers.
+Our program has multiple features designed to provide choices in methods of use for the users. For example, when creating an account, we allow the user to pick their preferences in ranking the Requests in the market with 4 key attributes (price, exposure, speed, carbon conscience). This way the user gets to define the order in which they read the request and counter offers.
 
 #### 3: Simple and Intuitive Use
 
-The UI for our program is minimal, with no distracting pictures or figures that might cause confusions. The user would be promote to Sign In or Sign Up page immediately after the program starts, which allows the user to get their work down on the fly. We tried our best to select the most user-friendly words with no jargon whatsoever, considering the diverge range of literacy and language skills in our tagged audience. The ranking functionality also ensures that the information lists would be ranged consistently with its importance. We also included multiple error throwers in UI to ensure that our feedback prompts are effective and easy for the user to understand and fix.
+The UI for our program is minimal, with no distracting pictures or figures that might cause confusions. The user would be prompted to Sign In or Sign Up immediately after the program starts, which allows the user to get their work done on the fly. We tried our best to select the most user-friendly words with no jargon whatsoever, considering the diverge range of literacy and language skills in our tagged audience. The ranking functionality also ensures that the information lists would be ranged consistently with its importance. We also included multiple error throwers in UI to ensure that our feedback prompts are effective and easy for the user to understand and fix.
 
 #### 4: Perceptible Information
 
@@ -179,7 +180,7 @@ We provided different colorschemes for our program UI (light and dark modes), th
 
 #### 5: Tolerance for Error
 
-As stated before, we provided many error throwers with different prompt messages to ensure that the program runs smoothly. The clean instructions on the prompts would make sure the that the user would know how to fix error and get back to the program. Our team also worked on a wise range of test cases to provide fail safe features. Below is the mindmap our team used to run our test cases.
+As stated before, we provided many error throwers with different prompt messages to ensure that the program runs smoothly. The clean instructions on the prompts would make sure the that the user would know how to fix errors and get back to the program. Our team also worked on a wise range of test cases to provide fail safe features. Below is the mindmap our team used to run our test cases.
 
 ![tests](https://cdn.discordapp.com/attachments/891330553146658862/916449679472984125/CSC207_Project_Testing.png)
 
@@ -189,4 +190,12 @@ The program UI window is reasonably sized, so the users are able to view the con
 
 #### 7: Size and Space for Approach and Use
 
-As stated before, our program is reasonably sized that balances will on the amount of content to display while minimizing navigation efforts. All elements of the program where arranged with comfortable spaces to provide a clear line of sight to important elements for any user under different circumstances.
+As stated before, our program is reasonably sized, and balances the amount of content to display with minimization of navigation efforts. All elements of the program were arranged with comfortable spaces to provide a clear line of sight to important elements for any user under different circumstances.
+
+## Designated Audience
+
+Given the nature of our program, the designated audience is fairly self-evident: farmers and distributors. Farmers would be anyone that produces produce to sell, whereas distributors are a bit more varied: they could include individuals, farmers' markets, or companies. In fact, though right now our program is tailored to farmers and distributors, there would be minimal effort involved into turning it into a general program for any remote transactions occurring at the root of manufacturing. The only things that would have to change are the types of users (perhaps, **producers** and distributors) the ranking system (if 'exposure' or 'carbon' isn't variable in a particular industry) and the request details (if quantity/price should be by unit rather than kilogram).
+
+## Demographics of Users
+
+Since GitGarden is fundamentally designed as a tool to enable transactions to occur, even with the broadening of our designated audience detailed above, there would still be demographics which have no use for our program. Though we have allowed for individual distributors in the paragraph above, many people simply don't buy anything directly from the source. This is most likely in urban areas, but affects people in rural areas too, who might simply not live nearby enough to a farmer to warrant being an individual distributor. Simply put, people who have nothing to sell, or who don't buy directly from producers, will not have a use for our program.

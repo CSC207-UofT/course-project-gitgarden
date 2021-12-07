@@ -86,8 +86,16 @@ of creating one in the higher-level class.
 
 #### Factory Method
 
-We are using the concept of factory method in creating users and its subclass. We attempt to delay the instantiation of these concrete products in the profile manager with separate factories, with each creator correlates to a unique class of user product.
+We are using the Factory Method design pattern in creating Users and its subclasses. We delay the instantiation of these concrete products in the profile manager with separate factories, with each creator correlating to a unique class of user product.
 
-#### Composite
+#### Template
 
-We are using the Composite design pattern to implement a recursive structure in our code. Requests can contain other Requests, or contain an Offer. The Offer class is the leaf class in this structure, and we terminate the recursion once we get to an offer. This structure matched what the pattern is used to facilitate. 
+We are using the Template design pattern in createProfileCheck, a method in our Controller, to define the skeleton of our algorithm for creating users.
+
+#### Memento
+
+We are using the Memento design pattern to allow users to undo modifications made to their profile, and revert to a previous state of their profile.
+
+#### Dependency Injection
+
+We are using Dependency Injection with interfaces for our classes to further depend on abstractions rather than each others' details.

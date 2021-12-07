@@ -78,9 +78,11 @@ public class OthersExistingRequests extends JFrame {
             if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
                 for(String request: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
                     String[] info = presenter.fetchRequestInformation(request);
-                    listModel.addElement("Request ID: " + request + ", Product name: " + info[0] +
-                            ", Farmer name: " + info[3] + ", Product Quantity: " + info[1] +
-                            ", Product Price: " + info[2]);
+                    if (info[4] == null) {
+                        listModel.addElement("Request ID: " + request + " , Product name: " + info[0] +
+                                ", Farmer name: " + info[3] + ", Product Quantity: " + info[1] +
+                                ", Product Price: " + info[2]);
+                    }
                 }
             }
         }
@@ -88,7 +90,7 @@ public class OthersExistingRequests extends JFrame {
         requestList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String selectedRequest = requestList.getSelectedValue();
-                tempRequest = selectedRequest.split(" ")[0];
+                tempRequest = selectedRequest.split(" ")[2];
             }
         });
 

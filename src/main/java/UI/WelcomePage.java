@@ -176,11 +176,13 @@ public class WelcomePage extends JFrame{
                     for (JPanel p : panelList) {
                         p.setBackground(new Color(0x011627));
                     }
+                    darkCheckBox.setBackground(new Color(0x011627));
                 }
                 else{
                     dark = false;
                     for (JPanel p : panelList) {
                         p.setBackground(new Color(0x4C566A));
+                        darkCheckBox.setBackground(new Color(0x4C566A));
                     }
                 }
             }

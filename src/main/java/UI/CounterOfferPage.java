@@ -60,6 +60,8 @@ public class CounterOfferPage extends JFrame{
             }
             priceInput.setBackground(new Color(0x1d3b53));
             quantityInput.setBackground(new Color(0x1d3b53));
+            priceInput.setForeground(new Color(0xECEFF4));
+            quantityInput.setForeground(new Color(0xECEFF4));
             createButton.setForeground(new Color(0x4C566A));
         }
     }

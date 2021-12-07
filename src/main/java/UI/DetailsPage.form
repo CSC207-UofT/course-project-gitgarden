@@ -130,6 +130,7 @@
                 <properties>
                   <background color="-10583636"/>
                   <font name="Arial" size="16"/>
+                  <foreground color="-1249292"/>
                   <text value="Rank based on Rating"/>
                 </properties>
               </component>

@@ -12,11 +12,8 @@ While running, the user (a farmer or distributor) is prompted to either log in t
 The user starts the program and is prompted with a screen asking them what they would like to do:
 
 - Create a New Profile
-    * Farmer
-        + Name
-        + Address
-        + Preferences
-    * Distributor
+    ![welcomePage](assets/welcomePage.gif)
+    * Farmer OR Distributor
         + Name
         + Address
         + Preferences
@@ -24,6 +21,7 @@ The user starts the program and is prompted with a screen asking them what they 
     * Modify Profile
         * **Undo Changes (Memento Design Pattern)**
     * Create New Request
+    ![requrest](assets/request.gif)
     * View Existing Request
         + Accept/Decline Offer
             + Make Counteroffer
@@ -32,6 +30,7 @@ The user starts the program and is prompted with a screen asking them what they 
 - Login to Profile (Distributor)
     * Modify Profile
         * **Undo Changes (Memento Design Pattern)**
+    ![modify](assets/modify.gif)
     * Create New Request
     * View Existing Request
         + Accept/Decline Offer

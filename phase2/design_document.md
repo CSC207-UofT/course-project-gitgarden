@@ -11,35 +11,40 @@
 
 ![classDiagram](assets/classDiagram.png)
 
-><details>
-><summary>‼️ Click to see detailed dependencies within packages ‼️</summary>
->    <details>
->    <summary>Entities Packages</summary>
->        <img src="assets/Entities.png" alt="Entities">
->    </details>
->    <details>
->    <summary>UseCase Packages</summary>
->        <img src="assets/UseCases.png" alt="UseCases">
->    </details>
->    <details>
->    <summary>Controller Packages</summary>
->        <img src="assets/Controller.png" alt="Controller">
->    </details>
->    <details>
->    <summary>UI Packages</summary>
->        <img src="assets/UI.png" alt="UI">
->    </details>
-></details>
+<details>
+<summary>‼️ Click to see detailed dependencies within packages ‼️</summary>
+    <details>
+    <summary>Entities Packages</summary>
+        <img src="assets/Entities.png" alt="Entities">
+    </details>
+    <details>
+    <summary>UseCase Packages</summary>
+        <img src="assets/UseCases.png" alt="UseCases">
+    </details>
+    <details>
+    <summary>Controller Packages</summary>
+        <img src="assets/Controller.png" alt="Controller">
+    </details>
+    <details>
+    <summary>UI Packages</summary>
+        <img src="assets/UI.png" alt="UI">
+    </details>
+</details>
+
 > - For detailed legend for the diagram, please refer to this [picture](https://en.wikipedia.org/wiki/Class_diagram#/media/File:Uml_classes_en.svg)
 > - More details for the classes can be seen under [crcCards](../../crcCards.md) document (the crcCards does not include the classes for the GUI)
 
 ## Design Decisions
 
+#### Composite Design Pattern
+
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.
 
 [picture of requestRoot]
 
-Midway through phase 2, as our refactoring to adhere to Clean Architecture was ongoing, we realized that we would need a way to fetch data (in the form of Strings) to be shown to the user. We contemplated placing a way to fetch data inside ServiceController, which was, at the time, the only class inside the Interface Adapters layer. Upon realizing that this would place too much responsibility in a single class, violating the Single Responsibility Principle, we concluded that the only Clean Architecture- and SOLID-adherent way to do this was to create a new class to perform this role. We named it DataPresenter: it fetches data from the appropriate place in the code, and has methods in which the Strings from the Use Case layer can be modified if necessary.
+#### Fetching Data
+
+Midway through phase 2, as our refactoring to adhere to Clean Architecture was ongoing, we realized that we would need a way to fetch data (in the form of Strings) to be shown to the user. We contemplated placing a way to fetch data inside `ServiceController`, which was, at the time, the only class inside the Interface Adapters layer. Upon realizing that this would place too much responsibility in a single class, violating the Single Responsibility Principle, we concluded that the only Clean Architecture- and SOLID-adherent way to do this was to create a new class to perform this role. We named it `DataPresenter`: it fetches data from the appropriate place in the code, and has methods in which the Strings from the Use Case layer can be modified if necessary.
 
 [picture of DataPresenter]
 
@@ -47,9 +52,11 @@ Midway through phase 2, as our refactoring to adhere to Clean Architecture was o
 
 Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in the Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
 
+
 ## Usage of SOLID Principles
 
 #### Single Responsibility Principle
+
 In the previous phase, we were told about how there were too many responsibilities given to some classes,
 specifically those containing code for Data Persistency. We resolved this by
 creating a new class JsonProvider that handles the saving of data. Earlier, this
@@ -70,7 +77,10 @@ principle, without creating too many classes, or classes with only a single meth
 or so. By the end, we came to the conclusion of handling user input in the ServiceController
 class, Managing Farmer and Distributor Profiles (including their storage) in the
 ProfileManager Class, and handling the rankings of users via the RankingManager class.
+
+
 #### Open/Closed Principle
+
 A key example of this principle is in our DataAccessInterface class, 
 which allows for newer methods of Data Persistency such as .csv to be implemented
 by simply creating a class which implements the DataAccessInterface with minimal
@@ -78,7 +88,10 @@ effort. Currently, we only use the .json file extension for saving data, but thi
 opens the door to new methods to be added without any hassle or affecting the rest
 of the program. In other places, the use of interfaces has ensured the potential
 for extension, while preventing the need and possibility of any modifications.
+
+
 #### Liskov Substitution Principle: 
+
 Initially, there was a lot of confusion regarding the Request, Counteroffer and
 Offer classes, as Request and Counteroffer were essentially containing the exact
 same methods and parameters, but the difference lay in the fact that a Counteroffer
@@ -90,7 +103,10 @@ functionality of our code, a Counteroffer would disobey the Substitution Princip
 as it lacked the complete functionality of a Request despite having several common
 variables with it. Therefore, we scrapped the idea of CounterOffer being a subclass
 of Request in Phase 2 unlike in Phase 1.
+
+
 #### Interface Segregation Principle: 
+
 Previously, there were very few interfaces in our code, which meant creating new
 classes would involve using a lot of redundant code. Now, not only have we
 introduced multiple interfaces, but also role-specific ones. This means that when
@@ -101,7 +117,10 @@ extension and current code. An example of this would be ProfileInterface and Req
 Interface, that allows different types of profiles and requests to be made, with one
 needing only to mandatorily implement the methods relevant to all profiles and
 requests respectively.
+
+
 #### Dependency Inversion Principle: 
+
 This was a principle that we were extremely cautious about. To this end, we made an
 effort to ensure that our Use Case and Controller classes only referred to classes
 immediately below them in the hierarchy. Further, interfaces were created to add
@@ -113,6 +132,7 @@ as well as the conscious avoidance of creating methods that called constructors 
 lower-level classes explicitly. Rather, we took in arguments of primitive types or
 avoided the dependency by taking the parameter of the class type directly instead
 of creating one in the higher-level class.
+
 
 ## Packaging Strategies
 
@@ -137,3 +157,36 @@ We are using the Memento design pattern to allow users to undo modifications mad
 #### Dependency Injection
 
 We are using Dependency Injection with interfaces for our classes to further depend on abstractions rather than each others' details.
+
+
+## The 7 Principals of Universal Design
+
+#### 1: Equitable Use
+
+Our program aims to to provide the same means of usage for all users with diverse abilities. For the 2 different group of users (Farmer or Distributor), we designed the interfaces to look almost identical, with the only differences being in the pats where different type of users would take on different roles to either create offers (Farmers) or accept/decline offers (Distributors). We allowed both the Farmers and Distributors to create counter offers as their responses. This way would help avoid segregating or stigmatizing any users. There are no premium features of any kind. Thus, the functionality of privacy, security, and safety are equally available to all users.
+
+#### 2: Flexibility in Use
+
+Our program has multiple features designed to provide choices in methods of use for the users. For example, when creating an account, we allow the user to pick their preferences in ranking the Requests in the market with 4 key attributes (price, exposure, speed, carbon conscience). This way the user get to define the order in which they read the request and counter offers.
+
+#### 3: Simple and Intuitive Use
+
+The UI for our program is minimal, with no distracting pictures or figures that might cause confusions. The user would be promote to Sign In or Sign Up page immediately after the program starts, which allows the user to get their work down on the fly. We tried our best to select the most user-friendly words with no jargon whatsoever, considering the diverge range of literacy and language skills in our tagged audience. The ranking functionality also ensures that the information lists would be ranged consistently with its importance. We also included multiple error throwers in UI to ensure that our feedback prompts are effective and easy for the user to understand and fix.
+
+#### 4: Perceptible Information
+
+We provided different colorschemes for our program UI (light and dark modes), this helps to increase the legibility of our content. We also choose contrasting colors between the background and the texts for a better user experience. For all of the areas in which we would require user input, we provided clear and concise prompts to make sure the user knows how to navigate properly through our program.
+
+#### 5: Tolerance for Error
+
+As stated before, we provided many error throwers with different prompt messages to ensure that the program runs smoothly. The clean instructions on the prompts would make sure the that the user would know how to fix error and get back to the program. Our team also worked on a wise range of test cases to provide fail safe features. Below is the mindmap our team used to run our test cases.
+
+![tests](https://cdn.discordapp.com/attachments/891330553146658862/916449679472984125/CSC207_Project_Testing.png)
+
+#### 6: Low Physical Effort
+
+The program UI window is reasonably sized, so the users are able to view the contents of the program with minimum physical effort. All the pages have included necessary function keys to minimize repetitive actions.
+
+#### 7: Size and Space for Approach and Use
+
+As stated before, our program is reasonably sized that balances will on the amount of content to display while minimizing navigation efforts. All elements of the program where arranged with comfortable spaces to provide a clear line of sight to important elements for any user under different circumstances.

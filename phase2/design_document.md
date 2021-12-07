@@ -32,7 +32,7 @@
 </details>
 
 > - For detailed legend for the diagram, please refer to this [picture](https://en.wikipedia.org/wiki/Class_diagram#/media/File:Uml_classes_en.svg)
-> - More details for the classes can be seen under [crcCards](../../crcCards.md) document (the crcCards does not include the classes for the GUI)
+> - More details for the classes can be seen under [crcCards](../crcCards.md) document (the crcCards does not include the classes for the GUI)
 
 ## Design Decisions
 

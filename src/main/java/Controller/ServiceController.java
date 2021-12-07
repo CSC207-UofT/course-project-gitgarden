@@ -8,8 +8,13 @@ import java.util.Random;
 public class ServiceController implements ControllerInterface{
     private static final int LOWER_BOUND = 100000000;
     private static final int UPPER_BOUND = 800000000;
-    private static final ProfileInterface profileManager = new ProfileManager();
-    private static final RequestInterface requestManager = new RequestManager();
+    private static RequestInterface requestManager;
+    private static ProfileInterface profileManager;
+
+    public ServiceController(ProfileInterface pm, RequestInterface rm){
+        profileManager = pm;
+        requestManager = rm;
+    }
 
     /**
      * Creates a profile if inputs are valid.
@@ -39,7 +44,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void modifyUserCheck(String id, String newName, String address) throws Exception {
-        IFetch dp = new DataPresenter();
+        IFetch dp = new DataPresenter(profileManager, requestManager);
         String oldName = dp.fetchUserName(id);
         if (isValidName(newName)){
             if (isValidAddress(address)){
@@ -101,16 +106,16 @@ public class ServiceController implements ControllerInterface{
 
     /**
      * Creates a counteroffer if inputs are valid.
-     * @param id ID of user creating counteroffer.
+     * @param userId ID of user creating counteroffer.
      * @param requestID ID of request which is being countered.
      * @param quantity New quantity in kg of product.
      * @param price New price per kg of product.
      */
     @Override
-    public void createCounterOfferCheck(String id, String requestID, String quantity, String price) throws Exception{
+    public void createCounterOfferCheck(String requestID, String userId, String quantity, String price) throws Exception{
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
-                requestManager.createCounterOffer(uniqueRequestId(), id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+                requestManager.createCounterOffer(uniqueRequestId(), userId, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
             } else {
                 throw new Exception("Your price input must have two decimal places.");
             }

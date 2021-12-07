@@ -1,10 +1,11 @@
-package UI;
+package Client;
 
 import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
 import DataBase.JsonProvider;
+import Client.UI.WelcomePage;
 import UseCases.ProfileInterface;
 import UseCases.ProfileManager;
 import UseCases.RequestInterface;

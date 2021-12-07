@@ -1,35 +1,23 @@
-package UI;
+package Client.UI;
 
 import Controller.ControllerInterface;
-import Controller.DataPresenter;
 import Controller.IFetch;
-import Controller.ServiceController;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class FarmerPage extends JFrame{
+public class DistributorPage extends JFrame{
     public JPanel mainPanel;
     private JPanel titlePanel;
-    private JLabel titleText;
     private JPanel titleTextPanel;
+    private JLabel titleText;
     private JPanel modifyPanel;
     private JButton modifyButton;
-    private JPanel buttonPanel;
-    private JPanel modifyButtonPanel;
-    private JButton createRequest;
-    private JButton viewButton;
-    private JPanel viewButtonPanel;
     private JPanel existingPanel;
-    private JLabel existingText;
     private JPanel existingTextPanel;
+    private JLabel existingText;
     private JPanel existingRequestPanel;
-    private JList<String> existingList;
     private JButton acceptButton;
     private JButton declineButton;
     private JButton counterButton;
@@ -38,9 +26,11 @@ public class FarmerPage extends JFrame{
     private JLabel historyText;
     private JPanel historyListPanel;
     private JList<String> historyList;
+    private JButton viewButton;
+    private JList<String> existingList;
 
-    public FarmerPage(ControllerInterface controller, IFetch presenter){
-        setTitle("farmerPage");
+    public DistributorPage(ControllerInterface controller, IFetch presenter){
+        setTitle("distributorPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
@@ -55,12 +45,6 @@ public class FarmerPage extends JFrame{
             JFrame requestListPage = new OthersExistingRequests(controller, presenter);
             requestListPage.setVisible(true);
         });
-        createRequest.addActionListener(e -> {
-            setVisible(false);
-            JFrame requestPage = new RequestPage(controller, presenter);
-            requestPage.setVisible(true);
-        });
-
         ArrayList<String> currentRequestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -71,12 +55,13 @@ public class FarmerPage extends JFrame{
             if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
                 user_name = "me";
             }
-            listModel.addElement("Product: " + product_name + ", User: "+ user_name);
+            listModel.addElement("Product " + product_name + ", User: "+ user_name);
         }
 
         ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
-        for (String request : presenter.fetchRequestHistory(WelcomePage.currUserId)) {
+
+        for (String request : historyRequestIdList) {
             String[] info = presenter.fetchRequestInformation(request);
             String product_name = info[0];
             String distributor_name = info[3];
@@ -91,25 +76,23 @@ public class FarmerPage extends JFrame{
                 String request = historyList.getSelectedValue();
                 int index = listModel2.indexOf(request);
                 setVisible(false);
-                HistoryPage historyPage= new HistoryPage(historyRequestIdList.get(index), controller, presenter);
+                HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index),controller, presenter);
                 historyPage.setVisible(true);
             }
         });
-
         existingList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String request = existingList.getSelectedValue();
                 int index = listModel.indexOf(request);
                 setVisible(false);
-                DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index), controller, presenter);
+                DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index),controller, presenter);
                 detailspage.setVisible(true);
             }
         });
-
         if (WelcomePage.dark){
-            JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel, buttonPanel,
-                    modifyButtonPanel, viewButtonPanel, existingPanel, existingTextPanel,
-                    existingRequestPanel, historyPanel, historyTextPanel, historyListPanel};
+            JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel, existingPanel,
+                    existingTextPanel, existingRequestPanel, historyPanel,
+                    historyTextPanel, historyListPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
@@ -117,7 +100,7 @@ public class FarmerPage extends JFrame{
             historyList.setBackground(new Color(0x1d3b53));
             modifyButton.setForeground(new Color(0x4C566A));
             viewButton.setForeground(new Color(0x4C566A));
-            createRequest.setForeground(new Color(0x4C566A));
         }
     }
 }
+

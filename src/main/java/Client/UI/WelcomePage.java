@@ -1,16 +1,10 @@
-package UI;
+package Client.UI;
 
 import Controller.ControllerInterface;
-import Controller.DataPresenter;
 import Controller.IFetch;
-import Controller.ServiceController;
-import DataBase.JsonProvider;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
 public class WelcomePage extends JFrame{
     private JPanel mainPanel;

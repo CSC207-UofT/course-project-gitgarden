@@ -1,13 +1,10 @@
-package UI;
+package Client.UI;
 
 import Controller.ControllerInterface;
-import Controller.DataPresenter;
 import Controller.IFetch;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HistoryPage extends JFrame{
     private JPanel mainPanel;

@@ -1,13 +1,10 @@
-package UI;
+package Client.UI;
 
 import Controller.ControllerInterface;
 import Controller.IFetch;
-import Controller.ServiceController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ModifyPage extends JFrame{
     private JPanel titlePanel;

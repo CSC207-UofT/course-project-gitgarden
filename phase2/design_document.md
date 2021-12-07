@@ -79,8 +79,10 @@ as well as the conscious avoidance of creating methods that called constructors 
 lower-level classes explicitly. Rather, we took in arguments of primitive types or
 avoided the dependency by taking the parameter of the class type directly instead
 of creating one in the higher-level class.
+
 ## Packaging Strategies
 
+Our packaging strategy has remained the same since phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
 
 ## Design Patterns
 

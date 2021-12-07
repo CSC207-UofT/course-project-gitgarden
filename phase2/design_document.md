@@ -8,10 +8,17 @@
 
 ## Design Decisions
 
+At the end of phase 1, we started questioning whether we should use the Composite design pattern, since the storing of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in RequestManager.
+
+[picture of requestRoot]
+
+Midway through phase 2, as our refactoring to adhere to Clean Architecture was ongoing, we realized that we would need a way to fetch data (in the form of Strings) to be shown to the user. We contemplated placing a way to fetch data inside ServiceController, which was, at the time, the only class inside the Interface Adapters layer. Upon realizing that this would place too much responsibility in a single class, violating the Single Responsibility Principle, we concluded that the only Clean Architecture- and SOLID-adherent way to do this was to create a new class to perform this role. We named it DataPresenter: it fetches data from the appropriate place in the code, and has methods in which the Strings from the Use Case layer can be modified if necessary.
+
+[picture of DataPresenter]
 
 ## Usage of Clean Architecture
 
-Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in our Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
+Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in the Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
 
 ## Usage of SOLID Principles
 
@@ -93,6 +100,8 @@ We are using the Factory Method design pattern in creating Users and its subclas
 #### Template
 
 We are using the Template design pattern in createProfileCheck, a method in our Controller, to define the skeleton of our algorithm for creating users.
+
+[picture of createProfileCheck]
 
 #### Memento
 

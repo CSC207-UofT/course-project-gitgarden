@@ -42,35 +42,14 @@ public class DetailsPage extends JFrame{
     private JCheckBox RankingButton;
 
     private String tempRequest = null;
-    private final IFetch presenter = new DataPresenter();
-    private final ControllerInterface sc = new ServiceController();
-    private final JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
-                                        responsePanel, responseTextPanel, responseListPanel, descriptionPanel,
-                                        buttonPanel, acceptButtonPanel, declineButtonPanel, counterButtonPanel, 
-                                        closeButtonPanel, trashButtonPanel};
 
-    /**
-    public void addDetails(Request request) {
-
-        DefaultListModel<String> listModel= new DefaultListModel<String>();
-
-        listModel.addElement("Request ID: " + request.getRequest_id());
-        listModel.addElement("Product name: " + request.getProduct_name());
-        listModel.addElement("Farmer name: " + request.getFarmer().getUser_name());
-        listModel.addElement("Farmer address: " + request.getFarmer().getUser_address());
-        listModel.addElement("Product Quantity: " + request.getProduct_quantity());
-        listModel.addElement("Product Price: " + request.getProduct_price_per_unit());
-
-        detailsList.setModel(listModel);
-    } */
-
-    public DetailsPage(String request){
+    public DetailsPage(String request, ControllerInterface controller, IFetch presenter){
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
-        DefaultListModel<String> listModel= new DefaultListModel<String>();
+        DefaultListModel<String> listModel= new DefaultListModel<>();
         String[] info = presenter.fetchRequestInformation(request);
 
         listModel.addElement("Request ID: " + request);
@@ -82,93 +61,79 @@ public class DetailsPage extends JFrame{
 
         detailsList.setModel(listModel);
 
-        acceptRequest.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (tempRequest == null) {
-                    JOptionPane.showMessageDialog(null,"Please Select Something.");
-                }
-                else{
-                    sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
-                }
+        acceptRequest.addActionListener(e -> {
+            if (tempRequest == null) {
+                JOptionPane.showMessageDialog(null,"Please Select Something.");
+            }
+            else{
+                controller.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
             }
         });
 
-        declineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (tempRequest == null) {
-                    JOptionPane.showMessageDialog(null,"Please Select Something.");
-                }
-                else{
-                    sc.declineRequestCheck(tempRequest, WelcomePage.currUserId);
-                }
+        declineButton.addActionListener(e -> {
+            if (tempRequest == null) {
+                JOptionPane.showMessageDialog(null,"Please Select Something.");
+            }
+            else{
+                controller.declineRequestCheck(tempRequest, WelcomePage.currUserId);
             }
         });
-        counterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(tempRequest == null){
-                    JOptionPane.showMessageDialog(null,"Please Select Something.");
-                }
-                else{
-                    setVisible(false);
-                    CounterOfferPage counterOfferPage = new CounterOfferPage(tempRequest);
-                    counterOfferPage.setVisible(true);
-                }
+        counterButton.addActionListener(e -> {
+            if(tempRequest == null){
+                JOptionPane.showMessageDialog(null,"Please Select Something.");
             }
-        });
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            else{
                 setVisible(false);
-                if(WelcomePage.flag){
-                    JFrame farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
-                }
-                else{
-                    JFrame distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
-                }
+                CounterOfferPage counterOfferPage = new CounterOfferPage(tempRequest, controller, presenter);
+                counterOfferPage.setVisible(true);
+            }
+        });
+        closeButton.addActionListener(e -> {
+            setVisible(false);
+            if(WelcomePage.flag){
+                JFrame farmerPage = new FarmerPage(controller, presenter);
+                farmerPage.setVisible(true);
+            }
+            else{
+                JFrame distributorPage = new DistributorPage(controller, presenter);
+                distributorPage.setVisible(true);
             }
         });
         int i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
-        for(String requestId: sc.rank(request, WelcomePage.currUserId)){
+        for(String requestId: controller.rank(request, WelcomePage.currUserId)){
             String[] product_info = presenter.fetchRequestInformation(requestId);
             listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
                     "Price :" + product_info[2]);
         }
 
         responseList.setModel(listModel2);
-        responseList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String selectedRequest = responseList.getSelectedValue().toString();
-                    int index = listModel.indexOf(selectedRequest);
-                    tempRequest = presenter.fetchCounteroffers(request).get(index);
-                }
+        responseList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selectedRequest = responseList.getSelectedValue();
+                int index = listModel.indexOf(selectedRequest);
+                tempRequest = presenter.fetchCounteroffers(request).get(index);
             }
         });
-        TrashButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sc.trashRequestCheck(request);
-                JOptionPane.showMessageDialog(null, "Your request has been trashed.");
-                setVisible(false);
-                if(WelcomePage.flag){
-                    FarmerPage farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
-                }
-                else{
-                    DistributorPage distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
-                }
+        TrashButton.addActionListener(e -> {
+            controller.trashRequestCheck(request);
+            JOptionPane.showMessageDialog(null, "Your request has been trashed.");
+            setVisible(false);
+            if(WelcomePage.flag){
+                JFrame farmerPage = new FarmerPage(controller, presenter);
+                farmerPage.setVisible(true);
+            }
+            else{
+                JFrame distributorPage = new DistributorPage(controller, presenter);
+                distributorPage.setVisible(true);
             }
         });
 
         if (WelcomePage.dark){
+            JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
+                    responsePanel, responseTextPanel, responseListPanel, descriptionPanel,
+                    buttonPanel, acceptButtonPanel, declineButtonPanel, counterButtonPanel,
+                    closeButtonPanel, trashButtonPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }

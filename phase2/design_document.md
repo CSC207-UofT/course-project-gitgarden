@@ -11,6 +11,26 @@
 
 ![classDiagram](assets/classDiagram.png)
 
+<details>
+<summary>Click to see detailed dependencies within packages</summary>
+    <details>
+    <summary>Entities Packages</summary>
+        <img src="assets/Entities.png" alt="Entities">
+    </details>
+    <details>
+    <summary>UseCase Packages</summary>
+        <img src="assets/UseCases.png" alt="UseCases">
+    </details>
+    <details>
+    <summary>Controller Packages</summary>
+        <img src="assets/Controller.png" alt="Controller">
+    </details>
+    <details>
+    <summary>UI Packages</summary>
+        <img src="assets/UI.png" alt="UI">
+    </details>
+</details>
+
 > - For detailed legend for the diagram, please refer to this [picture](https://en.wikipedia.org/wiki/Class_diagram#/media/File:Uml_classes_en.svg)
 > - More details for the backend classes can be seen under [crcCards](../../crcCards.md) document (the crcCards does not include the classes for the GUI)
 

@@ -68,6 +68,7 @@ public class HistoryPage extends JFrame{
                 p.setBackground(new Color(0x011627));
             }
             detailsList.setBackground(new Color(0x1d3b53));
+            detailsList.setForeground(new Color(0xECEFF4));
             closeButton.setForeground(new Color(0x4C566A));
         }
 

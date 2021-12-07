@@ -174,6 +174,8 @@ public class DetailsPage extends JFrame{
             }
             detailsList.setBackground(new Color(0x1d3b53));
             responseList.setBackground(new Color(0x1d3b53));
+            detailsList.setForeground(new Color(0xECEFF4));
+            responseList.setForeground(new Color(0xECEFF4));
             RankingButton.setBackground(new Color(0x1d3b53));
             acceptRequest.setForeground(new Color(0x4C566A));
             declineButton.setForeground(new Color(0x4C566A));

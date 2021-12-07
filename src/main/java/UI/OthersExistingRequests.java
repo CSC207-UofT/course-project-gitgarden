@@ -120,6 +120,7 @@ public class OthersExistingRequests extends JFrame {
                 p.setBackground(new Color(0x011627));
             }
             requestList.setBackground(new Color(0x1d3b53));
+            requestList.setForeground(new Color(0xECEFF4));
             acceptRequest.setForeground(new Color(0x4C566A));
             counterOfferButton.setForeground(new Color(0x4C566A));
             closeButton.setForeground(new Color(0x4C566A));

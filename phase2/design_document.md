@@ -206,11 +206,11 @@ Our team used discord as a texting and communication channel, however we took ad
 
 1. We created different branches to work with different sub teams. This can help use to avoid conflict and makes the pull request process easier.
 
-    <img src="assets/branches.png" width="180" align="left">
+    <img src="assets/branches.png" width="180">
 
 2. We have created 42 pull requests through our duration of the project. We tried to leave descriptive comments for each pull request in Phase2. We also tried to use the emoji functions to indicate the a person have viewed the pull request. After 2-3 people's review, we would then merge or close the pull requests.
 
-    <img src="assets/pullReq.png" width="600" align="left">
+    <img src="assets/pullReq.png" width="600">
 
 3. We also experimented with the issue function, but most of our issues were discussed on discord.
 

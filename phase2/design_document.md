@@ -11,6 +11,7 @@
 
 ## Usage of Clean Architecture
 
+Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in our Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
 
 ## Usage of SOLID Principles
 
@@ -35,7 +36,6 @@ principle, without creating too many classes, or classes with only a single meth
 or so. By the end, we came to the conclusion of handling user input in the ServiceController
 class, Managing Farmer and Distributor Profiles (including their storage) in the
 ProfileManager Class, and handling the rankings of users via the RankingManager class.
-
 #### Open/Closed Principle
 A key example of this principle is in our DataAccessInterface class, 
 which allows for newer methods of Data Persistency such as .csv to be implemented

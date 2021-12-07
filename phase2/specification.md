@@ -6,6 +6,7 @@ Our project is a medium for connecting produce farmers to distributors of their 
 
 While running, the user (a farmer or distributor) is prompted to either log in to an existing profile or create a new profile. In the case of farmers, the user can make/edit a request or view others’ requests. They can accept/decline the offers and/or counteroffers made by distributors. Distributors, on the other hand, can respond to farmers’ requests by making offers or counteroffers, and also edit existing ones they have already made.
 
+(changes since phase 1 are in bold)
 ## Details
 
 The user starts the program and is prompted with a screen asking them what they would like to do:
@@ -46,7 +47,6 @@ The controller (ServiceController) takes in the inputs of the UI and does one of
 - Decline the input
     * Prompt the user to input again with an error message stating why the input was not accepted
 
-(changes since phase 1 are in bold)
 ## Classes Specification
 The UI classes are:
 - CounterOfferPage

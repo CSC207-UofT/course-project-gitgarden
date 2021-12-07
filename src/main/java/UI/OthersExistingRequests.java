@@ -29,67 +29,53 @@ public class OthersExistingRequests extends JFrame {
     private JPanel buttonPanel;
     private JPanel counterOfferPanel;
     private JButton counterOfferButton;
-
     private String tempRequest = null;
-    private final IFetch presenter = new DataPresenter();
-    private final ControllerInterface sc = new ServiceController();
-    private final JPanel[] panelList = {mainPanel, titlePanel, listPanel, descriptionPanel, acceptButtonPanel, 
-                                        closeButtonPanel, buttonPanel, counterOfferPanel};
 
-    public OthersExistingRequests() {
+    public OthersExistingRequests(ControllerInterface controller, IFetch presenter) {
         setTitle("requestPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 700);
 
-        acceptRequest.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (WelcomePage.flag) {
-                    JOptionPane.showMessageDialog(null,"Farmers cannot accept requests.");
-                }
-                else if(tempRequest == null){
-                    JOptionPane.showMessageDialog(null,"Must select A Request.");
-                }
-                else {
-                    sc.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
+        acceptRequest.addActionListener(e -> {
+            if (WelcomePage.flag) {
+                JOptionPane.showMessageDialog(null,"Farmers cannot accept requests.");
+            }
+            else if(tempRequest == null){
+                JOptionPane.showMessageDialog(null,"Must select A Request.");
+            }
+            else {
+                controller.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
 
-                    JOptionPane.showMessageDialog(null,"Your Offer Has Been Accepted. Thank You " +
-                            ":)");
-                }
+                JOptionPane.showMessageDialog(null,"Your Offer Has Been Accepted. Thank You " +
+                        ":)");
             }
         });
 
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        closeButton.addActionListener(e -> {
+            setVisible(false);
+            if (WelcomePage.flag) {
+                JFrame farmerPage = new FarmerPage(controller, presenter);
+                farmerPage.setVisible(true);
+            }
+            else {
+                JFrame distributorPage = new DistributorPage(controller, presenter);
+                distributorPage.setVisible(true);
+            }
+        });
+
+        counterOfferButton.addActionListener(e -> {
+            if (WelcomePage.flag) {
+                JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
+                        "A Request.");
+            }
+            else if(tempRequest == null){
+                JOptionPane.showMessageDialog(null,"Must select A Request.");
+            }
+            else{
                 setVisible(false);
-                if (WelcomePage.flag) {
-                    JFrame farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
-                }
-                else {
-                    JFrame distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
-                }
-            }
-        });
-
-        counterOfferButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (WelcomePage.flag) {
-                    JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
-                            "A Request.");
-                }
-                else if(tempRequest == null){
-                    JOptionPane.showMessageDialog(null,"Must select A Request.");
-                }
-                else{
-                    setVisible(false);
-                    JFrame counterOfferPage = new CounterOfferPage(tempRequest);
-                    counterOfferPage.setVisible(true);
-                }
+                JFrame counterOfferPage = new CounterOfferPage(tempRequest, controller, presenter);
+                counterOfferPage.setVisible(true);
             }
         });
 
@@ -105,17 +91,16 @@ public class OthersExistingRequests extends JFrame {
             }
         }
         requestList.setModel(listModel);
-        requestList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String selectedRequest = requestList.getSelectedValue().toString();
-                    tempRequest = selectedRequest.split(" ")[0];
-                }
+        requestList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selectedRequest = requestList.getSelectedValue();
+                tempRequest = selectedRequest.split(" ")[0];
             }
         });
 
         if (WelcomePage.dark){
+            JPanel[] panelList = {mainPanel, titlePanel, listPanel, descriptionPanel, acceptButtonPanel,
+                    closeButtonPanel, buttonPanel, counterOfferPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }

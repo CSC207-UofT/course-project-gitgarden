@@ -1,6 +1,7 @@
 package UI;
 
 import Controller.ControllerInterface;
+import Controller.IFetch;
 import Controller.ServiceController;
 
 import javax.swing.*;
@@ -44,52 +45,42 @@ public class ModifyPage extends JFrame{
     private JPanel exposureTextPanel;
     private JPanel speedTextPanel;
     private JPanel carbonTextPanel;
-    ControllerInterface sc = new ServiceController();
-    private final JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
-                                        namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,
-                                        priceInputPanel, buttonPanel, mainPanel, priceTextPanel, exposureTextPanel,
-                                        speedTextPanel, carbonTextPanel, speedSliPanel, priceSliPanel, exposureSliPanel, 
-                                        carbonSliPanel};
 
-    public ModifyPage() {
+    public ModifyPage(ControllerInterface controller, IFetch presenter) {
         setTitle("modifyPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 700);
-        ModifyButton.addActionListener(new ActionListener() {
+        ModifyButton.addActionListener(e -> {
+            String newAddress = addressInput.getText();
+            String newName = nameInput.getText();
+            double slider1_value = PriceSlider.getValue();
+            double slider2_value = ExposureSlider.getValue();
+            double slider3_value = SpeedSlider.getValue();
+            double slider4_value = CarbonSlider.getValue();
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String newAddress = addressInput.getText();
-                String newName = nameInput.getText();
-                double slider1_value = PriceSlider.getValue();
-                double slider2_value = ExposureSlider.getValue();
-                double slider3_value = SpeedSlider.getValue();
-                double slider4_value = CarbonSlider.getValue();
-
-                if (WelcomePage.flag) {
-                    try {
-                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
-                                slider3_value, slider4_value);
-                        FarmerPage farmerPage = new FarmerPage();
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                    }
-                    catch (Exception modifyException){
-                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
-                    }
-                } else {
-                    try {
-                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
-                        DistributorPage distributorPage = new DistributorPage();
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                    }
-                    catch (Exception modifyException){
-                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
-                    }
+            if (WelcomePage.flag) {
+                try {
+                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    controller.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                            slider3_value, slider4_value);
+                    FarmerPage farmerPage = new FarmerPage(controller, presenter);
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+                }
+                catch (Exception modifyException){
+                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
+                }
+            } else {
+                try {
+                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    controller.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                    DistributorPage distributorPage = new DistributorPage(controller, presenter);
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                }
+                catch (Exception modifyException){
+                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
                 }
             }
         });
@@ -103,6 +94,11 @@ public class ModifyPage extends JFrame{
         CarbonSlider.setMinorTickSpacing(10);
 
         if (WelcomePage.dark){
+            JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
+                    namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,
+                    priceInputPanel, buttonPanel, mainPanel, priceTextPanel, exposureTextPanel,
+                    speedTextPanel, carbonTextPanel, speedSliPanel, priceSliPanel, exposureSliPanel,
+                    carbonSliPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
@@ -110,19 +106,16 @@ public class ModifyPage extends JFrame{
             addressInput.setBackground(new Color(0x1d3b53));
         }
 
-        CloseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (WelcomePage.flag){
-                    FarmerPage farmerPage = new FarmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
-                }
-                else{
-                    DistributorPage distributorPage = new DistributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-                }
+        CloseButton.addActionListener(e -> {
+            if (WelcomePage.flag){
+                FarmerPage farmerPage = new FarmerPage(controller, presenter);
+                setVisible(false);
+                farmerPage.setVisible(true);
+            }
+            else{
+                DistributorPage distributorPage = new DistributorPage(controller, presenter);
+                setVisible(false);
+                distributorPage.setVisible(true);
             }
         });
     }

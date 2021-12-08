@@ -53,9 +53,8 @@ public class DistributorPage extends JFrame{
             String product_name = info[0];
             String user_name = info[3];
             if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
-                user_name = "me";
+                listModel.addElement("Product " + product_name + ", User: me");
             }
-            listModel.addElement("Product " + product_name + ", User: "+ user_name);
         }
 
         ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);

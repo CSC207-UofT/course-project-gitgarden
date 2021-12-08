@@ -79,17 +79,17 @@ public class Farmer extends User implements IFarmer{
         return prefCarbon;
     }
 
-    public static class Momento {
+    public static class Memento {
 
-        private String name;
-        private String address;
-        private double prefPrice;
+        private final String name;
+        private final String address;
 
-        private double prefExposure;
-        private double prefSpeed;
-        private double prefCarbon;
+        private final double prefPrice;
+        private final double prefExposure;
+        private final double prefSpeed;
+        private final double prefCarbon;
 
-        public Momento(String name, String address, double prefPrice, double prefExposure, double prefSpeed,
+        public Memento(String name, String address, double prefPrice, double prefExposure, double prefSpeed,
                        double prefCarbon) {
             this.name = name;
             this.address = address;
@@ -99,7 +99,7 @@ public class Farmer extends User implements IFarmer{
             this.prefSpeed = prefSpeed;
         }
 
-        public Momento getState() {
+        public Memento getState() {
             return this;
         }
 

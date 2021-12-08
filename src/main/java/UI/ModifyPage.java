@@ -62,8 +62,8 @@ public class ModifyPage extends JFrame{
     ControllerInterface sc = new ServiceController();
     DataPresenter dp = new DataPresenter();
 
-    Stack<Farmer.Momento> farmerStack = new Stack<>();
-    Stack<Distributor.Momento> distributorStack = new Stack<>();
+    public static Stack<String[]> farmerStack = new Stack<>();
+    public static Stack<String[]> distributorStack = new Stack<>();
 
     public ModifyPage() {
         setTitle("modifyPage");
@@ -86,6 +86,12 @@ public class ModifyPage extends JFrame{
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
                         sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
                                 slider3_value, slider4_value);
+
+                        String[] state = {newName, newAddress, String.valueOf(slider1_value),
+                                String.valueOf(slider2_value), String.valueOf(slider3_value),
+                                String.valueOf(slider4_value)};
+                        farmerStack.push(state);
+
                         FarmerPage farmerPage = new FarmerPage();
                         setVisible(false);
                         farmerPage.setVisible(true);
@@ -97,6 +103,11 @@ public class ModifyPage extends JFrame{
                     try {
                         sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
                         sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+
+                        String[] state = {newName, newAddress, String.valueOf(slider2_value),
+                                String.valueOf(slider3_value), String.valueOf(slider4_value)};
+                        distributorStack.push(state);
+
                         DistributorPage distributorPage = new DistributorPage();
                         setVisible(false);
                         distributorPage.setVisible(true);
@@ -144,50 +155,48 @@ public class ModifyPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (WelcomePage.flag) {
-                    Farmer.Momento restore = farmerStack.pop().getState();
+                    try {
+                        farmerStack.pop();
+                        String[] restore = farmerStack.pop();
 
-                    String ID = WelcomePage.currUserId;
 
-                    ProfileInterface pm = new ProfileManager();
-                    IFarmer farmer = (IFarmer) pm.getUserFromId(ID);
+                        String id = WelcomePage.currUserId;
 
-                    farmer.setUserName(restore.getName());
-                    farmer.setUserAddress(restore.getAddress());
-                    farmer.setPrefCarbon(restore.getCarbon());
-                    farmer.setPrefExposure(restore.getExposure());
-                    farmer.setPrefPrice(restore.getPrice());
-                    farmer.setPrefSpeed(restore.getSpeed());
+                        sc.modifyUserCheck(id, restore[0], restore[1]);
+                        sc.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                                Double.parseDouble(restore[4]), Double.parseDouble(restore[5]));
 
-                    JOptionPane.showMessageDialog(null,"Your changes have been restored.");
-                    UndoButton.requestFocusInWindow();
+                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                        UndoButton.requestFocusInWindow();
 
-                    FarmerPage farmerPage = new FarmerPage();
-                    setVisible(false);
-                    farmerPage.setVisible(true);
-
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                    } catch (Exception undoException){
+                        JOptionPane.showMessageDialog(null, undoException.getMessage());
+                    }
                 }
 
                 else {
-                    Distributor.Momento restore = distributorStack.pop().getState();
+                    try {
+                        distributorStack.pop();
+                        String[] restore = distributorStack.pop();
 
-                    String ID = WelcomePage.currUserId;
+                        String id = WelcomePage.currUserId;
 
-                    ProfileInterface pm = new ProfileManager();
-                    IDistributor distributor = (IDistributor) pm.getUserFromId(ID);
+                        sc.modifyUserCheck(id, restore[0], restore[1]);
+                        sc.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                                Double.parseDouble(restore[4]));
 
-                    distributor.setUserName(restore.getName());
-                    distributor.setUserAddress(restore.getAddress());
-                    distributor.setCarbon(restore.getCarbon());
-                    distributor.setExposure(restore.getExposure());
-                    distributor.setSpeed(restore.getSpeed());
+                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                        UndoButton.requestFocusInWindow();
 
-                    JOptionPane.showMessageDialog(null,"Your changes have been restored.");
-                    UndoButton.requestFocusInWindow();
-
-                    DistributorPage distributorPage = new DistributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                    } catch (Exception undoException){
+                        JOptionPane.showMessageDialog(null, undoException.getMessage());
+                    }
                 }
             }
         });

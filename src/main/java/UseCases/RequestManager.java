@@ -106,18 +106,6 @@ public class RequestManager implements RequestInterface{
             data[4] = String.valueOf(request.getPrevious().getRequestId());
         }
 
-        if (request.getUser() instanceof Distributor) {
-            data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getUser()));
-        }
-        else if (request.getUser() instanceof Farmer) {
-            if (request.getPrevious() != null) {
-                data[5] = String.valueOf(RankingManager.getHistoryAvg((Distributor)request.getPrevious().getUser()));
-            }
-            else {
-                data[5] = null;
-            }
-        }
-
         return data;
     }
 

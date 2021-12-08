@@ -33,7 +33,6 @@ public class DetailsPage extends JFrame{
     private JPanel closeButtonPanel;
     private JPanel trashButtonPanel;
     private JButton TrashButton;
-    private JCheckBox RankingButton;
 
     private String tempRequest = null;
 

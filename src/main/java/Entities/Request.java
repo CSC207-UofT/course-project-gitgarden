@@ -11,7 +11,6 @@ public class Request implements IRequest{
     private final double prodPricePerKg;
     private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
-    private double rating;
 
     public Request(int id, IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
         this.requestId = id;
@@ -21,7 +20,6 @@ public class Request implements IRequest{
         this.prodPricePerKg = pPricePerKg;
         this.counteroffers = new ArrayList<>();
         this.previous = previous;
-        this.rating = -1;
     }
 
     public Request(int id, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
@@ -103,14 +101,6 @@ public class Request implements IRequest{
      */
     public IRequest getPrevious(){
         return this.previous;
-    }
-
-    public void setRating(double rating){
-        this.rating = rating;
-    }
-
-    public double getRating(){
-        return this.rating;
     }
 
     /**

@@ -20,9 +20,7 @@ public class HistoryPage extends JFrame{
     private JButton closeButton;
     private JPanel ratePanel;
     private JPanel rateTextPanel;
-    private JLabel rateText;
     private JPanel ratingSliPanel;
-    private JSlider RatingSlider;
 
     public HistoryPage(String request, ControllerInterface controller, IFetch presenter){
         setTitle("farmerPage");

@@ -121,6 +121,11 @@ public class RequestManager implements RequestInterface{
         return requestToId(counteroffers);
     }
 
+    /**
+     * Converts a list of IRequests into their corresponding IDs.
+     * @param requests The list to be converted.
+     * @return The corresponding list of IDs.
+     */
     @Override
     public ArrayList<String> requestToId(ArrayList<IRequest> requests){
         ArrayList<String> ids = new ArrayList<>();
@@ -170,6 +175,7 @@ public class RequestManager implements RequestInterface{
      * @param requestID The ID of the request.
      * @return The request matching the ID.
      */
+    @Override
     public IRequest getRequestFromId(String requestID){
         ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
         allRequests.addAll(allOffers);

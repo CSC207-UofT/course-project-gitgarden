@@ -20,7 +20,9 @@ public class ServiceController implements ControllerInterface{
      * Creates a profile if inputs are valid.
      * @param name Name of the user.
      * @param address Address of the user.
-     * @param flag Boolean representing farmer/distributor
+     * @param flag Boolean representing farmer/distributor.
+     * @return ID of user created.
+     * @throws Exception Indication if one of the inputs fails.
      */
     @Override
     public String createProfileCheck(String name, String address, boolean flag) throws Exception{
@@ -129,6 +131,7 @@ public class ServiceController implements ControllerInterface{
     /**
      * Accepts a request if inputs are valid.
      * @param requestID ID of request to be accepted.
+     * @param userID ID of user accepting request.
      */
     @Override
     public void acceptRequestCheck(String requestID, String userID){
@@ -140,7 +143,7 @@ public class ServiceController implements ControllerInterface{
      * @param requestID ID of request to be declined.
      */
     @Override
-    public void declineRequestCheck(String requestID, String userID){
+    public void declineRequestCheck(String requestID){
         requestManager.declineRequest(requestID);
     } // Nothing to check for now, but there may be in future
 

@@ -78,7 +78,7 @@ public class DetailsPage extends JFrame{
                 JOptionPane.showMessageDialog(null,"Please Select Something.");
             }
             else{
-                controller.declineRequestCheck(tempRequest, WelcomePage.currUserId);
+                controller.declineRequestCheck(tempRequest);
                 JOptionPane.showMessageDialog(null,"Declined");
                 int i = 1;
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();

@@ -14,6 +14,9 @@ import UseCases.RequestManager;
 import java.io.FileNotFoundException;
 
 public class Instantiater implements Facade{
+    /**
+     * Build to be used to run the program.
+     */
     public void build(){
         try {
             JsonProvider jp = new JsonProvider();

@@ -136,13 +136,13 @@ of creating one in the higher-level class.
 
 ## Packaging Strategies
 
-Our packaging strategy has remained the same since phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
+Our packaging strategy has remained the same since Phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
 
 ## Design Patterns
 
 #### Factory Method
 
-We are using the Factory Method design pattern in creating Users and its subclasses. We delay the instantiation of these concrete products in the profile manager with separate factories, with each creator correlating to a unique class of user product.
+We are using the Factory Method design pattern in creating users and its subclasses. We delay the instantiation of these concrete products in the profile manager with separate factories, with each creator correlating to a unique class of user product.
 
 #### Template
 

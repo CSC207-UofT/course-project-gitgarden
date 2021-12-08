@@ -1,4 +1,4 @@
-package UI;
+package Client.UI;
 
 import Controller.DataPresenter;
 import Controller.IFetch;

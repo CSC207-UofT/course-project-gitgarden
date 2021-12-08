@@ -60,6 +60,16 @@ public class DetailsPage extends JFrame{
             }
             else{
                 controller.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
+                JOptionPane.showMessageDialog(null,"Accepted");
+                int i = 1;
+                DefaultListModel<String> listModel2 = new DefaultListModel<>();
+                for(String requestId: controller.rank(request, WelcomePage.currUserId)){
+                    String[] product_info = presenter.fetchRequestInformation(requestId);
+                    listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                            "Price :" + product_info[2]);
+                }
+
+                responseList.setModel(listModel2);
             }
         });
 
@@ -69,6 +79,16 @@ public class DetailsPage extends JFrame{
             }
             else{
                 controller.declineRequestCheck(tempRequest, WelcomePage.currUserId);
+                JOptionPane.showMessageDialog(null,"Declined");
+                int i = 1;
+                DefaultListModel<String> listModel2 = new DefaultListModel<>();
+                for(String requestId: controller.rank(request, WelcomePage.currUserId)){
+                    String[] product_info = presenter.fetchRequestInformation(requestId);
+                    listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                            "Price :" + product_info[2]);
+                }
+
+                responseList.setModel(listModel2);
             }
         });
         counterButton.addActionListener(e -> {
@@ -82,12 +102,13 @@ public class DetailsPage extends JFrame{
             }
         });
         closeButton.addActionListener(e -> {
-            setVisible(false);
             if(WelcomePage.flag){
+                setVisible(false);
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
             }
             else{
+                setVisible(false);
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
             }
@@ -96,7 +117,7 @@ public class DetailsPage extends JFrame{
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
         for(String requestId: controller.rank(request, WelcomePage.currUserId)){
             String[] product_info = presenter.fetchRequestInformation(requestId);
-            listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+            listModel2.addElement(i+" "+ "Name: " + product_info[3] + " Quantity: " + product_info[1] +
                     "Price :" + product_info[2]);
         }
 
@@ -104,8 +125,13 @@ public class DetailsPage extends JFrame{
         responseList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String selectedRequest = responseList.getSelectedValue();
-                int index = listModel.indexOf(selectedRequest);
-                tempRequest = presenter.fetchCounteroffers(request).get(index);
+                int index = listModel2.indexOf(selectedRequest);
+                try {
+                    tempRequest = presenter.fetchCounteroffers(request).get(index);
+                }
+                catch (Exception exception){
+                    JOptionPane.showMessageDialog(null, "There are no more counterOffers");
+                }
             }
         });
         TrashButton.addActionListener(e -> {

@@ -43,6 +43,20 @@ public class OthersExistingRequests extends JFrame {
 
                 JOptionPane.showMessageDialog(null,"Your Offer Has Been Accepted. Thank You " +
                         ":)");
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for(String farmer: presenter.fetchAllFarmerNames()){
+                    if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+                        for(String request: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
+                            String[] info = presenter.fetchRequestInformation(request);
+                            if (info[4] == null) {
+                                listModel.addElement("Request ID: " + request + " , Product name: " + info[0] +
+                                        ", Farmer name: " + info[3] + ", Product Quantity: " + info[1] +
+                                        ", Product Price: " + info[2]);
+                            }
+                        }
+                    }
+                }
+                requestList.setModel(listModel);
             }
         });
 

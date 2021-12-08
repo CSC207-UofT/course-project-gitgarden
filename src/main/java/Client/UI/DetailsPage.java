@@ -111,12 +111,13 @@ public class DetailsPage extends JFrame{
         TrashButton.addActionListener(e -> {
             controller.trashRequestCheck(request);
             JOptionPane.showMessageDialog(null, "Your request has been trashed.");
-            setVisible(false);
             if(WelcomePage.flag){
+                setVisible(false);
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
             }
             else{
+                setVisible(false);
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
             }

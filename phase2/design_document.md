@@ -40,7 +40,7 @@
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.
 
-[requestRoot](assets/requestRoot.png)
+<img src="assets/requestRoot.png" width="500">
 
 #### Fetching Data
 
@@ -146,7 +146,7 @@ We are using the Factory Method design pattern in creating users and its subclas
 
 We are using the Template design pattern in createProfileCheck, a method in our Controller, to define the skeleton of our algorithm for creating users.
 
-[createProfileCheck](assets/createProfileCheck.png)
+<img src="assets/createProfileCheck.png" width="500">
 
 #### Memento
 

@@ -47,7 +47,6 @@ import static java.lang.Math.*;
 
         @Test
         public void rankDistributors(){
-            System.out.println(sc.rank("0", 1));
+            System.out.println(sc.rank("0", "1"));
         }
-
     }

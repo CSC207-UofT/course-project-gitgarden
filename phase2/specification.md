@@ -43,14 +43,14 @@ The user starts the program and is prompted with a screen asking them what they 
         + Make Counteroffer
 
 
-The controller (ServiceController) takes in the inputs of the UI and does one of two things:
+The controller (ServiceController) takes in the inputs of the Client.UI and does one of two things:
 - Accept the input
     * Makes the correct variable for the use case classes to use
 - Decline the input
     * Prompt the user to input again with an error message stating why the input was not accepted
 
 ## Classes Specification
-The UI classes are:
+The Client.UI classes are:
 - CounterOfferPage
 - DetailsPage
 - DistributorPage

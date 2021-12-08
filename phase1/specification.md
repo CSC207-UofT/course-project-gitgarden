@@ -44,7 +44,7 @@ The users starts the program and is prompted with a screen asking them what they
     * Transaction History (Expansion 2)
 
 
-The controller (ServiceController) takes in the inputs of the UI and does one of two things:
+The controller (ServiceController) takes in the inputs of the Client.UI and does one of two things:
 - Accept the input
     * Makes the correct variable for the use case classes to use
 - Decline the input

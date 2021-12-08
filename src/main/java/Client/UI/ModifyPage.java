@@ -1,14 +1,8 @@
-package UI;
+package Client.UI;
 
 import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.ServiceController;
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.IDistributor;
-import Entities.IFarmer;
-import UseCases.ProfileInterface;
-import UseCases.ProfileManager;
 
 import javax.swing.*;
 import java.awt.*;

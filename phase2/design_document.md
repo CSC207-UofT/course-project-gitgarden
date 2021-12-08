@@ -136,7 +136,7 @@ of creating one in the higher-level class.
 
 ## Packaging Strategies
 
-Our packaging strategy has remained the same since Phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
+Our packaging strategy has remained the same since Phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: Client and DataBase. Inside Client is a UI folder, as well as a Driver, Facade, and Instantiater. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
 
 ## Design Patterns
 
@@ -204,11 +204,11 @@ Since GitGarden is fundamentally designed as a tool to enable transactions to oc
 
 Our team used discord as a texting and communication channel, however we took advantage of a couple of GitHub functionalities to help our work flow.
 
-1. We created different branches to work with different sub teams. This can help use to avoid conflict and makes the pull request process easier.
+1. We created different branches to work with different sub teams. This helped us to avoid conflict and makes the pull request process easier.
 
     <img src="assets/branches.png" width="180">
 
-2. We have created 42 pull requests through our duration of the project. We tried to leave descriptive comments for each pull request in Phase2. We also tried to use the emoji functions to indicate the a person have viewed the pull request. After 2-3 people's review, we would then merge or close the pull requests.
+2. We have created over 40 pull requests throughout the duration of our project. We tried to leave descriptive comments for each pull request after receiving our phase 1 feedback. We also tried to use the emoji functions to indicate that a person had viewed the pull request. After 2-3 people had reviewed it, we would then merge or close the pull request.
 
     <img src="assets/pullReq.png" width="600">
 

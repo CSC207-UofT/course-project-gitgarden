@@ -98,14 +98,16 @@ public class JsonAdapter {
         ArrayList<String[]> reqArray = new ArrayList<>();
         ArrayList<Integer> ids = rm.getAllRequestIds();
         for (int i : ids) {
-            IRequest req = rm.getRequestFromId(String.valueOf(i));
-            String[] r = new String[5];
-            r[0] = String.valueOf(req.getRequestId());
-            r[1] = String.valueOf(req.getUser().getUserId());
-            r[2] = req.getProdName();
-            r[3] = String.valueOf(req.getProdQuantity());
-            r[4] = String.valueOf(req.getProdPricePerKg());
-            reqArray.add(r);
+            if(rm.dataFromId(String.valueOf(i))[4] == null) {
+                IRequest req = rm.getRequestFromId(String.valueOf(i));
+                String[] r = new String[5];
+                r[0] = String.valueOf(req.getRequestId());
+                r[1] = String.valueOf(req.getUser().getUserId());
+                r[2] = req.getProdName();
+                r[3] = String.valueOf(req.getProdQuantity());
+                r[4] = String.valueOf(req.getProdPricePerKg());
+                reqArray.add(r);
+            }
         }
         return reqArray;
     }

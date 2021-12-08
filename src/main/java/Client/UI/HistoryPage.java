@@ -1,12 +1,10 @@
 package Client.UI;
 
-import Controller.DataPresenter;
+import Controller.ControllerInterface;
 import Controller.IFetch;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HistoryPage extends JFrame{
     private JPanel mainPanel;
@@ -22,21 +20,15 @@ public class HistoryPage extends JFrame{
     private JButton closeButton;
     private JPanel ratePanel;
     private JPanel rateTextPanel;
-    private JLabel rateText;
     private JPanel ratingSliPanel;
-    private JSlider RatingSlider;
 
-    private final IFetch presenter = new DataPresenter();
-    private final JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
-                                        buttonPanel, closeButtonPanel,ratePanel, rateTextPanel, ratingSliPanel};
-
-    public HistoryPage(String request){
+    public HistoryPage(String request, ControllerInterface controller, IFetch presenter){
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
-        DefaultListModel<String> listModel= new DefaultListModel<String>();
+        DefaultListModel<String> listModel= new DefaultListModel<>();
         String[] info = presenter.fetchRequestInformation(request);
 
         listModel.addElement("Request ID: " + request);
@@ -48,22 +40,21 @@ public class HistoryPage extends JFrame{
 
         detailsList.setModel(listModel);
 
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                if(WelcomePage.flag){
-                    JFrame farmerPage = new FarmerPage();
-                    farmerPage.setVisible(true);
-                }
-                else{
-                    JFrame distributorPage = new DistributorPage();
-                    distributorPage.setVisible(true);
-                }
+        closeButton.addActionListener(e -> {
+            setVisible(false);
+            if(WelcomePage.flag){
+                JFrame farmerPage = new FarmerPage(controller, presenter);
+                farmerPage.setVisible(true);
+            }
+            else{
+                JFrame distributorPage = new DistributorPage(controller, presenter);
+                distributorPage.setVisible(true);
             }
         });
 
         if (WelcomePage.dark){
+            JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
+                    buttonPanel, closeButtonPanel, ratePanel, rateTextPanel, ratingSliPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }

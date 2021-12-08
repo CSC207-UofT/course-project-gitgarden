@@ -8,8 +8,13 @@ import java.util.Random;
 public class ServiceController implements ControllerInterface{
     private static final int LOWER_BOUND = 100000000;
     private static final int UPPER_BOUND = 800000000;
-    private static final ProfileInterface profileManager = new ProfileManager();
-    private static final RequestInterface requestManager = new RequestManager();
+    private static RequestInterface requestManager;
+    private static ProfileInterface profileManager;
+
+    public ServiceController(ProfileInterface pm, RequestInterface rm){
+        profileManager = pm;
+        requestManager = rm;
+    }
 
     /**
      * Creates a profile if inputs are valid.
@@ -39,7 +44,7 @@ public class ServiceController implements ControllerInterface{
      */
     @Override
     public void modifyUserCheck(String id, String newName, String address) throws Exception {
-        IFetch dp = new DataPresenter();
+        IFetch dp = new DataPresenter(profileManager, requestManager);
         String oldName = dp.fetchUserName(id);
         if (isValidName(newName)){
             if (isValidAddress(address)){

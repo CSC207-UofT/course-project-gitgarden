@@ -1,12 +1,10 @@
 package Client.UI;
 
 import Controller.ControllerInterface;
-import Controller.ServiceController;
+import Controller.IFetch;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CounterOfferPage extends JFrame{
     private JPanel mainPanel;
@@ -26,35 +24,32 @@ public class CounterOfferPage extends JFrame{
     private JTextField priceInput;
     private JTextField quantityInput;
     private JButton createButton;
-    private final ControllerInterface sc = new ServiceController();
-    private final JPanel[] panelList = {mainPanel, titlePanel, buttonPanel, middlePanel, textPanel,priceTextPanel,
-                                        quantityTextPanel, inputPanel, priceInputPanel, quantityInputPanel};
 
-    public CounterOfferPage(String request) {
+    public CounterOfferPage(String request, ControllerInterface controller, IFetch presenter) {
+
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
-        createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String price = priceInput.getText();
-                String quantity = quantityInput.getText();
-                try {
-                    sc.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
-                    DistributorPage distributorPage = new DistributorPage();
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-                    setContentPane(new DistributorPage().mainPanel);
-                }
-                catch (Exception counterOfferException){
-                    JOptionPane.showMessageDialog(null, counterOfferException.getMessage());
-                }
+        createButton.addActionListener(e -> {
+            String price = priceInput.getText();
+            String quantity = quantityInput.getText();
+            try {
+                controller.createCounterOfferCheck(request, WelcomePage.currUserId, quantity, price);
+                DistributorPage distributorPage = new DistributorPage(controller, presenter);
+                setVisible(false);
+                distributorPage.setVisible(true);
+                setContentPane(new DistributorPage(controller, presenter).mainPanel);
+            }
+            catch (Exception counterOfferException){
+                JOptionPane.showMessageDialog(null, counterOfferException.getMessage());
             }
         });
 
         if (WelcomePage.dark){
+            JPanel[] panelList = {mainPanel, titlePanel, buttonPanel, middlePanel, textPanel, priceTextPanel,
+                    quantityTextPanel, inputPanel, priceInputPanel, quantityInputPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }

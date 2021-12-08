@@ -8,15 +8,20 @@ import UseCases.RequestManager;
 import java.util.ArrayList;
 
 public class DataPresenter implements IFetch{
-    private static final ProfileInterface pm = new ProfileManager();
-    private static final RequestInterface rm = new RequestManager();
+    private final ProfileInterface profileManager;
+    private final RequestInterface requestManager;
+
+    public DataPresenter(ProfileInterface pm, RequestInterface rm){
+        profileManager = pm;
+        requestManager = rm;
+    }
     /**
      * Fetches user's address based on ID.
      * @param id The ID of the user whose address must be found.
      * @return The address of the user.
      */
     public String fetchUserAddress(String id){
-        return pm.addressFromId(id);
+        return profileManager.addressFromId(id);
     }
 
     /**
@@ -25,7 +30,7 @@ public class DataPresenter implements IFetch{
      * @return The name of the user.
      */
     public String fetchUserName(String id){
-        return pm.nameFromId(id);
+        return profileManager.nameFromId(id);
     }
 
     /**
@@ -34,7 +39,7 @@ public class DataPresenter implements IFetch{
      * @return The ID of the user.
      */
     public String fetchUserId(String userName){
-        return pm.idFromName(userName);
+        return profileManager.idFromName(userName);
     }
 
     /**
@@ -42,7 +47,7 @@ public class DataPresenter implements IFetch{
      * @return The list of all farmer names.
      */
     public ArrayList<String> fetchAllFarmerNames(){
-        return pm.getAllFarmerNames();
+        return profileManager.getAllFarmerNames();
     }
 
     /**
@@ -50,7 +55,7 @@ public class DataPresenter implements IFetch{
      * @return The list of all distributor names.
      */
     public ArrayList<String> fetchAllDistNames(){
-        return pm.getAllDistNames();
+        return profileManager.getAllDistNames();
     }
 
     /**
@@ -59,7 +64,7 @@ public class DataPresenter implements IFetch{
      * @return The list of all of user's current requests.
      */
     public ArrayList<String> fetchCurrentUserRequests(String id){
-        return pm.requestsFromId(id);
+        return profileManager.requestsFromId(id);
     }
 
     /**
@@ -68,7 +73,7 @@ public class DataPresenter implements IFetch{
      * @return The offer history of the user.
      */
     public ArrayList<String> fetchRequestHistory(String id){
-        return pm.historyFromId(id);
+        return profileManager.historyFromId(id);
     }
 
     /**
@@ -77,7 +82,7 @@ public class DataPresenter implements IFetch{
      * @return The request's information.
      */
     public String[] fetchRequestInformation(String requestID){
-        String[] data = rm.dataFromId(requestID);
+        String[] data = requestManager.dataFromId(requestID);
         if (data[2].matches("^[0-9]+\\.[0-9]$")){ data[2] = data[2] + "0";}
         return data;
     }
@@ -88,7 +93,7 @@ public class DataPresenter implements IFetch{
      * @return The counteroffers of the request.
      */
     public ArrayList<String> fetchCounteroffers(String requestID){
-        return rm.coFromId(requestID);
+        return requestManager.coFromId(requestID);
     }
 
 }

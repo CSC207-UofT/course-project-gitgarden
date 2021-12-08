@@ -1,14 +1,10 @@
 package Client.UI;
 
-import Controller.DataPresenter;
+import Controller.ControllerInterface;
 import Controller.IFetch;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class DistributorPage extends JFrame{
@@ -32,49 +28,37 @@ public class DistributorPage extends JFrame{
     private JList<String> historyList;
     private JButton viewButton;
     private JList<String> existingList;
-    private final IFetch presenter = new DataPresenter();
-    private final JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel,existingPanel, 
-                                        existingTextPanel, existingRequestPanel, historyPanel,
-                                        historyTextPanel,historyListPanel};
 
-
-    public DistributorPage(){
+    public DistributorPage(ControllerInterface controller, IFetch presenter){
         setTitle("distributorPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
 
-        modifyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                JFrame modifyPage = new ModifyPage();
-                modifyPage.setVisible(true);
-            }
+        modifyButton.addActionListener(e -> {
+            setVisible(false);
+            JFrame modifyPage = new ModifyPage(controller, presenter);
+            modifyPage.setVisible(true);
         });
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                JFrame requestListPage = new OthersExistingRequests();
-                requestListPage.setVisible(true);
-            }
+        viewButton.addActionListener(e -> {
+            setVisible(false);
+            JFrame requestListPage = new OthersExistingRequests(controller, presenter);
+            requestListPage.setVisible(true);
         });
         ArrayList<String> currentRequestIdList = presenter.fetchCurrentUserRequests(WelcomePage.currUserId);
-        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
 
         for (String request : currentRequestIdList) {
             String[] info = presenter.fetchRequestInformation(request);
             String product_name = info[0];
             String user_name = info[3];
             if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
-                user_name = "me";
+                listModel.addElement("Product " + product_name + ", User: me");
             }
-            listModel.addElement("Product " + product_name + ", User: "+ user_name);
         }
 
         ArrayList<String> historyRequestIdList = presenter.fetchRequestHistory(WelcomePage.currUserId);
-        DefaultListModel<String> listModel2 = new DefaultListModel<String>();
+        DefaultListModel<String> listModel2 = new DefaultListModel<>();
 
         for (String request : historyRequestIdList) {
             String[] info = presenter.fetchRequestInformation(request);
@@ -86,31 +70,28 @@ public class DistributorPage extends JFrame{
         existingList.setModel(listModel);
         historyList.setModel(listModel2);
 
-        historyList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String request = historyList.getSelectedValue().toString();
-                    int index = listModel2.indexOf(request);
-                    setVisible(false);
-                    HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index));
-                    historyPage.setVisible(true);
-                }
+        historyList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String request = historyList.getSelectedValue();
+                int index = listModel2.indexOf(request);
+                setVisible(false);
+                HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index),controller, presenter);
+                historyPage.setVisible(true);
             }
         });
-        existingList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    String request = existingList.getSelectedValue().toString();
-                    int index = listModel.indexOf(request);
-                    setVisible(false);
-                    DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index));
-                    detailspage.setVisible(true);
-                }
+        existingList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String request = existingList.getSelectedValue();
+                int index = listModel.indexOf(request);
+                setVisible(false);
+                DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index),controller, presenter);
+                detailspage.setVisible(true);
             }
         });
         if (WelcomePage.dark){
+            JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel, existingPanel,
+                    existingTextPanel, existingRequestPanel, historyPanel,
+                    historyTextPanel, historyListPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }

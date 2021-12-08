@@ -10,5 +10,4 @@ public interface RankInterface {
      */
     ArrayList<String> rankDistributors();
 
-    ArrayList<String> rateDistributors();
 }

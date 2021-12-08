@@ -1,8 +1,6 @@
 package Controller;
 
-import Controller.ServiceController;
 import UseCases.*;
-import UseCases.RequestManagerTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -92,10 +90,65 @@ public class ServiceControllerTest {
 
     //Interface Request
 
+    @Test
+    public void TestCreateLegalRequest() throws Exception {
+        sc.createRequestCheck("1000", "prod", "100", "100.00");
+        assertEquals(rm.getRequestFromId("1000").getProdName(), "prod");
+    }
 
+    @Test(expected = Exception.class)
+    public void TestCreateNoneExistingID() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createRequestCheck("1001", "prod", "100", "100.00");
+    }
 
+    @Test(expected = Exception.class)
+    public void TestCreateIllegalName() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createRequestCheck("1001", "测试", "100", "100.00");
+    }
 
+    @Test(expected = Exception.class)
+    public void TestCreateIllegalQuantity() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createRequestCheck("1001", "prod", "测试", "100.00");
+    }
 
+    @Test(expected = Exception.class)
+    public void TestCreateIllegalPrice() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createRequestCheck("1001", "prod", "100", "100.999");
+    }
+
+    @Test
+    public void TestCreateLegalCounterOffer() throws Exception {
+        sc.createCounterOfferCheck("1000", "prod", "100", "100.00");
+        assertEquals(rm.getRequestFromId("1000").getProdName(), "prod");
+    }
+
+    @Test(expected = Exception.class)
+    public void TestCounterOfferNoneExistingID() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createCounterOfferCheck("1001", "prod", "100", "100.00");
+    }
+
+    @Test(expected = Exception.class)
+    public void TestCounterOfferIllegalName() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createCounterOfferCheck("1001", "测试", "100", "100.00");
+    }
+
+    @Test(expected = Exception.class)
+    public void TestCounterOfferIllegalQuantity() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createCounterOfferCheck("1001", "prod", "测试", "100.00");
+    }
+
+    @Test(expected = Exception.class)
+    public void TestCounterOfferIllegalPrice() throws Exception {
+        pm.createFarmer("farmer", "address", 1000);
+        sc.createCounterOfferCheck("1001", "prod", "100", "100.999");
+    }
 
     //Others
 

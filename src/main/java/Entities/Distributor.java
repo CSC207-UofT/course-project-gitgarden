@@ -114,7 +114,7 @@ public class Distributor extends User implements IDistributor {
         this.ranking = ranking;
     }
 
-    public static class Momento {
+    public static class Memento {
 
         private String name;
         private String address;
@@ -123,7 +123,7 @@ public class Distributor extends User implements IDistributor {
         private double carbon;
         // private double ranking;
 
-        public Momento(String name, String address, double prefExposure, double prefSpeed, double prefCarbon) {
+        public Memento(String name, String address, double prefExposure, double prefSpeed, double prefCarbon) {
 
             this.name = name;
             this.address = address;
@@ -133,7 +133,7 @@ public class Distributor extends User implements IDistributor {
             // this.ranking = ranking;
         }
 
-        public Distributor.Momento getState() {
+        public Memento getState() {
             return this;
         }
 

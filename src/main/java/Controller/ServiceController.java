@@ -102,15 +102,17 @@ public class ServiceController implements ControllerInterface{
     /**
      * Creates a counteroffer if inputs are valid.
      * @param id ID of user creating counteroffer.
-     * @param requestID ID of request which is being countered.
+     * @param counteredRequestID ID of request which is being countered.
      * @param quantity New quantity in kg of product.
      * @param price New price per kg of product.
      */
     @Override
-    public void createCounterOfferCheck(String id, String requestID, String quantity, String price) throws Exception{
+    public void createCounterOfferCheck(String id, String counteredRequestID, String quantity, String price)
+            throws Exception{
         if (isValidQuantity(quantity)){
             if (isValidPrice(price)){
-                requestManager.createCounterOffer(uniqueRequestId(), id, requestID, Double.parseDouble(quantity), Double.parseDouble(price));
+                requestManager.createCounterOffer(uniqueRequestId(), id, counteredRequestID,
+                        Double.parseDouble(quantity), Double.parseDouble(price));
             } else {
                 throw new Exception("Your price input must have two decimal places.");
             }

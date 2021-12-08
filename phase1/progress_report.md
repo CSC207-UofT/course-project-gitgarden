@@ -26,7 +26,7 @@ We identified seven tasks for phase 1 we wanted to complete. The first names are
 
 ## Future Plan
 
-While we don't yet have a firm grasp of what we want to do in phase 2, we each have our piece of the code we've been implementing, and are likely to continue that way. For example, the Client.UI team will likely be improving the Client.UI, and any additional tweaking of a class will probably be done by whoever's worked on that class the most.
+While we don't yet have a firm grasp of what we want to do in phase 2, we each have our piece of the code we've been implementing, and are likely to continue that way. For example, the UI team will likely be improving the UI, and any additional tweaking of a class will probably be done by whoever's worked on that class the most.
 
 As after phase 0, we want to expand our code's handling of different scenarios and introduce features that make our program one which could be used in the real world. This may include user-reported statistics, functionality to block a user, improvement to our ranking system, and etc.
 

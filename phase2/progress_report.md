@@ -9,8 +9,8 @@
 - Testing: Andy + Onyx
 
 The User Interface has been worked on by **Patrick** and **Melaney**. 
-**Patrick** has been working more on updating the Client.UI to connect with the new Phase
-2 code, whereas **Melaney** has been implementing new Client.UI features, such as Dark Mode.
+**Patrick** has been working more on updating the UI to connect with the new Phase
+2 code, whereas **Melaney** has been implementing new UI features, such as Dark Mode.
 
 We had a substantial amount of refactoring to do with regards to data persistency,
 due to a Clean Architecture error in Phase 1 where the data access was placed in the
@@ -22,8 +22,8 @@ later in Phase 2.
 There was also substantial refactoring to do in the backend, mostly with regards to
 fixing Clean Architecture violations such as passing entities in our Controller.
 This refactoring was completed by **Onyx**. Improvements for a more realistic
-program (such as a way to trash requests) had to be implemented in the Client.UI as well as
-in the use cases/presenter/controller, resulting in heavy collaboration with the Client.UI
+program (such as a way to trash requests) had to be implemented in the UI as well as
+in the use cases/presenter/controller, resulting in heavy collaboration with the UI
 team.
 
 One new feature we decided to implement was a rating system for distributors.
@@ -48,13 +48,13 @@ the program was functional.
     * PR [#33](https://github.com/CSC207-UofT/course-project-gitgarden/pull/33): This pull request fixed Clean Architecture violations and dealt with transiency and StackOverflow errors issues that prevented the application from saving complex data types.
 
 - [@Pkyuan](https://github.com/Pkyuan)/[@Pkyuan2001](https://github.com/pkyuan2001): Phase2 grand refactoring 
-    * PR [#22](https://github.com/CSC207-UofT/course-project-gitgarden/pull/22): This pull request rewrote phase2 front end, fixed all of the Clean Architecture violations that were present in Client.UI. Added new features, pages and refactored some code.
+    * PR [#22](https://github.com/CSC207-UofT/course-project-gitgarden/pull/22): This pull request rewrote phase2 front end, fixed all of the Clean Architecture violations that were present in UI. Added new features, pages and refactored some code.
 
 - [@hMarc16](https://github.com/hMarc16): Phase 2 Persistency Rework and Javadoc Update 
     * PR [#38](https://github.com/CSC207-UofT/course-project-gitgarden/pull/38): This pull request made persistency compatible with Phase 2 changes in the backend. Customized the format that gets saved to json. Fixed many Clean Architecture violations.
 
-- [@mel10c](https://github.com/mel10c): Client.UI maintenance and accessibility features
-    * PR [#10](https://github.com/CSC207-UofT/course-project-gitgarden/pull/10): This pull request included the start up Client.UI skeleton pages for the program.
+- [@mel10c](https://github.com/mel10c): UI maintenance and accessibility features
+    * PR [#10](https://github.com/CSC207-UofT/course-project-gitgarden/pull/10): This pull request included the start up UI skeleton pages for the program.
     * PR [#40](https://github.com/CSC207-UofT/course-project-gitgarden/pull/40): This pull request is about the addition of the dark theme feature for accessibility purposes in Phase2.
 
 - [@AndyWang-JM](https://github.com/AndyWang-JM):

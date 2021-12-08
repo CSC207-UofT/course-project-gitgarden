@@ -26,8 +26,8 @@
         <img src="assets/Controller.png" alt="Controller">
     </details>
     <details>
-    <summary>Client.UI Packages</summary>
-        <img src="assets/UI.png" alt="Client.UI">
+    <summary>UI Packages</summary>
+        <img src="assets/UI.png" alt="UI">
     </details>
 </details>
 
@@ -50,7 +50,7 @@ Midway through phase 2, as our refactoring to adhere to Clean Architecture was o
 
 ## Usage of Clean Architecture
 
-Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in the Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the Client.UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
+Many of the changes in Phase 2 were made as a result of fixing Clean Architecture violations. For example, our database was in the Controller layer, and we moved it to the outermost layer, refactoring accordingly. As well, instead of passing Entities to the outer layers, we began passing Strings as data transfer objects, while having the use cases handle the conversion between types. We made sure that the Controller layer was not importing Entities, that the UI was not importing UseCase classes, and of course that no class imports concrete classes located in a more outward layer.
 
 
 ## Usage of SOLID Principles
@@ -136,7 +136,7 @@ of creating one in the higher-level class.
 
 ## Packaging Strategies
 
-Our packaging strategy has remained the same since phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: Client.UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
+Our packaging strategy has remained the same since phase 1: we are packaging by layer. However, to ensure clarity, we separated the Frameworks and Drivers layer into two packages: UI and DataBase. As before, our program isn't separated into clear features, and most classes are used in multiple parts of the program. We have too many 'inside' classes to use the inside/outside packaging strategy, and none of us could think of a logical division into components. It turned out our layers were relatively balanced in phase 2, reinforcing that packaging by layer was the right choice.
 
 ## Design Patterns
 
@@ -172,11 +172,11 @@ Our program has multiple features designed to provide choices in methods of use 
 
 #### 3: Simple and Intuitive Use
 
-The Client.UI for our program is minimal, with no distracting pictures or figures that might cause confusions. The user would be prompted to Sign In or Sign Up immediately after the program starts, which allows the user to get their work done on the fly. We tried our best to select the most user-friendly words with no jargon whatsoever, considering the diverge range of literacy and language skills in our tagged audience. The ranking functionality also ensures that the information lists would be ranged consistently with its importance. We also included multiple error throwers in Client.UI to ensure that our feedback prompts are effective and easy for the user to understand and fix.
+The UI for our program is minimal, with no distracting pictures or figures that might cause confusions. The user would be prompted to Sign In or Sign Up immediately after the program starts, which allows the user to get their work done on the fly. We tried our best to select the most user-friendly words with no jargon whatsoever, considering the diverge range of literacy and language skills in our tagged audience. The ranking functionality also ensures that the information lists would be ranged consistently with its importance. We also included multiple error throwers in UI to ensure that our feedback prompts are effective and easy for the user to understand and fix.
 
 #### 4: Perceptible Information
 
-We provided different colorschemes for our program Client.UI (light and dark modes), this helps to increase the legibility of our content. We also choose contrasting colors between the background and the texts for a better user experience. For all of the areas in which we would require user input, we provided clear and concise prompts to make sure the user knows how to navigate properly through our program.
+We provided different colorschemes for our program UI (light and dark modes), this helps to increase the legibility of our content. We also choose contrasting colors between the background and the texts for a better user experience. For all of the areas in which we would require user input, we provided clear and concise prompts to make sure the user knows how to navigate properly through our program.
 
 #### 5: Tolerance for Error
 
@@ -186,7 +186,7 @@ As stated before, we provided many error throwers with different prompt messages
 
 #### 6: Low Physical Effort
 
-The program Client.UI window is reasonably sized, so the users are able to view the contents of the program with minimum physical effort. All the pages have included necessary function keys to minimize repetitive actions.
+The program UI window is reasonably sized, so the users are able to view the contents of the program with minimum physical effort. All the pages have included necessary function keys to minimize repetitive actions.
 
 #### 7: Size and Space for Approach and Use
 

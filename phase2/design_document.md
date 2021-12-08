@@ -40,13 +40,11 @@
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.
 
-[picture of requestRoot]
+[requestRoot](assets/requestRoot.png)
 
 #### Fetching Data
 
 Midway through phase 2, as our refactoring to adhere to Clean Architecture was ongoing, we realized that we would need a way to fetch data (in the form of Strings) to be shown to the user. We contemplated placing a way to fetch data inside `ServiceController`, which was, at the time, the only class inside the Interface Adapters layer. Upon realizing that this would place too much responsibility in a single class, violating the Single Responsibility Principle, we concluded that the only Clean Architecture- and SOLID-adherent way to do this was to create a new class to perform this role. We named it `DataPresenter`: it fetches data from the appropriate place in the code, and has methods in which the Strings from the Use Case layer can be modified if necessary.
-
-[picture of DataPresenter]
 
 ## Usage of Clean Architecture
 
@@ -148,7 +146,7 @@ We are using the Factory Method design pattern in creating users and its subclas
 
 We are using the Template design pattern in createProfileCheck, a method in our Controller, to define the skeleton of our algorithm for creating users.
 
-[picture of createProfileCheck]
+[createProfileCheck](assets/createProfileCheck.png)
 
 #### Memento
 
@@ -157,6 +155,10 @@ We are using the Memento design pattern to allow users to undo modifications mad
 #### Dependency Injection
 
 We are using Dependency Injection with interfaces for our classes to further depend on abstractions rather than each others' details.
+
+#### Facade
+
+We are using the Facade design pattern in order to simplify the interface accessed in our main method.
 
 # Accessibility
 
@@ -208,7 +210,7 @@ Our team used discord as a texting and communication channel, however we took ad
 
     <img src="assets/branches.png" width="180">
 
-2. We have created over 40 pull requests throughout the duration of our project. We tried to leave descriptive comments for each pull request after receiving our phase 1 feedback. We also tried to use the emoji functions to indicate that a person had viewed the pull request. After 2-3 people had reviewed it, we would then merge or close the pull request.
+2. We have created over 50 pull requests throughout the duration of our project. We tried to leave descriptive comments for each pull request after receiving our phase 1 feedback. We also tried to use the emoji functions to indicate that a person had viewed the pull request. After 2-3 people had reviewed it, we would then merge or close the pull request.
 
     <img src="assets/pullReq.png" width="600">
 

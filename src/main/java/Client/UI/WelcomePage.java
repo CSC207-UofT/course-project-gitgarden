@@ -117,12 +117,23 @@ public class WelcomePage extends JFrame{
                     currUserId = controller.createProfileCheck(name,address, flag);
                     if (flag) {
                         controller.modifyFarmerCheck(currUserId, slider1_value, slider2_value, slider3_value, slider4_value);
+                      
+                        String[] state = {name, address, String.valueOf(slider1_value),
+                                    String.valueOf(slider2_value), String.valueOf(slider3_value),
+                                    String.valueOf(slider4_value)};
+                        ModifyPage.farmerStack.push(state);
+                      
                         FarmerPage farmerPage = new FarmerPage(controller, presenter);
                         setVisible(false);
                         farmerPage.setVisible(true);
                         setContentPane(new FarmerPage(controller, presenter).mainPanel);
                     } else {
                         controller.modifyDistributorCheck(currUserId, slider2_value, slider3_value, slider4_value);
+                      
+                        String[] state = {name, address, String.valueOf(slider2_value),
+                                    String.valueOf(slider3_value), String.valueOf(slider4_value)};
+                        ModifyPage.distributorStack.push(state);
+                      
                         DistributorPage distributorPage = new DistributorPage(controller, presenter);
                         setVisible(false);
                         distributorPage.setVisible(true);
@@ -131,6 +142,7 @@ public class WelcomePage extends JFrame{
                 }
                 catch (Exception profileException){
                     JOptionPane.showMessageDialog(null,profileException.getMessage());
+
                 }
             }
         });
@@ -157,6 +169,5 @@ public class WelcomePage extends JFrame{
                 }
             }
         });
-
     }
 }

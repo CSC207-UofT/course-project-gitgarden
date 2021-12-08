@@ -64,6 +64,9 @@ public class RequestPage extends JFrame{
             ProductNameInput.setBackground(new Color(0x1d3b53));
             priceInput.setBackground(new Color(0x1d3b53));
             quantityInput.setBackground(new Color(0x1d3b53));
+            ProductNameInput.setForeground(new Color(0xECEFF4));
+            priceInput.setForeground(new Color(0xECEFF4));
+            quantityInput.setForeground(new Color(0xECEFF4));
             createButton.setForeground(new Color(0x4C566A));
         }
 

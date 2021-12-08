@@ -6,6 +6,8 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
+import java.util.Stack;
+
 public class ModifyPage extends JFrame{
     private JPanel titlePanel;
     private JLabel titleText;
@@ -44,6 +46,10 @@ public class ModifyPage extends JFrame{
     private JPanel carbonTextPanel;
 
     public ModifyPage(ControllerInterface controller, IFetch presenter) {
+
+    public static Stack<String[]> farmerStack = new Stack<>();
+    public static Stack<String[]> distributorStack = new Stack<>();
+
         setTitle("modifyPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,27 +63,39 @@ public class ModifyPage extends JFrame{
             double slider4_value = CarbonSlider.getValue();
 
             if (WelcomePage.flag) {
-                try {
-                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    controller.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
-                            slider3_value, slider4_value);
-                    FarmerPage farmerPage = new FarmerPage(controller, presenter);
-                    setVisible(false);
-                    farmerPage.setVisible(true);
-                }
-                catch (Exception modifyException){
-                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
-                }
-            } else {
-                try {
-                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                    controller.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
-                    DistributorPage distributorPage = new DistributorPage(controller, presenter);
-                    setVisible(false);
-                    distributorPage.setVisible(true);
-                }
-                catch (Exception modifyException){
-                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
+                    try {
+                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                        sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                                slider3_value, slider4_value);
+
+                        String[] state = {newName, newAddress, String.valueOf(slider1_value),
+                                String.valueOf(slider2_value), String.valueOf(slider3_value),
+                                String.valueOf(slider4_value)};
+                        farmerStack.push(state);
+
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                    }
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
+                    }
+                } else {
+                    try {
+                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                        sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+
+                        String[] state = {newName, newAddress, String.valueOf(slider2_value),
+                                String.valueOf(slider3_value), String.valueOf(slider4_value)};
+                        distributorStack.push(state);
+
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                    }
+                    catch (Exception modifyException){
+                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
+                    }
                 }
             }
         });
@@ -114,6 +132,51 @@ public class ModifyPage extends JFrame{
                 setVisible(false);
                 distributorPage.setVisible(true);
             }
+        });
+
+        UndoButton.addActionListener(e -> {
+                if (WelcomePage.flag) {
+                    try {
+                        farmerStack.pop();
+                        String[] restore = farmerStack.pop();
+
+
+                        String id = WelcomePage.currUserId;
+
+                        sc.modifyUserCheck(id, restore[0], restore[1]);
+                        sc.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                                Double.parseDouble(restore[4]), Double.parseDouble(restore[5]));
+
+                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                        UndoButton.requestFocusInWindow();
+
+                        FarmerPage farmerPage = new FarmerPage();
+                        setVisible(false);
+                        farmerPage.setVisible(true);
+                    } catch (Exception undoException){
+                        JOptionPane.showMessageDialog(null, undoException.getMessage());
+                    }
+                } else {
+                    try {
+                        distributorStack.pop();
+                        String[] restore = distributorStack.pop();
+
+                        String id = WelcomePage.currUserId;
+
+                        sc.modifyUserCheck(id, restore[0], restore[1]);
+                        sc.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                                Double.parseDouble(restore[4]));
+
+                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                        UndoButton.requestFocusInWindow();
+
+                        DistributorPage distributorPage = new DistributorPage();
+                        setVisible(false);
+                        distributorPage.setVisible(true);
+                    } catch (Exception undoException){
+                        JOptionPane.showMessageDialog(null, undoException.getMessage());
+                    }
+                }
         });
     }
 }

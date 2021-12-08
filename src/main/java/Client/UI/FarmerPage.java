@@ -108,6 +108,8 @@ public class FarmerPage extends JFrame{
             }
             existingList.setBackground(new Color(0x1d3b53));
             historyList.setBackground(new Color(0x1d3b53));
+            existingList.setForeground(new Color(0xECEFF4));
+            historyList.setForeground(new Color(0xECEFF4));
             modifyButton.setForeground(new Color(0x4C566A));
             viewButton.setForeground(new Color(0x4C566A));
             createRequest.setForeground(new Color(0x4C566A));

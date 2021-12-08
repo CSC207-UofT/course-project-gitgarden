@@ -15,7 +15,7 @@ public class RequestPage extends JFrame{
     private JPanel textPanel;
     private JPanel inputPanel;
     private JPanel namePanel;
-    private JPanel quanInputPanel;
+    private JPanel quantityInputPanel;
     private JPanel pricePanel;
     private JPanel nameInputPanel;
     private JPanel quantityPanel;
@@ -56,7 +56,7 @@ public class RequestPage extends JFrame{
 
         if (WelcomePage.dark){
             JPanel[] panelList = {mainPanel, titlePanel, middlePanel, buttonPanel, textPanel, inputPanel,
-                    namePanel, quanInputPanel, pricePanel, nameInputPanel, quantityPanel,
+                    namePanel, quantityInputPanel, pricePanel, nameInputPanel, quantityPanel,
                     priceInputPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));

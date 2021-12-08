@@ -13,6 +13,7 @@ import static java.lang.Math.round;
 
 public class RankingManager implements RankInterface {
 
+
     private static final double SINGLE_RANKING = 2.5;
 
     private final String requestID;
@@ -25,13 +26,14 @@ public class RankingManager implements RankInterface {
 
     /**
      * Ranks distributors who have countered a request based on farmer preferences.
+     *
      * @return The ranked list of distributors.
      */
     @Override
-    public ArrayList<String> rankDistributors(){
+    public ArrayList<String> rankDistributors() {
         ArrayList<IDistributor> rankList = distributorsFromRequestId(requestID);
 
-        for (IDistributor dist: rankList){
+        for (IDistributor dist : rankList) {
             double priceRanking = calcRanking(dist, rankList, "price");
             double exposureRanking = calcRanking(dist, rankList, "exposure");
             double speedRanking = calcRanking(dist, rankList, "speed");
@@ -46,7 +48,9 @@ public class RankingManager implements RankInterface {
     private double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
         ProfileInterface pm = new ProfileManager();
         ArrayList<Double> critList = new ArrayList<>();
-        for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
+        for (IDistributor dist : rankList) {
+            critList.add(getCriterion(dist, crit));
+        }
         Collections.sort(critList);
         IFarmer farmer = (IFarmer) pm.getUserFromId(farmerID);
         Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
@@ -58,7 +62,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    private double getCriterion(IDistributor dist, String criterion){
+    private double getCriterion(IDistributor dist, String criterion) {
         switch (criterion) {
             case "exposure":
                 return dist.getExposure();
@@ -89,19 +93,19 @@ public class RankingManager implements RankInterface {
         RequestInterface requestManager = new RequestManager();
         ArrayList<IDistributor> allDistributors = new ArrayList<>();
         IRequest request = requestManager.getRequestFromId(requestID);
-        for (IRequest counteroffer: request.getCounteroffers()){
+        for (IRequest counteroffer : request.getCounteroffers()) {
             allDistributors.add((IDistributor) counteroffer.getUser());
         }
         return allDistributors;
     }
 
-    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList){
+    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList) {
         ArrayList<String> allIds = new ArrayList<>();
         RequestInterface requestManager = new RequestManager();
         IRequest request = requestManager.getRequestFromId(requestID);
-        for (IDistributor dist: rankList){
-            for (IRequest counteroffer: request.getCounteroffers()){
-                if (counteroffer.getUser().equals(dist)){
+        for (IDistributor dist : rankList) {
+            for (IRequest counteroffer : request.getCounteroffers()) {
+                if (counteroffer.getUser().equals(dist)) {
                     allIds.add(String.valueOf(counteroffer.getRequestId()));
                 }
             }
@@ -110,52 +114,51 @@ public class RankingManager implements RankInterface {
         return allIds;
     }
 
-    private String productFromRequestId(String requestID){
+    private String productFromRequestId(String requestID) {
         RequestInterface requestManager = new RequestManager();
         IRequest request = requestManager.getRequestFromId(requestID);
         return request.getProdName();
     }
 
     /**
-     *Rating Structure
+     * Rating Structure
      */
-    public static double roundHundredth(double value){
+    public static double roundHundredth(double value) {
         BigDecimal bigDecimal = new BigDecimal(value);
         return bigDecimal.setScale(2, RoundingMode.UP).doubleValue();
     }
 
-    public static boolean isLegal(double value){
+    public static boolean isLegal(double value) {
         return (1 <= value && value <= 10);
     }
 
-    public static Double getHistoryAvg(IDistributor user){
+    public static Double getHistoryAvg(IDistributor user) {
         ArrayList<IRequest> temp = user.getOfferHistory();
         int value = 0;
         double count = 0;
-        for(IRequest offer: temp){
-            if (isLegal(offer.getRating())){
+        for (IRequest offer : temp) {
+            if (isLegal(offer.getRating())) {
                 value += offer.getRating();
                 count += 1.0;
             }
         }
 
-        if (count != 0){
+        if (count != 0) {
             return roundHundredth(value / count);
-        }
-        else{
+        } else {
             return 0.00d;
         }
     }
 
-    public ArrayList<String> rateDistributors(){
+    public ArrayList<String> rateDistributors() {
         ArrayList<IDistributor> distributors = distributorsFromRequestId(requestID);
         IDistributor[] temp = new IDistributor[distributors.size()];
         distributors.toArray(temp);
 
-        for (int i = 0; i < distributors.toArray().length - 1; i++){
+        for (int i = 0; i < distributors.toArray().length - 1; i++) {
             int min = i;
             for (int j = i + 1; j < distributors.toArray().length - 1; j++) {
-                if (getHistoryAvg(temp[i]) > getHistoryAvg(temp[min])){
+                if (getHistoryAvg(temp[i]) > getHistoryAvg(temp[min])) {
                     min = j;
                 }
             }

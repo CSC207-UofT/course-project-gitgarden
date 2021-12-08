@@ -52,7 +52,7 @@ The 8 classes in the skeleton program splitted between 7 group members. The firs
 
 The test cases were done majorly by:
 
-1. ServiceControllerTest: **Andy** + Onyx
+1. Controller.ServiceControllerTest: **Andy** + Onyx
 2. Entities.RequestTest: **Andy** + Divit
 3. Entities.UserTest: **Andy** + Divit
 4. Entities.FarmerTest: **Andy** + Divit

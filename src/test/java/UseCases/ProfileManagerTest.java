@@ -1,11 +1,11 @@
 package UseCases;
 
-import Entities.*;
-import org.junit.Assert;
+import Entities.Farmer;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -36,7 +36,7 @@ public class ProfileManagerTest {
     public void testModifyFarmer() {
         pm.createFarmer("temp", "address", 0);
         pm.modifyFarmer("0", 1, 2, 3, 4);
-        assertEquals(pm.getFarmerList().get(0).getPrefCarbon(), 1);
+        assertEquals(pm.getFarmerList().get(0).getPrefCarbon(), 1, 0.01);
     }
 
     @Test

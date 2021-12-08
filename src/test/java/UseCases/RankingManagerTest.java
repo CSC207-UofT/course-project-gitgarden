@@ -1,16 +1,12 @@
 package UseCases;
-import Controller.ServiceController;
-import Entities.*;
-import UseCases.RankingManager;
 
+import Controller.ServiceController;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
 
-    public class RankingManagerTest {
+public class RankingManagerTest {
         ServiceController sc;
         ProfileManager pm;
         RequestManager rm;

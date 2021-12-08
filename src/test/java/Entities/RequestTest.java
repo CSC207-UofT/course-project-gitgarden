@@ -1,12 +1,9 @@
 package Entities;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.IRequest;
-import Entities.Request;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class RequestTest {
     Farmer farmer1 = new Farmer("tempName1", "tempAddress1", 0);

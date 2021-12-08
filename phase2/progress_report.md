@@ -49,6 +49,7 @@ the program was functional.
 
 - [@Pkyuan](https://github.com/Pkyuan)/[@Pkyuan2001](https://github.com/pkyuan2001): Phase2 grand refactoring 
     * PR [#22](https://github.com/CSC207-UofT/course-project-gitgarden/pull/22): This pull request rewrote phase2 front end, fixed all of the Clean Architecture violations that were present in UI. Added new features, pages and refactored some code.
+    * PR [#45](https://github.com/CSC207-UofT/course-project-gitgarden/pull/45): This pull request implemented dependency injection, and includes major bug fixes in ui, and data persistency. Also refactored a lot of code and removed unecessary functions
 
 - [@hMarc16](https://github.com/hMarc16): Phase 2 Persistency Rework and Javadoc Update 
     * PR [#38](https://github.com/CSC207-UofT/course-project-gitgarden/pull/38): This pull request made persistency compatible with Phase 2 changes in the backend. Customized the format that gets saved to json. Fixed many Clean Architecture violations.

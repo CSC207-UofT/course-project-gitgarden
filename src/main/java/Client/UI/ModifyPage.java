@@ -44,11 +44,11 @@ public class ModifyPage extends JFrame{
     private JPanel exposureTextPanel;
     private JPanel speedTextPanel;
     private JPanel carbonTextPanel;
-
-    public ModifyPage(ControllerInterface controller, IFetch presenter) {
-
+    private JButton UndoButton;
     public static Stack<String[]> farmerStack = new Stack<>();
     public static Stack<String[]> distributorStack = new Stack<>();
+
+    public ModifyPage(ControllerInterface controller, IFetch presenter) {
 
         setTitle("modifyPage");
         setContentPane(mainPanel);
@@ -64,8 +64,8 @@ public class ModifyPage extends JFrame{
 
             if (WelcomePage.flag) {
                     try {
-                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        sc.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                        controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                        controller.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
                                 slider3_value, slider4_value);
 
                         String[] state = {newName, newAddress, String.valueOf(slider1_value),
@@ -73,7 +73,7 @@ public class ModifyPage extends JFrame{
                                 String.valueOf(slider4_value)};
                         farmerStack.push(state);
 
-                        FarmerPage farmerPage = new FarmerPage();
+                        FarmerPage farmerPage = new FarmerPage(controller, presenter);
                         setVisible(false);
                         farmerPage.setVisible(true);
                     }
@@ -82,14 +82,14 @@ public class ModifyPage extends JFrame{
                     }
                 } else {
                     try {
-                        sc.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        sc.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+                        controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                        controller.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
 
                         String[] state = {newName, newAddress, String.valueOf(slider2_value),
                                 String.valueOf(slider3_value), String.valueOf(slider4_value)};
                         distributorStack.push(state);
 
-                        DistributorPage distributorPage = new DistributorPage();
+                        DistributorPage distributorPage = new DistributorPage(controller, presenter);
                         setVisible(false);
                         distributorPage.setVisible(true);
                     }
@@ -97,7 +97,7 @@ public class ModifyPage extends JFrame{
                         JOptionPane.showMessageDialog(null, modifyException.getMessage());
                     }
                 }
-            }
+
         });
         PriceSlider.setPaintTicks(true);
         PriceSlider.setMinorTickSpacing(10);
@@ -143,14 +143,14 @@ public class ModifyPage extends JFrame{
 
                         String id = WelcomePage.currUserId;
 
-                        sc.modifyUserCheck(id, restore[0], restore[1]);
-                        sc.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                        controller.modifyUserCheck(id, restore[0], restore[1]);
+                        controller.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
                                 Double.parseDouble(restore[4]), Double.parseDouble(restore[5]));
 
                         JOptionPane.showMessageDialog(null, "Your changes have been restored.");
                         UndoButton.requestFocusInWindow();
 
-                        FarmerPage farmerPage = new FarmerPage();
+                        FarmerPage farmerPage = new FarmerPage(controller, presenter);
                         setVisible(false);
                         farmerPage.setVisible(true);
                     } catch (Exception undoException){
@@ -163,14 +163,14 @@ public class ModifyPage extends JFrame{
 
                         String id = WelcomePage.currUserId;
 
-                        sc.modifyUserCheck(id, restore[0], restore[1]);
-                        sc.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                        controller.modifyUserCheck(id, restore[0], restore[1]);
+                        controller.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
                                 Double.parseDouble(restore[4]));
 
                         JOptionPane.showMessageDialog(null, "Your changes have been restored.");
                         UndoButton.requestFocusInWindow();
 
-                        DistributorPage distributorPage = new DistributorPage();
+                        DistributorPage distributorPage = new DistributorPage(controller, presenter);
                         setVisible(false);
                         distributorPage.setVisible(true);
                     } catch (Exception undoException){

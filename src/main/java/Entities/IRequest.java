@@ -11,12 +11,6 @@ public interface IRequest {
     void add(IRequest co);
 
     /**
-     * Removes a counteroffer from the request.
-     * @param co The counteroffer to be removed.
-     */
-    void remove(IRequest co);
-
-    /**
      * Gets this request's counteroffers.
      * @return the current counteroffers to the request.
      */

@@ -28,10 +28,8 @@ public class RequestTest {
 
     @Test(timeout = 50)
     public void TestCounterOffer() {
-        request1.add(request2);
         request1.add(counteroffer1);
         request1.add(counteroffer2);
-        request1.remove(request2);
         assertTrue(request1.getCounteroffers().contains(counteroffer1)
                 && request1.getCounteroffers().contains(counteroffer2));
     }

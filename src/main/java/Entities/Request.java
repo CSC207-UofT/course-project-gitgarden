@@ -31,14 +31,6 @@ public class Request implements IRequest{
     }
 
     /**
-     * Removes a counteroffer from the request.
-     * @param co The counteroffer to be removed.
-     */
-    public void remove(IRequest co){
-        this.counteroffers.remove(co);
-    }
-
-    /**
      * Gets this request's counteroffers.
      * @return the current counteroffers to the request.
      */

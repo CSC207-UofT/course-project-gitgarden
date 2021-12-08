@@ -1,14 +1,20 @@
-import Entities.*;
-import Entities.Request;
-import org.junit.Test;
-import java.util.ArrayList;
-import static org.junit.Assert.assertEquals;
+package Entities;
 
-public class FarmerTest {
+import Entities.*;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class UserTest {
+    User temp = new User("wrongName", "wrongAddress", 10000000);
+
     User farmer1 = new Farmer("tempName2", "tempAddress1", 0);
     User farmer2 = new Farmer("tempName2", "tempAddress2", 0);
-    Distributor distributor1 = new Distributor("distributorName1", "distributorAddress1", 0);
-    Distributor distributor2 = new Distributor("distributorName2", "distributorAddress2", 0);
+    User distributor1 = new Distributor("distributorName1", "distributorAddress1", 0);
+    User distributor2 = new Distributor("distributorName2", "distributorAddress2", 0);
     IRequest request1 = new Request(0, farmer1, "request_name_1", 100, 10, null);
     IRequest request2 = new Request(1, farmer2, "request_name_2", 200, 20, null);
     IRequest offer1 = new Request(2, distributor1, "offer_name3", 300, 3.00, request1);
@@ -43,11 +49,33 @@ public class FarmerTest {
     }
 
     @Test(timeout = 50)
-    public void TestGetOffer_history(){
+    public void TestGetOfferHistory(){
         farmer1.addOffer(offer1);
         ArrayList<IRequest> temp = new ArrayList<>();
         temp.add(offer1);
         assertEquals(temp, farmer1.getOfferHistory());
     }
 
+    @Test(timeout = 50)
+    public void TestGetUserName() {
+        temp.setUserName("tempName");
+        assertEquals("tempName", temp.getUserName());
+    }
+
+    @Test(timeout = 50)
+    public void TestGetUserAddress() {
+        temp.setUserAddress("tempAddress");
+        assertEquals("tempAddress", temp.getUserAddress());
+    }
+
+    @Test(timeout = 50)
+    public void TestGetUserId() {
+        assertTrue(10000000 <= farmer1.getUserId() && farmer2.getUserId() <= 99999999);
+    }
+
+    @Test(timeout = 50)
+    public void TestToString() {
+        assertEquals("Name: wrongName\n" +
+                "Address: wrongAddress", temp.toString());
+    }
 }

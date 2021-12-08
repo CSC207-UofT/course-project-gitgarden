@@ -46,7 +46,7 @@ public class JsonProvider implements DataAccessInterface {
         }
 
 
-        //This writes farmer names to json
+        //This writes farmer names to json files
         try(FileWriter writer = new FileWriter("farmers.json")){
             JsonAdapter ja = new JsonAdapter();
             writer.write(gson.toJson(ja.farmerAdapter()));
@@ -56,7 +56,7 @@ public class JsonProvider implements DataAccessInterface {
         }
         
         
-        //This writes distributor modify values to json
+        //This writes distributor modify values to json files
         try(FileWriter writer = new FileWriter("distMod.json")){
             JsonAdapter ja = new JsonAdapter();
             writer.write(gson.toJson(ja.modDistAdapter()));

@@ -50,7 +50,7 @@ The controller (ServiceController) takes in the inputs of the UI and does one of
     * Prompt the user to input again with an error message stating why the input was not accepted
 
 ## Classes Specification
-The UI classes are:
+The UI classes are (new classes added in Phase 2 are emboldened):
 - CounterOfferPage
 - DetailsPage
 - DistributorPage
@@ -74,10 +74,10 @@ The Controller classes are:
 
 The Use Case classes are:
 - **DataAccessInterface**
-- ProfileInterface
+- **ProfileInterface**
 - ProfileManager
 - RankingManager
-- RankInterface
+- **RankInterface**
 - **RequestInterface**
 - **RequestManager**
 

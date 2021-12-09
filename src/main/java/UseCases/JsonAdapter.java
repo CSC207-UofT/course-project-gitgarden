@@ -138,12 +138,17 @@ public class JsonAdapter {
                         int rootId = rm.rootId(co);
                         user = rm.getRequestFromId(String.valueOf(rootId)).getUser();
                     }
-                    c[1] = String.valueOf(user.getUserId());
-                    IRequest prev = rm.getRequestFromId(co).getPrevious();
-                    c[2] = String.valueOf(prev.getRequestId());
-                    c[3] = String.valueOf(rm.getRequestFromId(co).getProdQuantity());
-                    c[4] = String.valueOf(rm.getRequestFromId(co).getProdPricePerKg());
-                    c[5] = String.valueOf(rm.getRequestFromId(co).getAccepted());
+                    try {
+                        c[1] = String.valueOf(user.getUserId());
+                        IRequest prev = rm.getRequestFromId(co).getPrevious();
+                        c[2] = String.valueOf(prev.getRequestId());
+                        c[3] = String.valueOf(rm.getRequestFromId(co).getProdQuantity());
+                        c[4] = String.valueOf(rm.getRequestFromId(co).getProdPricePerKg());
+                        c[5] = String.valueOf(rm.getRequestFromId(co).getAccepted());
+                    } catch (NullPointerException ignored) {
+
+                    }
+
                 }
                 coArray.add(c);
             }

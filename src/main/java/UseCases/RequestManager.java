@@ -24,10 +24,10 @@ public class RequestManager implements RequestInterface {
     public void createRequest(int requestID, String id, String product, Double quantity, Double price, boolean accepted) {
         IUser user = pm.getUserFromId(id);
         IRequest request = new Request(requestID, user, product, quantity, price, null);
-        if(accepted){
+        if (accepted) {
             allOffers.add(request);
-        }
-        else {
+            user.addOffer(request);
+        } else {
             user.addRequest(request);
             allActiveRequests.add(request);
         }
@@ -48,10 +48,7 @@ public class RequestManager implements RequestInterface {
         IRequest request = getRequestFromId(counteredRequestID);
         IRequest co = new Request(requestID, user, request.getProdName(), quantity, price, request);
         request.add(co);
-        if (request.getPrevious() != null) {
-            deleteCurrent(request);
-        }
-        addCurrent(co);
+        user.addRequest(co);
         allActiveRequests.add(co);
     }
 
@@ -64,10 +61,8 @@ public class RequestManager implements RequestInterface {
     public void acceptRequest(String requestID, String userID) {
         IRequest request = getRequestFromId(requestID);
         IUser user = pm.getUserFromId(userID);
-        //Call Rating System for current user
         request.getUser().addOffer(request);
         user.addOffer(request);
-        //call Rating System for previous user
         if (request.getPrevious() != null) {
             deleteCurrent(request);
         }
@@ -171,17 +166,6 @@ public class RequestManager implements RequestInterface {
     public int rootId(String requestId) {
         IRequest cur = getRequestFromId(requestId);
         return requestRoot(cur).getRequestId();
-    }
-
-    /**
-     * Deletes this request from the farmer and distributor's current requests.
-     *
-     * @param request The request to be deleted.
-     */
-    private void addCurrent(IRequest request) {
-        IUser previousUser = request.getPrevious().getUser();
-        request.getUser().addRequest(request);
-        previousUser.addRequest(request);
     }
 
     /**

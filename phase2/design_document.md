@@ -48,6 +48,7 @@ Next, in the beginning, we were going to use the application Vaadin to create ou
 too many files in the starter’s code and we would have to go through a lot of dependency files to everything from our
 repo. After switching to GUI, things became much easier to work with.
 
+During phase 2, we had an optional task of implementing Momento design pattern. After successfully completing our main
 
 #### Composite Design Pattern
 

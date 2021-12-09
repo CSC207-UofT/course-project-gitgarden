@@ -44,6 +44,7 @@ We decided to use json files to keep the data persistency of our code. This is b
 persistency, json is the most intuitive method to carry out this task. We chose Gson because the examples and code are
 easy to understand and it does the job as expected.
 
+Next, in the beginning, we were going to use the application Vaadin to create our user interface, but there were way
 
 #### Composite Design Pattern
 

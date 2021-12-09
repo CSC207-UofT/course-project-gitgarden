@@ -49,6 +49,7 @@ too many files in the starter’s code and we would have to go through a lot of 
 repo. After switching to GUI, things became much easier to work with.
 
 During phase 2, we had an optional task of implementing Momento design pattern. After successfully completing our main
+tasks for phase 2 (adhering our code to clean architecture), we had an opportunity to add a functionality to our
 
 #### Composite Design Pattern
 

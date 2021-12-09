@@ -127,7 +127,7 @@ public class JsonAdapter {
         for (int id : ids) {
             ArrayList<String> cos = rm.coFromId(String.valueOf(id));
             if (!cos.isEmpty()) {
-                String[] c = new String[5];
+                String[] c = new String[6];
                 for (String co : cos) {
                     c[0] = co;
                     IUser user = rm.getRequestFromId(co).getUser();
@@ -140,6 +140,7 @@ public class JsonAdapter {
                     c[2] = String.valueOf(prev.getRequestId());
                     c[3] = String.valueOf(rm.getRequestFromId(co).getProdQuantity());
                     c[4] = String.valueOf(rm.getRequestFromId(co).getProdPricePerKg());
+                    c[5] = String.valueOf(rm.getRequestFromId(co).getAccepted());
                 }
                 coArray.add(c);
             }

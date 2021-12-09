@@ -93,7 +93,7 @@ public class ServiceControllerTest {
     @Test
     public void TestCreateLegalRequest() throws Exception {
         sc.createRequestCheck("1000", "prod", "100", "100.00");
-        assertEquals(rm.getRequestFromId("1000").getProdName(), "prod");
+        assertEquals(String.valueOf(rm.getRequestFromId("1000").getProdName()), "prod");
     }
 
     @Test(expected = Exception.class)
@@ -122,8 +122,8 @@ public class ServiceControllerTest {
 
     @Test
     public void TestCreateLegalCounterOffer() throws Exception {
-        sc.createCounterOfferCheck("1000", "prod", "100", "100.00");
-        assertEquals(rm.getRequestFromId("1000").getProdName(), "prod");
+        sc.createCounterOfferCheck("1000", "2000", "100", "100.00");
+        assertEquals(String.valueOf(rm.getRequestFromId("1000").getPrevious().getRequestId()), "2000");
     }
 
     @Test(expected = Exception.class)

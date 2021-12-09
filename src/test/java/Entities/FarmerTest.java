@@ -45,13 +45,6 @@ public class FarmerTest {
     }
 
     @Test(timeout = 50)
-    public void TestRemoveOffer(){
-        farmer1.addOffer(offer1);
-        farmer1.addOffer(offer2);
-        assertEquals(offer2, farmer1.getOfferHistory().get(0));
-    }
-
-    @Test(timeout = 50)
     public void TestGetOffer_history(){
         farmer1.addOffer(offer1);
         ArrayList<IRequest> temp = new ArrayList<>();

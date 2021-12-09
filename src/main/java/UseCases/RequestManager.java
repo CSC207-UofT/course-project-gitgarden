@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class RequestManager implements RequestInterface{
     public static ArrayList<IRequest> allActiveRequests = new ArrayList<>();
     public static ArrayList<IRequest> allOffers = new ArrayList<>();
-    public static final ProfileInterface pm = new ProfileManager();
+    private static final ProfileInterface pm = new ProfileManager();
 
     /**
      * Creates a request.
@@ -184,6 +184,7 @@ public class RequestManager implements RequestInterface{
                 return request;
             }
         }
+        System.out.println("Request is not assigned properly.");
         return new Request(0, null, null, 0, 0, null);
     }
 

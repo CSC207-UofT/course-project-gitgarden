@@ -6,7 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
-public class CounterOfferPage extends JFrame{
+public class CounterOfferPage extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel buttonPanel;
@@ -26,28 +26,26 @@ public class CounterOfferPage extends JFrame{
     private JButton createButton;
 
     public CounterOfferPage(String request, ControllerInterface controller, IFetch presenter) {
-
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
 
         createButton.addActionListener(e -> {
             String price = priceInput.getText();
             String quantity = quantityInput.getText();
             try {
-                controller.createCounterOfferCheck(request, WelcomePage.currUserId, quantity, price);
+                controller.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
                 DistributorPage distributorPage = new DistributorPage(controller, presenter);
                 setVisible(false);
                 distributorPage.setVisible(true);
                 setContentPane(new DistributorPage(controller, presenter).mainPanel);
-            }
-            catch (Exception counterOfferException){
+            } catch (Exception counterOfferException) {
                 JOptionPane.showMessageDialog(null, counterOfferException.getMessage());
             }
         });
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, buttonPanel, middlePanel, textPanel, priceTextPanel,
                     quantityTextPanel, inputPanel, priceInputPanel, quantityInputPanel};
             for (JPanel p : panelList) {

@@ -36,13 +36,13 @@ public class ProfileManager implements ProfileInterface{
     /**
      * Modifies user attributes.
      * @param id The ID of the user to be modified.
-     * @param newName The new name of the user.
+     * @param name The new name of the user.
      * @param address The new address of the user.
      */
     @Override
-    public void modifyUser(String id, String newName, String address){
+    public void modifyUser(String id, String name, String address){
         IUser user = getUserFromId(id);
-        user.setUserName(newName);
+        user.setUserName(name);
         user.setUserAddress(address);
     }
 

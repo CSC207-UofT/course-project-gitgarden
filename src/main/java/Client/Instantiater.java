@@ -18,14 +18,9 @@ public class Instantiater implements Facade{
      * Build to be used to run the program.
      */
     public void build(){
+        JsonProvider jp = new JsonProvider();
         try {
-            JsonProvider jp = new JsonProvider();
-            jp.loadFarmer("farmers.json");
-            jp.loadDistributor("distributors.json");
-            jp.modifyFarmer("farmerMod.json");
-            jp.modifyDistributor("distMod.json");
-            jp.loadRequests("requests.json");
-            jp.loadCounterOffers("counters.json");
+            jp.loadAll();
         } catch (FileNotFoundException e){
             System.out.println("First time running, there's nothing to be read yet!");
         }
@@ -35,9 +30,6 @@ public class Instantiater implements Facade{
         IFetch dp = new DataPresenter(pm, rm);
         WelcomePage welcomePage = new WelcomePage(sc, dp);
         welcomePage.setVisible(true);
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            JsonProvider jp = new JsonProvider();
-            jp.writeUsers();
-        }));
+        Runtime.getRuntime().addShutdownHook(new Thread(jp::writeUsers));
     }
 }

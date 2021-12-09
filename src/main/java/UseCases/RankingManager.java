@@ -1,12 +1,9 @@
 package UseCases;
 
-import Entities.Distributor;
 import Entities.IDistributor;
 import Entities.IFarmer;
 import Entities.IRequest;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import static java.lang.Math.round;

@@ -17,7 +17,7 @@ public class WelcomePage extends JFrame{
     private JTextField nameInput;
     private JLabel nameText;
     private JButton signInButton;
-    private JPanel sinUpPanel;
+    private JPanel signUpPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
     private JLabel addressText;
@@ -47,7 +47,7 @@ public class WelcomePage extends JFrame{
     private JSlider slider2;
     private JSlider slider3;
     private JSlider slider4;
-    private JLabel userTest;
+    private JLabel userText;
     private JCheckBox darkCheckBox;
     private JPanel priceTextPanel;
     private JPanel exposureTextPanel;
@@ -60,7 +60,7 @@ public class WelcomePage extends JFrame{
     public static Boolean flag;
     public static String currUserId = "";
     public static Boolean dark = false;
-    private final JPanel[] panelList = {titlePanel, signInPanel, textPanel, inputPanel, signInButtonPanel, sinUpPanel,
+    private final JPanel[] panelList = {titlePanel, signInPanel, textPanel, inputPanel, signInButtonPanel, signUpPanel,
             namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel, priceInputPanel, textsPanel,
             inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,

@@ -96,6 +96,14 @@ public class JsonProvider implements DataAccessInterface {
         }
     }
 
+    public void loadAll() throws FileNotFoundException {
+        loadFarmer("farmers.json");
+        loadDistributor("distributors.json");
+        modifyFarmer("farmerMod.json");
+        modifyDistributor("distMod.json");
+        loadRequests("requests.json");
+        loadCounterOffers("counters.json");
+    }
 
     /**
      * Create Farmers based on the json file read

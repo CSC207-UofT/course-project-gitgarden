@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Request implements IRequest{
 
     private final int requestId;
-    private IUser user;
+    private final IUser user;
     private final String prodName;
     private final double prodQuantity;
     private final double prodPricePerKg;
@@ -22,29 +22,12 @@ public class Request implements IRequest{
         this.previous = previous;
     }
 
-    public Request(int id, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
-        this.requestId = id;
-        this.prodName = pName;
-        this.prodQuantity = pQuantity;
-        this.prodPricePerKg = pPricePerKg;
-        this.counteroffers = new ArrayList<>();
-        this.previous = previous;
-    }
-
     /**
      * Adds a counteroffer to the request.
      * @param co The counteroffer to be added.
      */
     public void add(IRequest co){
         this.counteroffers.add(co);
-    }
-
-    /**
-     * Removes a counteroffer from the request.
-     * @param co The counteroffer to be removed.
-     */
-    public void remove(IRequest co){
-        this.counteroffers.remove(co);
     }
 
     /**

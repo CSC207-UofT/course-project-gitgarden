@@ -1,12 +1,9 @@
 package Entities;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.IRequest;
-import Entities.Request;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class RequestTest {
     Farmer farmer1 = new Farmer("tempName1", "tempAddress1", 0);
@@ -31,10 +28,8 @@ public class RequestTest {
 
     @Test(timeout = 50)
     public void TestCounterOffer() {
-        request1.add(request2);
         request1.add(counteroffer1);
         request1.add(counteroffer2);
-        request1.remove(request2);
         assertTrue(request1.getCounteroffers().contains(counteroffer1)
                 && request1.getCounteroffers().contains(counteroffer2));
     }

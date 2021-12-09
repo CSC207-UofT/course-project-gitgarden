@@ -1,9 +1,7 @@
 package Controller;
 
 import UseCases.ProfileInterface;
-import UseCases.ProfileManager;
 import UseCases.RequestInterface;
-import UseCases.RequestManager;
 
 import java.util.ArrayList;
 

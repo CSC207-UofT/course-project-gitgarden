@@ -1,9 +1,5 @@
 package Entities;
 
-import Entities.Distributor;
-import Entities.Farmer;
-import Entities.IRequest;
-import Entities.Request;
 import org.junit.Test;
 
 public class DistributorTest {

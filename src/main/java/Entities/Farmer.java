@@ -78,54 +78,5 @@ public class Farmer extends User implements IFarmer{
     public double getPrefCarbon(){
         return prefCarbon;
     }
-
-    public static class Memento {
-
-        private final String name;
-        private final String address;
-
-        private final double prefPrice;
-        private final double prefExposure;
-        private final double prefSpeed;
-        private final double prefCarbon;
-
-        public Memento(String name, String address, double prefPrice, double prefExposure, double prefSpeed,
-                       double prefCarbon) {
-            this.name = name;
-            this.address = address;
-            this.prefCarbon = prefCarbon;
-            this.prefPrice = prefPrice;
-            this.prefExposure = prefExposure;
-            this.prefSpeed = prefSpeed;
-        }
-
-        public Memento getState() {
-            return this;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public double getCarbon() {
-            return prefCarbon;
-        }
-
-        public double getPrice() {
-            return prefPrice;
-        }
-
-        public double getExposure() {
-            return prefExposure;
-        }
-
-        public double getSpeed() {
-            return prefSpeed;
-        }
-    }
   
 }

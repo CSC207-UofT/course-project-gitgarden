@@ -42,7 +42,7 @@
 
 #### Persistency
 
-We decided to use json files to keep the data persistency of our code. This is because after some research on data
+We decided to use JSON files to keep the data persistency of our code. This is because after some research on data
 persistency, json is the most intuitive method to carry out this task. We chose Gson because the examples and code are
 easy to understand and it does the job as expected.
 

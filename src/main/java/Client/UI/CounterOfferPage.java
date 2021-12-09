@@ -15,7 +15,6 @@ public class CounterOfferPage extends JFrame{
     private JPanel textPanel;
     private JLabel quantityText;
     private JLabel priceText;
-    private JLabel title;
     private JPanel priceTextPanel;
     private JPanel quantityTextPanel;
     private JPanel inputPanel;
@@ -53,10 +52,14 @@ public class CounterOfferPage extends JFrame{
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, quantityText, priceText,};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             priceInput.setBackground(new Color(0x1d3b53));
             quantityInput.setBackground(new Color(0x1d3b53));
-            priceInput.setForeground(new Color(0xECEFF4));
-            quantityInput.setForeground(new Color(0xECEFF4));
+            priceInput.setForeground(new Color(0xd6deeb));
+            quantityInput.setForeground(new Color(0xd6deeb));
             createButton.setForeground(new Color(0x4C566A));
         }
     }

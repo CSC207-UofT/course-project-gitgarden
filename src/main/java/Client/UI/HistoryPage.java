@@ -18,9 +18,6 @@ public class HistoryPage extends JFrame{
     private JPanel buttonPanel;
     private JPanel closeButtonPanel;
     private JButton closeButton;
-    private JPanel ratePanel;
-    private JPanel rateTextPanel;
-    private JPanel ratingSliPanel;
 
     public HistoryPage(String request, ControllerInterface controller, IFetch presenter){
         setTitle("farmerPage");
@@ -54,12 +51,16 @@ public class HistoryPage extends JFrame{
 
         if (WelcomePage.dark){
             JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
-                    buttonPanel, closeButtonPanel, ratePanel, rateTextPanel, ratingSliPanel};
+                    buttonPanel, closeButtonPanel};
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, detailsText};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             detailsList.setBackground(new Color(0x1d3b53));
-            detailsList.setForeground(new Color(0xECEFF4));
+            detailsList.setForeground(new Color(0xd6deeb));
             closeButton.setForeground(new Color(0x4C566A));
         }
 

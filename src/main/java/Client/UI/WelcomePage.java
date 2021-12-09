@@ -10,14 +10,14 @@ public class WelcomePage extends JFrame{
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
-    private JPanel signinPanel;
+    private JPanel signInPanel;
     private JPanel textPanel;
     private JPanel inputPanel;
-    private JPanel signinButtonPanel;
+    private JPanel signInButtonPanel;
     private JTextField nameInput;
     private JLabel nameText;
     private JButton signInButton;
-    private JPanel sinupPanel;
+    private JPanel sinUpPanel;
     private JPanel namePanel;
     private JPanel pricePanel;
     private JLabel addressText;
@@ -60,11 +60,13 @@ public class WelcomePage extends JFrame{
     public static Boolean flag;
     public static String currUserId = "";
     public static Boolean dark = false;
-    private final JPanel[] panelList = {titlePanel, signinPanel, textPanel, inputPanel, signinButtonPanel, sinupPanel,
+    private final JPanel[] panelList = {titlePanel, signInPanel, textPanel, inputPanel, signInButtonPanel, sinUpPanel,
             namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel, priceInputPanel, textsPanel,
             inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
             exposurePrePanel, speedPrePanel, carbonPrePanel};
+    private final JLabel[] textsList = {titleText, nameText, priceText, addressText, exposureText, speedText,
+            carbonText, orText, userTest};
     public WelcomePage(ControllerInterface controller, IFetch presenter) {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -161,11 +163,17 @@ public class WelcomePage extends JFrame{
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x011627));
                 }
+                for (JLabel t : textsList) {
+                    t.setForeground(new Color(0xd6deeb));
+                }
             }
             else{
                 dark = false;
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x4C566A));
+                }
+                for (JLabel t : textsList) {
+                    t.setForeground(new Color(0xECEFF4));
                 }
             }
         });

@@ -11,8 +11,6 @@ public class OthersExistingRequests extends JFrame {
     private JPanel titlePanel;
     private JLabel titleText;
     private JPanel listPanel;
-    private JButton offerButton;
-    private JButton counterButton;
     private JPanel descriptionPanel;
     private JLabel descriptionText;
     private JPanel acceptButtonPanel;
@@ -114,8 +112,12 @@ public class OthersExistingRequests extends JFrame {
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, descriptionText};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             requestList.setBackground(new Color(0x1d3b53));
-            requestList.setForeground(new Color(0xECEFF4));
+            requestList.setForeground(new Color(0xd6deeb));
             acceptRequest.setForeground(new Color(0x4C566A));
             counterOfferButton.setForeground(new Color(0x4C566A));
             closeButton.setForeground(new Color(0x4C566A));

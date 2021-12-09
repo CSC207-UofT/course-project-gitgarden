@@ -18,9 +18,6 @@ public class DistributorPage extends JFrame{
     private JPanel existingTextPanel;
     private JLabel existingText;
     private JPanel existingRequestPanel;
-    private JButton acceptButton;
-    private JButton declineButton;
-    private JButton counterButton;
     private JPanel historyPanel;
     private JPanel historyTextPanel;
     private JLabel historyText;
@@ -95,10 +92,14 @@ public class DistributorPage extends JFrame{
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, existingText, historyText};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             existingList.setBackground(new Color(0x1d3b53));
             historyList.setBackground(new Color(0x1d3b53));
-            existingList.setForeground(new Color(0xECEFF4));
-            historyList.setForeground(new Color(0xECEFF4));
+            existingList.setForeground(new Color(0xd6deeb));
+            historyList.setForeground(new Color(0xd6deeb));
             modifyButton.setForeground(new Color(0x4C566A));
             viewButton.setForeground(new Color(0x4C566A));
         }

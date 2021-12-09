@@ -65,6 +65,8 @@ public class WelcomePage extends JFrame{
             inputsPanel, separatePanel, farmerPanel, choicePanel, buttonPanel, userTextPanel, distributorPanel,
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
             exposurePrePanel, speedPrePanel, carbonPrePanel};
+    private final JLabel[] textsList = {titleText, nameText, priceText, addressText, exposureText, speedText,
+            carbonText, orText, userTest};
     public WelcomePage(ControllerInterface controller, IFetch presenter) {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -161,11 +163,17 @@ public class WelcomePage extends JFrame{
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x011627));
                 }
+                for (JLabel t : textsList) {
+                    t.setForeground(new Color(0xd6deeb));
+                }
             }
             else{
                 dark = false;
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x4C566A));
+                }
+                for (JLabel t : textsList) {
+                    t.setForeground(new Color(0xECEFF4));
                 }
             }
         });

@@ -117,6 +117,10 @@ public class ModifyPage extends JFrame{
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, nameText, addressText, priceText, exposureText, speedText, carbonText};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             nameInput.setBackground(new Color(0x1d3b53));
             addressInput.setBackground(new Color(0x1d3b53));
         }

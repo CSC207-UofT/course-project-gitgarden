@@ -157,10 +157,14 @@ public class DetailsPage extends JFrame{
             for (JPanel p : panelList) {
                 p.setBackground(new Color(0x011627));
             }
+            JLabel[] textsList = {titleText, detailsText, responseText, descriptionText};
+            for (JLabel t : textsList) {
+                t.setForeground(new Color(0xd6deeb));
+            }
             detailsList.setBackground(new Color(0x1d3b53));
             responseList.setBackground(new Color(0x1d3b53));
-            detailsList.setForeground(new Color(0xECEFF4));
-            responseList.setForeground(new Color(0xECEFF4));
+            detailsList.setForeground(new Color(0xd6deeb));
+            responseList.setForeground(new Color(0xd6deeb));
             acceptRequest.setForeground(new Color(0x4C566A));
             declineButton.setForeground(new Color(0x4C566A));
             counterButton.setForeground(new Color(0x4C566A));

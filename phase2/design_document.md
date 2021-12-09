@@ -40,6 +40,21 @@
 
 ## Design Decisions
 
+We decided to use json files to keep the data persistency of our code. This is because after some research on data
+persistency, json is the most intuitive method to carry out this task. We chose Gson because the examples and code are
+easy to understand and it does the job as expected.
+
+Next, in the beginning, we were going to use the application Vaadin to create our user interface, but there were way
+too many files in the starter’s code and we would have to go through a lot of dependency files to everything from our
+repo. After switching to GUI, things became much easier to work with.
+
+During phase 2, we had an optional task of implementing Momento design pattern. After successfully completing our main
+tasks for phase 2 (adhering our code to clean architecture), we had an opportunity to add a functionality to our
+program for the benefit or users. We decided to implement the 'Undo' functionality using the Momento Design Pattern.
+
+Moreover, considering the accessibility needs of the users, we introduced the 'dark mode' feature (similar to
+IntelliJ) to the program which adjusts the color scheme to facilitate more visibility in the UI.
+
 #### Composite Design Pattern
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.

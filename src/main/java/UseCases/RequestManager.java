@@ -161,7 +161,6 @@ public class RequestManager implements RequestInterface{
      * @param request The request to be deleted.
      */
     private void addCurrent(IRequest request){
-        allActiveRequests.add(request);
         IUser previousUser = request.getPrevious().getUser();
         request.getUser().addRequest(request);
         previousUser.addRequest(request);

@@ -66,7 +66,7 @@ public class WelcomePage extends JFrame{
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
             exposurePrePanel, speedPrePanel, carbonPrePanel};
     private final JLabel[] textsList = {titleText, nameText, priceText, addressText, exposureText, speedText,
-            carbonText, orText, userTest};
+            carbonText, orText, userText};
     public WelcomePage(ControllerInterface controller, IFetch presenter) {
         setContentPane(mainPanel);
         setTitle("Welcome");

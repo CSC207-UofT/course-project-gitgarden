@@ -31,20 +31,18 @@ public class OthersExistingRequests extends JFrame {
 
         acceptRequest.addActionListener(e -> {
             if (WelcomePage.flag) {
-                JOptionPane.showMessageDialog(null,"Farmers cannot accept requests.");
-            }
-            else if(tempRequest == null){
-                JOptionPane.showMessageDialog(null,"Must select A Request.");
-            }
-            else {
+                JOptionPane.showMessageDialog(null, "Farmers cannot accept requests.");
+            } else if (tempRequest == null) {
+                JOptionPane.showMessageDialog(null, "Must select A Request.");
+            } else {
                 controller.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
 
-                JOptionPane.showMessageDialog(null,"Your Offer Has Been Accepted. Thank You " +
+                JOptionPane.showMessageDialog(null, "Your Offer Has Been Accepted. Thank You " +
                         ":)");
                 DefaultListModel<String> listModel = new DefaultListModel<>();
-                for(String farmer: presenter.fetchAllFarmerNames()){
-                    if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
-                        for(String request: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
+                for (String farmer : presenter.fetchAllFarmerNames()) {
+                    if (!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))) {
+                        for (String request : presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))) {
                             String[] info = presenter.fetchRequestInformation(request);
                             if (info[4] == null) {
                                 listModel.addElement("Request ID: " + request + " , Product name: " + info[0] +
@@ -63,8 +61,7 @@ public class OthersExistingRequests extends JFrame {
             if (WelcomePage.flag) {
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
-            }
-            else {
+            } else {
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
             }
@@ -72,13 +69,11 @@ public class OthersExistingRequests extends JFrame {
 
         counterOfferButton.addActionListener(e -> {
             if (WelcomePage.flag) {
-                JOptionPane.showMessageDialog(null,"Farmer Cannot Create A Counter Offer To " +
+                JOptionPane.showMessageDialog(null, "Farmer Cannot Create A Counter Offer To " +
                         "A Request.");
-            }
-            else if(tempRequest == null){
-                JOptionPane.showMessageDialog(null,"Must select A Request.");
-            }
-            else{
+            } else if (tempRequest == null) {
+                JOptionPane.showMessageDialog(null, "Must select A Request.");
+            } else {
                 setVisible(false);
                 JFrame counterOfferPage = new CounterOfferPage(tempRequest, controller, presenter);
                 counterOfferPage.setVisible(true);
@@ -86,9 +81,9 @@ public class OthersExistingRequests extends JFrame {
         });
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        for(String farmer: presenter.fetchAllFarmerNames()){
-            if(!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))){
-                for(String request: presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))){
+        for (String farmer : presenter.fetchAllFarmerNames()) {
+            if (!farmer.equals(presenter.fetchUserName(WelcomePage.currUserId))) {
+                for (String request : presenter.fetchCurrentUserRequests(presenter.fetchUserId(farmer))) {
                     String[] info = presenter.fetchRequestInformation(request);
                     if (info[4] == null) {
                         listModel.addElement("Request ID: " + request + " , Product name: " + info[0] +
@@ -106,7 +101,7 @@ public class OthersExistingRequests extends JFrame {
             }
         });
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, listPanel, descriptionPanel, acceptButtonPanel,
                     closeButtonPanel, buttonPanel, counterOfferPanel};
             for (JPanel p : panelList) {

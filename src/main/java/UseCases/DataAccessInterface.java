@@ -7,6 +7,7 @@ public interface DataAccessInterface {
 
     /**
      * Read the saved farmer files from given fileName.
+     *
      * @param fileName The file name of the saved json file containing farmers
      * @return list of farmers
      */
@@ -21,6 +22,7 @@ public interface DataAccessInterface {
 
     /**
      * Create Farmers based on the json file read
+     *
      * @param fileName the file name of the json file that stores farmer information
      */
     void loadFarmer(String fileName) throws FileNotFoundException;
@@ -28,13 +30,15 @@ public interface DataAccessInterface {
 
     /**
      * Create Distributors based on the json file read
-      * @param fileName the file name of the json file that stores distributor information
+     *
+     * @param fileName the file name of the json file that stores distributor information
      */
     void loadDistributor(String fileName) throws FileNotFoundException;
 
 
     /**
      * Modify Farmers based on the json file read
+     *
      * @param fileName the file name of the json file that stores modify farmer information
      */
     void modifyFarmer(String fileName) throws FileNotFoundException;
@@ -42,6 +46,7 @@ public interface DataAccessInterface {
 
     /**
      * Modify Distributors based on the json file read
+     *
      * @param fileName the file name of the json file that stores modify distributor information
      */
     void modifyDistributor(String fileName) throws FileNotFoundException;
@@ -49,6 +54,7 @@ public interface DataAccessInterface {
 
     /**
      * Crete Requests based on the json file read
+     *
      * @param fileName the file name of the json file that stores requests information
      */
     void loadRequests(String fileName) throws FileNotFoundException;
@@ -56,6 +62,7 @@ public interface DataAccessInterface {
 
     /**
      * Crete CounterOffers based on the json file read
+     *
      * @param fileName the file name of the json file that stores counteroffers information
      */
     void loadCounterOffers(String fileName) throws FileNotFoundException;

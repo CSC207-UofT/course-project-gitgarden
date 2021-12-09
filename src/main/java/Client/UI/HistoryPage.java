@@ -6,7 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
-public class HistoryPage extends JFrame{
+public class HistoryPage extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -19,13 +19,13 @@ public class HistoryPage extends JFrame{
     private JPanel closeButtonPanel;
     private JButton closeButton;
 
-    public HistoryPage(String request, ControllerInterface controller, IFetch presenter){
+    public HistoryPage(String request, ControllerInterface controller, IFetch presenter) {
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
 
-        DefaultListModel<String> listModel= new DefaultListModel<>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
         String[] info = presenter.fetchRequestInformation(request);
 
         listModel.addElement("Request ID: " + request);
@@ -39,17 +39,16 @@ public class HistoryPage extends JFrame{
 
         closeButton.addActionListener(e -> {
             setVisible(false);
-            if(WelcomePage.flag){
+            if (WelcomePage.flag) {
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
-            }
-            else{
+            } else {
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
             }
         });
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
                     buttonPanel, closeButtonPanel};
             for (JPanel p : panelList) {

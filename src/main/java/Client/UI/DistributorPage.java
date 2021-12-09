@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class DistributorPage extends JFrame{
+public class DistributorPage extends JFrame {
     public JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel titleTextPanel;
@@ -26,11 +26,11 @@ public class DistributorPage extends JFrame{
     private JButton viewButton;
     private JList<String> existingList;
 
-    public DistributorPage(ControllerInterface controller, IFetch presenter){
+    public DistributorPage(ControllerInterface controller, IFetch presenter) {
         setTitle("distributorPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
 
         modifyButton.addActionListener(e -> {
             setVisible(false);
@@ -49,7 +49,7 @@ public class DistributorPage extends JFrame{
             String[] info = presenter.fetchRequestInformation(request);
             String product_name = info[0];
             String user_name = info[3];
-            if(user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))){
+            if (user_name.equals(presenter.fetchUserName(WelcomePage.currUserId))) {
                 listModel.addElement("Product " + product_name + ", User: me");
             }
         }
@@ -61,7 +61,7 @@ public class DistributorPage extends JFrame{
             String[] info = presenter.fetchRequestInformation(request);
             String product_name = info[0];
             String distributor_name = info[3];
-            listModel2.addElement("Product " + product_name + ", User: "+ distributor_name);
+            listModel2.addElement("Product " + product_name + ", User: " + distributor_name);
         }
 
         existingList.setModel(listModel);
@@ -72,7 +72,7 @@ public class DistributorPage extends JFrame{
                 String request = historyList.getSelectedValue();
                 int index = listModel2.indexOf(request);
                 setVisible(false);
-                HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index),controller, presenter);
+                HistoryPage historyPage = new HistoryPage(historyRequestIdList.get(index), controller, presenter);
                 historyPage.setVisible(true);
             }
         });
@@ -81,11 +81,11 @@ public class DistributorPage extends JFrame{
                 String request = existingList.getSelectedValue();
                 int index = listModel.indexOf(request);
                 setVisible(false);
-                DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index),controller, presenter);
+                DetailsPage detailspage = new DetailsPage(currentRequestIdList.get(index), controller, presenter);
                 detailspage.setVisible(true);
             }
         });
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, titleTextPanel, modifyPanel, existingPanel,
                     existingTextPanel, existingRequestPanel, historyPanel,
                     historyTextPanel, historyListPanel};

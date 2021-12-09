@@ -11,7 +11,7 @@ public class Distributor extends User implements IDistributor {
 
     private double ranking;
 
-    public Distributor(String distributor_name, String distributor_address, int id){
+    public Distributor(String distributor_name, String distributor_address, int id) {
         super(distributor_name, distributor_address, id);
         this.exposure = 10;
         this.speed = 10;
@@ -20,11 +20,12 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Returns the product map of the distributor: the average price of each product they sell.
+     *
      * @return The product map.
      */
-    public HashMap<String, Double> prodMap(){
+    public HashMap<String, Double> prodMap() {
         HashMap<String, ArrayList<Double>> allPrices = new HashMap<>();
-        for (IRequest item: this.offerHistory) {
+        for (IRequest item : this.offerHistory) {
             if (!allPrices.containsKey(item.getProdName())) {
                 ArrayList<Double> prices = new ArrayList<>();
                 prices.add(item.getProdPricePerKg());
@@ -38,9 +39,9 @@ public class Distributor extends User implements IDistributor {
 
     private HashMap<String, Double> prodAverages(HashMap<String, ArrayList<Double>> allPrices) {
         HashMap<String, Double> prodMap = new HashMap<>();
-        for (String prodName : allPrices.keySet()){
+        for (String prodName : allPrices.keySet()) {
             double average = 0;
-            for (Double price : allPrices.get(prodName)){
+            for (Double price : allPrices.get(prodName)) {
                 average += price;
             }
             average = average / allPrices.get(prodName).size();
@@ -51,15 +52,17 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Compares two distributors based on ranking.
+     *
      * @param other The distributor to be compared with.
      * @return -1 if other is greater, 0 if equal, 1 if other is lesser.
      */
-    public int compareTo(Distributor other){
+    public int compareTo(Distributor other) {
         return Double.compare(this.ranking, other.ranking);
     }
 
     /**
      * Sets the exposure attribute of this distributor.
+     *
      * @param exposure The exposure setting.
      */
     public void setExposure(double exposure) {
@@ -68,6 +71,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Gets the exposure attribute of this distributor.
+     *
      * @return The exposure setting.
      */
     public double getExposure() {
@@ -76,6 +80,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Sets the speed attribute of this distributor.
+     *
      * @param speed The speed setting.
      */
     public void setSpeed(double speed) {
@@ -84,6 +89,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Gets the speed attribute of this distributor.
+     *
      * @return The speed setting.
      */
     public double getSpeed() {
@@ -92,6 +98,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Sets the carbon attribute of this distributor.
+     *
      * @param carbon The carbon setting.
      */
     public void setCarbon(double carbon) {
@@ -100,6 +107,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Gets the carbon attribute of this distributor.
+     *
      * @return The carbon setting.
      */
     public double getCarbon() {
@@ -108,6 +116,7 @@ public class Distributor extends User implements IDistributor {
 
     /**
      * Sets the ranking of this distributor.
+     *
      * @param ranking The ranking.
      */
     public void setRanking(double ranking) {

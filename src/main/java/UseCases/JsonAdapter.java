@@ -1,6 +1,9 @@
 package UseCases;
 
-import Entities.*;
+import Entities.IDistributor;
+import Entities.IFarmer;
+import Entities.IRequest;
+import Entities.IUser;
 
 import java.util.ArrayList;
 
@@ -98,7 +101,7 @@ public class JsonAdapter {
         ArrayList<String[]> reqArray = new ArrayList<>();
         ArrayList<Integer> ids = rm.getAllRequestIds();
         for (int i : ids) {
-            if(rm.dataFromId(String.valueOf(i))[4] == null) {
+            if (rm.dataFromId(String.valueOf(i))[4] == null) {
                 IRequest req = rm.getRequestFromId(String.valueOf(i));
                 String[] r = new String[5];
                 r[0] = String.valueOf(req.getRequestId());
@@ -130,7 +133,7 @@ public class JsonAdapter {
                 for (String co : cos) {
                     c[0] = co;
                     IUser user = rm.getRequestFromId(co).getUser();
-                    if (user == null){
+                    if (user == null) {
                         int rootId = rm.rootId(co);
                         user = rm.getRequestFromId(String.valueOf(rootId)).getUser();
                     }

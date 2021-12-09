@@ -6,7 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
-public class RequestPage extends JFrame{
+public class RequestPage extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JPanel middlePanel;
@@ -30,31 +30,30 @@ public class RequestPage extends JFrame{
     private final ControllerInterface sc;
 
 
-    public RequestPage(ControllerInterface controller, IFetch presenter){
+    public RequestPage(ControllerInterface controller, IFetch presenter) {
         sc = controller;
         setTitle("requestPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
         createButton.addActionListener(e -> {
             String product = ProductNameInput.getText();
             String quantity = quantityInput.getText();
             String price = priceInput.getText();
-            if (product.equals("")|| quantity.equals("")|| price.equals("")) {
-                JOptionPane.showMessageDialog(null,"Please enter all information");
+            if (product.equals("") || quantity.equals("") || price.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter all information");
             }
-            try{
+            try {
                 sc.createRequestCheck(WelcomePage.currUserId, product, quantity, price);
                 JFrame profile = new FarmerPage(controller, presenter);
                 setVisible(false);
                 profile.setVisible(true);
-            }
-            catch(Exception requestException){
-                JOptionPane.showMessageDialog(null,requestException.getMessage());
+            } catch (Exception requestException) {
+                JOptionPane.showMessageDialog(null, requestException.getMessage());
             }
         });
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, middlePanel, buttonPanel, textPanel, inputPanel,
                     namePanel, quantityInputPanel, pricePanel, nameInputPanel, quantityPanel,
                     priceInputPanel};

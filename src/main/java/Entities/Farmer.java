@@ -1,13 +1,13 @@
 package Entities;
 
-public class Farmer extends User implements IFarmer{
+public class Farmer extends User implements IFarmer {
 
     private double prefPrice;
     private double prefExposure;
     private double prefSpeed;
     private double prefCarbon;
 
-    public Farmer(String farmer_name, String farmer_address, int id){
+    public Farmer(String farmer_name, String farmer_address, int id) {
         super(farmer_name, farmer_address, id);
         this.prefPrice = 5;
         this.prefExposure = 5;
@@ -17,6 +17,7 @@ public class Farmer extends User implements IFarmer{
 
     /**
      * Sets the price preference of this farmer.
+     *
      * @param prefPrice The price preference.
      */
     public void setPrefPrice(double prefPrice) {
@@ -25,6 +26,7 @@ public class Farmer extends User implements IFarmer{
 
     /**
      * Sets the exposure preference of this farmer.
+     *
      * @param prefExposure The exposure preference.
      */
     public void setPrefExposure(double prefExposure) {
@@ -33,6 +35,7 @@ public class Farmer extends User implements IFarmer{
 
     /**
      * Sets the speed preference of this farmer.
+     *
      * @param prefSpeed The speed preference.
      */
     public void setPrefSpeed(double prefSpeed) {
@@ -41,6 +44,7 @@ public class Farmer extends User implements IFarmer{
 
     /**
      * Sets the carbon preference of this farmer.
+     *
      * @param prefCarbon The carbon preference.
      */
     public void setPrefCarbon(double prefCarbon) {
@@ -49,34 +53,38 @@ public class Farmer extends User implements IFarmer{
 
     /**
      * Gets the price preference of this farmer.
+     *
      * @return The price preference.
      */
-    public double getPrefPrice(){
+    public double getPrefPrice() {
         return prefPrice;
     }
 
     /**
      * Gets the exposure preference of this farmer.
+     *
      * @return The exposure preference.
      */
-    public double getPrefExposure(){
+    public double getPrefExposure() {
         return prefExposure;
     }
 
     /**
      * Gets the speed preference of this farmer.
+     *
      * @return The speed preference.
      */
-    public double getPrefSpeed(){
+    public double getPrefSpeed() {
         return prefSpeed;
     }
 
     /**
      * Gets the carbon preference of this farmer.
+     *
      * @return The carbon preference.
      */
-    public double getPrefCarbon(){
+    public double getPrefCarbon() {
         return prefCarbon;
     }
-  
+
 }

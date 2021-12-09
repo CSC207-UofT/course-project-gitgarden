@@ -6,7 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
-public class DetailsPage extends JFrame{
+public class DetailsPage extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -36,13 +36,13 @@ public class DetailsPage extends JFrame{
 
     private String tempRequest = null;
 
-    public DetailsPage(String request, ControllerInterface controller, IFetch presenter){
+    public DetailsPage(String request, ControllerInterface controller, IFetch presenter) {
         setTitle("farmerPage");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,700);
+        setSize(800, 700);
 
-        DefaultListModel<String> listModel= new DefaultListModel<>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
         String[] info = presenter.fetchRequestInformation(request);
 
         listModel.addElement("Request ID: " + request);
@@ -56,21 +56,19 @@ public class DetailsPage extends JFrame{
 
         acceptRequest.addActionListener(e -> {
             if (tempRequest == null) {
-                JOptionPane.showMessageDialog(null,"Please Select Something.");
-            }
-            else{
+                JOptionPane.showMessageDialog(null, "Please Select Something.");
+            } else {
                 controller.acceptRequestCheck(tempRequest, WelcomePage.currUserId);
-                JOptionPane.showMessageDialog(null,"Accepted");
+                JOptionPane.showMessageDialog(null, "Accepted");
                 int i = 1;
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();
-                if(WelcomePage.flag) {
+                if (WelcomePage.flag) {
                     for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
                         String[] product_info = presenter.fetchRequestInformation(requestId);
                         listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
                                 "Price :" + product_info[2]);
                     }
-                }
-                else{
+                } else {
                     for (String requestId : presenter.fetchCounteroffers(request)) {
                         String[] product_info = presenter.fetchRequestInformation(requestId);
                         listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
@@ -84,21 +82,19 @@ public class DetailsPage extends JFrame{
 
         declineButton.addActionListener(e -> {
             if (tempRequest == null) {
-                JOptionPane.showMessageDialog(null,"Please Select Something.");
-            }
-            else{
+                JOptionPane.showMessageDialog(null, "Please Select Something.");
+            } else {
                 controller.declineRequestCheck(tempRequest);
-                JOptionPane.showMessageDialog(null,"Declined");
+                JOptionPane.showMessageDialog(null, "Declined");
                 int i = 1;
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();
-                if(WelcomePage.flag) {
+                if (WelcomePage.flag) {
                     for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
                         String[] product_info = presenter.fetchRequestInformation(requestId);
                         listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
                                 "Price :" + product_info[2]);
                     }
-                }
-                else{
+                } else {
                     for (String requestId : presenter.fetchCounteroffers(request)) {
                         String[] product_info = presenter.fetchRequestInformation(requestId);
                         listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
@@ -110,22 +106,20 @@ public class DetailsPage extends JFrame{
             }
         });
         counterButton.addActionListener(e -> {
-            if(tempRequest == null){
-                JOptionPane.showMessageDialog(null,"Please Select Something.");
-            }
-            else{
+            if (tempRequest == null) {
+                JOptionPane.showMessageDialog(null, "Please Select Something.");
+            } else {
                 setVisible(false);
                 CounterOfferPage counterOfferPage = new CounterOfferPage(tempRequest, controller, presenter);
                 counterOfferPage.setVisible(true);
             }
         });
         closeButton.addActionListener(e -> {
-            if(WelcomePage.flag){
+            if (WelcomePage.flag) {
                 setVisible(false);
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
-            }
-            else{
+            } else {
                 setVisible(false);
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
@@ -133,14 +127,13 @@ public class DetailsPage extends JFrame{
         });
         int i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
-        if(WelcomePage.flag) {
+        if (WelcomePage.flag) {
             for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
                 String[] product_info = presenter.fetchRequestInformation(requestId);
                 listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
                         "Price :" + product_info[2]);
             }
-        }
-        else{
+        } else {
             for (String requestId : presenter.fetchCounteroffers(request)) {
                 String[] product_info = presenter.fetchRequestInformation(requestId);
                 listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
@@ -155,8 +148,7 @@ public class DetailsPage extends JFrame{
                 int index = listModel2.indexOf(selectedRequest);
                 try {
                     tempRequest = presenter.fetchCounteroffers(request).get(index);
-                }
-                catch (Exception exception){
+                } catch (Exception exception) {
                     JOptionPane.showMessageDialog(null, "There are no more counterOffers");
                 }
             }
@@ -164,19 +156,18 @@ public class DetailsPage extends JFrame{
         TrashButton.addActionListener(e -> {
             controller.trashRequestCheck(request);
             JOptionPane.showMessageDialog(null, "Your request has been trashed.");
-            if(WelcomePage.flag){
+            if (WelcomePage.flag) {
                 setVisible(false);
                 JFrame farmerPage = new FarmerPage(controller, presenter);
                 farmerPage.setVisible(true);
-            }
-            else{
+            } else {
                 setVisible(false);
                 JFrame distributorPage = new DistributorPage(controller, presenter);
                 distributorPage.setVisible(true);
             }
         });
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {mainPanel, titlePanel, detailsPanel, detailsTextPanel, detailsListPanel,
                     responsePanel, responseTextPanel, responseListPanel, descriptionPanel,
                     buttonPanel, acceptButtonPanel, declineButtonPanel, counterButtonPanel,

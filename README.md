@@ -10,7 +10,7 @@ Our project is a medium for **connecting produce farmers to distributors of thei
 - This program is developed in `Java` using [IntelliJ](https://www.jetbrains.com/idea/) as the IDE
 - Build with `Maven`.
 - Uses Java GUI as the user interface.
-- Unit Tests are written with [Junit](https://junit.org/junit5/).
+- Unit Tests are written with [Junit4.0](https://junit.org/junit5/).
 - Uses `json` files for database storage with [gson](https://sites.google.com/site/gson/gson-user-guide) dependencies
 
 

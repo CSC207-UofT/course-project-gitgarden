@@ -26,7 +26,6 @@ public class CounterOfferPage extends JFrame{
     private JButton createButton;
 
     public CounterOfferPage(String request, ControllerInterface controller, IFetch presenter) {
-
         setTitle("counterOffer");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +35,7 @@ public class CounterOfferPage extends JFrame{
             String price = priceInput.getText();
             String quantity = quantityInput.getText();
             try {
-                controller.createCounterOfferCheck(request, WelcomePage.currUserId, quantity, price);
+                controller.createCounterOfferCheck(WelcomePage.currUserId, request, quantity, price);
                 DistributorPage distributorPage = new DistributorPage(controller, presenter);
                 setVisible(false);
                 distributorPage.setVisible(true);

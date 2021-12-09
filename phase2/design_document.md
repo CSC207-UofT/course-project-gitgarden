@@ -45,6 +45,7 @@ persistency, json is the most intuitive method to carry out this task. We chose 
 easy to understand and it does the job as expected.
 
 Next, in the beginning, we were going to use the application Vaadin to create our user interface, but there were way
+too many files in the starter’s code and we would have to go through a lot of dependency files to everything from our
 
 #### Composite Design Pattern
 

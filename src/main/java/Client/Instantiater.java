@@ -1,11 +1,11 @@
 package Client;
 
+import Client.UI.WelcomePage;
 import Controller.ControllerInterface;
 import Controller.DataPresenter;
 import Controller.IFetch;
 import Controller.ServiceController;
 import DataBase.JsonProvider;
-import Client.UI.WelcomePage;
 import UseCases.ProfileInterface;
 import UseCases.ProfileManager;
 import UseCases.RequestInterface;
@@ -13,15 +13,15 @@ import UseCases.RequestManager;
 
 import java.io.FileNotFoundException;
 
-public class Instantiater implements Facade{
+public class Instantiater implements Facade {
     /**
      * Build to be used to run the program.
      */
-    public void build(){
+    public void build() {
         JsonProvider jp = new JsonProvider();
         try {
             jp.loadAll();
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("First time running, there's nothing to be read yet!");
         }
         ProfileInterface pm = new ProfileManager();

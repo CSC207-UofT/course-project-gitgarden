@@ -5,10 +5,9 @@ import Controller.IFetch;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.Stack;
 
-public class ModifyPage extends JFrame{
+public class ModifyPage extends JFrame {
     private JPanel titlePanel;
     private JLabel titleText;
     private JPanel middlePanel;
@@ -63,40 +62,38 @@ public class ModifyPage extends JFrame{
             double slider4_value = CarbonSlider.getValue();
 
             if (WelcomePage.flag) {
-                    try {
-                        controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        controller.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
-                                slider3_value, slider4_value);
+                try {
+                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    controller.modifyFarmerCheck(WelcomePage.currUserId, slider1_value, slider2_value,
+                            slider3_value, slider4_value);
 
-                        String[] state = {newName, newAddress, String.valueOf(slider1_value),
-                                String.valueOf(slider2_value), String.valueOf(slider3_value),
-                                String.valueOf(slider4_value)};
-                        farmerStack.push(state);
+                    String[] state = {newName, newAddress, String.valueOf(slider1_value),
+                            String.valueOf(slider2_value), String.valueOf(slider3_value),
+                            String.valueOf(slider4_value)};
+                    farmerStack.push(state);
 
-                        FarmerPage farmerPage = new FarmerPage(controller, presenter);
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                    }
-                    catch (Exception modifyException){
-                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
-                    }
-                } else {
-                    try {
-                        controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
-                        controller.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
-
-                        String[] state = {newName, newAddress, String.valueOf(slider2_value),
-                                String.valueOf(slider3_value), String.valueOf(slider4_value)};
-                        distributorStack.push(state);
-
-                        DistributorPage distributorPage = new DistributorPage(controller, presenter);
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                    }
-                    catch (Exception modifyException){
-                        JOptionPane.showMessageDialog(null, modifyException.getMessage());
-                    }
+                    FarmerPage farmerPage = new FarmerPage(controller, presenter);
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+                } catch (Exception modifyException) {
+                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
                 }
+            } else {
+                try {
+                    controller.modifyUserCheck(WelcomePage.currUserId, newName, newAddress);
+                    controller.modifyDistributorCheck(WelcomePage.currUserId, slider2_value, slider3_value, slider4_value);
+
+                    String[] state = {newName, newAddress, String.valueOf(slider2_value),
+                            String.valueOf(slider3_value), String.valueOf(slider4_value)};
+                    distributorStack.push(state);
+
+                    DistributorPage distributorPage = new DistributorPage(controller, presenter);
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                } catch (Exception modifyException) {
+                    JOptionPane.showMessageDialog(null, modifyException.getMessage());
+                }
+            }
 
         });
         PriceSlider.setPaintTicks(true);
@@ -108,7 +105,7 @@ public class ModifyPage extends JFrame{
         CarbonSlider.setPaintTicks(true);
         CarbonSlider.setMinorTickSpacing(10);
 
-        if (WelcomePage.dark){
+        if (WelcomePage.dark) {
             JPanel[] panelList = {titlePanel, textPanel, middlePanel, inputPanel, buttonPanel,
                     namePanel, pricePanel, preferencePanel, prefInputPanel, nameInputPanel,
                     priceInputPanel, buttonPanel, mainPanel, priceTextPanel, exposureTextPanel,
@@ -126,12 +123,11 @@ public class ModifyPage extends JFrame{
         }
 
         CloseButton.addActionListener(e -> {
-            if (WelcomePage.flag){
+            if (WelcomePage.flag) {
                 FarmerPage farmerPage = new FarmerPage(controller, presenter);
                 setVisible(false);
                 farmerPage.setVisible(true);
-            }
-            else{
+            } else {
                 DistributorPage distributorPage = new DistributorPage(controller, presenter);
                 setVisible(false);
                 distributorPage.setVisible(true);
@@ -139,48 +135,48 @@ public class ModifyPage extends JFrame{
         });
 
         UndoButton.addActionListener(e -> {
-                if (WelcomePage.flag) {
-                    try {
-                        farmerStack.pop();
-                        String[] restore = farmerStack.pop();
+            if (WelcomePage.flag) {
+                try {
+                    farmerStack.pop();
+                    String[] restore = farmerStack.pop();
 
 
-                        String id = WelcomePage.currUserId;
+                    String id = WelcomePage.currUserId;
 
-                        controller.modifyUserCheck(id, restore[0], restore[1]);
-                        controller.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
-                                Double.parseDouble(restore[4]), Double.parseDouble(restore[5]));
+                    controller.modifyUserCheck(id, restore[0], restore[1]);
+                    controller.modifyFarmerCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                            Double.parseDouble(restore[4]), Double.parseDouble(restore[5]));
 
-                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
-                        UndoButton.requestFocusInWindow();
+                    JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                    UndoButton.requestFocusInWindow();
 
-                        FarmerPage farmerPage = new FarmerPage(controller, presenter);
-                        setVisible(false);
-                        farmerPage.setVisible(true);
-                    } catch (Exception undoException){
-                        JOptionPane.showMessageDialog(null, undoException.getMessage());
-                    }
-                } else {
-                    try {
-                        distributorStack.pop();
-                        String[] restore = distributorStack.pop();
-
-                        String id = WelcomePage.currUserId;
-
-                        controller.modifyUserCheck(id, restore[0], restore[1]);
-                        controller.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
-                                Double.parseDouble(restore[4]));
-
-                        JOptionPane.showMessageDialog(null, "Your changes have been restored.");
-                        UndoButton.requestFocusInWindow();
-
-                        DistributorPage distributorPage = new DistributorPage(controller, presenter);
-                        setVisible(false);
-                        distributorPage.setVisible(true);
-                    } catch (Exception undoException){
-                        JOptionPane.showMessageDialog(null, undoException.getMessage());
-                    }
+                    FarmerPage farmerPage = new FarmerPage(controller, presenter);
+                    setVisible(false);
+                    farmerPage.setVisible(true);
+                } catch (Exception undoException) {
+                    JOptionPane.showMessageDialog(null, undoException.getMessage());
                 }
+            } else {
+                try {
+                    distributorStack.pop();
+                    String[] restore = distributorStack.pop();
+
+                    String id = WelcomePage.currUserId;
+
+                    controller.modifyUserCheck(id, restore[0], restore[1]);
+                    controller.modifyDistributorCheck(id, Double.parseDouble(restore[2]), Double.parseDouble(restore[3]),
+                            Double.parseDouble(restore[4]));
+
+                    JOptionPane.showMessageDialog(null, "Your changes have been restored.");
+                    UndoButton.requestFocusInWindow();
+
+                    DistributorPage distributorPage = new DistributorPage(controller, presenter);
+                    setVisible(false);
+                    distributorPage.setVisible(true);
+                } catch (Exception undoException) {
+                    JOptionPane.showMessageDialog(null, undoException.getMessage());
+                }
+            }
         });
     }
 }

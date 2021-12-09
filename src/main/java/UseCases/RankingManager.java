@@ -6,6 +6,7 @@ import Entities.IRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import static java.lang.Math.round;
 
 public class RankingManager implements RankInterface {
@@ -22,13 +23,14 @@ public class RankingManager implements RankInterface {
 
     /**
      * Ranks distributors who have countered a request based on farmer preferences.
+     *
      * @return The ranked list of distributors.
      */
     @Override
-    public ArrayList<String> rankDistributors(){
+    public ArrayList<String> rankDistributors() {
         ArrayList<IDistributor> rankList = distributorsFromRequestId(requestID);
 
-        for (IDistributor dist: rankList){
+        for (IDistributor dist : rankList) {
             double priceRanking = calcRanking(dist, rankList, "price");
             double exposureRanking = calcRanking(dist, rankList, "exposure");
             double speedRanking = calcRanking(dist, rankList, "speed");
@@ -43,7 +45,9 @@ public class RankingManager implements RankInterface {
     private double calcRanking(IDistributor input_dist, ArrayList<IDistributor> rankList, String crit) {
         ProfileInterface pm = new ProfileManager();
         ArrayList<Double> critList = new ArrayList<>();
-        for (IDistributor dist : rankList) { critList.add(getCriterion(dist, crit)); }
+        for (IDistributor dist : rankList) {
+            critList.add(getCriterion(dist, crit));
+        }
         Collections.sort(critList);
         IFarmer farmer = (IFarmer) pm.getUserFromId(farmerID);
         Double ref = critList.get((int) round((critList.size() - 1) * (1 - (getPrefCriterion(farmer, crit) / 10.0))));
@@ -55,7 +59,7 @@ public class RankingManager implements RankInterface {
         }
     }
 
-    private double getCriterion(IDistributor dist, String criterion){
+    private double getCriterion(IDistributor dist, String criterion) {
         switch (criterion) {
             case "exposure":
                 return dist.getExposure();
@@ -86,19 +90,19 @@ public class RankingManager implements RankInterface {
         RequestInterface requestManager = new RequestManager();
         ArrayList<IDistributor> allDistributors = new ArrayList<>();
         IRequest request = requestManager.getRequestFromId(requestID);
-        for (IRequest counteroffer: request.getCounteroffers()){
+        for (IRequest counteroffer : request.getCounteroffers()) {
             allDistributors.add((IDistributor) counteroffer.getUser());
         }
         return allDistributors;
     }
 
-    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList){
+    private ArrayList<String> counterofferIdsFromDistributors(ArrayList<IDistributor> rankList) {
         ArrayList<String> allIds = new ArrayList<>();
         RequestInterface requestManager = new RequestManager();
         IRequest request = requestManager.getRequestFromId(requestID);
-        for (IDistributor dist: rankList){
-            for (IRequest counteroffer: request.getCounteroffers()){
-                if (counteroffer.getUser().equals(dist)){
+        for (IDistributor dist : rankList) {
+            for (IRequest counteroffer : request.getCounteroffers()) {
+                if (counteroffer.getUser().equals(dist)) {
                     allIds.add(String.valueOf(counteroffer.getRequestId()));
                 }
             }
@@ -107,7 +111,7 @@ public class RankingManager implements RankInterface {
         return allIds;
     }
 
-    private String productFromRequestId(String requestID){
+    private String productFromRequestId(String requestID) {
         RequestInterface requestManager = new RequestManager();
         IRequest request = requestManager.getRequestFromId(requestID);
         return request.getProdName();

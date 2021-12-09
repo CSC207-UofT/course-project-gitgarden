@@ -6,7 +6,7 @@ import Controller.IFetch;
 import javax.swing.*;
 import java.awt.*;
 
-public class WelcomePage extends JFrame{
+public class WelcomePage extends JFrame {
     private JPanel mainPanel;
     private JPanel titlePanel;
     private JLabel titleText;
@@ -66,7 +66,8 @@ public class WelcomePage extends JFrame{
             mainPanel, priceTextPanel, exposureTextPanel, speedTextPanel, carbonTextPanel, pricePrePanel,
             exposurePrePanel, speedPrePanel, carbonPrePanel};
     private final JLabel[] textsList = {titleText, nameText, priceText, addressText, exposureText, speedText,
-            carbonText, orText, userTest};
+            carbonText, orText, userText};
+
     public WelcomePage(ControllerInterface controller, IFetch presenter) {
         setContentPane(mainPanel);
         setTitle("Welcome");
@@ -77,25 +78,22 @@ public class WelcomePage extends JFrame{
             String username = nameInput.getText();
 
             if (username.equals("")) {
-                JOptionPane.showMessageDialog(null,"Please enter your User Name");
+                JOptionPane.showMessageDialog(null, "Please enter your User Name");
                 newUserName.requestFocusInWindow();
-            }
-            else {
-                if (presenter.fetchAllFarmerNames().contains(username)){
+            } else {
+                if (presenter.fetchAllFarmerNames().contains(username)) {
                     currUserId = presenter.fetchUserId(username);
                     flag = true;
                     FarmerPage farmerPage = new FarmerPage(controller, presenter);
                     setVisible(false);
                     farmerPage.setVisible(true);
-                }
-                else if (presenter.fetchAllDistNames().contains(username)){
+                } else if (presenter.fetchAllDistNames().contains(username)) {
                     currUserId = presenter.fetchUserId(username);
                     flag = false;
-                    DistributorPage distributorPage = new DistributorPage(controller,presenter);
+                    DistributorPage distributorPage = new DistributorPage(controller, presenter);
                     setVisible(false);
                     distributorPage.setVisible(true);
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Please enter a valid User Name or " +
                             "Create a new Profile");
                     newUserName.requestFocusInWindow();
@@ -112,38 +110,36 @@ public class WelcomePage extends JFrame{
             double slider4_value = slider4.getValue();
             String name = newUserName.getText();
             if (flag == null) {
-                JOptionPane.showMessageDialog(null,"Please choose farmer or distributor");
-            }
-            else{
-                try{
-                    currUserId = controller.createProfileCheck(name,address, flag);
+                JOptionPane.showMessageDialog(null, "Please choose farmer or distributor");
+            } else {
+                try {
+                    currUserId = controller.createProfileCheck(name, address, flag);
                     if (flag) {
                         controller.modifyFarmerCheck(currUserId, slider1_value, slider2_value, slider3_value, slider4_value);
-                      
+
                         String[] state = {name, address, String.valueOf(slider1_value),
-                                    String.valueOf(slider2_value), String.valueOf(slider3_value),
-                                    String.valueOf(slider4_value)};
+                                String.valueOf(slider2_value), String.valueOf(slider3_value),
+                                String.valueOf(slider4_value)};
                         ModifyPage.farmerStack.push(state);
-                      
+
                         FarmerPage farmerPage = new FarmerPage(controller, presenter);
                         setVisible(false);
                         farmerPage.setVisible(true);
                         setContentPane(new FarmerPage(controller, presenter).mainPanel);
                     } else {
                         controller.modifyDistributorCheck(currUserId, slider2_value, slider3_value, slider4_value);
-                      
+
                         String[] state = {name, address, String.valueOf(slider2_value),
-                                    String.valueOf(slider3_value), String.valueOf(slider4_value)};
+                                String.valueOf(slider3_value), String.valueOf(slider4_value)};
                         ModifyPage.distributorStack.push(state);
-                      
+
                         DistributorPage distributorPage = new DistributorPage(controller, presenter);
                         setVisible(false);
                         distributorPage.setVisible(true);
                         setContentPane(new DistributorPage(controller, presenter).mainPanel);
                     }
-                }
-                catch (Exception profileException){
-                    JOptionPane.showMessageDialog(null,profileException.getMessage());
+                } catch (Exception profileException) {
+                    JOptionPane.showMessageDialog(null, profileException.getMessage());
 
                 }
             }
@@ -158,7 +154,7 @@ public class WelcomePage extends JFrame{
         slider4.setMinorTickSpacing(10);
 
         darkCheckBox.addActionListener(e -> {
-            if (darkCheckBox.isSelected()){
+            if (darkCheckBox.isSelected()) {
                 dark = true;
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x011627));
@@ -166,8 +162,7 @@ public class WelcomePage extends JFrame{
                 for (JLabel t : textsList) {
                     t.setForeground(new Color(0xd6deeb));
                 }
-            }
-            else{
+            } else {
                 dark = false;
                 for (JPanel p : panelList) {
                     p.setBackground(new Color(0x4C566A));

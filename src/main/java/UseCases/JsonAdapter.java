@@ -1,6 +1,9 @@
 package UseCases;
 
-import Entities.*;
+import Entities.IDistributor;
+import Entities.IFarmer;
+import Entities.IRequest;
+import Entities.IUser;
 
 import java.util.ArrayList;
 
@@ -98,7 +101,7 @@ public class JsonAdapter {
         ArrayList<String[]> reqArray = new ArrayList<>();
         ArrayList<Integer> ids = rm.getAllRequestIds();
         for (int i : ids) {
-            if(rm.dataFromId(String.valueOf(i))[4] == null) {
+            if (rm.dataFromId(String.valueOf(i))[4] == null) {
                 IRequest req = rm.getRequestFromId(String.valueOf(i));
                 String[] r = new String[5];
                 r[0] = String.valueOf(req.getRequestId());
@@ -123,14 +126,21 @@ public class JsonAdapter {
         RequestManager rm = new RequestManager();
         ArrayList<String[]> coArray = new ArrayList<>();
         ArrayList<Integer> ids = rm.getAllRequestIds();
-        for (int i : ids) {
-            ArrayList<String> cos = rm.coFromId(String.valueOf(i));
+        for (int id : ids) {
+            ArrayList<String> cos = rm.coFromId(String.valueOf(id));
             if (!cos.isEmpty()) {
                 String[] c = new String[5];
                 for (String co : cos) {
                     c[0] = co;
-                    c[1] = String.valueOf(rm.getRequestFromId(co).getUser().getUserId());
-                    c[2] = String.valueOf(i);
+                    IUser user = rm.getRequestFromId(co).getUser();
+                    if (user == null) {
+                        int rootId = rm.rootId(co);
+                        user = rm.getRequestFromId(String.valueOf(rootId)).getUser();
+                    }
+                    System.out.print(String.valueOf(user.getUserId()));
+                    c[1] = String.valueOf(user.getUserId());
+                    IRequest prev = rm.getRequestFromId(co).getPrevious();
+                    c[2] = String.valueOf(prev.getRequestId());
                     c[3] = String.valueOf(rm.getRequestFromId(co).getProdQuantity());
                     c[4] = String.valueOf(rm.getRequestFromId(co).getProdPricePerKg());
                 }

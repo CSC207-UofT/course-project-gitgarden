@@ -40,7 +40,7 @@
 
 ## Design Decisions
 
-
+We decided to use json files to keep the data persistency of our code. This is because after some research on data
 
 #### Composite Design Pattern
 

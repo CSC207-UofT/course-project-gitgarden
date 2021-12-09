@@ -44,6 +44,7 @@ We decided to use json files to keep the data persistency of our code. This is b
 persistency, json is the most intuitive method to carry out this task. We chose Gson because the examples and code are
 easy to understand and it does the job as expected.
 
+
 #### Composite Design Pattern
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.

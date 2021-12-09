@@ -20,7 +20,7 @@ public class RequestManagerTest {
 
     @Test
     public void testAcceptRequest() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
+        rm.createRequest(100, "1", "prod1", 1000d, 100.00, false);
         rm.acceptRequest("100", "2");
         Assert.assertTrue(pm.getUserFromId("2").getCurrentRequests() == null &&
                 Objects.equals(pm.getUserFromId("2").getOfferHistory().get(0).getProdName(), "prod1"));
@@ -28,7 +28,7 @@ public class RequestManagerTest {
 
     @Test
     public void testDeclineRequest() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
+        rm.createRequest(100, "1", "prod1", 1000d, 100.00, false);
         rm.declineRequest("100");
         Assert.assertTrue(pm.getUserFromId("1").getCurrentRequests() == null &&
                 pm.getUserFromId("1").getOfferHistory().get(0).getProdName() == null &&
@@ -38,7 +38,7 @@ public class RequestManagerTest {
 
     @Test
     public void testDataFromId() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
+        rm.createRequest(100, "1", "prod1", 1000d, 100.00, false);
         String[] data = rm.dataFromId("100");
         Assert.assertTrue(Objects.equals(data[0], "prod1")
                 && Objects.equals(data[1], "1000d")

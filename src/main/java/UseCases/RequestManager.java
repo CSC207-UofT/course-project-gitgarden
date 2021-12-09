@@ -21,11 +21,16 @@ public class RequestManager implements RequestInterface {
      * @param price     The price per kilogram of the product.
      */
     @Override
-    public void createRequest(int requestID, String id, String product, Double quantity, Double price) {
+    public void createRequest(int requestID, String id, String product, Double quantity, Double price, boolean accepted) {
         IUser user = pm.getUserFromId(id);
         IRequest request = new Request(requestID, user, product, quantity, price, null);
-        user.addRequest(request);
-        allActiveRequests.add(request);
+        if(accepted){
+            allOffers.add(request);
+        }
+        else {
+            user.addRequest(request);
+            allActiveRequests.add(request);
+        }
     }
 
     /**
@@ -47,7 +52,6 @@ public class RequestManager implements RequestInterface {
             deleteCurrent(request);
         }
         addCurrent(co);
-        user.addRequest(co);
         allActiveRequests.add(co);
     }
 
@@ -71,6 +75,7 @@ public class RequestManager implements RequestInterface {
         root.getUser().removeRequest(root);
         allActiveRequests.remove(root);
         allOffers.add(request);
+        request.setAccepted();
     }
 
     /**
@@ -115,6 +120,7 @@ public class RequestManager implements RequestInterface {
         } else {
             data[4] = String.valueOf(request.getPrevious().getRequestId());
         }
+        data[5] = String.valueOf(request.getAccepted());
 
         return data;
     }

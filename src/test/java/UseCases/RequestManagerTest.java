@@ -18,7 +18,7 @@ public class RequestManagerTest {
 
     @Test
     public void testAcceptRequest() {
-        rm.createRequest(100, "147", "prod1", 1000d, 100.00, false);
+        rm.createRequest(100, "147", "prod1", 1000.0, 100.00, false);
         rm.acceptRequest("100", "247");
         Assert.assertTrue(pm.getUserFromId("147").getOfferHistory().contains(rm.getRequestFromId("100")));
     }

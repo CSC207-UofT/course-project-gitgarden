@@ -52,7 +52,8 @@ During phase 2, we had an optional task of implementing Momento design pattern. 
 tasks for phase 2 (adhering our code to clean architecture), we had an opportunity to add a functionality to our
 program for the benefit or users. We decided to implement the 'Undo' functionality using the Momento Design Pattern.
 
-Moreover, considering the accessibility needs of the users, we introduced the 'high contrast' feature (similar to
+Moreover, considering the accessibility needs of the users, we introduced the 'dark mode' feature (similar to
+IntelliJ) to the program which adjusts the color scheme to facilitate more visibility in the UI.
 
 #### Composite Design Pattern
 

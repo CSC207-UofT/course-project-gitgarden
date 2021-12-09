@@ -43,6 +43,8 @@ public class RequestManager implements RequestInterface{
             deleteCurrent(request);
         }
         addCurrent(co);
+        user.addRequest(co);
+        allActiveRequests.add(co);
     }
 
     /**
@@ -144,6 +146,11 @@ public class RequestManager implements RequestInterface{
         }
     }
 
+    public int rootId(String requestId){
+        IRequest cur = getRequestFromId(requestId);
+        return requestRoot(cur).getRequestId();
+    }
+
     /**
      * Deletes this request from the farmer and distributor's current requests.
      * @param request The request to be deleted.
@@ -171,11 +178,16 @@ public class RequestManager implements RequestInterface{
      * @return The request matching the ID.
      */
     public IRequest getRequestFromId(String requestID){
-        ArrayList<IRequest> allRequests = new ArrayList<>(allActiveRequests);
-        allRequests.addAll(allOffers);
-        for (IRequest request : allRequests){
-            if (String.valueOf(request.getRequestId()).equals(requestID)){
-                return request;
+        if(getAllRequestIds().contains(Integer.parseInt(requestID))){
+            for (IRequest request : allActiveRequests){
+                if (String.valueOf(request.getRequestId()).equals(requestID)){
+                    return request;
+                }
+            }
+            for (IRequest request : allOffers){
+                if (String.valueOf(request.getRequestId()).equals(requestID)){
+                    return request;
+                }
             }
         }
         return new Request(0, null, null, 0, 0, null);

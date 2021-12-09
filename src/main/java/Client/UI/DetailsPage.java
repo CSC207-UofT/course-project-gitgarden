@@ -63,10 +63,19 @@ public class DetailsPage extends JFrame{
                 JOptionPane.showMessageDialog(null,"Accepted");
                 int i = 1;
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();
-                for(String requestId: controller.rank(request, WelcomePage.currUserId)){
-                    String[] product_info = presenter.fetchRequestInformation(requestId);
-                    listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
-                            "Price :" + product_info[2]);
+                if(WelcomePage.flag) {
+                    for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
+                        String[] product_info = presenter.fetchRequestInformation(requestId);
+                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                "Price :" + product_info[2]);
+                    }
+                }
+                else{
+                    for (String requestId : presenter.fetchCounteroffers(request)) {
+                        String[] product_info = presenter.fetchRequestInformation(requestId);
+                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                "Price :" + product_info[2]);
+                    }
                 }
 
                 responseList.setModel(listModel2);
@@ -82,10 +91,19 @@ public class DetailsPage extends JFrame{
                 JOptionPane.showMessageDialog(null,"Declined");
                 int i = 1;
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();
-                for(String requestId: controller.rank(request, WelcomePage.currUserId)){
-                    String[] product_info = presenter.fetchRequestInformation(requestId);
-                    listModel2.addElement(i+" "+ "Name: " + product_info[0] + " Quantity: " + product_info[1] +
-                            "Price :" + product_info[2]);
+                if(WelcomePage.flag) {
+                    for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
+                        String[] product_info = presenter.fetchRequestInformation(requestId);
+                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                "Price :" + product_info[2]);
+                    }
+                }
+                else{
+                    for (String requestId : presenter.fetchCounteroffers(request)) {
+                        String[] product_info = presenter.fetchRequestInformation(requestId);
+                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                "Price :" + product_info[2]);
+                    }
                 }
 
                 responseList.setModel(listModel2);
@@ -115,10 +133,19 @@ public class DetailsPage extends JFrame{
         });
         int i = 1;
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
-        for(String requestId: controller.rank(request, WelcomePage.currUserId)){
-            String[] product_info = presenter.fetchRequestInformation(requestId);
-            listModel2.addElement(i+" "+ "Name: " + product_info[3] + " Quantity: " + product_info[1] +
-                    "Price :" + product_info[2]);
+        if(WelcomePage.flag) {
+            for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
+                String[] product_info = presenter.fetchRequestInformation(requestId);
+                listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                        "Price :" + product_info[2]);
+            }
+        }
+        else{
+            for (String requestId : presenter.fetchCounteroffers(request)) {
+                String[] product_info = presenter.fetchRequestInformation(requestId);
+                listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                        "Price :" + product_info[2]);
+            }
         }
 
         responseList.setModel(listModel2);

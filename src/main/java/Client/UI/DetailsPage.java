@@ -47,7 +47,7 @@ public class DetailsPage extends JFrame{
 
         listModel.addElement("Request ID: " + request);
         listModel.addElement("Product name: " + info[0]);
-        listModel.addElement("Farmer name: " + info[3]);
+        listModel.addElement("User name: " + info[3]);
         listModel.addElement("Farmer address: " + presenter.fetchUserAddress(WelcomePage.currUserId));
         listModel.addElement("Product Quantity: " + info[1]);
         listModel.addElement("Product Price: " + info[2]);

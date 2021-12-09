@@ -92,7 +92,7 @@ public class ServiceController implements ControllerInterface{
         if (isAlphabetic(product)){
             if (isValidQuantity(quantity)){
                 if (isValidPrice(price)){
-                    requestManager.createRequest(uniqueRequestId(), id, product, Double.parseDouble(quantity), Double.parseDouble(price));
+                    requestManager.createRequest(uniqueRequestId(), id, product, Double.parseDouble(quantity), Double.parseDouble(price), false);
                 } else {
                     throw new Exception("Your price input must have two decimal places.");
                 }

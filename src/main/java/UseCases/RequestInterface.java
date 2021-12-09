@@ -5,7 +5,7 @@ import Entities.IRequest;
 import java.util.ArrayList;
 
 public interface RequestInterface {
-    void createRequest(int requestID, String id, String product, Double quantity, Double price);
+    void createRequest(int requestID, String id, String product, Double quantity, Double price, boolean accepted);
 
     void createCounterOffer(int requestID, String id, String counteredRequestID, Double quantity, Double price);
 

@@ -100,12 +100,13 @@ public class JsonAdapter {
         for (int i : ids) {
             if(rm.dataFromId(String.valueOf(i))[4] == null) {
                 IRequest req = rm.getRequestFromId(String.valueOf(i));
-                String[] r = new String[5];
+                String[] r = new String[6];
                 r[0] = String.valueOf(req.getRequestId());
                 r[1] = String.valueOf(req.getUser().getUserId());
                 r[2] = req.getProdName();
                 r[3] = String.valueOf(req.getProdQuantity());
                 r[4] = String.valueOf(req.getProdPricePerKg());
+                r[5] = String.valueOf(req.getAccepted());
                 reqArray.add(r);
             }
         }
@@ -134,7 +135,6 @@ public class JsonAdapter {
                         int rootId = rm.rootId(co);
                         user = rm.getRequestFromId(String.valueOf(rootId)).getUser();
                     }
-                    System.out.print(String.valueOf(user.getUserId()));
                     c[1] = String.valueOf(user.getUserId());
                     IRequest prev = rm.getRequestFromId(co).getPrevious();
                     c[2] = String.valueOf(prev.getRequestId());

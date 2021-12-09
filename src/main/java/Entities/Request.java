@@ -11,6 +11,7 @@ public class Request implements IRequest{
     private final double prodPricePerKg;
     private final ArrayList<IRequest> counteroffers;
     private final IRequest previous;
+    private boolean accepted;
 
     public Request(int id, IUser user, String pName, double pQuantity, double pPricePerKg, IRequest previous) {
         this.requestId = id;
@@ -20,6 +21,7 @@ public class Request implements IRequest{
         this.prodPricePerKg = pPricePerKg;
         this.counteroffers = new ArrayList<>();
         this.previous = previous;
+        accepted = false;
     }
 
     /**
@@ -28,6 +30,23 @@ public class Request implements IRequest{
      */
     public void add(IRequest co){
         this.counteroffers.add(co);
+    }
+
+    /**
+     * Adds a counteroffer to the request.
+     *
+     * @return accepted the state of this request
+     */
+    public boolean getAccepted(){
+        return accepted;
+    }
+
+    /**
+     * Set accepted to true
+     *
+     */
+    public void setAccepted(){
+        accepted = true;
     }
 
     /**

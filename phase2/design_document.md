@@ -46,6 +46,7 @@ easy to understand and it does the job as expected.
 
 Next, in the beginning, we were going to use the application Vaadin to create our user interface, but there were way
 too many files in the starter’s code and we would have to go through a lot of dependency files to everything from our
+repo. After switching to GUI, things became much easier to work with.
 
 #### Composite Design Pattern
 

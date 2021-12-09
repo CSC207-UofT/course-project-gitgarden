@@ -48,6 +48,7 @@ Next, in the beginning, we were going to use the application Vaadin to create ou
 too many files in the starter’s code and we would have to go through a lot of dependency files to everything from our
 repo. After switching to GUI, things became much easier to work with.
 
+
 #### Composite Design Pattern
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.

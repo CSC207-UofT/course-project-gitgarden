@@ -240,3 +240,17 @@ Our team used discord as a texting and communication channel, however we took ad
 3. We also experimented with the issue function, but most of our issues were discussed on discord.
 
 4. Lastly, we used to use the README file as a project management and tracking platform. Refer to this [file](../status.md) now for details.
+
+# Changes since presentation
+
+## Dependency injection
+
+We decided to work on dependency injection in the two days between the presentation and our final submission. This was succesfully implemented, and our UI pages, Controller, and Presenter no longer depend on concrete classes.
+
+## Facade
+
+We decided to implement a facade, allowing our main method to be extremely short and clean.
+
+## Persistency
+
+It turned out that we didn't have time to redo the database so it functioned more typically and smoothly. Instead, everything is saved at the end of the program. We've done our best to make this system adhere to the central tenets of Clean Architecture.

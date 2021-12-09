@@ -15,19 +15,23 @@
 <summary>‼️ Click to see detailed dependencies within packages ‼️</summary>
     <details>
     <summary>Entities Packages</summary>
-        <img src="assets/Entities.png" alt="Entities">
+        <img src="assets/Entities.png" alt="Entities" width="500">
     </details>
     <details>
     <summary>UseCase Packages</summary>
-        <img src="assets/UseCases.png" alt="UseCases">
+        <img src="assets/UseCases.png" alt="UseCases" width="500">
     </details>
     <details>
     <summary>Controller Packages</summary>
-        <img src="assets/Controller.png" alt="Controller">
+        <img src="assets/Controller.png" alt="Controller" width="500">
     </details>
     <details>
-    <summary>UI Packages</summary>
-        <img src="assets/UI.png" alt="UI">
+    <summary>Client Packages</summary>
+        <img src="assets/Client.png" alt="UI" width="500">
+    </details>
+    <details>
+    <summary>UI Packages (inside of Client)</summary>
+        <img src="assets/UI.png" alt="UI" width="500">
     </details>
 </details>
 

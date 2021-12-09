@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Objects;
-
 public class RequestManagerTest {
     ProfileManager pm;
     RequestManager rm;
@@ -13,37 +11,25 @@ public class RequestManagerTest {
     @Before
     public void setUp() {
         pm = new ProfileManager();
-        pm.createFarmer("farmer", "address", 1);
-        pm.createDistributor("Distributor", "address", 2);
+        pm.createFarmer("farmer", "address", 147);
+        pm.createDistributor("Distributor", "address", 247);
         rm = new RequestManager();
     }
 
     @Test
     public void testAcceptRequest() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
-        rm.acceptRequest("100", "2");
-        Assert.assertTrue(pm.getUserFromId("2").getCurrentRequests() == null &&
-                Objects.equals(pm.getUserFromId("2").getOfferHistory().get(0).getProdName(), "prod1"));
-    }
-
-    @Test
-    public void testDeclineRequest() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
-        rm.declineRequest("100");
-        Assert.assertTrue(pm.getUserFromId("1").getCurrentRequests() == null &&
-                pm.getUserFromId("1").getOfferHistory().get(0).getProdName() == null &&
-                pm.getUserFromId("2").getCurrentRequests() == null &&
-                pm.getUserFromId("2").getOfferHistory().get(0).getProdName() == null);
+        rm.createRequest(100, "147", "prod1", 1000.0, 100.00, false);
+        rm.acceptRequest("100", "247");
+        Assert.assertTrue(pm.getUserFromId("147").getOfferHistory().contains(rm.getRequestFromId("100")));
     }
 
     @Test
     public void testDataFromId() {
-        rm.createRequest(100, "1", "prod1", 1000d, 100.00);
-        String[] data = rm.dataFromId("100");
-        Assert.assertTrue(Objects.equals(data[0], "prod1")
-                && Objects.equals(data[1], "1000d")
-                && Objects.equals(data[2], "100.00")
-                && Objects.equals(data[3], ""));
+        rm.createRequest(101, "147", "prod2", 1000.0, 100.00, false);
+        String[] data = rm.dataFromId("101");
+        Assert.assertEquals("prod2", data[0]);
+        Assert.assertEquals("1000.0", data[1]);
+        Assert.assertEquals("100.0", data[2]);
     }
 
 }

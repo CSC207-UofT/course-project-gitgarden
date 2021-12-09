@@ -24,7 +24,7 @@ public class RankingManagerTest {
             pm.createDistributor("Divit", "E", 5);
             pm.createDistributor("Melaney", "F", 6);
             pm.createDistributor("Jagat", "G", 7);
-            rm.createRequest(0, "8", "Orange", 50d, 3.00);
+            rm.createRequest(0, "8", "Orange", 50d, 3.00, false);
 
             for (int i = 0; i < pm.getDistributorList().size(); i++){
                 pm.getDistributorList().get(i).addOffer(rm.getRequestFromId("0"));

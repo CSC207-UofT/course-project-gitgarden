@@ -90,15 +90,24 @@ public class DetailsPage extends JFrame {
                 DefaultListModel<String> listModel2 = new DefaultListModel<>();
                 if (WelcomePage.flag) {
                     for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
-                        String[] product_info = presenter.fetchRequestInformation(requestId);
-                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
-                                "Price :" + product_info[2]);
+                        try {
+                            String[] product_info = presenter.fetchRequestInformation(requestId);
+                            listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                    "Price :" + product_info[2]);
+                        } catch (NullPointerException ignored){
+
+                        }
+
                     }
                 } else {
                     for (String requestId : presenter.fetchCounteroffers(request)) {
-                        String[] product_info = presenter.fetchRequestInformation(requestId);
-                        listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
-                                "Price :" + product_info[2]);
+                        try {
+                            String[] product_info = presenter.fetchRequestInformation(requestId);
+                            listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
+                                    "Price :" + product_info[2]);
+                        } catch (NullPointerException ignored){
+
+                        }
                     }
                 }
 
@@ -129,6 +138,7 @@ public class DetailsPage extends JFrame {
         DefaultListModel<String> listModel2 = new DefaultListModel<>();
         if (WelcomePage.flag) {
             for (String requestId : controller.rank(request, WelcomePage.currUserId)) {
+
                 String[] product_info = presenter.fetchRequestInformation(requestId);
                 listModel2.addElement(i + " " + "Name: " + product_info[0] + " Quantity: " + product_info[1] +
                         "Price :" + product_info[2]);

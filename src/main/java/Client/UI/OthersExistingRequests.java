@@ -97,7 +97,11 @@ public class OthersExistingRequests extends JFrame {
         requestList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String selectedRequest = requestList.getSelectedValue();
-                tempRequest = selectedRequest.split(" ")[2];
+                try {
+                    tempRequest = selectedRequest.split(" ")[2];
+                } catch (NullPointerException ignored){
+
+                }
             }
         });
 

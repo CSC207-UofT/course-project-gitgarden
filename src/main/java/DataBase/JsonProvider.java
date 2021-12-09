@@ -190,7 +190,7 @@ public class JsonProvider implements DataAccessInterface {
             RequestManager rm = new RequestManager();
             for (String[] r : reqs) {
                 rm.createRequest(Integer.parseInt(r[0]), r[1], r[2], Double.parseDouble(r[3]),
-                        Double.parseDouble(r[4]));
+                        Double.parseDouble(r[4]), Boolean.parseBoolean(r[5]));
             }
         }
     }

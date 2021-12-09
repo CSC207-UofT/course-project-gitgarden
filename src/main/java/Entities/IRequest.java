@@ -12,6 +12,19 @@ public interface IRequest {
     void add(IRequest co);
 
     /**
+     * Adds a counteroffer to the request.
+     *
+     * @return accepted the state of this request
+     */
+    boolean getAccepted();
+
+    /**
+     * Set accepted to true
+     *
+     */
+    void setAccepted();
+
+    /**
      * Gets this request's counteroffers.
      *
      * @return the current counteroffers to the request.

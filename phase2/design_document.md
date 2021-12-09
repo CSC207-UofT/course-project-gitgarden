@@ -52,6 +52,7 @@ During phase 2, we had an optional task of implementing Momento design pattern. 
 tasks for phase 2 (adhering our code to clean architecture), we had an opportunity to add a functionality to our
 program for the benefit or users. We decided to implement the 'Undo' functionality using the Momento Design Pattern.
 
+
 #### Composite Design Pattern
 
 At the end of phase 1, we started questioning whether we should use the Composite design pattern. The uses of requests and counteroffers never required us to access the intermediate steps in the tree- counteroffers which had either been declined or themselves contained a counteroffer. In the end, we decided that since one of the main purposes of the design pattern was this kind of navigation, we didn't need to use Composite after all. We instead implemented a simpler system using a few recursive methods in `RequestManager`.
